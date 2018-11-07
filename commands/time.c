@@ -580,6 +580,16 @@ NOTIMPLEMENTED;
       continue;
       }
 
+    // RETURN WEEK NUMBER?? AIR 2018-11-07
+    if( !memcmp(s,"WEEKNUM",7) ){
+      char format[32];
+      strptime(format, "%Y-%m-%d", pGmTime);
+      strftime(format, sizeof(format),"%V", pGmTime);
+      sprintf(szNumberBuffer,"%s",format);
+      memcpy(s,szNumberBuffer,7);
+      s += 7;
+      continue;
+      }
     s++;
     }
   RESULT = NEWMORTALSTRING(strlen(pszFormatString));
