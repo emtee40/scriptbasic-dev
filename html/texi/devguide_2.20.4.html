@@ -1,0 +1,68 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.20.4. sym_LookupSymbol()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: sym_LookupSymbol()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: sym_LookupSymbol()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.20.html">2.20. Symbol Table Handling</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.20.4. sym_LookupSymbol()</H1>
+<A HREF="devguide_2.20.3.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.20.5.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function should be used to search a symbol or to insert a new symbol.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void **sym_LookupSymbol(
+  char *s,                 /* zero terminated string containing the symbol                 */
+  SymbolTable hashtable,   /* the symbol table                                             */
+  int insert,              /* should a new empty symbol inserted, or return NULL instead   */
+  void* (*memory_allocating_function)(size_t, void *),
+  void (*memory_releasing_function)(void *, void *),
+  void *pMemorySegment
+  )@{
+</PRE></FONT>
+<P>
+This function usually returns a pointer to the <font size="3"><tt>void *</tt></font> pointer which is
+supposed to point to the structure, which actually holds the parameters for
+the symbol. When a symbol is not found in the symbol table the parameter <font size="3"><tt>insert</tt></font>
+is used to decide what to do. If this parameter is zero the function returns <font size="3"><tt>NULL</tt></font>.
+If this parameter is 1 the function creates a new symbol and returns a pointer to the
+<font size="3"><tt>void *</tt></font> pointer associated with the symbol.
+<P>
+If a new symbol is to be inserted and the function returns <font size="3"><tt>NULL</tt></font> means that the memory 
+allocation function has failed.
+<P>
+If the new symbol was created and a pointer to the <font size="3"><tt>void *</tt></font> pointer is returned the value of
+the pointer is <font size="3"><tt>NULL</tt></font>. In other words:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+<P>
+void **a;
+<P>
+a = sym_LookupSymbol(s,table,1,mymema,mymemr,p);
+<P>
+if( a == NULL )error("memory releasing error");
+if( *a == NULL )error("symbol not found");
+<P>
+</PRE></FONT><HR>
+<A HREF="devguide_2.20.3.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.20.5.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

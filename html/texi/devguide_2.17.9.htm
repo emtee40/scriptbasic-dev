@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: modu_ShutdownModule</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: modu_ShutdownModule">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: modu_ShutdownModule">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>modu_ShutdownModule</H1>
+<A HREF="devguide_2.17.8.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.18.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Shut down a module
+<P>
+This function calls the shutdown function of a module.
+<P>
+If the shutdown function performs well and returns SUCCESS this function
+also returns success. If the shutdown function returns error code
+it means that the module has running thread and thus can not be unloaded.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int modu_ShutdownModule(pExecuteObject pEo,
+                        pModule pThisModule
+  )@{
+</PRE></FONT>
+ <HR>
+<A HREF="devguide_2.17.8.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.18.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

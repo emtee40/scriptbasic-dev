@@ -1,0 +1,83 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: cft_GetEx()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: cft_GetEx()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: cft_GetEx()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>cft_GetEx()</H1>
+<A HREF="devguide_2.7.1.5.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.7.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Get the value associated with the key <font size="3"><tt>key</tt></font> from the configuration
+structure <font size="3"><tt>pCT</tt></font>, or get the values of a node.
+<P>
+The arguments:
+<P>
+<UL>
+<LI> <font size="3"><tt>pCT</tt></font> the configuration information searched.
+<LI> <font size="3"><tt>key</tt></font> the key that we search the value for, or NULL if we already
+      know the node id where the needed information is.
+<LI> <font size="3"><tt>plNodeId</tt></font> the id of the node that we need information from. If the
+      key argumentum is not NULL then this argument is overwritten with the
+      node id associated with the key. If the argument key is NULL this
+      argument should specify the id of the node we need information from.
+      If the node id is not needed upon return this argument may point to NULL.
+<LI> <font size="3"><tt>ppszValue</tt></font> will return a pointer to a constant ZCHAR string if
+      the value associated with <font size="3"><tt>key</tt></font> is string. If the argument is <font size="3"><tt>NULL</tt></font>
+      then the function ignore this argument.
+<LI> <font size="3"><tt>plValue</tt></font> will return a <font size="3"><tt>long</tt></font> if the value associated with
+      <font size="3"><tt>key</tt></font> is integer. If the argument is <font size="3"><tt>NULL</tt></font>
+      then the function ignore this argument.
+<LI> <font size="3"><tt>pdValue</tt></font> will return a <font size="3"><tt>double</tt></font> if the value associated with
+      <font size="3"><tt>key</tt></font> is a real number. If the argument is <font size="3"><tt>NULL</tt></font>
+      then the function ignore this argument.
+<LI> <font size="3"><tt>type</tt></font> will return the type of the key. This can be
+  <UL>
+  <LI> <font size="3"><tt>CFT_NODE_BRANCH</tt></font> if the key is associated with a subtree.
+  <LI> <font size="3"><tt>CFT_TYPE_STRING</tt></font> if the key is associated with a string
+  <LI> <font size="3"><tt>CFT_TYPE_INTEGER</tt></font> if the key is associated with an integer number
+  <LI> <font size="3"><tt>CFT_TYPE_REAL</tt></font> if the key is associated with a real number
+  @end itemize
+  This argument can also be NULL if the caller is not interested in the
+  type of the value.
+@end itemize
+<P>
+Note that any of <font size="3"><tt>ppszValue</tt></font>, <font size="3"><tt>plValue</tt></font>, <font size="3"><tt>pdValue</tt></font> can point to a
+variable or to <font size="3"><tt>NULL</tt></font> in case the caller does not need the actual value.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int cft_GetEx(ptConfigTree pCT,
+              char *key,
+              CFT_NODE *plNodeId,
+              char **ppszValue,
+              long *plValue,
+              double *pdValue,
+              int *type
+  )@{
+</PRE></FONT>
+<P>
+The function returns <font size="3"><tt>CFT_ERROR_SUCCESS</tt></font> if no error happens.
+The value <font size="3"><tt>CFT_ERROR_SUCCESS</tt></font> is zero.
+<P>
+If an error happens the error code is returned. These error codes are:
+<UL>
+<LI> <font size="3"><tt>CFT_ERROR_NOT_FOUND</tt></font> the key is not present in the table, and
+      <font size="3"><tt>*plNodeId</tt></font> will also be set to zero.
+<LI> <font size="3"><tt>CFT_ERROR_NOTYPE</tt></font> the key is found but has a type that can not
+      be returned, because the caller passed NULL as storage location.
+      In this case the type of the configuration information is probably
+      wrong.
+@end itemize<HR>
+<A HREF="devguide_2.7.1.5.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.7.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

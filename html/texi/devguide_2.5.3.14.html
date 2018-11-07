@@ -1,0 +1,57 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.5.3.14. build_LoadCore()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: build_LoadCore()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: build_LoadCore()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.5.html">2.5. Builder</A><BR>
+<UL><a href="devguide_2.5.3.html">2.5.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.5.3.14. build_LoadCore()</H1>
+<A HREF="devguide_2.5.3.13.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.15.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function loads the binary code from an opened file.
+<P>
+Arguments:
+<P>
+<UL>
+<LI> <font size="3"><tt>pBuild</tt></font> is the build object
+<LI> <font size="3"><tt>szFileName</tt></font> is the name of the file that is opened. Needed for reporting purposes.
+<LI> <font size="3"><tt>fp</tt></font> opened <font size="3"><tt>FILE *</tt></font> file pointer opened for binary reading (aka <font size="3"><tt>"rb"</tt></font>), and positioned where the
+BASIC code starts.
+<LI> <font size="3"><tt>lEOFfset</tt></font> should be the position of the last byte that belongs to the BASIC code so that <font size="3"><tt>ftell(fp)</tt></font>&gt;<font size="3"><tt>lEOFfset</tt></font>
+is treated as EOF condition. If this value is zero that means that the BASIC code is contained in the file until the
+physical end of file.
+@end itemize
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void build_LoadCore(pBuildObject pBuild,
+                    char *szFileName,
+                    FILE *fp,
+                    long lEOFfset
+  )@{
+</PRE></FONT>
+Note that the program does not return error code, but calls the reporting function to report error. The file <font size="3"><tt>fp</tt></font> is not closed in the
+function even if error has happened during reading.<HR>
+<A HREF="devguide_2.5.3.13.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.15.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

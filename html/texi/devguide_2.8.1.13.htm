@@ -1,0 +1,38 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: alloc_GetStat()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: alloc_GetStat()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: alloc_GetStat()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>alloc_GetStat()</H1>
+<A HREF="devguide_2.8.1.12.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+From period to period the code using this memory management layer may need to know
+how much memory the program is using.
+<P>
+Calling this function from time to time you can get the minimum and maximum memory
+that the program used via this layer since the last call to this function or since
+program start in case of the first call.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void alloc_GetStat(void *p,
+                   unsigned long *pMax,
+                   unsigned long *pMin,
+                   unsigned long *pActSize
+  )@{
+</PRE></FONT>
+ <HR>
+<A HREF="devguide_2.8.1.12.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

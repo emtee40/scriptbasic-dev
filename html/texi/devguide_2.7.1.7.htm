@@ -1,0 +1,38 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: cft_GetString()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: cft_GetString()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: cft_GetString()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>cft_GetString()</H1>
+<A HREF="devguide_2.7.1.6.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.8.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This is the simplest interface function to retrieve a configuration
+string. This assumes that you exactly know the name of the key and
+you are sure that the value is a string. The function returns the pointer
+to the constant string or returns NULL if the configuration key is not
+present in the tree or the value is not a string.
+<P>
+The use of this function is not recommended. This function is present
+in this package to ease porting of programs that use simpler configuration
+information management software.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+char *cft_GetString(ptConfigTree pCT,
+                    char *key
+  )@{
+</PRE></FONT>
+This function calls <a href="devguide_2.7.1.6.htm">cft_GetEx</A>.<HR>
+<A HREF="devguide_2.7.1.6.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.8.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

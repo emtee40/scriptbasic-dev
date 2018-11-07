@@ -1,0 +1,103 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.5.1. Node Structure</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Node Structure">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Node Structure">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.5.html">2.5. Builder</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.5.1. Node Structure</H1>
+<A HREF="devguide_2.5.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Have a look at the C definition of a node:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+typedef struct _cNODE {
+  long OpCode; // the code of operation
+  union {
+    struct {// when the node is a command
+      unsigned long next;
+      union {
+        unsigned long pNode;// node id of the node
+        long lLongValue;
+        double dDoubleValue;
+        unsigned long szStringValue;
+        }Argument;
+      }CommandArgument;
+    struct {//when the node is an operation
+      unsigned long Argument;//node id of the node list head
+      }Arguments;
+    union {// when the node is a constant
+<P>
+      double dValue;        
+      long   lValue;        
+      unsigned long sValue; // serial value of the string from the string table       
+      }Constant;
+    struct {// when the node is a variable
+      unsigned long Serial;// the serial number of the variable
+      }Variable;
+    struct {// when node is a user functions
+      unsigned long NodeId; // the entry point of the function
+      unsigned long Argument; // node id of the node list head
+      }UserFunction;
+    struct {// when the node is a node list head
+      unsigned long actualm; //car
+      unsigned long rest;    //cdr
+      }NodeList;
+    }Parameter;
+  } cNODE,*pcNODE;
+</PRE></FONT>
+<P>
+The field <font size="3"><tt>OpCode</tt></font> is the same as the code used in the lexer or the syntax analyzer. In case of an <font size="3"><tt>IF</tt></font> statement it is <font size="3"><tt>CMD_IF</tt></font>. This field can, should and is used to identify which part of the union <font size="3"><tt>Parameter</tt></font> is to be used.
+<P>
+The individual lines of the BASIC program that create code are chained into a list. Each line has a head node. The <font size="3"><tt>OpCode</tt></font> of the head nodes is <font size="3"><tt>eNTYPE_LST</tt></font>. This type of node contains <font size="3"><tt>NodeList</tt></font> structure. The field <font size="3"><tt>NodeList.actualm</tt></font> contains the index of the first node of the actual line and the field <font size="3"><tt>NodeList.rest</tt></font> contains the index of the next header node.
+<P>
+This type of node is used to gather expression lists into a linked list.
+<P>
+Note that usually not the first node in the byte-code is the first head node, where the code is to be started. The nodes generated from a line are created before the head node is allocated in the syntax analyzer and the head node thus gets a larger serial number. The builder uses the serial numbers counted by the syntax analyzer and does not rearrange the nodes.
+<P>
+The command node that the field <font size="3"><tt>NodeList.actualm</tt></font> "points" contains the opcode of the command. For example if the actual command is <font size="3"><tt>IF</tt></font> then the <font size="3"><tt>OpCode</tt></font> is <font size="3"><tt>CMD_IF</tt></font>.
+<P>
+In case of command nodes the <font size="3"><tt>Parameter</tt></font> is <font size="3"><tt>CommandArgument</tt></font>. If the command has only a single argument the field <font size="3"><tt>next</tt></font> is zero. Otherwise this field contains the node index of the node holding the next argument.
+<P>
+The <font size="3"><tt>Parameter.CommandArgument.Argument</tt></font> union contains the actual argument of the command. There is no indication in the data structure what type the argument is. The command has to know what kind of arguments it gets, and should not interpret the union different.
+<P>
+The field <font size="3"><tt>pNode</tt></font> is the node index of the parameter. This is the case for example when the parameter is an expression or a label to jump to.
+<P>
+The fields <font size="3"><tt>lLongValue</tt></font>, <font size="3"><tt>dDoubleValue</tt></font> and <font size="3"><tt>szStringValue</tt></font> contain the constant values in case the argument is a constant. However this is actually not the string that is stored in the field <font size="3"><tt>szStringValue</tt></font> but the index to the string table where the string is started. (Yes, here is some inconsistency in naming.)
+<P>
+Strings are stored in a string table where each string is stored one after the other. Each string is terminated with a zero character and each string is preceded by a <font size="3"><tt>long</tt></font> value that indicates the length of the string. The zero character termination eases the use of the string constants when they have to be passed to the operating system avoiding the need to copy the strings in some cases.
+<P>
+
+The field <font size="3"><tt>Parameter.CommandArgument.next</tt></font> is zero in case there are no more arguments of the command, or the index of the node containing the next argument. The <font size="3"><tt>OpCode</tt></font> field of the following arguments is <font size="3"><tt>eNTYPE_CRG</tt></font>.
+<P>
+When the node is part of an expression and represents an operation or the call of a built-in function then the <font size="3"><tt>Arguments</tt></font> structure of the <font size="3"><tt>Parameter</tt></font> union is to be used. This simply contains <font size="3"><tt>Argument</tt></font> that "points" to a list of "list" nodes that list the arguments in a list. In this case the <font size="3"><tt>OpCode</tt></font> is the code of the built-in function or operation.
+<P>
+When the node represents a string or a numeric constant the <font size="3"><tt>Constant</tt></font> union field of the union <font size="3"><tt>Parameter</tt></font> should be used. This stores the constant value similar as the field <font size="3"><tt>CommandArgument</tt></font> except that it can only be <font size="3"><tt>long</tt></font>, <font size="3"><tt>double</tt></font> or a string. In case of constant node the <font size="3"><tt>OpCode</tt></font> is  <font size="3"><tt>eNTYPE_DBL</tt></font> for a <font size="3"><tt>double</tt></font>, <font size="3"><tt>eNTYPE_LNG</tt></font> for a <font size="3"><tt>long</tt></font> and <font size="3"><tt>eNTYPE_STR</tt></font> for a string.
+<P>
+When the node represents a variable the field <font size="3"><tt>Variable</tt></font> has to be used. In this case the field <font size="3"><tt>Serial</tt></font> contains the serial number of the variable. To distinguish between local and global variables the <font size="3"><tt>OpCode</tt></font> is either <font size="3"><tt>eNTYPE_LVR</tt></font> for local variables or <font size="3"><tt>eNTYPE_GVR</tt></font> for global variables.
+<P>
+When the node is a user defined function call the field <font size="3"><tt>UserFunction</tt></font> is used. Note that this is not the node that is generated from the line <font size="3"><tt>sub/function myfunc</tt></font> but rather when the function or subroutine is called. The <font size="3"><tt>OpCode</tt></font> is <font size="3"><tt>eNTYPE_FUN</tt></font>.
+<P>
+The field <font size="3"><tt>NodeId</tt></font> is the index of the node where the function or subroutine starts. The field <font size="3"><tt>Argument</tt></font> is the index of the list node that starts the list of the argument expressions.<HR>
+<A HREF="devguide_2.5.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,67 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Handle Pointers in External Modules Support Functions</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Handle Pointers in External Modules Support Functions">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Handle Pointers in External Modules Support Functions">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Handle Pointers in External Modules Support Functions</H1>
+<A HREF="devguide_2.12.51.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.13.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+@c Handling handle pointer conversion
+<P>
+The functions in this file help the various ScriptBasic extension
+modules to avoid crashing the system even if the BASIC programs use 
+the values passed by the module in a bad way. 
+<P>
+For example a database handling module opens a database and allocates 
+a structure describing the connection. The usual way to identify the structure 
+is to return a BASIC string variable to the BASIC code that byte by byte holds 
+the value of the pointer. This works on any machine having 32bit or 64bit pointers 
+because strings can be arbitrary length in ScriptBasic. 
+<P>
+When another external module function need access to the structure it needs a 
+pointer to it. This is easily done by passing the string variable to the module. 
+The module converts the string variable back byte by byte to a pointer and all is fine.
+<P>
+Is it?
+<P>
+The issue is that the BASIC program may alter the pointer and pass a string containg garbage
+back to the module. The module has no way to check the correctness tries to use it
+and crashes the whole interpreter. (Even the other interpreters running in the same process
+in different threads.)
+<P>
+=bold
+ScriptBasic external modules should never ever pass pointers in strings back to the BASIC code.
+=nobold
+<P>
+(Even that some of the modules written by the ScriptBasic developers followed this method formerly.)
+<P>
+The better solution is to store these module pointers in arrays and pass the index of the pointer
+in the array to the basic application. This way the BASIC program will get INTEGER values instead
+of STRING and will not be able to alter the pointer value and crash the program.
+<P>
+To store the pointer and get the index (we call it a handle) these functions can be used.
+<P>
+Whenever a pointer needs a handle the module has to call <font size="3"><tt>GetHandle</tt></font>. This function stores the
+pointer and returns the handle to it. When the BASIC program passes the handle back to the module
+and the module needs the pointer associated with the handle it has to call <font size="3"><tt>GetPointer</tt></font>.
+<P>
+When a pointer is not needed anymore the handle should be freed calling <font size="3"><tt>FreeHandle</tt></font>.
+<P>
+This implementation uses arrays to hold the pointers. The handles are the indexes to the array.
+The index 0 is never used. Handle value zero is returned as an invalid handle value whenever
+some error occures, like out of memory condition.<HR>
+<A HREF="devguide_2.12.51.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.13.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,58 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Simple Pattern Matching</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Simple Pattern Matching">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Simple Pattern Matching">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Simple Pattern Matching</H1>
+<A HREF="devguide_2.18.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.19.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+@c Simple Pattern Matching
+<P>
+=abstract
+A simple, non-regular expression pattern matching module mainly to perform
+file name pattern matching, like <font size="3"><tt>*.txt</tt></font> or <font size="3"><tt>file0?.bin</tt></font> and alikes.
+=end
+<P>
+This is a simple and fast pattern matching algorithm.
+This can be used when the matching does not require
+regular expression complexity and the processign on 
+the other hand should be fast.
+<P>
+There are two major tasks implemented here. One is to match a string against a pattern.
+The second is to create a replacement string. When a pattern is matched by a string an
+array of string values are created. Each contains a substring that matches a joker character.
+Combining this array and a format string a replacement string can be created.
+<P>
+For example:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+<P>
+String = "mortal  combat"
+Pattern = "mo?tal co*"
+<P>
+</PRE></FONT>
+<P>
+the joker characters are the ?, the space (matching one or more space) and the * character.
+They are matched by <font size="3"><tt>r</tt></font>, two spaces and <font size="3"><tt>mbat</tt></font>. If we use the format string
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+Format string = "$1u$2"
+</PRE></FONT>
+<P>
+we get the result string <font size="3"><tt>rumbat</tt></font>. The format string can contain <font size="3"><tt>$n</tt></font> placeholders
+where <font size="3"><tt>n</tt></font> starts with 1 and is replaced by the actual value of the n-th joker character.<HR>
+<A HREF="devguide_2.18.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.19.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

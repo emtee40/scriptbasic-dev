@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: ex_IsSymbolValidLval(pEx)</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_IsSymbolValidLval(pEx)">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_IsSymbolValidLval(pEx)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ex_IsSymbolValidLval(pEx)</H1>
+<A HREF="devguide_2.4.3.37.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.39.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function checks whether the actual symbol used in as a start symbol of a left value
+is defined as a CONST in the BASIC program or not. If this is a const then the syntax analizer
+has to report an error (since v1.0b31).
+<P>
+This function is called from the function <a href="devguide_2.4.3.39.htm">ex_LeftValue</A> after the symbol was name space corrected.
+<P>
+Note that a symbol can be a global, name space independant constant, a name space local constant and
+a function local constant. All these differ only in name decoration inside the interpreter.
+<P>
+If a symbol is a local variable but is also a module or global symbol, but is NOT a function local symbol
+then that variable can indeed stand on the left side of a LET command. Therefore we check if the symbol
+is in the local variables table and in case this is in some of the global or module contant table,
+we just do not care.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int ex_IsSymbolValidLval(peXobject pEx
+  )@{
+</PRE></FONT>
+The function returns 1 if the symbol is a constant or zero if not.<HR>
+<A HREF="devguide_2.4.3.37.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.39.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

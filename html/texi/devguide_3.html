@@ -1,0 +1,117 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3. Embedding the Interpreter</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Embedding the Interpreter">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Embedding the Interpreter">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>3. Embedding the Interpreter</H1>
+<A HREF="devguide_2.20.5.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_3.1.html">3.1. Object Oriented Model of ScriptBasic</A><BR>
+<A HREF="devguide_3.2.html">3.2. Sample Embedding</A><BR>
+<UL>
+<A HREF="devguide_3.2.1.html">3.2.1. Include Header Files</A><BR>
+<A HREF="devguide_3.2.2.html">3.2.2. Function main(), Variable Declarations</A><BR>
+<A HREF="devguide_3.2.3.html">3.2.3. Command Line handling</A><BR>
+<A HREF="devguide_3.2.4.html">3.2.4. Creating Program Object</A><BR>
+<A HREF="devguide_3.2.5.html">3.2.5. Loading Configuration</A><BR>
+<A HREF="devguide_3.2.6.html">3.2.6. Loading Internal Preprocessors</A><BR>
+<A HREF="devguide_3.2.7.html">3.2.7. Setting the File Name</A><BR>
+<A HREF="devguide_3.2.8.html">3.2.8. Using the Cache</A><BR>
+<A HREF="devguide_3.2.9.html">3.2.9. Run External Preprocessors</A><BR>
+<A HREF="devguide_3.2.10.html">3.2.10. Loading the Source Program</A><BR>
+<A HREF="devguide_3.2.11.html">3.2.11. Saving Binary File</A><BR>
+<A HREF="devguide_3.2.12.html">3.2.12. Execute the BASIC Program</A><BR>
+<A HREF="devguide_3.2.13.html">3.2.13. Destroying the Program Object</A><BR>
+</UL>
+<A HREF="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+<UL>
+<A HREF="devguide_3.3.1.html">3.3.1. scriba_new()</A><BR>
+<A HREF="devguide_3.3.2.html">3.3.2. scriba_destroy()</A><BR>
+<A HREF="devguide_3.3.3.html">3.3.3. scriba_NewSbData()</A><BR>
+<A HREF="devguide_3.3.4.html">3.3.4. scriba_InitSbData()</A><BR>
+<A HREF="devguide_3.3.5.html">3.3.5. scriba_UndefSbData()</A><BR>
+<A HREF="devguide_3.3.6.html">3.3.6. scriba_NewSbLong()</A><BR>
+<A HREF="devguide_3.3.7.html">3.3.7. scriba_NewSbDouble()</A><BR>
+<A HREF="devguide_3.3.8.html">3.3.8. scriba_NewSbUndef()</A><BR>
+<A HREF="devguide_3.3.9.html">3.3.9. scriba_NewSbString()</A><BR>
+<A HREF="devguide_3.3.10.html">3.3.10. scriba_NewSbBytes()</A><BR>
+<A HREF="devguide_3.3.11.html">3.3.11. scriba_DestroySbData()</A><BR>
+<A HREF="devguide_3.3.12.html">3.3.12. scriba_PurgeReaderMemory()</A><BR>
+<A HREF="devguide_3.3.13.html">3.3.13. scriba_PurgeLexerMemory()</A><BR>
+<A HREF="devguide_3.3.14.html">3.3.14. scriba_PurgeSyntaxerMemory()</A><BR>
+<A HREF="devguide_3.3.15.html">3.3.15. scriba_PurgeBuilderMemory()</A><BR>
+<A HREF="devguide_3.3.16.html">3.3.16. scriba_PurgePreprocessorMemory()</A><BR>
+<A HREF="devguide_3.3.17.html">3.3.17. scriba_PurgeExecuteMemory()</A><BR>
+<A HREF="devguide_3.3.18.html">3.3.18. scriba_SetFileName()</A><BR>
+<A HREF="devguide_3.3.19.html">3.3.19. scriba_GettingConfiguration()</A><BR>
+<A HREF="devguide_3.3.20.html">3.3.20. scriba_LoadConfiguration()</A><BR>
+<A HREF="devguide_3.3.21.html">3.3.21. scriba_GetConfigFileName()</A><BR>
+<A HREF="devguide_3.3.22.html">3.3.22. scriba_InheritConfiguration()</A><BR>
+<A HREF="devguide_3.3.23.html">3.3.23. scriba_InitModuleInterface()</A><BR>
+<A HREF="devguide_3.3.24.html">3.3.24. scriba_InheritModuleInterface()</A><BR>
+<A HREF="devguide_3.3.25.html">3.3.25. scriba_InheritExecuteObject()</A><BR>
+<A HREF="devguide_3.3.26.html">3.3.26. scriba_SetProcessSbObject()</A><BR>
+<A HREF="devguide_3.3.27.html">3.3.27. scriba_ShutdownMtModules()</A><BR>
+<A HREF="devguide_3.3.28.html">3.3.28. scriba_SetCgiFlag()</A><BR>
+<A HREF="devguide_3.3.29.html">3.3.29. scriba_SetReportFunction()</A><BR>
+<A HREF="devguide_3.3.30.html">3.3.30. scriba_SetReportPointer()</A><BR>
+<A HREF="devguide_3.3.31.html">3.3.31. scriba_SetStdin()</A><BR>
+<A HREF="devguide_3.3.32.html">3.3.32. scriba_SetStdout()</A><BR>
+<A HREF="devguide_3.3.33.html">3.3.33. scriba_SetEmbedPointer()</A><BR>
+<A HREF="devguide_3.3.34.html">3.3.34. scriba_SetEnvironment()</A><BR>
+<A HREF="devguide_3.3.35.html">3.3.35. scriba_LoadBinaryProgramWithOffset()</A><BR>
+<A HREF="devguide_3.3.36.html">3.3.36. scriba_LoadBinaryProgram()</A><BR>
+<A HREF="devguide_3.3.37.html">3.3.37. scriba_InheritBinaryProgram()</A><BR>
+<A HREF="devguide_3.3.38.html">3.3.38. scriba_LoadInternalPreprocessor()</A><BR>
+<A HREF="devguide_3.3.39.html">3.3.39. scriba_ReadSource()</A><BR>
+<A HREF="devguide_3.3.40.html">3.3.40. scriba_DoLexicalAnalysis()</A><BR>
+<A HREF="devguide_3.3.41.html">3.3.41. scriba_DoSyntaxAnalysis()</A><BR>
+<A HREF="devguide_3.3.42.html">3.3.42. scriba_BuildCode()</A><BR>
+<A HREF="devguide_3.3.43.html">3.3.43. scriba_IsFileBinaryFormat()</A><BR>
+<A HREF="devguide_3.3.44.html">3.3.44. scriba_GetCacheFileName()</A><BR>
+<A HREF="devguide_3.3.45.html">3.3.45. scriba_UseCacheFile()</A><BR>
+<A HREF="devguide_3.3.46.html">3.3.46. scriba_SaveCacheFile()</A><BR>
+<A HREF="devguide_3.3.47.html">3.3.47. scriba_RunExternalPreprocessor()</A><BR>
+<A HREF="devguide_3.3.48.html">3.3.48. scriba_SaveCode()</A><BR>
+<A HREF="devguide_3.3.49.html">3.3.49. scriba_SaveCCode()</A><BR>
+<A HREF="devguide_3.3.50.html">3.3.50. scriba_SaveECode()</A><BR>
+<A HREF="devguide_3.3.51.html">3.3.51. scriba_LoadSourceProgram()</A><BR>
+<A HREF="devguide_3.3.52.html">3.3.52. scriba_LoadProgramString()</A><BR>
+<A HREF="devguide_3.3.53.html">3.3.53. scriba_Run()</A><BR>
+<A HREF="devguide_3.3.54.html">3.3.54. scriba_NoRun()</A><BR>
+<A HREF="devguide_3.3.55.html">3.3.55. scriba_ResetVariables()</A><BR>
+<A HREF="devguide_3.3.56.html">3.3.56. scriba_Call()</A><BR>
+<A HREF="devguide_3.3.57.html">3.3.57. scriba_CallArg()</A><BR>
+<A HREF="devguide_3.3.58.html">3.3.58. scriba_DestroySbArgs()</A><BR>
+<A HREF="devguide_3.3.59.html">3.3.59. scriba_NewSbArgs()</A><BR>
+<A HREF="devguide_3.3.60.html">3.3.60. scriba_CallArgEx()</A><BR>
+<A HREF="devguide_3.3.61.html">3.3.61. scriba_LookupFunctionByName()</A><BR>
+<A HREF="devguide_3.3.62.html">3.3.62. scriba_LookupVariableByName()</A><BR>
+<A HREF="devguide_3.3.63.html">3.3.63. scriba_GetVariableType()</A><BR>
+<A HREF="devguide_3.3.64.html">3.3.64. scriba_GetVariable()</A><BR>
+<A HREF="devguide_3.3.65.html">3.3.65. scriba_SetVariable()</A><BR>
+<A HREF="devguide_3.3.66.html">3.3.66. scriba_InitStaticModules()</A><BR>
+<A HREF="devguide_3.3.67.html">3.3.67. scriba_FinishStaticModules()</A><BR>
+<HR>
+<P>
+
+ScriptBasic was designed from the very start to be embeddable. This means that C programmers having their own application can fairly easy compile and link ScriptBasic together with their application and have ScriptBasic as a built in scripting language in their application.
+<P>
+To do this the C programmer should use the C api implemented in the file `<font size="3"><tt>scriba.c</tt></font>'. In this chapter we detail the C API as a reference listing all callable function, but before that there are some sections that describe a bit the overall model of ScriptBasiC. The next section will talk about what object orientation means for ScriptBasic and how to follow this object oriented approach when programming a ScriptBasic extended application in C.<HR>
+<A HREF="devguide_2.20.5.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

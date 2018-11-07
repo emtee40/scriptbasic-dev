@@ -1,0 +1,3115 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="t2h.pl texi to html converter">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Introduction">
+<param name="Local" value="devguide_1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Chapters">
+<param name="Local" value="devguide_1.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Interpreter Architecture">
+<param name="Local" value="devguide_2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="External Preprocessor">
+<param name="Local" value="devguide_2.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="External preprocessor handling">
+<param name="Local" value="devguide_2.1.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Execute external preprocessors">
+<param name="Local" value="devguide_2.1.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Reader">
+<param name="Local" value="devguide_2.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_IncreaseBuffer()">
+<param name="Local" value="devguide_2.2.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_gets()">
+<param name="Local" value="devguide_2.2.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_ReadLines()">
+<param name="Local" value="devguide_2.2.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_ReadLines_r()">
+<param name="Local" value="devguide_2.2.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_ProcessIncludeFiles()">
+<param name="Local" value="devguide_2.2.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_LoadPreprocessors()">
+<param name="Local" value="devguide_2.2.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_StartIteration()">
+<param name="Local" value="devguide_2.2.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_NextLine()">
+<param name="Local" value="devguide_2.2.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_NextCharacter()">
+<param name="Local" value="devguide_2.2.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_FileName()">
+<param name="Local" value="devguide_2.2.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_LineNumber()">
+<param name="Local" value="devguide_2.2.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_InitStructure()">
+<param name="Local" value="devguide_2.2.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_RelateFile()">
+<param name="Local" value="devguide_2.2.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="reader_DumpLines()">
+<param name="Local" value="devguide_2.2.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Lexer">
+<param name="Local" value="devguide_2.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Functions implemented in this module">
+<param name="Local" value="devguide_2.3.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_SymbolicName()">
+<param name="Local" value="devguide_2.3.1.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_HandleContinuationLines()">
+<param name="Local" value="devguide_2.3.1.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_RemoveSkipSymbols()">
+<param name="Local" value="devguide_2.3.1.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_RemoveComments()">
+<param name="Local" value="devguide_2.3.1.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_NextLexeme()">
+<param name="Local" value="devguide_2.3.1.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_SavePosition()">
+<param name="Local" value="devguide_2.3.1.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_RestorePosition()">
+<param name="Local" value="devguide_2.3.1.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_StartIteration()">
+<param name="Local" value="devguide_2.3.1.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_EOF()">
+<param name="Local" value="devguide_2.3.1.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_Type()">
+<param name="Local" value="devguide_2.3.1.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_Double()">
+<param name="Local" value="devguide_2.3.1.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_String()">
+<param name="Local" value="devguide_2.3.1.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_StrLen()">
+<param name="Local" value="devguide_2.3.1.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_Long()">
+<param name="Local" value="devguide_2.3.1.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_LineNumber()">
+<param name="Local" value="devguide_2.3.1.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_FileName()">
+<param name="Local" value="devguide_2.3.1.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_XXX()">
+<param name="Local" value="devguide_2.3.1.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_Finish()">
+<param name="Local" value="devguide_2.3.1.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_DumpLexemes()">
+<param name="Local" value="devguide_2.3.1.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_ReadInput()">
+<param name="Local" value="devguide_2.3.1.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="lex_InitStructure()">
+<param name="Local" value="devguide_2.3.1.21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Syntax Analyzer">
+<param name="Local" value="devguide_2.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Name Space">
+<param name="Local" value="devguide_2.4.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Expression">
+<param name="Local" value="devguide_2.4.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Functions implemented in this module">
+<param name="Local" value="devguide_2.4.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="What is an expression in ScriptBasic">
+<param name="Local" value="devguide_2.4.3.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_DumpVariables()">
+<param name="Local" value="devguide_2.4.3.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="expression_PushNameSpace()">
+<param name="Local" value="devguide_2.4.3.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_CheckUndefinedLabels()">
+<param name="Local" value="devguide_2.4.3.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_CleanNameSpaceStack()">
+<param name="Local" value="devguide_2.4.3.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="expression_PopNameSpace()">
+<param name="Local" value="devguide_2.4.3.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_PushWaitingLabel()">
+<param name="Local" value="devguide_2.4.3.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_PopWaitingLabel()">
+<param name="Local" value="devguide_2.4.3.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="_ex_PushLabel()">
+<param name="Local" value="devguide_2.4.3.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="_ex_PopLabel()">
+<param name="Local" value="devguide_2.4.3.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="_ex_CleanLabelStack()">
+<param name="Local" value="devguide_2.4.3.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Some NOTE on SymbolXXX functions">
+<param name="Local" value="devguide_2.4.3.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="_new_SymbolLABEL()">
+<param name="Local" value="devguide_2.4.3.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="_new_SymbolVAR()">
+<param name="Local" value="devguide_2.4.3.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="_new_SymbolUF()">
+<param name="Local" value="devguide_2.4.3.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="_new_eNODE()">
+<param name="Local" value="devguide_2.4.3.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="_new_eNODE_l()">
+<param name="Local" value="devguide_2.4.3.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_free()">
+<param name="Local" value="devguide_2.4.3.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_init()">
+<param name="Local" value="devguide_2.4.3.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_CleanNamePath()">
+<param name="Local" value="devguide_2.4.3.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_ConvertName()">
+<param name="Local" value="devguide_2.4.3.21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_IsBFun()">
+<param name="Local" value="devguide_2.4.3.22.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_IsUnop()">
+<param name="Local" value="devguide_2.4.3.23.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_IsBinop()">
+<param name="Local" value="devguide_2.4.3.24.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_LeftValueList()">
+<param name="Local" value="devguide_2.4.3.25.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_ExpressionList()">
+<param name="Local" value="devguide_2.4.3.26.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_Local()">
+<param name="Local" value="devguide_2.4.3.27.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_LocalList()">
+<param name="Local" value="devguide_2.4.3.28.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_Global()">
+<param name="Local" value="devguide_2.4.3.29.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_GlobalList()">
+<param name="Local" value="devguide_2.4.3.30.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_LookupUserFunction()">
+<param name="Local" value="devguide_2.4.3.31.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_LookupGlobalVariable">
+<param name="Local" value="devguide_2.4.3.32.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_LookupLocallyDeclaredGlobalVariable">
+<param name="Local" value="devguide_2.4.3.33.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_LookupLocalVariable">
+<param name="Local" value="devguide_2.4.3.34.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_Tag">
+<param name="Local" value="devguide_2.4.3.35.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_Expression_i">
+<param name="Local" value="devguide_2.4.3.36.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_Expression_r">
+<param name="Local" value="devguide_2.4.3.37.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_IsSymbolValidLval(pEx)">
+<param name="Local" value="devguide_2.4.3.38.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_LeftValue">
+<param name="Local" value="devguide_2.4.3.39.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_PredeclareGlobalLongConst()">
+<param name="Local" value="devguide_2.4.3.40.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_IsCommandThis">
+<param name="Local" value="devguide_2.4.3.41.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_Command_r()">
+<param name="Local" value="devguide_2.4.3.42.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_Command_l()">
+<param name="Local" value="devguide_2.4.3.43.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_Pragma">
+<param name="Local" value="devguide_2.4.3.44.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_IsCommandCALL()">
+<param name="Local" value="devguide_2.4.3.45.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_IsCommandOPEN()">
+<param name="Local" value="devguide_2.4.3.46.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_IsCommandSLIF()">
+<param name="Local" value="devguide_2.4.3.47.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_IsCommandIF()">
+<param name="Local" value="devguide_2.4.3.48.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ex_IsCommandLET()">
+<param name="Local" value="devguide_2.4.3.49.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Builder">
+<param name="Local" value="devguide_2.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Node Structure">
+<param name="Local" value="devguide_2.5.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Binary File Format">
+<param name="Local" value="devguide_2.5.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Functions implemented in this module">
+<param name="Local" value="devguide_2.5.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="The structure of the string table">
+<param name="Local" value="devguide_2.5.3.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_AllocateStringTable()">
+<param name="Local" value="devguide_2.5.3.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_StringIndex()">
+<param name="Local" value="devguide_2.5.3.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_Build_l()">
+<param name="Local" value="devguide_2.5.3.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_Build_r()">
+<param name="Local" value="devguide_2.5.3.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_Build()">
+<param name="Local" value="devguide_2.5.3.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_MagicCode()">
+<param name="Local" value="devguide_2.5.3.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_SaveCCode()">
+<param name="Local" value="devguide_2.5.3.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_SaveCorePart()">
+<param name="Local" value="devguide_2.5.3.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_SaveCore()">
+<param name="Local" value="devguide_2.5.3.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_SaveCode()">
+<param name="Local" value="devguide_2.5.3.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_SaveECode()">
+<param name="Local" value="devguide_2.5.3.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_GetExeCodeOffset()">
+<param name="Local" value="devguide_2.5.3.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_LoadCore()">
+<param name="Local" value="devguide_2.5.3.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_LoadCodeWithOffset()">
+<param name="Local" value="devguide_2.5.3.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_LoadCode()">
+<param name="Local" value="devguide_2.5.3.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_IsFileBinaryFormat()">
+<param name="Local" value="devguide_2.5.3.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_pprint()">
+<param name="Local" value="devguide_2.5.3.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_CreateFTable()">
+<param name="Local" value="devguide_2.5.3.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_CreateVTable()">
+<param name="Local" value="devguide_2.5.3.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_LookupFunctionByName()">
+<param name="Local" value="devguide_2.5.3.21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="build_LookupVariableByName()">
+<param name="Local" value="devguide_2.5.3.22.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Executor">
+<param name="Local" value="devguide_2.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Command parameters">
+<param name="Local" value="devguide_2.6.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Instrunction parameters">
+<param name="Local" value="devguide_2.6.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Finalizer function">
+<param name="Local" value="devguide_2.6.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Functions implemented in this module">
+<param name="Local" value="devguide_2.6.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_GetCommandByName()">
+<param name="Local" value="devguide_2.6.4.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_CopyCommandTable()">
+<param name="Local" value="devguide_2.6.4.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_InitStructure()">
+<param name="Local" value="devguide_2.6.4.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_ReInitStructure()">
+<param name="Local" value="devguide_2.6.4.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_Execute_r()">
+<param name="Local" value="devguide_2.6.4.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_InitExecute()">
+<param name="Local" value="devguide_2.6.4.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_FinishExecute()">
+<param name="Local" value="devguide_2.6.4.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_Execute()">
+<param name="Local" value="devguide_2.6.4.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_ExecuteFunction()">
+<param name="Local" value="devguide_2.6.4.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_Evaluate()">
+<param name="Local" value="devguide_2.6.4.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_LeftValue()">
+<param name="Local" value="devguide_2.6.4.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_EvaluateArray()">
+<param name="Local" value="devguide_2.6.4.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_EvaluateSarray()">
+<param name="Local" value="devguide_2.6.4.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_LeftValueArray()">
+<param name="Local" value="devguide_2.6.4.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_LeftValueSarray()">
+<param name="Local" value="devguide_2.6.4.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_Convert2String()">
+<param name="Local" value="devguide_2.6.4.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_Convert2Long()">
+<param name="Local" value="devguide_2.6.4.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_Convert2LongS()">
+<param name="Local" value="devguide_2.6.4.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_Convert2Double()">
+<param name="Local" value="devguide_2.6.4.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_Convert2DoubleS()">
+<param name="Local" value="devguide_2.6.4.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_Convert2Numeric()">
+<param name="Local" value="devguide_2.6.4.21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_Dereference()">
+<param name="Local" value="devguide_2.6.4.22.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_DereferenceS()">
+<param name="Local" value="devguide_2.6.4.23.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_GetDoubleValue()">
+<param name="Local" value="devguide_2.6.4.24.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_GetLongValue()">
+<param name="Local" value="devguide_2.6.4.25.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_IsStringInteger()">
+<param name="Local" value="devguide_2.6.4.26.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="execute_IsInteger()">
+<param name="Local" value="devguide_2.6.4.27.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Configuration File Handling">
+<param name="Local" value="devguide_2.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Functions implemented in this module">
+<param name="Local" value="devguide_2.7.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cft_init()">
+<param name="Local" value="devguide_2.7.1.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cft_GetConfigFileName()">
+<param name="Local" value="devguide_2.7.1.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cft_start()">
+<param name="Local" value="devguide_2.7.1.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="strmyeq()">
+<param name="Local" value="devguide_2.7.1.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cft_FindNode()">
+<param name="Local" value="devguide_2.7.1.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cft_GetEx()">
+<param name="Local" value="devguide_2.7.1.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cft_GetString()">
+<param name="Local" value="devguide_2.7.1.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cft_EnumFirst()">
+<param name="Local" value="devguide_2.7.1.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cft_EnumNext()">
+<param name="Local" value="devguide_2.7.1.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cft_GetKey()">
+<param name="Local" value="devguide_2.7.1.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cft_ReadConfig()">
+<param name="Local" value="devguide_2.7.1.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cft_WriteConfig()">
+<param name="Local" value="devguide_2.7.1.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="cft_DropConfig()">
+<param name="Local" value="devguide_2.7.1.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Memory Allocation">
+<param name="Local" value="devguide_2.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Functions implemented in this module">
+<param name="Local" value="devguide_2.8.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Multi-thread use of this module">
+<param name="Local" value="devguide_2.8.1.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="alloc_InitSegment()">
+<param name="Local" value="devguide_2.8.1.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="alloc_GlobalUseGlobalMutex()">
+<param name="Local" value="devguide_2.8.1.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="alloc_SegmentLimit()">
+<param name="Local" value="devguide_2.8.1.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="alloc_FreeSegment()">
+<param name="Local" value="devguide_2.8.1.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="alloc_FinishSegment()">
+<param name="Local" value="devguide_2.8.1.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="alloc_Alloc()">
+<param name="Local" value="devguide_2.8.1.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="alloc_Free()">
+<param name="Local" value="devguide_2.8.1.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="alloc_Merge()">
+<param name="Local" value="devguide_2.8.1.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="alloc_MergeAndFinish()">
+<param name="Local" value="devguide_2.8.1.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="alloc_InitStat()">
+<param name="Local" value="devguide_2.8.1.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="alloc_GlobalGetStat()">
+<param name="Local" value="devguide_2.8.1.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="alloc_GetStat()">
+<param name="Local" value="devguide_2.8.1.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Variable Allocation">
+<param name="Local" value="devguide_2.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Functions implemented in this module">
+<param name="Local" value="devguide_2.9.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_InitStructure()">
+<param name="Local" value="devguide_2.9.1.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_RegisterType()">
+<param name="Local" value="devguide_2.9.1.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_RegisterTypes()">
+<param name="Local" value="devguide_2.9.1.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_DebugDump()">
+<param name="Local" value="devguide_2.9.1.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewVariable()">
+<param name="Local" value="devguide_2.9.1.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_ReleaseVariable()">
+<param name="Local" value="devguide_2.9.1.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewString()">
+<param name="Local" value="devguide_2.9.1.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewCString()">
+<param name="Local" value="devguide_2.9.1.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_SetRef()">
+<param name="Local" value="devguide_2.9.1.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewRef()">
+<param name="Local" value="devguide_2.9.1.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_IsUndef()">
+<param name="Local" value="devguide_2.9.1.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_Type()">
+<param name="Local" value="devguide_2.9.1.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_SelfOrRealUndef()">
+<param name="Local" value="devguide_2.9.1.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewUndef()">
+<param name="Local" value="devguide_2.9.1.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_ReplaceVariable()">
+<param name="Local" value="devguide_2.9.1.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewLong()">
+<param name="Local" value="devguide_2.9.1.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewDouble()">
+<param name="Local" value="devguide_2.9.1.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_CopyArray">
+<param name="Local" value="devguide_2.9.1.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewArray()">
+<param name="Local" value="devguide_2.9.1.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_ReDimArray()">
+<param name="Local" value="devguide_2.9.1.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_CheckArrayIndex()">
+<param name="Local" value="devguide_2.9.1.21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_Mortalize()">
+<param name="Local" value="devguide_2.9.1.22.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_Immortalize()">
+<param name="Local" value="devguide_2.9.1.23.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewMortal()">
+<param name="Local" value="devguide_2.9.1.24.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_DupImmortal()">
+<param name="Local" value="devguide_2.9.1.25.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_DupVar()">
+<param name="Local" value="devguide_2.9.1.26.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_DupMortalize()">
+<param name="Local" value="devguide_2.9.1.27.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_ReleaseMortals()">
+<param name="Local" value="devguide_2.9.1.28.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_DebugDumpVariable()">
+<param name="Local" value="devguide_2.9.1.29.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_DebugDumpMortals()">
+<param name="Local" value="devguide_2.9.1.30.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewMortalString()">
+<param name="Local" value="devguide_2.9.1.31.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewMortalCString()">
+<param name="Local" value="devguide_2.9.1.32.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewMortalLong()">
+<param name="Local" value="devguide_2.9.1.33.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewMortalRef()">
+<param name="Local" value="devguide_2.9.1.34.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewMortalDouble()">
+<param name="Local" value="devguide_2.9.1.35.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="memory_NewMortalArray()">
+<param name="Local" value="devguide_2.9.1.36.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Error Reporting">
+<param name="Local" value="devguide_2.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Functions implemented in this module">
+<param name="Local" value="devguide_2.10.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="report_report()">
+<param name="Local" value="devguide_2.10.1.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="The Logger Module">
+<param name="Local" value="devguide_2.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="log_state()">
+<param name="Local" value="devguide_2.11.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="log_init()">
+<param name="Local" value="devguide_2.11.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="log_printf()">
+<param name="Local" value="devguide_2.11.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="log_shutdown()">
+<param name="Local" value="devguide_2.11.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Hook Functions">
+<param name="Local" value="devguide_2.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_Init">
+<param name="Local" value="devguide_2.12.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_file_access">
+<param name="Local" value="devguide_2.12.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_fopen">
+<param name="Local" value="devguide_2.12.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_fclose">
+<param name="Local" value="devguide_2.12.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_size">
+<param name="Local" value="devguide_2.12.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_time_accessed">
+<param name="Local" value="devguide_2.12.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_time_modified">
+<param name="Local" value="devguide_2.12.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_time_created">
+<param name="Local" value="devguide_2.12.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_isdir">
+<param name="Local" value="devguide_2.12.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_isreg">
+<param name="Local" value="devguide_2.12.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_fileexists">
+<param name="Local" value="devguide_2.12.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_truncate">
+<param name="Local" value="devguide_2.12.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_fgetc">
+<param name="Local" value="devguide_2.12.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_ferror">
+<param name="Local" value="devguide_2.12.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_fread">
+<param name="Local" value="devguide_2.12.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_setmode">
+<param name="Local" value="devguide_2.12.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_binmode">
+<param name="Local" value="devguide_2.12.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_textmode">
+<param name="Local" value="devguide_2.12.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_fwrite">
+<param name="Local" value="devguide_2.12.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_fputc">
+<param name="Local" value="devguide_2.12.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_flock">
+<param name="Local" value="devguide_2.12.21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_lock">
+<param name="Local" value="devguide_2.12.22.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_feof">
+<param name="Local" value="devguide_2.12.23.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_mkdir">
+<param name="Local" value="devguide_2.12.24.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_rmdir">
+<param name="Local" value="devguide_2.12.25.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_remove">
+<param name="Local" value="devguide_2.12.26.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_deltree">
+<param name="Local" value="devguide_2.12.27.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_MakeDirectory">
+<param name="Local" value="devguide_2.12.28.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_opendir">
+<param name="Local" value="devguide_2.12.29.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_readdir">
+<param name="Local" value="devguide_2.12.30.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_closedir">
+<param name="Local" value="devguide_2.12.31.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_sleep">
+<param name="Local" value="devguide_2.12.32.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_curdir">
+<param name="Local" value="devguide_2.12.33.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_chdir">
+<param name="Local" value="devguide_2.12.34.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_chown">
+<param name="Local" value="devguide_2.12.35.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_SetCreateTime">
+<param name="Local" value="devguide_2.12.36.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_SetModifyTime">
+<param name="Local" value="devguide_2.12.37.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_SetAccessTime">
+<param name="Local" value="devguide_2.12.38.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_gethostname">
+<param name="Local" value="devguide_2.12.39.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_gethost">
+<param name="Local" value="devguide_2.12.40.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_tcpconnect">
+<param name="Local" value="devguide_2.12.41.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_tcpsend">
+<param name="Local" value="devguide_2.12.42.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_tcprecv">
+<param name="Local" value="devguide_2.12.43.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_tcpclose">
+<param name="Local" value="devguide_2.12.44.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_killproc">
+<param name="Local" value="devguide_2.12.45.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_getowner">
+<param name="Local" value="devguide_2.12.46.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_fcrypt">
+<param name="Local" value="devguide_2.12.47.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_CreateProcess">
+<param name="Local" value="devguide_2.12.48.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_CreateProcessEx">
+<param name="Local" value="devguide_2.12.49.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_waitpid">
+<param name="Local" value="devguide_2.12.50.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="hook_CallScribaFunction">
+<param name="Local" value="devguide_2.12.51.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Handle Pointers in External Modules Support Functions">
+<param name="Local" value="devguide_2.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="handle_GetHandle">
+<param name="Local" value="devguide_2.13.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="handle_GetPointer">
+<param name="Local" value="devguide_2.13.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="handle_FreeHandle">
+<param name="Local" value="devguide_2.13.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="handle_DestroyHandleArray">
+<param name="Local" value="devguide_2.13.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Thread Support Functions">
+<param name="Local" value="devguide_2.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_CreateThread">
+<param name="Local" value="devguide_2.14.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_ExitThread">
+<param name="Local" value="devguide_2.14.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_InitMutex">
+<param name="Local" value="devguide_2.14.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_FinishMutex">
+<param name="Local" value="devguide_2.14.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_LockMutex">
+<param name="Local" value="devguide_2.14.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_UnlockMutex">
+<param name="Local" value="devguide_2.14.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_shlckstry">
+<param name="Local" value="devguide_2.14.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_InitLock">
+<param name="Local" value="devguide_2.14.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_FinishLock">
+<param name="Local" value="devguide_2.14.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_LockRead">
+<param name="Local" value="devguide_2.14.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_LockWrite">
+<param name="Local" value="devguide_2.14.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_UnlockRead">
+<param name="Local" value="devguide_2.14.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="thread_UnlockWrite">
+<param name="Local" value="devguide_2.14.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Dynamic Library Handling Support Functions">
+<param name="Local" value="devguide_2.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="dynlolib_LoadLibrary">
+<param name="Local" value="devguide_2.15.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="dynlolib_FreeLibrary">
+<param name="Local" value="devguide_2.15.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="dynlolib_GetFunctionByName">
+<param name="Local" value="devguide_2.15.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Other System Dependant Functions">
+<param name="Local" value="devguide_2.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_fopen">
+<param name="Local" value="devguide_2.16.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_fclose">
+<param name="Local" value="devguide_2.16.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_size">
+<param name="Local" value="devguide_2.16.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_time_accessed">
+<param name="Local" value="devguide_2.16.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_time_modified">
+<param name="Local" value="devguide_2.16.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_time_created">
+<param name="Local" value="devguide_2.16.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_isdir">
+<param name="Local" value="devguide_2.16.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_isreg">
+<param name="Local" value="devguide_2.16.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_exists">
+<param name="Local" value="devguide_2.16.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_truncate">
+<param name="Local" value="devguide_2.16.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_fgetc">
+<param name="Local" value="devguide_2.16.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_ferror">
+<param name="Local" value="devguide_2.16.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_fread">
+<param name="Local" value="devguide_2.16.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_fwrite">
+<param name="Local" value="devguide_2.16.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_fputc">
+<param name="Local" value="devguide_2.16.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_setmode">
+<param name="Local" value="devguide_2.16.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_binmode">
+<param name="Local" value="devguide_2.16.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_textmode">
+<param name="Local" value="devguide_2.16.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_flock">
+<param name="Local" value="devguide_2.16.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_lock">
+<param name="Local" value="devguide_2.16.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_feof">
+<param name="Local" value="devguide_2.16.21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_mkdir">
+<param name="Local" value="devguide_2.16.22.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_rmdir">
+<param name="Local" value="devguide_2.16.23.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_remove">
+<param name="Local" value="devguide_2.16.24.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_deltree">
+<param name="Local" value="devguide_2.16.25.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_MakeDirectory">
+<param name="Local" value="devguide_2.16.26.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_opendir">
+<param name="Local" value="devguide_2.16.27.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_readdir">
+<param name="Local" value="devguide_2.16.28.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_closedir">
+<param name="Local" value="devguide_2.16.29.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_sleep">
+<param name="Local" value="devguide_2.16.30.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_curdir">
+<param name="Local" value="devguide_2.16.31.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_chdir">
+<param name="Local" value="devguide_2.16.32.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_chown">
+<param name="Local" value="devguide_2.16.33.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_getowner">
+<param name="Local" value="devguide_2.16.34.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_SetCreateTime">
+<param name="Local" value="devguide_2.16.35.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_SetModifyTime">
+<param name="Local" value="devguide_2.16.36.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_SetAccessTime">
+<param name="Local" value="devguide_2.16.37.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_gethostname">
+<param name="Local" value="devguide_2.16.38.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_gethost">
+<param name="Local" value="devguide_2.16.39.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_tcpconnect">
+<param name="Local" value="devguide_2.16.40.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_tcpsend">
+<param name="Local" value="devguide_2.16.41.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_tcprecv">
+<param name="Local" value="devguide_2.16.42.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_tcpclose">
+<param name="Local" value="devguide_2.16.43.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_killproc">
+<param name="Local" value="devguide_2.16.44.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_fcrypt">
+<param name="Local" value="devguide_2.16.45.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_CreateProcess">
+<param name="Local" value="devguide_2.16.46.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_CreateProcessEx">
+<param name="Local" value="devguide_2.16.47.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="file_waitpid">
+<param name="Local" value="devguide_2.16.48.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Module Management">
+<param name="Local" value="devguide_2.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="modu_Init">
+<param name="Local" value="devguide_2.17.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="modu_Preload">
+<param name="Local" value="devguide_2.17.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="modu_GetModuleFunctionByName">
+<param name="Local" value="devguide_2.17.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="modu_GetStaticFunctionByName">
+<param name="Local" value="devguide_2.17.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="modu_LoadModule">
+<param name="Local" value="devguide_2.17.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="modu_GetFunctionByName">
+<param name="Local" value="devguide_2.17.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="modu_UnloadAllModules">
+<param name="Local" value="devguide_2.17.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="modu_UnloadModule">
+<param name="Local" value="devguide_2.17.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="modu_ShutdownModule">
+<param name="Local" value="devguide_2.17.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Run Time Options Handling">
+<param name="Local" value="devguide_2.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="options_Reset">
+<param name="Local" value="devguide_2.18.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="options_Set">
+<param name="Local" value="devguide_2.18.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="options_Get">
+<param name="Local" value="devguide_2.18.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="options_GetR">
+<param name="Local" value="devguide_2.18.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Simple Pattern Matching">
+<param name="Local" value="devguide_2.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="match_index">
+<param name="Local" value="devguide_2.19.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="InitSets">
+<param name="Local" value="devguide_2.19.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ModifySet">
+<param name="Local" value="devguide_2.19.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="match">
+<param name="Local" value="devguide_2.19.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="count">
+<param name="Local" value="devguide_2.19.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="parameter">
+<param name="Local" value="devguide_2.19.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="size">
+<param name="Local" value="devguide_2.19.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Symbol Table Handling">
+<param name="Local" value="devguide_2.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="sym_NewSymbolTable()">
+<param name="Local" value="devguide_2.20.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="sym_FreeSymbolTable()">
+<param name="Local" value="devguide_2.20.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="sym_TraverseSymbolTable()">
+<param name="Local" value="devguide_2.20.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="sym_LookupSymbol()">
+<param name="Local" value="devguide_2.20.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="sym_DeleteSymbol()">
+<param name="Local" value="devguide_2.20.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Embedding the Interpreter">
+<param name="Local" value="devguide_3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Object Oriented Model of ScriptBasic">
+<param name="Local" value="devguide_3.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Sample Embedding">
+<param name="Local" value="devguide_3.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Include Header Files">
+<param name="Local" value="devguide_3.2.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Function main(), Variable Declarations">
+<param name="Local" value="devguide_3.2.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Command Line handling">
+<param name="Local" value="devguide_3.2.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Creating Program Object">
+<param name="Local" value="devguide_3.2.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Loading Configuration">
+<param name="Local" value="devguide_3.2.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Loading Internal Preprocessors">
+<param name="Local" value="devguide_3.2.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Setting the File Name">
+<param name="Local" value="devguide_3.2.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Using the Cache">
+<param name="Local" value="devguide_3.2.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Run External Preprocessors">
+<param name="Local" value="devguide_3.2.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Loading the Source Program">
+<param name="Local" value="devguide_3.2.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Saving Binary File">
+<param name="Local" value="devguide_3.2.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Execute the BASIC Program">
+<param name="Local" value="devguide_3.2.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Destroying the Program Object">
+<param name="Local" value="devguide_3.2.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ScriptBasic C API">
+<param name="Local" value="devguide_3.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_new()">
+<param name="Local" value="devguide_3.3.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_destroy()">
+<param name="Local" value="devguide_3.3.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_NewSbData()">
+<param name="Local" value="devguide_3.3.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_InitSbData()">
+<param name="Local" value="devguide_3.3.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_UndefSbData()">
+<param name="Local" value="devguide_3.3.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_NewSbLong()">
+<param name="Local" value="devguide_3.3.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_NewSbDouble()">
+<param name="Local" value="devguide_3.3.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_NewSbUndef()">
+<param name="Local" value="devguide_3.3.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_NewSbString()">
+<param name="Local" value="devguide_3.3.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_NewSbBytes()">
+<param name="Local" value="devguide_3.3.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_DestroySbData()">
+<param name="Local" value="devguide_3.3.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_PurgeReaderMemory()">
+<param name="Local" value="devguide_3.3.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_PurgeLexerMemory()">
+<param name="Local" value="devguide_3.3.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_PurgeSyntaxerMemory()">
+<param name="Local" value="devguide_3.3.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_PurgeBuilderMemory()">
+<param name="Local" value="devguide_3.3.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_PurgePreprocessorMemory()">
+<param name="Local" value="devguide_3.3.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_PurgeExecuteMemory()">
+<param name="Local" value="devguide_3.3.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SetFileName()">
+<param name="Local" value="devguide_3.3.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_GettingConfiguration()">
+<param name="Local" value="devguide_3.3.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_LoadConfiguration()">
+<param name="Local" value="devguide_3.3.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_GetConfigFileName()">
+<param name="Local" value="devguide_3.3.21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_InheritConfiguration()">
+<param name="Local" value="devguide_3.3.22.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_InitModuleInterface()">
+<param name="Local" value="devguide_3.3.23.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_InheritModuleInterface()">
+<param name="Local" value="devguide_3.3.24.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_InheritExecuteObject()">
+<param name="Local" value="devguide_3.3.25.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SetProcessSbObject()">
+<param name="Local" value="devguide_3.3.26.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_ShutdownMtModules()">
+<param name="Local" value="devguide_3.3.27.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SetCgiFlag()">
+<param name="Local" value="devguide_3.3.28.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SetReportFunction()">
+<param name="Local" value="devguide_3.3.29.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SetReportPointer()">
+<param name="Local" value="devguide_3.3.30.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SetStdin()">
+<param name="Local" value="devguide_3.3.31.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SetStdout()">
+<param name="Local" value="devguide_3.3.32.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SetEmbedPointer()">
+<param name="Local" value="devguide_3.3.33.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SetEnvironment()">
+<param name="Local" value="devguide_3.3.34.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_LoadBinaryProgramWithOffset()">
+<param name="Local" value="devguide_3.3.35.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_LoadBinaryProgram()">
+<param name="Local" value="devguide_3.3.36.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_InheritBinaryProgram()">
+<param name="Local" value="devguide_3.3.37.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_LoadInternalPreprocessor()">
+<param name="Local" value="devguide_3.3.38.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_ReadSource()">
+<param name="Local" value="devguide_3.3.39.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_DoLexicalAnalysis()">
+<param name="Local" value="devguide_3.3.40.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_DoSyntaxAnalysis()">
+<param name="Local" value="devguide_3.3.41.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_BuildCode()">
+<param name="Local" value="devguide_3.3.42.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_IsFileBinaryFormat()">
+<param name="Local" value="devguide_3.3.43.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_GetCacheFileName()">
+<param name="Local" value="devguide_3.3.44.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_UseCacheFile()">
+<param name="Local" value="devguide_3.3.45.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SaveCacheFile()">
+<param name="Local" value="devguide_3.3.46.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_RunExternalPreprocessor()">
+<param name="Local" value="devguide_3.3.47.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SaveCode()">
+<param name="Local" value="devguide_3.3.48.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SaveCCode()">
+<param name="Local" value="devguide_3.3.49.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SaveECode()">
+<param name="Local" value="devguide_3.3.50.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_LoadSourceProgram()">
+<param name="Local" value="devguide_3.3.51.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_LoadProgramString()">
+<param name="Local" value="devguide_3.3.52.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_Run()">
+<param name="Local" value="devguide_3.3.53.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_NoRun()">
+<param name="Local" value="devguide_3.3.54.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_ResetVariables()">
+<param name="Local" value="devguide_3.3.55.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_Call()">
+<param name="Local" value="devguide_3.3.56.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_CallArg()">
+<param name="Local" value="devguide_3.3.57.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_DestroySbArgs()">
+<param name="Local" value="devguide_3.3.58.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_NewSbArgs()">
+<param name="Local" value="devguide_3.3.59.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_CallArgEx()">
+<param name="Local" value="devguide_3.3.60.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_LookupFunctionByName()">
+<param name="Local" value="devguide_3.3.61.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_LookupVariableByName()">
+<param name="Local" value="devguide_3.3.62.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_GetVariableType()">
+<param name="Local" value="devguide_3.3.63.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_GetVariable()">
+<param name="Local" value="devguide_3.3.64.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_SetVariable()">
+<param name="Local" value="devguide_3.3.65.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_InitStaticModules()">
+<param name="Local" value="devguide_3.3.66.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="scriba_FinishStaticModules()">
+<param name="Local" value="devguide_3.3.67.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Extension Modules">
+<param name="Local" value="devguide_4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="How Extension Modules are Used">
+<param name="Local" value="devguide_4.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="A Simple Sample Module">
+<param name="Local" value="devguide_4.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Compiling a Module">
+<param name="Local" value="devguide_4.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Installing a Module">
+<param name="Local" value="devguide_4.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Module Support Functions">
+<param name="Local" value="devguide_4.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Basic Extension Support functions, structures and macros">
+<param name="Local" value="devguide_4.5.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besALLOC(X)">
+<param name="Local" value="devguide_4.5.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besPROCALLOC(X)">
+<param name="Local" value="devguide_4.5.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFREE(X)">
+<param name="Local" value="devguide_4.5.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besPROCFREE(X)">
+<param name="Local" value="devguide_4.5.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besPROCMEMORYSEGMENT">
+<param name="Local" value="devguide_4.5.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besNEWMORTALSTRING(X)">
+<param name="Local" value="devguide_4.5.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besNEWMORTALLONG">
+<param name="Local" value="devguide_4.5.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besNEWMORTALREF">
+<param name="Local" value="devguide_4.5.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besNEWMORTALDOUBLE">
+<param name="Local" value="devguide_4.5.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besNEWMORTALARRAY(X,Y)">
+<param name="Local" value="devguide_4.5.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besNEWSTRING(X)">
+<param name="Local" value="devguide_4.5.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besNEWLONG">
+<param name="Local" value="devguide_4.5.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besNEWREF">
+<param name="Local" value="devguide_4.5.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besNEWDOUBLE">
+<param name="Local" value="devguide_4.5.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besNEWARRAY(X,Y)">
+<param name="Local" value="devguide_4.5.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besRELEASE(X)">
+<param name="Local" value="devguide_4.5.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSETREF(VAR,VAL)">
+<param name="Local" value="devguide_4.5.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCONFIG(X)">
+<param name="Local" value="devguide_4.5.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCONFIGFINDNODE(X,Y,Z)">
+<param name="Local" value="devguide_4.5.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCONFIGEX(CT,CS,NS,CSS,LS,DS,IS)">
+<param name="Local" value="devguide_4.5.21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCONFIGENUMFIRST(X,Y)">
+<param name="Local" value="devguide_4.5.22.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCONFIGENUMNEXT(X,Y)">
+<param name="Local" value="devguide_4.5.23.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCONFIGGETKEY(X,Y)">
+<param name="Local" value="devguide_4.5.24.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besNEWSYMBOLTABLE">
+<param name="Local" value="devguide_4.5.25.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFREESYMBOLTABLE(X)">
+<param name="Local" value="devguide_4.5.26.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besTRAVERSESYMBOLTABLE(X,Y,Z)">
+<param name="Local" value="devguide_4.5.27.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besLOOKUPSYMBOL(X,Y,Z)">
+<param name="Local" value="devguide_4.5.28.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besDeleteSymbol(X,Y,Z)">
+<param name="Local" value="devguide_4.5.29.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besLOADLIBRARY(X)">
+<param name="Local" value="devguide_4.5.30.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFREELIBRARY(X)">
+<param name="Local" value="devguide_4.5.31.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besGETFUNCTIONBYNAME(X)">
+<param name="Local" value="devguide_4.5.32.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFOPEN">
+<param name="Local" value="devguide_4.5.33.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFCLOSE">
+<param name="Local" value="devguide_4.5.34.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSIZE">
+<param name="Local" value="devguide_4.5.35.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besTIME_ACCESSED">
+<param name="Local" value="devguide_4.5.36.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besTIME_MODIFIED">
+<param name="Local" value="devguide_4.5.37.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besTIME_CREATED">
+<param name="Local" value="devguide_4.5.38.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besISDIR">
+<param name="Local" value="devguide_4.5.39.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besISREG">
+<param name="Local" value="devguide_4.5.40.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besEXISTS">
+<param name="Local" value="devguide_4.5.41.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besTRUNCATE">
+<param name="Local" value="devguide_4.5.42.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFGETC">
+<param name="Local" value="devguide_4.5.43.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFREAD">
+<param name="Local" value="devguide_4.5.44.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFWRITE">
+<param name="Local" value="devguide_4.5.45.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSETMODE">
+<param name="Local" value="devguide_4.5.46.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besBINMODE">
+<param name="Local" value="devguide_4.5.47.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besTEXTMODE">
+<param name="Local" value="devguide_4.5.48.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFERROR">
+<param name="Local" value="devguide_4.5.49.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFPUTC">
+<param name="Local" value="devguide_4.5.50.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFLOCK">
+<param name="Local" value="devguide_4.5.51.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besLOCK">
+<param name="Local" value="devguide_4.5.52.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFEOF">
+<param name="Local" value="devguide_4.5.53.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMKDIR">
+<param name="Local" value="devguide_4.5.54.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besRMDIR">
+<param name="Local" value="devguide_4.5.55.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besREMOVE">
+<param name="Local" value="devguide_4.5.56.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besDELTREE">
+<param name="Local" value="devguide_4.5.57.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMAKEDIRECTORY">
+<param name="Local" value="devguide_4.5.58.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besOPENDIR">
+<param name="Local" value="devguide_4.5.59.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besREADDIR">
+<param name="Local" value="devguide_4.5.60.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCLOSEDIR">
+<param name="Local" value="devguide_4.5.61.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besOPTION(X)">
+<param name="Local" value="devguide_4.5.62.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSETOPTION(x,y)">
+<param name="Local" value="devguide_4.5.63.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besRESETOPTION(X)">
+<param name="Local" value="devguide_4.5.64.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCONVERT2STRING(x)">
+<param name="Local" value="devguide_4.5.65.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCONVERT2LONG(x)">
+<param name="Local" value="devguide_4.5.66.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besGETLONGVALUE(x)">
+<param name="Local" value="devguide_4.5.67.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCONVERT2DOUBLE(x)">
+<param name="Local" value="devguide_4.5.68.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besGETDOUBLEVALUE(x)">
+<param name="Local" value="devguide_4.5.69.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besISSTRINGINTEGER(x)">
+<param name="Local" value="devguide_4.5.70.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCONVERT2ZCHAR(x)">
+<param name="Local" value="devguide_4.5.71.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besREINITINTERFACE">
+<param name="Local" value="devguide_4.5.72.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besLOADMODULE(x,y)">
+<param name="Local" value="devguide_4.5.73.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besGETMODULEFUNCTIONBYNAME">
+<param name="Local" value="devguide_4.5.74.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besUNLOADALLMODULES">
+<param name="Local" value="devguide_4.5.75.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besUNLOADMODULE(x)">
+<param name="Local" value="devguide_4.5.76.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSLEEP(x)">
+<param name="Local" value="devguide_4.5.77.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCURDIR(x,y)">
+<param name="Local" value="devguide_4.5.78.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCHDIR(x)">
+<param name="Local" value="devguide_4.5.79.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCHOWN(x,y)">
+<param name="Local" value="devguide_4.5.80.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSETCREATETIME(x,y)">
+<param name="Local" value="devguide_4.5.81.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSETMODIFYTIME(x,y)">
+<param name="Local" value="devguide_4.5.82.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSETACCESSTIME(x,y)">
+<param name="Local" value="devguide_4.5.83.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besGETHOSTNAME(x,y)">
+<param name="Local" value="devguide_4.5.84.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besGETHOST(x,y)">
+<param name="Local" value="devguide_4.5.85.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besTCPCONNECT(x,y)">
+<param name="Local" value="devguide_4.5.86.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besTCPSEND(x,y,z)">
+<param name="Local" value="devguide_4.5.87.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besTCPRECV(x,y,z)">
+<param name="Local" value="devguide_4.5.88.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besTCPCLOSE(y)">
+<param name="Local" value="devguide_4.5.89.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besKILLPROC(x)">
+<param name="Local" value="devguide_4.5.90.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besGETOWNER(x,y,z)">
+<param name="Local" value="devguide_4.5.91.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCRYPT(x,y,z)">
+<param name="Local" value="devguide_4.5.92.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMD5INIT(C)">
+<param name="Local" value="devguide_4.5.93.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMD5UPDATE(C,I,L)">
+<param name="Local" value="devguide_4.5.94.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMD5FINAL(D,C)">
+<param name="Local" value="devguide_4.5.95.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCREATEPROCESS(X)">
+<param name="Local" value="devguide_4.5.96.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCOPYCOMMANDTABLE(X)">
+<param name="Local" value="devguide_4.5.97.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besGETCOMMANDBYNAME(X,Y)">
+<param name="Local" value="devguide_4.5.98.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besEVALUATEEXPRESSION(X)">
+<param name="Local" value="devguide_4.5.99.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="_besEVALUATEEXPRESSION(X)">
+<param name="Local" value="devguide_4.5.100.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="_besEVALUATEEXPRESSION_A(X)">
+<param name="Local" value="devguide_4.5.101.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besEVALUATELEFTVALUE(X)">
+<param name="Local" value="devguide_4.5.102.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besEVALUATELEFTVALUE_A(X)">
+<param name="Local" value="devguide_4.5.103.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besIMMORTALIZE(x)">
+<param name="Local" value="devguide_4.5.104.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besDEREFERENCE(X)">
+<param name="Local" value="devguide_4.5.105.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMatchIndex(X)">
+<param name="Local" value="devguide_4.5.106.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMatchIniSets(X)">
+<param name="Local" value="devguide_4.5.107.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMatchModifySet(X,Y,Z,W,Q)">
+<param name="Local" value="devguide_4.5.108.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMatchMatch(P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12)">
+<param name="Local" value="devguide_4.5.109.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMatchCount(X,Y)">
+<param name="Local" value="devguide_4.5.110.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMatchParameter(P1,P2,P3,P4,P5,P6,P7)">
+<param name="Local" value="devguide_4.5.111.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMatchSize(P1,P2,P3,P4,P5)">
+<param name="Local" value="devguide_4.5.112.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCreateThread(X,Y,Z)">
+<param name="Local" value="devguide_4.5.113.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besExitThread">
+<param name="Local" value="devguide_4.5.114.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besInitMutex(X)">
+<param name="Local" value="devguide_4.5.115.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFinishMutex(X)">
+<param name="Local" value="devguide_4.5.116.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besLockMutex(X)">
+<param name="Local" value="devguide_4.5.117.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besUnlockMutex(X)">
+<param name="Local" value="devguide_4.5.118.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besInitSharedLock(X)">
+<param name="Local" value="devguide_4.5.119.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFinishSharedLock(X)">
+<param name="Local" value="devguide_4.5.120.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besLockSharedRead(X)">
+<param name="Local" value="devguide_4.5.121.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besLockSharedWrite(X)">
+<param name="Local" value="devguide_4.5.122.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besUnlockSharedRead(X)">
+<param name="Local" value="devguide_4.5.123.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besUnlockSharedWrite(X)">
+<param name="Local" value="devguide_4.5.124.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaNew(F0,F1)">
+<param name="Local" value="devguide_4.5.125.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaDestroy(F0)">
+<param name="Local" value="devguide_4.5.126.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaNewSbData(F0)">
+<param name="Local" value="devguide_4.5.127.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaNewSbLong(F0,F1)">
+<param name="Local" value="devguide_4.5.128.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaNewSbDouble(F0,F1)">
+<param name="Local" value="devguide_4.5.129.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaNewSbUndef(F0)">
+<param name="Local" value="devguide_4.5.130.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaNewSbString(F0,F1)">
+<param name="Local" value="devguide_4.5.131.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaNewSbBytes(F0,F1,F2)">
+<param name="Local" value="devguide_4.5.132.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaDestroySbData(F0,F1)">
+<param name="Local" value="devguide_4.5.133.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaPurgeReaderMemory(F0)">
+<param name="Local" value="devguide_4.5.134.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaPurgeLexerMemory(F0)">
+<param name="Local" value="devguide_4.5.135.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaPurgeSyntaxerMemory(F0)">
+<param name="Local" value="devguide_4.5.136.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaPurgeBuilderMemory(F0)">
+<param name="Local" value="devguide_4.5.137.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaPurgeExecuteMemory(F0)">
+<param name="Local" value="devguide_4.5.138.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaSetFileName(F0,F1)">
+<param name="Local" value="devguide_4.5.139.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaLoadConfiguration(F0,F1)">
+<param name="Local" value="devguide_4.5.140.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaInheritConfiguration(F0,F1)">
+<param name="Local" value="devguide_4.5.141.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaSetCgiFlag(F0)">
+<param name="Local" value="devguide_4.5.142.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaSetReportFunction(F0,F1)">
+<param name="Local" value="devguide_4.5.143.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaSetReportPointer(F0,F1)">
+<param name="Local" value="devguide_4.5.144.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaSetStdin(F0,F1)">
+<param name="Local" value="devguide_4.5.145.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaSetStdout(F0,F1)">
+<param name="Local" value="devguide_4.5.146.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaSetEmbedPointer(F0,F1)">
+<param name="Local" value="devguide_4.5.147.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaSetEnvironment(F0,F1)">
+<param name="Local" value="devguide_4.5.148.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaLoadBinaryProgram(F0)">
+<param name="Local" value="devguide_4.5.149.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaInheritBinaryProgram(F0,F1)">
+<param name="Local" value="devguide_4.5.150.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaReadSource(F0)">
+<param name="Local" value="devguide_4.5.151.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaDoLexicalAnalysis(F0)">
+<param name="Local" value="devguide_4.5.152.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaDoSyntaxAnalysis(F0)">
+<param name="Local" value="devguide_4.5.153.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaBuildCode(F0)">
+<param name="Local" value="devguide_4.5.154.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaIsFileBinaryFormat(F0)">
+<param name="Local" value="devguide_4.5.155.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaGetCacheFileName(F0)">
+<param name="Local" value="devguide_4.5.156.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaUseCacheFile(F0)">
+<param name="Local" value="devguide_4.5.157.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaSaveCacheFile(F0)">
+<param name="Local" value="devguide_4.5.158.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaRunExternalPreprocessor(F0,F1)">
+<param name="Local" value="devguide_4.5.159.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaSaveCode(F0,F1)">
+<param name="Local" value="devguide_4.5.160.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaSaveCCode(F0,F1)">
+<param name="Local" value="devguide_4.5.161.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaLoadSourceProgram(F0)">
+<param name="Local" value="devguide_4.5.162.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaRun(F0,F1)">
+<param name="Local" value="devguide_4.5.163.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaNoRun(F0)">
+<param name="Local" value="devguide_4.5.164.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaResetVariables(F0)">
+<param name="Local" value="devguide_4.5.165.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaCall(F0,F1)">
+<param name="Local" value="devguide_4.5.166.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaCallArg(F0,F1,F2,F3)">
+<param name="Local" value="devguide_4.5.167.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaDestroySbArgs(F0,F1,F2)">
+<param name="Local" value="devguide_4.5.168.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaNewSbArgs(F0,F1,F2)">
+<param name="Local" value="devguide_4.5.169.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaCallArgEx(F0,F1,F2,F3,F4)">
+<param name="Local" value="devguide_4.5.170.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaLookupFunctionByName(F0,F1)">
+<param name="Local" value="devguide_4.5.171.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaLookupVariableByName(F0,F1)">
+<param name="Local" value="devguide_4.5.172.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaGetVariableType(F0,F1)">
+<param name="Local" value="devguide_4.5.173.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaGetVariable(F0,F1,F2)">
+<param name="Local" value="devguide_4.5.174.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besScribaSetVariable(F0,F1,F2,F3,F4,F5,F6)">
+<param name="Local" value="devguide_4.5.175.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besLogState(X)">
+<param name="Local" value="devguide_4.5.176.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besLogInit(F0,F1,F2,F3,F4,F5)">
+<param name="Local" value="devguide_4.5.177.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besLogPrintf(pLOG,FORMAT, ...)">
+<param name="Local" value="devguide_4.5.178.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besLogShutdown(pLOG)">
+<param name="Local" value="devguide_4.5.179.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHandleGetHandle(X,Y)">
+<param name="Local" value="devguide_4.5.180.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHandleGetPointer(X,Y)">
+<param name="Local" value="devguide_4.5.181.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHandleFreeHandle(X,Y)">
+<param name="Local" value="devguide_4.5.182.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHandleDestroyHandleArray(X)">
+<param name="Local" value="devguide_4.5.183.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besINIT_SEGMENT(MAF,MRF)">
+<param name="Local" value="devguide_4.5.184.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSEGMENT_LIMIT(PMS,L)">
+<param name="Local" value="devguide_4.5.185.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFREE_SEGMENT(PMS)">
+<param name="Local" value="devguide_4.5.186.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFINISH_SEGMENT(PMS)">
+<param name="Local" value="devguide_4.5.187.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besFUNCTION(X)">
+<param name="Local" value="devguide_4.5.188.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besASSERT_FUNCTION">
+<param name="Local" value="devguide_4.5.189.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besCOMMAND(X)">
+<param name="Local" value="devguide_4.5.190.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besASSERT_COMMAND">
+<param name="Local" value="devguide_4.5.191.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besEND_COMMAND">
+<param name="Local" value="devguide_4.5.192.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besARGNR">
+<param name="Local" value="devguide_4.5.193.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besARGUMENT(X)">
+<param name="Local" value="devguide_4.5.194.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besPARAMETERLIST">
+<param name="Local" value="devguide_4.5.195.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besLEFTVALUE(X,Y)">
+<param name="Local" value="devguide_4.5.196.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besVERSION_NEGOTIATE">
+<param name="Local" value="devguide_4.5.197.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSUB_START">
+<param name="Local" value="devguide_4.5.198.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSUB_FINISH">
+<param name="Local" value="devguide_4.5.199.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSUB_ERRMSG">
+<param name="Local" value="devguide_4.5.200.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSUB_PROCESS_START">
+<param name="Local" value="devguide_4.5.201.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSUB_PROCESS_FINISH">
+<param name="Local" value="devguide_4.5.202.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSUB_KEEP">
+<param name="Local" value="devguide_4.5.203.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSUB_SHUTDOWN">
+<param name="Local" value="devguide_4.5.204.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSUB_AUTO">
+<param name="Local" value="devguide_4.5.205.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besEND">
+<param name="Local" value="devguide_4.5.206.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besRETURNVALUE">
+<param name="Local" value="devguide_4.5.207.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besMODULEPOINTER">
+<param name="Local" value="devguide_4.5.208.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besALLOC_RETURN_STRING(X)">
+<param name="Local" value="devguide_4.5.209.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besALLOC_RETURN_POINTER">
+<param name="Local" value="devguide_4.5.210.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besALLOC_RETURN_LONG">
+<param name="Local" value="devguide_4.5.211.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besALLOC_RETURN_DOUBLE">
+<param name="Local" value="devguide_4.5.212.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besRETURN_STRING(X)">
+<param name="Local" value="devguide_4.5.213.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSET_RETURN_STRING(X)">
+<param name="Local" value="devguide_4.5.214.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besRETURN_MEM(X,Y)">
+<param name="Local" value="devguide_4.5.215.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besRETURN_POINTER(X)">
+<param name="Local" value="devguide_4.5.216.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besRETURN_LONG(X)">
+<param name="Local" value="devguide_4.5.217.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besRETURN_DOUBLE">
+<param name="Local" value="devguide_4.5.218.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSETCOMMAND(X,Y)">
+<param name="Local" value="devguide_4.5.219.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besGETCOMMAND(X)">
+<param name="Local" value="devguide_4.5.220.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="INTERFACE_VERSION">
+<param name="Local" value="devguide_4.5.221.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_FILE_ACCESS">
+<param name="Local" value="devguide_4.5.222.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_FOPEN">
+<param name="Local" value="devguide_4.5.223.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_FCLOSE">
+<param name="Local" value="devguide_4.5.224.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_SIZE">
+<param name="Local" value="devguide_4.5.225.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_TIME_ACCESSED">
+<param name="Local" value="devguide_4.5.226.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_TIME_MODIFIED">
+<param name="Local" value="devguide_4.5.227.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_TIME_CREATED">
+<param name="Local" value="devguide_4.5.228.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_ISDIR">
+<param name="Local" value="devguide_4.5.229.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_ISREG">
+<param name="Local" value="devguide_4.5.230.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_EXISTS">
+<param name="Local" value="devguide_4.5.231.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_TRUNCATE">
+<param name="Local" value="devguide_4.5.232.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_FGETC">
+<param name="Local" value="devguide_4.5.233.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_FREAD">
+<param name="Local" value="devguide_4.5.234.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_FWRITE">
+<param name="Local" value="devguide_4.5.235.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_FERROR">
+<param name="Local" value="devguide_4.5.236.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_PUTC">
+<param name="Local" value="devguide_4.5.237.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_FLOCK">
+<param name="Local" value="devguide_4.5.238.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_LOCK">
+<param name="Local" value="devguide_4.5.239.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_FEOF">
+<param name="Local" value="devguide_4.5.240.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_MKDIR">
+<param name="Local" value="devguide_4.5.241.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_RMDIR">
+<param name="Local" value="devguide_4.5.242.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_REMOVE">
+<param name="Local" value="devguide_4.5.243.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_DELTREE">
+<param name="Local" value="devguide_4.5.244.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_MAKEDIRECTORY">
+<param name="Local" value="devguide_4.5.245.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_OPENDIR">
+<param name="Local" value="devguide_4.5.246.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_READDIR">
+<param name="Local" value="devguide_4.5.247.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_CLOSEDIR">
+<param name="Local" value="devguide_4.5.248.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_SLEEP">
+<param name="Local" value="devguide_4.5.249.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_CURDIR">
+<param name="Local" value="devguide_4.5.250.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_CHDIR">
+<param name="Local" value="devguide_4.5.251.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_CHOWN">
+<param name="Local" value="devguide_4.5.252.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_SETCREATETIME">
+<param name="Local" value="devguide_4.5.253.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_SETMODIFYTIME">
+<param name="Local" value="devguide_4.5.254.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_SETACCESSTIME">
+<param name="Local" value="devguide_4.5.255.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_GETHOSTNAME">
+<param name="Local" value="devguide_4.5.256.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_GETHOST">
+<param name="Local" value="devguide_4.5.257.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_TCPCONNECT">
+<param name="Local" value="devguide_4.5.258.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_TCPSEND">
+<param name="Local" value="devguide_4.5.259.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_TCPRECV">
+<param name="Local" value="devguide_4.5.260.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_TCPCLOSE">
+<param name="Local" value="devguide_4.5.261.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_KILLPROC">
+<param name="Local" value="devguide_4.5.262.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_GETOWNER">
+<param name="Local" value="devguide_4.5.263.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_CREATEPROCESS">
+<param name="Local" value="devguide_4.5.264.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besHOOK_CALLSCRIBAFUNCTION">
+<param name="Local" value="devguide_4.5.265.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besSETHOOK(X,Y)">
+<param name="Local" value="devguide_4.5.266.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="besDLL_MAIN">
+<param name="Local" value="devguide_4.5.267.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="INITLOCK">
+<param name="Local" value="devguide_4.5.268.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="basext_GetArgsF()">
+<param name="Local" value="devguide_4.5.269.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Preprocessors">
+<param name="Local" value="devguide_5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Loading Preprocessor">
+<param name="Local" value="devguide_5.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Skeleton of a Preprocessor">
+<param name="Local" value="devguide_5.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Preprocessor Entry Points">
+<param name="Local" value="devguide_5.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorLoad">
+<param name="Local" value="devguide_5.3.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorReadStart">
+<param name="Local" value="devguide_5.3.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorReadDone0">
+<param name="Local" value="devguide_5.3.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorReadDone1">
+<param name="Local" value="devguide_5.3.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorReadDone2">
+<param name="Local" value="devguide_5.3.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorReadDone3">
+<param name="Local" value="devguide_5.3.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorLexInit">
+<param name="Local" value="devguide_5.3.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorLexDone">
+<param name="Local" value="devguide_5.3.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorLexNASymbol">
+<param name="Local" value="devguide_5.3.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorLexASymbol">
+<param name="Local" value="devguide_5.3.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorLexSymbol">
+<param name="Local" value="devguide_5.3.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorLexString">
+<param name="Local" value="devguide_5.3.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorLexMString">
+<param name="Local" value="devguide_5.3.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorLexInteger">
+<param name="Local" value="devguide_5.3.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorLexReal">
+<param name="Local" value="devguide_5.3.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorLexCharacter">
+<param name="Local" value="devguide_5.3.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorExStart">
+<param name="Local" value="devguide_5.3.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorExStartLine">
+<param name="Local" value="devguide_5.3.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorExEnd">
+<param name="Local" value="devguide_5.3.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorExFinish">
+<param name="Local" value="devguide_5.3.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorExStartLocal">
+<param name="Local" value="devguide_5.3.21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorExEndLocal">
+<param name="Local" value="devguide_5.3.22.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorExLineNode">
+<param name="Local" value="devguide_5.3.23.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorExeStart">
+<param name="Local" value="devguide_5.3.24.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorExeFinish">
+<param name="Local" value="devguide_5.3.25.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PreprocessorExeNoRun">
+<param name="Local" value="devguide_5.3.26.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Compilation">
+<param name="Local" value="devguide_6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Compilation under UNIX">
+<param name="Local" value="devguide_6.1.htm">
+</OBJECT>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

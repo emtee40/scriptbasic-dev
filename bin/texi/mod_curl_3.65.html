@@ -1,0 +1,47 @@
+<HEAD>
+<TITLE>Documentation of the module curl: 3.65. HTTPPOST string</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: HTTPPOST string">
+<META NAME="keywords" CONTENT="Documentation of the module curl: HTTPPOST string">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_curl_toc.html">[Contents]</A><BR>
+<UL><a href="mod_curl_3.html">3. curl::option</A><BR>
+</UL>
+</UL>
+<P>
+<H1>3.65. HTTPPOST string</H1>
+<A HREF="mod_curl_3.64.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.66.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"HTTPPOST" [,"name1","value1",...,"nameN","valueN"]
+</PRE></FONT>
+<P>
+Use this option to specify the post parameters to be sent to the server when retrieving the URL.
+<P>
+Note that this option was greatly changed and is not compatible with fomer versions. 
+<P>
+The optional
+arguments <font size="3"><tt>name1, name2, ..., nameN</tt></font> specify the names of the post fields and
+<font size="3"><tt>value1, value2, ..., valueN</tt></font> spefify the values. This way you can specify simple text post
+parameters. If you want to specify more complex post parameters, like file upload, you have
+to use the option <font size="3"><tt>FORMADD</tt></font>. 
+<P>
+Use the option without optional arguments to close the repetitive use of the option <font size="3"><tt>FORMADD</tt></font>. In
+other word: if you specify the POST arguments using the option <font size="3"><tt>FORMADD</tt></font> you also have to use the
+option <font size="3"><tt>HTTPPOST</tt></font> after the last <font size="3"><tt>FORMADD</tt></font> option invocation.<HR>
+<A HREF="mod_curl_3.64.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.66.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

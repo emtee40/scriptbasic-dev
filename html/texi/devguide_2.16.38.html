@@ -1,0 +1,45 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.16.38. file_gethostname</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: file_gethostname">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: file_gethostname">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.16.html">2.16. Other System Dependant Functions</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.16.38. file_gethostname</H1>
+<A HREF="devguide_2.16.37.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.39.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c Get the name of the actual host
+<P>
+This function gets the name of the host that runs the program.
+The result of the function is positive if no TCP/IP protocol is
+available on the machine or some error occured.
+<P>
+In case of success the return value is zero.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int file_gethostname(char *pszBuffer,
+                     long cbBuffer
+  )@{
+</PRE></FONT>
+The first argument should point to the character buffer, and the second
+argument should hold the size of the buffer in bytes.<HR>
+<A HREF="devguide_2.16.37.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.39.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: cft_EnumNext()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: cft_EnumNext()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: cft_EnumNext()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>cft_EnumNext()</H1>
+<A HREF="devguide_2.7.1.8.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.10.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Whenever you need to enumerate the sub-keys of a key you have to
+get the node associated with the key (see <a href="devguide_2.7.1.6.htm">cft_GetEx</A> or <a href="devguide_2.7.1.5.htm">cft_FindNode</A>).
+When you have the node associated with the key you can get the node of the
+first sub-key calling the function <a href="devguide_2.7.1.8.htm">cft_EnumFirst</A>. Later on you can enumerate
+the sub keys stepping from node to node calling this function.
+<P>
+The function needs the node id <font size="3"><tt>lNodeId</tt></font> returned by <a href="devguide_2.7.1.8.htm">cft_EnumFirst</A> or
+by previous call of this function.
+<P>
+The function returns the node id of the next sub key.
+<P>
+If the enumeration has ended, in other words there is no next sub-key the
+function returns zero.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+long cft_EnumNext(ptConfigTree pCT,
+                  long lNodeId
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.7.1.8.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.10.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

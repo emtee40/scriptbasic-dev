@@ -1,0 +1,77 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.3.57. scriba_CallArg()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_CallArg()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_CallArg()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.3.57. scriba_CallArg()</H1>
+<A HREF="devguide_3.3.56.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.58.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function can be used to call a function or subroutine with arguments passed by value.
+Neither the return value of the SUB nor the modified argument variables are not accessible 
+via this function. <font size="3"><tt>CallArg</tt></font> is a simple interface to call a ScriptBasic subroutine or
+function with argument.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_CallArg(pSbProgram pProgram,
+                   unsigned long lEntryNode,
+                   char *pszFormat, ...
+  )@{
+</PRE></FONT>
+Arguments
+<P>
+<UL>
+<LI> <font size="3"><tt>pProgram</tt></font> is the class variable.
+<LI> <font size="3"><tt>lEntryNode</tt></font> is the start node of the SUB. (See <a href="devguide_3.3.56.html">scriba_Call()</A> note on how to get the entry node value.)
+<LI> <font size="3"><tt>pszFormat</tt></font> is a format string that defines the rest of the areguments
+@end itemize
+<P>
+The format string is case insensitive. The characters <font size="3"><tt>u</tt></font>, <font size="3"><tt>i</tt></font>, <font size="3"><tt>r</tt></font>, <font size="3"><tt>b</tt></font> and <font size="3"><tt>s</tt></font> have meaning.
+All other characters are ignored. The format characters define the type of the arguments
+from left to right.
+<P>
+<UL>
+<LI> <font size="3"><tt>u</tt></font> means to pass an <font size="3"><tt>undef</tt></font> to the SUB. This format character is exceptional that it does not
+consume any function argument.
+<LI> <font size="3"><tt>i</tt></font> means that the next argument has to be <font size="3"><tt>long</tt></font> and it is passed to the BASIC SUB as an integer.
+<LI> <font size="3"><tt>r</tt></font> means that the next argument has to be <font size="3"><tt>double</tt></font> and it is passed to the BASIC SUB as a real.
+<LI> <font size="3"><tt>s</tt></font> means that the next argument has to be <font size="3"><tt>char *</tt></font> and it is passed to the BASIC SUB as a string.
+<LI> <font size="3"><tt>b</tt></font> means that the next two arguments has to be <font size="3"><tt>long cbBuffer</tt></font> and <font size="3"><tt>unsigned char *Buffer</tt></font>.
+The <font size="3"><tt>cbBuffer</tt></font> defines the length of the <font size="3"><tt>Buffer</tt></font>.
+@end itemize
+<P>
+Note that this SUB calling function is a simple interface and has no access to the modified values of the argument
+after the call or the return value.
+<P>
+If you need any of the functionalities that are not implemented in this function call a more sophisticated
+function.
+<P>
+Example:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+<P>
+  iErrorCode = scriba_CallArg(&amp;MyProgram,lEntry,"i i s d",13,22,"My string.",54.12);
+<P>
+</PRE></FONT><HR>
+<A HREF="devguide_3.3.56.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.58.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

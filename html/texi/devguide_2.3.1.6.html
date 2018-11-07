@@ -1,0 +1,46 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.3.1.6. lex_SavePosition()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: lex_SavePosition()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: lex_SavePosition()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.3.html">2.3. Lexer</A><BR>
+<UL><a href="devguide_2.3.1.html">2.3.1. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.3.1.6. lex_SavePosition()</H1>
+<A HREF="devguide_2.3.1.5.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.7.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Use this function to save the current position of the iteration. This is neccessary during
+syntactical analysis to return to a certain position when syntactical analysis fails and
+the program has to go back and try a different command syntax.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void lex_SavePosition(pLexObject pLex,
+                      pLexeme *ppPosition
+  )@{
+</PRE></FONT>
+<P>
+The second argument is a <font size="3"><tt>pLexeme *</tt></font> type variable that holds the position and should be passed
+as argument to the function <a href="devguide_2.3.1.7.html">lex_RestorePosition()</A>.<HR>
+<A HREF="devguide_2.3.1.5.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.7.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

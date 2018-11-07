@@ -1,0 +1,79 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_InitModuleInterface()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_InitModuleInterface()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_InitModuleInterface()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_InitModuleInterface()</H1>
+<A HREF="devguide_3.3.22.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.24.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Initialize the Support Function Table of a process level ScriptBasic program object to be inherited
+by other program objects. If you read it first time, read on until you understand what this
+function really does and rather how to use it!
+<P>
+This is going to be a bit long, but you better read it along with the documentation of the
+function <a href="devguide_3.3.24.htm">scriba_InheritModuleInterface()</A>.
+<P>
+This function is needed only for programs that are
+<UL>
+<LI> multi thread running several interpreters simultaneous in a single process
+<LI> support modules like the sample module <font size="3"><tt>mt</tt></font> that support multithread behaviour and
+      need to implement worker thread needing call-back functions.
+@end itemize
+<P>
+You most probably know that modules can access system and ScriptBasic fucntions via a
+call-back table. That is a huge <font size="3"><tt>struct</tt></font> containing pointers to the functions that
+ScriptBasic implements. This is the <font size="3"><tt>ST</tt></font> (aka support table).
+<P>
+This helps module writers to write system independent
+code as well as to access ScriptBasic functions easily. On the other hand modules are
+also free to alter this table and because many functions, tough not all are called via this
+table by ScriptBasic itself a module may alter the core behavior of ScriptBasic.
+<P>
+For this reason each interpreter has its own copy of <font size="3"><tt>ST</tt></font>.
+This means that if an interpreter alters the table it has no effect on another interpreter
+running in the same process in anther thread.
+<P>
+This is fine so far. How about modules that run asynchronous threads? For example the very first
+interpter thread that uses the module <font size="3"><tt>mt</tt></font> starts in the initialization a thread that later 
+deletes all sessions that time out. This thread lives a long life.
+<P>
+The thread that starts the worker thread is an interpreter thread and has its own copy of the <font size="3"><tt>ST</tt></font>.
+The thread started asynchronous however should not use this <font size="3"><tt>ST</tt></font> because the table is purged 
+from memory when the interpreter instance it blelonged to finishes.
+<P>
+To have <font size="3"><tt>ST</tt></font> for worker threads there is a need for a program object that is not purged
+from memory so long as long the process is alive. Fortunately there is such an object: the
+configuration program object. Configuration is usually read only once by multi-thread implementations
+and the same configuration information is shared by the serveral threads. The same way the
+several program objects may share a <font size="3"><tt>ST</tt></font>.
+<P>
+The difference is that configuration is NOT altered by the interpreter or by any module in any way
+but <font size="3"><tt>ST</tt></font> may. Thus each  execution object has two pointers: <font size="3"><tt>pST</tt></font> and <font size="3"><tt>pSTI</tt></font>. While <font size="3"><tt>pST</tt></font> points to
+the support table that belongs to the interpreter instance the secondpointer <font size="3"><tt>pSTI</tt></font> points to
+a <font size="3"><tt>ST</tt></font> that is global for the whole process and is permanent. This <font size="3"><tt>ST</tt></font> is to be used by worker threads
+and should not be altered by the module without really good reason.
+<P>
+Thus: Don't call this function for normal program objects! For usualy program objects module
+interface is automatically initialized when the first module function is called. Call this function
+to initialize a <font size="3"><tt>ST</tt></font> for a pseudo program object that is never executed but rather used to inherit this
+<font size="3"><tt>ST</tt></font> for worker threads.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_InitModuleInterface(pSbProgram pProgram
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_3.3.22.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.24.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

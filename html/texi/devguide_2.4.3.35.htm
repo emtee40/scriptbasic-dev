@@ -1,0 +1,44 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: ex_Tag</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_Tag">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_Tag">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ex_Tag</H1>
+<A HREF="devguide_2.4.3.34.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.36.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function implements the syntax analysis for the lowest syntax elements of an expression.
+This function is called when syntax analysis believes that a TAG has to be worked up
+in an expression. A tag is defined formally as
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+ tag ::= UNOP tag
+         BUN '(' expression_list ')'
+         NUMBER
+         STRING
+         '(' expression ')'
+         VARIABLE @{ '[' expression_list ']' }
+         VARIABLE '@{' expression_list '}'
+         FUNC '(' expression_list ')'
+        .
+</PRE></FONT>
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+peNODE ex_Tag(peXobject pEx
+  )@{
+</PRE></FONT>
+The function returns pointer to the new node.<HR>
+<A HREF="devguide_2.4.3.34.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.36.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

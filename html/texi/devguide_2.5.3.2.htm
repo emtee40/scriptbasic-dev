@@ -1,0 +1,50 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: build_AllocateStringTable()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: build_AllocateStringTable()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: build_AllocateStringTable()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>build_AllocateStringTable()</H1>
+<A HREF="devguide_2.5.3.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.3.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function allocates space for the string table. The size of the
+string table is already determined during syntax analysis. The determined
+size should be enough. In some cases when there are repeated string constants
+the calculated sizte is bigger than the real one. In that case the larger memory
+is allocated and used, but only the really used part is written to the cache file.
+<P>
+If the program does not use any string constants then a dummy string table of length
+one byte is allocated.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void build_AllocateStringTable(pBuildObject pBuild,
+                          int *piFailure
+  )@{
+</PRE></FONT>
+<P>
+The first argument is the usual pointer to the "class" structure. The second argument
+is the result value. It can have two values:
+<P>
+<UL>
+<LI> <font size="3"><tt>BU_ERROR_SUCCESS</tt></font> which is guaranteed zero, means the function was successful.
+<LI> <font size="3"><tt>BU_ERROR_MEMORY_LOW</tt></font> means the memory allocation function could not allocate the
+neccessary memory
+@end itemize
+<P>
+The string table is allocated using the function <font size="3"><tt>alloc_Alloc</tt></font>. The string table
+is pointed by the class variable <font size="3"><tt>StringTable</tt></font>. The size of the table is stored in
+<font size="3"><tt>cStringTable</tt></font><HR>
+<A HREF="devguide_2.5.3.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

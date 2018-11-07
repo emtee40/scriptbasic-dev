@@ -1,0 +1,7 @@
+dll ".dylib"
+module "/Users/Shared/src/scriptbasic/bin/mod/dll"
+include "/Users/Shared/src/scriptbasic/bin/include/"
+maxstep 0
+maxlocalstep 0
+maxlevel 29666
+maxmem 0

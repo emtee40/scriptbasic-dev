@@ -1,0 +1,65 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.17.7. modu_UnloadAllModules</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: modu_UnloadAllModules">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: modu_UnloadAllModules">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.17.html">2.17. Module Management</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.17.7. modu_UnloadAllModules</H1>
+<A HREF="devguide_2.17.6.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.17.8.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c Unload all loaded modules
+<P>
+This function unloads all modules. This is called via the command finalizer mechanizm. If ever any module
+was loaded via a "declare sub" statement the command execution sets the command finalizer function
+pointer to point to this function.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int modu_UnloadAllModules(pExecuteObject pEo
+  )@{
+</PRE></FONT>
+<P>
+In a multi-threaded environment this function calls the keeper function of the module and in case the
+keeper returns 1 the module is kept in memory, though the module finalizer function is called. This
+lets multi-thread external modules to keep themselfs in memory even those times when there is not any
+interpreter thread using the very module running.
+<P>
+In that case the module is put on the module list of the process SB object. That list is used to shut down
+the modules when the whole process is shut down.
+<P>
+If there is no process SB object (pEo-&gt;pEPo is NULL) then the variation is a single process single thread
+implementation of ScriptBasic. In this case this function first calls the module finalizer function
+that is usally called in multi-threaded environment every time an interpreter thread is about to finish and
+after this the module shutdown function is called, which is called in a multi-thread environment when
+the whole process is to be shut down. After that the module is unloaded even if the keeper function said
+that the module wants to stay in memory.
+<P>
+Don't worry about this: it is not abuse. The keeper function saying 1 means that the module has to 
+stay in memory after the actual interpreter thread has finished until the process finishes. However
+in this very case the process also terminates.
+<P>
+<B>Note:</B> A one-process one-thread implementation may also behave like a multi thread implementation
+allocating a separate process SB object and a program object to run. Then it should inherit the
+support table and the execution object of the process SB object to the runnable program object. After
+running finish the runned program object and call the shutdown process for the process SB object.
+But that is tricky for a single thread implementation.<HR>
+<A HREF="devguide_2.17.6.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.17.8.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

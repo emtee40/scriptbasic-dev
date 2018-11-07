@@ -1,0 +1,146 @@
+<HEAD>
+<TITLE>Documentation of the module curl: 3. curl::option</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: curl::option">
+<META NAME="keywords" CONTENT="Documentation of the module curl: curl::option">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_curl_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>3. curl::option</H1>
+<A HREF="mod_curl_2.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="mod_curl_3.1.html">3.1. BUFFER_SIZE integer</A><BR>
+<A HREF="mod_curl_3.2.html">3.2. CAINFO string</A><BR>
+<A HREF="mod_curl_3.3.html">3.3. COOKIE string</A><BR>
+<A HREF="mod_curl_3.4.html">3.4. COOKIEFILE string</A><BR>
+<A HREF="mod_curl_3.5.html">3.5. CUSTOMREQUEST string</A><BR>
+<A HREF="mod_curl_3.6.html">3.6. FILE</A><BR>
+<A HREF="mod_curl_3.7.html">3.7. FTPPORT string</A><BR>
+<A HREF="mod_curl_3.8.html">3.8. HEADERFILE string</A><BR>
+<A HREF="mod_curl_3.9.html">3.9. INFILE string</A><BR>
+<A HREF="mod_curl_3.10.html">3.10. INTERFACE string</A><BR>
+<A HREF="mod_curl_3.11.html">3.11. INTEXT string</A><BR>
+<A HREF="mod_curl_3.12.html">3.12. KRB4LEVEL string</A><BR>
+<A HREF="mod_curl_3.13.html">3.13. PROXY string</A><BR>
+<A HREF="mod_curl_3.14.html">3.14. PROXYPORT integer</A><BR>
+<A HREF="mod_curl_3.15.html">3.15. PROXYUSERPWD string</A><BR>
+<A HREF="mod_curl_3.16.html">3.16. RANDOM_FILE string</A><BR>
+<A HREF="mod_curl_3.17.html">3.17. RANGE string</A><BR>
+<A HREF="mod_curl_3.18.html">3.18. REFERER string</A><BR>
+<A HREF="mod_curl_3.19.html">3.19. SSLCERT string</A><BR>
+<A HREF="mod_curl_3.20.html">3.20. SSLCERTPASSWD string</A><BR>
+<A HREF="mod_curl_3.21.html">3.21. URL string</A><BR>
+<A HREF="mod_curl_3.22.html">3.22. USERAGENT string</A><BR>
+<A HREF="mod_curl_3.23.html">3.23. USERPWD string</A><BR>
+<A HREF="mod_curl_3.24.html">3.24. WRITEINFO string</A><BR>
+<A HREF="mod_curl_3.25.html">3.25. EGDSOCKET string</A><BR>
+<A HREF="mod_curl_3.26.html">3.26. POSTFIELDS string</A><BR>
+<A HREF="mod_curl_3.27.html">3.27. HTTPPROXYTUNNEL flag</A><BR>
+<A HREF="mod_curl_3.28.html">3.28. VERBOSE flag</A><BR>
+<A HREF="mod_curl_3.29.html">3.29. NOPROGRESS flag</A><BR>
+<A HREF="mod_curl_3.30.html">3.30. HEADER flag</A><BR>
+<A HREF="mod_curl_3.31.html">3.31. NOBODY flag</A><BR>
+<A HREF="mod_curl_3.32.html">3.32. FAILONERROR flag</A><BR>
+<A HREF="mod_curl_3.33.html">3.33. UPLOAD flag</A><BR>
+<A HREF="mod_curl_3.34.html">3.34. POST flag</A><BR>
+<A HREF="mod_curl_3.35.html">3.35. CRLF flag</A><BR>
+<A HREF="mod_curl_3.36.html">3.36. FTPLISTONLY flag</A><BR>
+<A HREF="mod_curl_3.37.html">3.37. FTPAPPEND flag</A><BR>
+<A HREF="mod_curl_3.38.html">3.38. NETRC flag</A><BR>
+<A HREF="mod_curl_3.39.html">3.39. FOLLOWLOCATION flag</A><BR>
+<A HREF="mod_curl_3.40.html">3.40. TRANSFERTEXT flag</A><BR>
+<A HREF="mod_curl_3.41.html">3.41. CLOSEPOLICY</A><BR>
+<A HREF="mod_curl_3.42.html">3.42. PUT flag</A><BR>
+<A HREF="mod_curl_3.43.html">3.43. SSL_VERIFYPEER flag</A><BR>
+<A HREF="mod_curl_3.44.html">3.44. FILETIME flag</A><BR>
+<A HREF="mod_curl_3.45.html">3.45. FRESH_CONNECT flag</A><BR>
+<A HREF="mod_curl_3.46.html">3.46. FORBID_REUSE flag</A><BR>
+<A HREF="mod_curl_3.47.html">3.47. HTTPGET flag</A><BR>
+<A HREF="mod_curl_3.48.html">3.48. TIMEOUT integer</A><BR>
+<A HREF="mod_curl_3.49.html">3.49. LOW_SPEED_LIMIT integer</A><BR>
+<A HREF="mod_curl_3.50.html">3.50. LOW_SPEED_TIME integer</A><BR>
+<A HREF="mod_curl_3.51.html">3.51. RESUME_FROM integer</A><BR>
+<A HREF="mod_curl_3.52.html">3.52. SSLVERSION integer</A><BR>
+<A HREF="mod_curl_3.53.html">3.53. TIMECONDITION string</A><BR>
+<A HREF="mod_curl_3.54.html">3.54. TIMEVALUE integer</A><BR>
+<A HREF="mod_curl_3.55.html">3.55. MAXREDIRS integer</A><BR>
+<A HREF="mod_curl_3.56.html">3.56. MAXCONNECTS integer</A><BR>
+<A HREF="mod_curl_3.57.html">3.57. CONNECTTIMEOUT integer</A><BR>
+<A HREF="mod_curl_3.58.html">3.58. HTTPHEADER string</A><BR>
+<A HREF="mod_curl_3.59.html">3.59. NOHTTPHEADER flag</A><BR>
+<A HREF="mod_curl_3.60.html">3.60. QUOTE string</A><BR>
+<A HREF="mod_curl_3.61.html">3.61. NOQUOTE flag</A><BR>
+<A HREF="mod_curl_3.62.html">3.62. POSTQUOTE string</A><BR>
+<A HREF="mod_curl_3.63.html">3.63. NOPOSTQUOTE flag</A><BR>
+<A HREF="mod_curl_3.64.html">3.64. FORMADD string</A><BR>
+<A HREF="mod_curl_3.65.html">3.65. HTTPPOST string</A><BR>
+<A HREF="mod_curl_3.66.html">3.66. ERRORBUFFER not implemented</A><BR>
+<A HREF="mod_curl_3.67.html">3.67. Options not implemented</A><BR>
+<HR>
+<P>
+
+Call this function to set the various options of the actual curl session.
+<P>
+Usage:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CURL, "option" [, value]
+</PRE></FONT>
+<P>
+The various options that the current version of the module supports are listed in the following sections.
+Note that the documentation is mainly copied from the original CURL lib documentation.
+<P>
+Some of the options require a string as a parameter. The strings usually should not contain zero character.
+The exception is the option <font size="3"><tt>POSTFIELDS</tt></font>, which is handled in a special way to allow the programmer to send
+arbitrary binary data as HTTP POST parameter.
+<P>
+The option names in the section titles in this document are followed by one of the words <I>string</I>, <I>integer</I> and <I>flag</I>.
+<P>
+<UL>
+<LI>
+Options followed by the word <I>string</I> need string argument. If the option value is not specified zero length
+string is used. Because this is nonsense in most cases, you better use a third string argument for these options.
+<LI>
+Options followed by the word <I>flag</I> are yes/no type options. Presenting them without value means switching the
+option on. To switch such an option off the programmer has to explicitely specify zero value as third argument.
+In other words omitting the option value in such a case is the same as specifying <font size="3"><tt>1</tt></font> or <font size="3"><tt>TRUE</tt></font> or any other
+non-zero value. To switch off a <I>flag</I> option you can specify the value as <font size="3"><tt>FALSE</tt></font> (which is zero in ScriptBasic)
+for more readability.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CURL,"VERBOSE"
+curl::option CURL,"VERBOSE",TRUE
+curl::option CURL,"VERBOSE",1
+</PRE></FONT>
+are the same as well as the oposit
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CURL,"VERBOSE",FALSE
+curl::option CURL,"VERBOSE",0
+</PRE></FONT>
+are the same.
+<LI>
+Options followed by the word <I>integer</I> accept integer value. If the value is missing for such an option zero is used.
+For example:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CURL,"RESUME_FROM"
+curl::option CURL,"RESUME_FROM",0
+</PRE></FONT>
+are the same.
+</UL>
+<P>
+
+The option names are implemented case sensitive in this module, thus you can not use <font size="3"><tt>"verbose"</tt></font>
+instead of <font size="3"><tt>"VERBOSE"</tt></font>. Also the programmer should type the option names precisely, no mispelling is
+tolerated by the program.<HR>
+<A HREF="mod_curl_2.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

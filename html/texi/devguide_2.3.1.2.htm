@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: lex_HandleContinuationLines()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: lex_HandleContinuationLines()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: lex_HandleContinuationLines()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>lex_HandleContinuationLines()</H1>
+<A HREF="devguide_2.3.1.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.3.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function is called from the main function before syntax analysis is started. 
+This function handles the usual basic continuation lines. If the last character on a 
+line is a _ character, which is either recognised during lexical analysis as a 
+character or as a symbol then this lexical element and the following new-line character
+token is removed from the list of tokens.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void lex_HandleContinuationLines(pLexObject pLex
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.3.1.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

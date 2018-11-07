@@ -1,0 +1,53 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: handle_GetHandle</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: handle_GetHandle">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: handle_GetHandle">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>handle_GetHandle</H1>
+<A HREF="devguide_2.13.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.13.2.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c GetHandle
+<P>
+Having a pointer allocate a handle. This function stores the
+pointer and returns the handle.
+<P>
+The handle is a small positive integer.
+<P>
+If any error is happened (aka out of memory) zero is returned.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+unsigned long handle_GetHandle(void **pHandle,
+                               void *pMEM,
+                               void *pointer
+  )@{
+</PRE></FONT>
+<P>
+<UL>
+<LI> The first argument <font size="3"><tt>pHandle</tt></font> is a pointer to the handle array.
+<LI> The second argument <font size="3"><tt>pMEM</tt></font> is the memory segment that is to be used to allocate
+memory.
+<LI> The last argument <font size="3"><tt>pointer</tt></font> is the pointer to store.
+@end itemize
+<P>
+Note that <font size="3"><tt>NULL</tt></font> pointer can not be stored in the array.
+<P>
+The pointer to the handle array <font size="3"><tt>pHandle</tt></font> should be initialized to NULL
+before the first call to <font size="3"><tt>handle_GetHandle</tt></font>. For example:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+   void *Handle = NULL;
+     ....
+   if( !handle_GetHandle(&amp;Handle,pMEM,pointer) )return ERROR_CODE;
+</PRE></FONT><HR>
+<A HREF="devguide_2.13.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.13.2.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

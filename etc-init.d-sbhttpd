@@ -1,0 +1,113 @@
+#!/bin/sh
+#
+# Start/stops the ScriptBasic httpd daemon (/usr/bin/sbhttpd)
+#
+
+PIDFILE=$(HOME)/.scriba/pid.txt
+DAEMONIMAGE=/usr/bin/sbhttpd
+CONFIG=/etc/scriba/basic.conf
+
+# Sanity check: see if ScriptBasic has been configured on this system.
+if [ ! -f $CONFIG ]; then
+	echo "The file $CONFIG does not exist! There is something wrong"
+	echo "with the installation of ScriptBasic on this system. Please re-install"
+	echo "ScriptBasic. I can't continue!!!"
+	exit 1
+fi
+
+if [ ! -f $DAEMONIMAGE ]; then
+	echo "The file $DAEMONIMAGE does not exist! There is something wrong"
+	echo "with the installation of Eszter SB Application Engine on this system."
+	echo "Please re-install ScriptBasic. I can't continue!!!"
+	exit 1
+fi
+
+if [ -f $PIDFILE ] ; then
+	PID=`cat $PIDFILE`
+	if [ "x$PID" != "x" ] && kill -0 $PID 2>/dev/null ; then
+		RUNNING=1
+	else
+		RUNNING=0
+	fi
+else
+	RUNNING=0
+fi
+
+for ARG in $@ $ARGS
+do
+
+case "$1" in
+	start)
+		echo "Starting Eszter SB Application Engine"
+		if [ $RUNNING -eq 1 ]; then
+			echo "$0 $ARG: sbhttpd (pid $PID) already running"
+			continue
+		fi
+		if /usr/bin/sbhttpd -start ; then
+		    echo "$0 $ARG: sbhttpd started"
+		else
+		    echo "$0 $ARG: sbhttpd could not be started"
+		    ERROR=3
+			fi
+		;;		
+	stop)
+		echo "Stopping Eszter SB Application Engine"
+                # first try to ask it to stop gracefully
+		if [ $RUNNING -eq 0 ]; then
+			echo "$0 $ARG: sbhttpd is not running."
+			continue
+		fi
+                rm -f $PIDFILE
+		for w in 1 2 3 4 5 6 7 8 9 0 A B C D E F G H I J K L M N O P Q R S
+		do
+		if [ "x$PID" != "x" ] && kill -0 $PID 2>/dev/null ; then
+			echo -n "."
+			sleep 1
+		else
+			break
+                fi
+		done
+		if [ "x$PID" == "x" ] || ! kill -0 $PID 2>/dev/null ; then
+			echo
+			echo "$0: $ARG: sbhttpd stopped gracefully"
+			continue
+                fi
+		kill $PID
+		for w in 1 2 3 4 5 6 7 8 9 0
+		do
+		if [ "x$PID" != "x" ] && kill -0 $PID 2>/dev/null ; then
+			echo -n "."
+			sleep 1
+		else
+			break
+                fi
+		done
+		if [ "x$PID" == "x" ] || ! kill -0 $PID 2>/dev/null ; then
+			echo
+			echo "$0: $ARG: sbhttpd stopped forcefully (gyk: killed)"
+			continue
+                fi
+		kill -9 $PID
+		if [ "x$PID" != "x" ] && kill -0 $PID 2>/dev/null ; then
+			echo
+			echo "$0 $ARG: Can't stop sbhttpd (pid=$PID)"
+		else
+			echo
+			echo "$0: $ARG: sbhttpd stopped brutally (gyk: kill -9)"
+			continue
+                fi
+		;;
+	restart)
+		/etc/init.d/sbhttpd stop
+		/etc/init.d/sbhttpd start
+		echo "$0 $ARG: sbhttpd restarted"
+		;;
+	*)
+		echo "Usage: /etc/init.d/sbhttpd {start|stop|restart}"
+		exit 1
+		;;
+esac
+done
+
+exit 0
+

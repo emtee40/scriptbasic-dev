@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 4.5.215. besRETURN_MEM(X,Y)</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besRETURN_MEM(X,Y)">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besRETURN_MEM(X,Y)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_4.html">4. Extension Modules</A><BR>
+<UL><a href="devguide_4.5.html">4.5. Module Support Functions</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>4.5.215. besRETURN_MEM(X,Y)</H1>
+<A HREF="devguide_4.5.214.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.216.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Use this program to return a binary string value. The arguments of the macro should be a pointer
+to the binary string and the <font size="3"><tt>long</tt></font> length of the binary string. 
+<P>
+The macro allocates the return string, copies the content of the string to the allocated space and
+returns from the function using the macro with no error (COMMAND_ERROR_SUCCESS).
+<P>
+If the return value can not be allocated the macro returns with COMMAND_ERROR_MEMORY_LOW.
+<P>
+The macro evaluates its argument twice.<HR>
+<A HREF="devguide_4.5.214.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.216.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

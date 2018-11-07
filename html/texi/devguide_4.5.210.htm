@@ -1,0 +1,28 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: besALLOC_RETURN_POINTER</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besALLOC_RETURN_POINTER">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besALLOC_RETURN_POINTER">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>besALLOC_RETURN_POINTER</H1>
+<A HREF="devguide_4.5.209.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.211.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this macro to allocate a string as a return value to return a pointer. If there is not enough space to store the
+result the macro returns from the function with the error code <font size="3"><tt>COMMAND_ERROR_MEMORY_LOW</tt></font>.
+<P>
+After using this macro the macro <font size="3"><tt>STRINGVALUE(besRETURNVALUE)</tt></font> can be used to access the byte-buffer of the return
+value. Usually the program uses <font size="3"><tt>memcpy</tt></font> to copy the bytes there.<HR>
+<A HREF="devguide_4.5.209.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.211.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,38 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: ex_Command_r()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_Command_r()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_Command_r()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ex_Command_r()</H1>
+<A HREF="devguide_2.4.3.41.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.43.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function finds the matching sytax line for the actual line in a loop. It
+starts with the first syntax definition and goes on until there are no more
+syntax defintions, a fatal error has happened or the actual line is matched.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void ex_Command_r(peXobject pEx,
+                  peNODE *Result,
+                  int *piFailure
+  )@{
+</PRE></FONT>
+<font size="3"><tt>pEx</tt></font> is the execution object.
+<P>
+<font size="3"><tt>Result</tt></font> is the resulting node.
+<P>
+<font size="3"><tt>piFailure</tt></font> is the error code.<HR>
+<A HREF="devguide_2.4.3.41.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.43.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

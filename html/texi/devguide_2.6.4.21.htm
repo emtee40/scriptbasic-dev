@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: execute_Convert2Numeric()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: execute_Convert2Numeric()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: execute_Convert2Numeric()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>execute_Convert2Numeric()</H1>
+<A HREF="devguide_2.6.4.20.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.22.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<P>
+This function should be used to convert a variable to numeric type.
+<P>
+The conversion results a double or long variable. If the source variable
+was already a long or double the function does nothing but results the
+source variable.
+<P>
+<font size="3"><tt>undef</tt></font> is converted to long zero.
+<P>
+The function calls <a href="devguide_2.6.4.17.htm">execute_Convert2Long</A> and <a href="devguide_2.6.4.19.htm">execute_Convert2Double</A> thus
+all other parameters are treated according to that.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pFixSizeMemoryObject execute_Convert2Numeric(pExecuteObject pEo,
+                                             pFixSizeMemoryObject pVar,
+                                             pMortalList pMyMortal
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.6.4.20.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.22.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

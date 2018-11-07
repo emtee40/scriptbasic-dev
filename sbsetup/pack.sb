@@ -1,0 +1,178 @@
+' """
+FILE: pack.sb
+
+This program is used to create a gzipped file that contains all the files
+that can be found in the directory T:\ScriptBasic. This is used to create
+the Windows setup file sbcab.bin
+
+To create the setup program ScriptBasic has to beinstalled into T:\ScriptBasic
+and this packer program has to be started to collect all the files that
+are copied there.
+
+"""
+import zlib.bas
+
+declare option DeclareVars
+
+global InstalledDirectory,ExamplesDirectory
+global ThisFile,ThisFileLength,ThisFileBuffer
+global Description
+
+'
+' CopyLocalFile copies the file 'LocalFile' from the directory into
+' the already opened file sbcab.bin with the name 'Destination'
+' The file will contain the name of the file, the file lenght and the
+' content of the file. The file name and the file length (in decimal)
+' are terminated by line feed.
+'
+sub CopyLocalFile(LocalFile,Destination)
+
+  ' open the file to read
+  OPEN LocalFile FOR INPUT AS 2
+  ' read it in binary mode
+  BINMODE 2
+  ' the name of the file in the archive
+  ThisFile = Destination
+  ' the length of the file
+  ThisFileLength = LOF(2)
+
+  ' just some log print
+  print "Reading ",ThisFile," (",ThisFileLength," bytes)\n"
+
+  'read the entire file into memory
+  ThisFileBuffer = INPUT(ThisFileLength,2)
+  ' the file is in memory, there is no more need for it to be open
+  CLOSE 2
+
+  ' print the information and the content of the file into the archive
+  print#1,ThisFile,"\n"
+  print#1,ThisFileLength,"\n"
+  print#1,ThisFileBuffer
+
+end sub
+
+' the compression has to be as high as possible
+OPTION zlib$CompressionLevel 10
+
+' get the directory where ScriptBasic is installed
+' pack.cmd uses T:\ScriptBasic
+InstalledDirectory = command()
+
+if InstalledDirectory = "" then
+  print """Usage:
+    scriba pack.sb T:\\ScriptBasic\\
+or just run pack.cmd
+"""
+  stop
+endif
+
+' if the installation directory as specified is not terminated by \ then add it
+if Right(InstalledDirectory,1) <> "\\" then InstalledDirectory &= "\\"
+
+' get the list of the files
+open directory InstalledDirectory pattern "*.*" option SbCollectRecursively and SbCollectFullPath and SbSortByNone as 1
+
+OPEN "sbcab.bin" FOR OUTPUT AS 1
+BINMODE 1
+
+WHILE NOT EOD(1)
+  ThisFile = NextFile(1)
+
+  ' do not put the documentation and the binary files into the archive
+  IF ThisFile LIKE "*.html" OR _
+     ThisFile LIKE "*.pdf" OR _
+     ThisFile LIKE "*.gz" OR _
+     ThisFile LIKE "*.tgz" OR _
+     ThisFile LIKE "*.conf" THEN
+    GOTO NextLoop
+  END IF
+
+  OPEN ThisFile FOR INPUT AS 2
+  BINMODE 2
+  ThisFileLength = LOF(2)
+
+  print "Reading ",ThisFile," (",ThisFileLength," bytes)\n"
+
+  ThisFileBuffer = INPUT(ThisFileLength,2)
+  close 2
+  ThisFile = mid$(ThisFile,LEN(InstalledDirectory)+1)
+  print#1,ThisFile,"\n"
+  print ThisFile,"\n"
+  print#1,ThisFileLength,"\n"
+  print#1,ThisFileBuffer
+
+  undef ThisFileBuffer  
+
+  NextLoop:
+
+wend
+close directory 1
+
+print "Putting examples from the original location into the archive\n"
+ExamplesDirectory = "../examples/ntexamples/"
+open directory ExamplesDirectory pattern "*.*" option SbSortByNone as 1
+open "examples.c" for output as 3
+
+Description = "ScriptBasic"
+ThisFile = "demo.sb"
+print#3, "{CSIDL_PROGRAMS,BASIC_NAME\"\\\\"
+print#3, Description
+print#3, ".LNK\", \""
+print#3, left(ThisFile,len(ThisFile)-3)
+print#3, ".sb\",\"Link to "
+print#3, Description
+print#3, ".sb\", BASIC_ICON,FALSE,\"EXAMPLES\\\\\"},\n"
+
+WHILE NOT EOD(1)
+  ThisFile = NextFile(1)
+
+  OPEN ExamplesDirectory & ThisFile FOR INPUT AS 2
+  BINMODE 2
+  ThisFileLength = LOF(2)
+
+  print "Reading ",ThisFile," (",ThisFileLength," bytes)\n"
+
+  ThisFileBuffer = INPUT(ThisFileLength,2)
+  close 2
+  Description = mid$(ThisFileBuffer,3,instr(ThisFileBuffer,"\n")-4)
+  print#3, "{CSIDL_PROGRAMS,BASIC_NAME\"\\\\Examples\\\\"
+  print#3, Description
+  print#3, ".LNK\", \""
+  print#3, left(ThisFile,len(ThisFile)-3)
+  print#3, ".sb\",\"Link to "
+  print#3, Description
+  print#3, ".sb\", BASIC_ICON,FALSE,\"EXAMPLES\\\\\"},\n"
+
+  print#1,"/examples/",ThisFile,"\n"
+  print "/examples/",ThisFile,"\n"
+
+  print#1,ThisFileLength,"\n"
+  print#1,ThisFileBuffer
+
+  undef ThisFileBuffer  
+
+WEND
+close 3
+close directory 1
+
+
+print "Putting the icons into the archive\n"
+CopyLocalFile "scriba.ico","/bin/scriba.ico"
+CopyLocalFile "scribadoc.ico","/doc/scribadoc.ico"
+
+print "Putting configuration file skeleton into the bin directory\n"
+CopyLocalFile "config.tmpl","/bin/config.tmpl"
+CopyLocalFile "configurer.sb","/bin/configurer.sb"
+
+close 1
+
+' compress the created file using the module zlib this packer is used to
+' uncompress the file when ScriptBasic is installed
+zlib::gzip "sbcab.bin"
+' rename the file to its original name
+name "sbcab.bin.gz","sbcab.bin"
+' make a copy of the file into the debug directory where the debug version of
+' setup.exe is created. The release version is created using the command line
+' version and the make file into the directory where this file is and thus
+' where the original sbcab.bin was created
+FileCopy "sbcab.bin","setup/Debug/sbcab.bin"

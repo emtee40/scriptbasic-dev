@@ -1,0 +1,61 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.5.3.2. build_AllocateStringTable()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: build_AllocateStringTable()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: build_AllocateStringTable()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.5.html">2.5. Builder</A><BR>
+<UL><a href="devguide_2.5.3.html">2.5.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.5.3.2. build_AllocateStringTable()</H1>
+<A HREF="devguide_2.5.3.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.3.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function allocates space for the string table. The size of the
+string table is already determined during syntax analysis. The determined
+size should be enough. In some cases when there are repeated string constants
+the calculated sizte is bigger than the real one. In that case the larger memory
+is allocated and used, but only the really used part is written to the cache file.
+<P>
+If the program does not use any string constants then a dummy string table of length
+one byte is allocated.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void build_AllocateStringTable(pBuildObject pBuild,
+                          int *piFailure
+  )@{
+</PRE></FONT>
+<P>
+The first argument is the usual pointer to the "class" structure. The second argument
+is the result value. It can have two values:
+<P>
+<UL>
+<LI> <font size="3"><tt>BU_ERROR_SUCCESS</tt></font> which is guaranteed zero, means the function was successful.
+<LI> <font size="3"><tt>BU_ERROR_MEMORY_LOW</tt></font> means the memory allocation function could not allocate the
+neccessary memory
+@end itemize
+<P>
+The string table is allocated using the function <font size="3"><tt>alloc_Alloc</tt></font>. The string table
+is pointed by the class variable <font size="3"><tt>StringTable</tt></font>. The size of the table is stored in
+<font size="3"><tt>cStringTable</tt></font><HR>
+<A HREF="devguide_2.5.3.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.3.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

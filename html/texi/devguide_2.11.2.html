@@ -1,0 +1,76 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.11.2. log_init()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: log_init()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: log_init()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.11.html">2.11. The Logger Module</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.11.2. log_init()</H1>
+<A HREF="devguide_2.11.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.11.3.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Initialize a log. The function sets the parameters of a logging thread. 
+The parameters are the usual memory allocation and deallocation functions
+and the log file name format string. This format string can contain at most four
+<font size="3"><tt>%d</tt></font> as formatting element. This will be passed to <font size="3"><tt>sprintf</tt></font> with arguments as
+year, month, day and hour in this order. This will ease log rotating.
+<P>
+Note that log file name calculation is a CPU consuming process and therefore it is not
+performed for each log item. The log system recalculates the log file name and closes the
+old log file and opens a new one whenever the actual log to be written and the last log wrote
+is in a different time interval. The time interval is identified by the time stamp value
+divided (integer division) by the time span value. This is 3600 when you want to rotate the log
+hourly, 86400 if you want to rotate the log daily. Other rotations, like monthly do not work correctly.
+<P>
+To do this the caller has to set the <font size="3"><tt>TimeSpan</tt></font> field of the log structure. There is no support function
+to set this.
+<P>
+For example:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+<P>
+  if( log_init(&amp;ErrLog,alloc_Alloc,alloc_Free,pM_AppLog,CONFIG("log.err.file"),LOGTYPE_NORMAL) )
+    return 1;
+  if( cft_GetEx(&amp;MyCONF,"log.err.span",&amp;ConfNode,NULL,&amp;(ErrLog.TimeSpan),NULL,NULL) )
+    ErrLog.TimeSpan = 0;
+<P>
+</PRE></FONT>
+<P>
+as you can see in the file <font size="3"><tt>ad.c</tt></font> Setting TimeSpan to zero results no log rotation.
+<P>
+Note that it is a good practice to set the TimeSpan value to positive (non zero) even if the
+log is not rotated. If you ever delete the log file while the logging application is running
+the log is not written anymore until the log file is reopened.
+<P>
+The log type can be <font size="3"><tt>LOGTYPE_NORMAL</tt></font> to perform asynchronous high performance logging and
+<font size="3"><tt>LOGTYPE_SYNCHRONOUS</tt></font> for syncronous, "panic" logging. Panic logging keeps the file continously
+opened until the log is shut down and does not perform log rotation.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int log_init(ptLogger pLOG,
+             void *(*memory_allocating_function)(size_t, void *),
+             void (*memory_releasing_function)(void *, void *),
+             void *pMemorySegment,
+             char *pszLogFileName,
+             int iLogType
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.11.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.11.3.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

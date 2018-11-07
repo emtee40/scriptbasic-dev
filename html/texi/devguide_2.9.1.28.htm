@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: memory_ReleaseMortals()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_ReleaseMortals()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_ReleaseMortals()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>memory_ReleaseMortals()</H1>
+<A HREF="devguide_2.9.1.27.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.29.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function should be used to release the mortal variables.
+<P>
+When an expression is evaluated mortal variables are needed to store
+the intermediate results. These variables are called mortal variables.
+Such a variable is is allocated using this function and specifying a
+variable of type <font size="3"><tt>MortalList</tt></font> to assign the mortal to the list of
+mortal variables.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void memory_ReleaseMortals(pMemoryObject pMo,
+                           pMortalList pMortal
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.9.1.27.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.29.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

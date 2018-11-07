@@ -1,0 +1,46 @@
+<HEAD>
+<TITLE>Documentation of the module odbc: 3. FetchArray</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module odbc: FetchArray">
+<META NAME="keywords" CONTENT="Documentation of the module odbc: FetchArray">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_odbc_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>3. FetchArray</H1>
+<A HREF="mod_odbc_2.html">[&lt;&lt;&lt;]</A> <A HREF="mod_odbc_4.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+R = ODBC::FetchArray(DB,arr)
+</PRE></FONT>
+<P>
+Use this function to fetch one row from the results after a successfully executed <font size="3"><tt>SELECT</tt></font> statement.
+The first argument to the function is <font size="3"><tt>DB</tt></font> the database handle. The second argument should be a variable.
+This variable will hold the array containing the data of the actual row. The array is indexed from zero to
+<font size="3"><tt>n-1</tt></font> where <font size="3"><tt>n</tt></font> is the number of columns in the result set.
+<P>
+Use consecutive calls to this fucntion to get the rwos of the result one after the other. You can mix
+consecutive calls to <a href="mod_odbc_4.html">FetchHash</A> and <font size="3"><tt>FetchArray</tt></font>.
+<P>
+The function returns <font size="3"><tt>-1</tt></font> (TRUE) if fetching a row of data was successful or <font size="3"><tt>0</tt></font> (FALSE) if there
+are no more rows in the dataset. In the latter case <font size="3"><tt>arr</tt></font> will be <font size="3"><tt>undef</tt></font>.
+<P>
+See also <a href="mod_odbc_4.html">FetchHash</A>
+<P>
+This function calls the ODBC functions <font size="3"><tt>SQLFetch</tt></font>, <font size="3"><tt>SQLDescribeCol</tt></font>, <font size="3"><tt>SQLGetData</tt></font>.<HR>
+<A HREF="mod_odbc_2.html">[&lt;&lt;&lt;]</A> <A HREF="mod_odbc_4.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

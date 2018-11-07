@@ -1,0 +1,59 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.9.1.26. memory_DupVar()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_DupVar()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_DupVar()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.9.html">2.9. Variable Allocation</A><BR>
+<UL><a href="devguide_2.9.1.html">2.9.1. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.9.1.26. memory_DupVar()</H1>
+<A HREF="devguide_2.9.1.25.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.27.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function creates a new mortal and copies the argument <font size="3"><tt>pVar</tt></font> into this
+new mortal.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pFixSizeMemoryObject memory_DupVar(pMemoryObject pMo,
+                                   pFixSizeMemoryObject pVar,
+                                   pMortalList pMyMortal,
+                                   int *piErrorCode
+  )@{
+</PRE></FONT>
+This function is vital, when used in operations that convert the
+values to <font size="3"><tt>long</tt></font> or <font size="3"><tt>double</tt></font>. Expression evaluation may return an immortal
+value, when the expression is a simple variable access. Conversion of the
+result would modify the value of the variable itself. Therefore functions and
+operators call this function to duplicate the result to be sure that the value
+they convert is mortal and to be sure they do not change the value of a variable
+when they are not supposed to.
+<P>
+Note that you can duplicate <font size="3"><tt>long</tt></font>, <font size="3"><tt>double</tt></font> and <font size="3"><tt>string</tt></font> values, but you can not
+duplicate arrays! The string value is duplicated and the characters are copied to
+the new location. This is perfect. However if you do the same with an array the array
+pointers will point to the same variables, which are not going to be duplicated. This
+result multiple reference to a single value. This situation is currently not supported
+by this system as we do not have either garbage collection or any other solution to support
+such memory structures.<HR>
+<A HREF="devguide_2.9.1.25.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.27.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

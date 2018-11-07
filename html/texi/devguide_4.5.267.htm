@@ -1,0 +1,30 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: besDLL_MAIN</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besDLL_MAIN">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besDLL_MAIN">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>besDLL_MAIN</H1>
+<A HREF="devguide_4.5.266.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.268.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+process header macro makes UNIX like dll loading and unloading
+on Win32. This just defines a wrapper DllMain that calls _init() and
+_fini() that a the default library loading and unloading functions
+under UNIX.
+<P>
+Use of this macro may be needed for modules that serve multi thread
+interpreters and share resources on the process level<HR>
+<A HREF="devguide_4.5.266.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.268.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: memory_CheckArrayIndex()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_CheckArrayIndex()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_CheckArrayIndex()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>memory_CheckArrayIndex()</H1>
+<A HREF="devguide_2.9.1.20.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.22.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function should be called before accessing a certain element of an array.
+The function checks that the index is within the index limitsof the array
+and in case the index is outside the index limits of the array it redimensionate the
+array.
+<P>
+The function returns the pointer passed as parameter <font size="3"><tt>p</tt></font> or NULL in case there is a
+memory allocation error.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pFixSizeMemoryObject memory_CheckArrayIndex(pMemoryObject pMo,
+                                            pFixSizeMemoryObject p,
+                                            long Index
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.9.1.20.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.22.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

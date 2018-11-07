@@ -1,0 +1,62 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.6.4.9. execute_ExecuteFunction()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: execute_ExecuteFunction()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: execute_ExecuteFunction()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.6.html">2.6. Executor</A><BR>
+<UL><a href="devguide_2.6.4.html">2.6.4. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.6.4.9. execute_ExecuteFunction()</H1>
+<A HREF="devguide_2.6.4.8.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.10.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function is used by the embedding layer (aka <font size="3"><tt>scriba_</tt></font> functions) to execute a function.
+This function is not directly called by the execution of a ScriptBasic program. It may be
+used after the execution of the program by a special embeddign application that keeps the
+code and the global variables in memory and calls functions of the program.
+<P>
+The function takes <font size="3"><tt>pEo</tt></font> as the execution environment. <font size="3"><tt>StartNode</tt></font> should be the node where the
+sub or function is defined. <font size="3"><tt>cArgs</tt></font> should give the number of arguments. <font size="3"><tt>pArgs</tt></font> should point
+to the argument array. <font size="3"><tt>pResult</tt></font> will point to the result. If <font size="3"><tt>pResult</tt></font> is <font size="3"><tt>NULL</tt></font> the result is
+dropped. Otherwise the result is a mortal variable.
+<P>
+Note that this code does not check the number of arguments you provide. There can be more arguments
+passed to the SUB than it has declared, therefore you can initialize the local variables of the sub.
+(You should know that arguments are local variables in ScriptBasic just as any other non-argument local
+variable.)
+<P>
+The arguments should be normal immortal variables. They are passed to the SUB by reference and in case
+they are modified the old variable is going to be released.
+<P>
+<font size="3"><tt>piErrorCode</tt></font> returns the error code of the execution which is zero in case of no error.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void execute_ExecuteFunction(pExecuteObject pEo,
+                             unsigned long StartNode,
+                             long cArgs,
+                             pFixSizeMemoryObject *pArgs,
+                             pFixSizeMemoryObject *pResult,
+                             int *piErrorCode
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.6.4.8.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.10.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

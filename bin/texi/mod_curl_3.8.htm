@@ -1,0 +1,50 @@
+<HEAD>
+<TITLE>Documentation of the module curl: HEADERFILE string</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: HEADERFILE string">
+<META NAME="keywords" CONTENT="Documentation of the module curl: HEADERFILE string">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>HEADERFILE string</H1>
+<A HREF="mod_curl_3.7.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.9.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"HEADERFILE","file_name"
+</PRE></FONT>
+<P>
+Use this option to set the file name of the file where the header coming from the server will be saved.
+When you set this option the file is opened and truncated assumed that the program has appropriate privileges.
+Thus if there was a file with the name the file will be overwrtitten even if the <font size="3"><tt>curl::perform</tt></font> function is
+not called. The file is opened, when the option is set and kept opened so long as the connection is "finished" 
+or another <font size="3"><tt>HEADERFILE</tt></font> option is specified for the connection.
+<P>
+Note: You need this option if you want to get the header and the body of a downloaded file into two separate
+files. You can easily get the header and the body into a single file if you use the option <font size="3"><tt>HEADER</tt></font>. Altough
+there is nothing that prevents, I see no real use of the two options aka <font size="3"><tt>HEADERFILE</tt></font> and flag <font size="3"><tt>HEADER</tt></font>) together.
+But you are free to use them together.
+<P>
+Comment on internals (if you do not understand what I am talking about, most probably you do not need to):
+<P>
+The underlying CURL library requests an opened file handle passed to the library and a function that
+performs the file writing. The ScriptBasic interface gets the name of the file, opens the file, passes
+the opened file pointer to the library and specifies the stadard <font size="3"><tt>fwrite</tt></font> function to write the file.
+<P>
+The pointer to the function <font size="3"><tt>fwrite</tt></font> is taken from the support table, thus is any preloaded module
+altered this before setting this option the module function will be used.
+<P>
+The file is opened calling the system function <font size="3"><tt>fopen</tt></font> via the ScriptBasic support function calling stacks.
+This means that if some module implements a hook function to control file access that will be taken into account
+the same way as it is taken into accoung in the case of the BASIC command <font size="3"><tt>OPEN</tt></font>.<HR>
+<A HREF="mod_curl_3.7.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.9.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

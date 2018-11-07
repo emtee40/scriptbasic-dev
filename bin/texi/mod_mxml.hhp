@@ -1,0 +1,24 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=mod_mxml.chm
+Contents file=mod_mxml.hhc
+Default topic=mod_mxml_title.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=mod_mxml.hhk
+Language=0x409 English (United States)
+Title=Documentation of the module mxml
+
+[FILES]
+mod_mxml_title.htm
+mod_mxml_1.htm
+mod_mxml_2.htm
+mod_mxml_3.htm
+mod_mxml_4.htm
+mod_mxml_5.htm
+mod_mxml_6.htm
+mod_mxml_7.htm
+mod_mxml_8.htm
+mod_mxml_9.htm
+mod_mxml_10.htm
+[INFOTYPES]

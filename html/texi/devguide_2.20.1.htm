@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: sym_NewSymbolTable()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: sym_NewSymbolTable()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: sym_NewSymbolTable()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>sym_NewSymbolTable()</H1>
+<A HREF="devguide_2.20.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.20.2.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function creates a new symbol table. Later this symbol table should be used
+to store and retrieve symbol information.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+SymbolTable sym_NewSymbolTable(
+  void* (*memory_allocating_function)(size_t,void *),
+  void *pMemorySegment
+  )@{
+</PRE></FONT>
+The second argument should point to the memory allocating function that the
+symbol table creation process should use. The last argument is an pointer to a memory
+segment which is passed to the memory allocation function. The actual arguments of the
+memory allocation function fits the allocation function from the package alloc. However the
+defintion is general enough to use any other function.<HR>
+<A HREF="devguide_2.20.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.20.2.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

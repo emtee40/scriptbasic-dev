@@ -1,0 +1,82 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.5.3.11. build_SaveCode()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: build_SaveCode()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: build_SaveCode()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.5.html">2.5. Builder</A><BR>
+<UL><a href="devguide_2.5.3.html">2.5.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.5.3.11. build_SaveCode()</H1>
+<A HREF="devguide_2.5.3.10.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.12.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function saves the binary code of the program into the file
+given by the name <font size="3"><tt>szFileName</tt></font>.
+<P>
+This version is hard wired saving the code into an operating system
+file because it uses <font size="3"><tt>fopen</tt></font>, <font size="3"><tt>fclose</tt></font> and <font size="3"><tt>fwrite</tt></font>. Later versions
+may use other compatible functions passed as argument and thus allowing
+output redirection to other storage media (a database for example).
+<P>
+However I think that this code is quite simple and therefore it is easier
+to rewrite the whole function along with <a href="devguide_2.5.3.16.html">build_LoadCode()</A> for other storage
+media than writing an interface function.
+<P>
+The saved binary code is NOT portable. It saves the internal values
+as memory image to the disk. It means that the size of the code depends
+on the actual size of long, char, int and other types. The byte ordering
+is also system dependant.
+<P>
+The saved binary code can only be loaded with the same version, and build of
+the program, therefore it is vital to distinguish each compilation of
+the program. To help the recognition of the different versions, the code starts
+with a version structure.
+<P>
+The very first byte of the code contains the size of the long on the target machine.
+If this is not correct then the code was created on a different processor and the code
+is incompatible.
+<P>
+The version info structure has the following fileds:
+<UL>
+<LI> <font size="3"><tt>MagicCode</tt></font> is a magic constant. This contains the characters BAS and a character 1A that
+stops output to screen on DOS operating systems.
+<LI> <font size="3"><tt>VersionHigh</tt></font> The high part of the version of the STANDARD version.
+<LI> <font size="3"><tt>VersionLow</tt></font> The low part of the version of the STANDARD version.
+<LI> <font size="3"><tt>MyVersionHigh</tt></font> The high part of the version of the variation.
+This is always zero for the STANDARD version.
+<LI> <font size="3"><tt>MyVersionLow</tt></font>  The low part of the version of the variation.
+This is always zero for the STANDARD version.
+<LI> <font size="3"><tt>Build</tt></font> A build code which is automatically calculated from the compilation date.
+<LI> <font size="3"><tt>Variation</tt></font> 8 characters (NOT ZERO TERMINATED!) naming the version "STANDARD" for the
+STANDARD version (obvious?)
+@end itemize
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int build_SaveCode(pBuildObject pBuild,
+                   char *szFileName
+  )@{
+</PRE></FONT>
+The function returns zero on success (<font size="3"><tt>BU_ERROR_SUCCESS</tt></font>) and <font size="3"><tt>BU_ERROR_FAIL</tt></font>
+if the code could not be saved.<HR>
+<A HREF="devguide_2.5.3.10.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.12.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

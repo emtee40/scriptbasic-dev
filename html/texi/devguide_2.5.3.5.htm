@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: build_Build_r()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: build_Build_r()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: build_Build_r()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>build_Build_r()</H1>
+<A HREF="devguide_2.5.3.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.6.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function builds a single node. This actually means copiing the values
+from the data structure created by the module <font size="3"><tt>expression</tt></font>. The major
+difference is that the pointers of the original structure are converted to
+<font size="3"><tt>unsigned long</tt></font>. Whenever a pointer pointed to a <font size="3"><tt>eNODE</tt></font> the <font size="3"><tt>unsigned long</tt></font>
+will contain the <font size="3"><tt>NodeId</tt></font> of the node. This ID is the same for the <font size="3"><tt>eNODE</tt></font> and
+for the <font size="3"><tt>cNODE</tt></font> that is built from the <font size="3"><tt>eNODE</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int build_Build_r(pBuildObject pBuild,
+                  peNODE Result
+  )@{
+</PRE></FONT>
+<P>
+The node to be converted is passed by the pointer <font size="3"><tt>Result</tt></font>. The return value is
+the error code. It is zero (<font size="3"><tt>BU_ERRROR_SUCCESS</tt></font>) in case of success.
+<P>
+When the node pointed by <font size="3"><tt>Result</tt></font> references other nodes the function recursively
+calls itself to convert the referenced nodes.<HR>
+<A HREF="devguide_2.5.3.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.6.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

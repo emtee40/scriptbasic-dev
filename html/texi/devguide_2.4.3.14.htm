@@ -1,0 +1,39 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: _new_SymbolVAR()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: _new_SymbolVAR()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: _new_SymbolVAR()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>_new_SymbolVAR()</H1>
+<A HREF="devguide_2.4.3.13.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.15.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function should be used to create a new variable during compile time. A
+variable is nothing else than a serial number. This serial number starts
+from 1.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pSymbolVAR _new_SymbolVAR(peXobject pEx,
+                          int iLocal
+  )@{
+</PRE></FONT>
+<P>
+The second argument should be true for local variables. The counting of local
+variables are reset whenever the program enters a new locality. Localities can
+not be nested.
+<P>
+Also note that local variables are allocated in a different segment because they
+are deallocated whenever the syntax analyzer leaves a locality.<HR>
+<A HREF="devguide_2.4.3.13.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.15.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

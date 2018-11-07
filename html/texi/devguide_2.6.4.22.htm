@@ -1,0 +1,39 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: execute_Dereference()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: execute_Dereference()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: execute_Dereference()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>execute_Dereference()</H1>
+<A HREF="devguide_2.6.4.21.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.23.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function recursively follows variable references and returns
+the original variable that was referenced by the original variable.
+<P>
+A reference variable is a special variable that does not hold value
+itself but rather a pointer to another variable. Such reference variables
+are used when arguments are passed by reference to BASIC subroutines.
+<P>
+Calling this function the caller can get the original variable and the
+valéue of the original variable rather than a reference.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pFixSizeMemoryObject execute_Dereference(pExecuteObject pEo,
+                                         pFixSizeMemoryObject p,
+                                         int *piErrorCode
+  )@{
+</PRE></FONT>
+See also <a href="devguide_2.6.4.23.htm">execute_DereferenceS()</A>.<HR>
+<A HREF="devguide_2.6.4.21.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.23.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

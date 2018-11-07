@@ -1,0 +1,45 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.4.3.27. ex_Local()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_Local()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_Local()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.4.html">2.4. Syntax Analyzer</A><BR>
+<UL><a href="devguide_2.4.3.html">2.4.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.4.3.27. ex_Local()</H1>
+<A HREF="devguide_2.4.3.26.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.28.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function work up a <font size="3"><tt>local</tt></font> pseudo terminal. This does not create any node.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int ex_Local(peXobject pEx
+  )@{
+</PRE></FONT>
+The return value is <font size="3"><tt>0</tt></font> if no error happens.
+<P>
+<font size="3"><tt>1</tt></font> means sytax error (the coming token is not a symbol)
+<P>
+<font size="3"><tt>2</tt></font> means that there is no local environment (aka. the <font size="3"><tt>local var</tt></font> is not inside a function)<HR>
+<A HREF="devguide_2.4.3.26.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.28.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,54 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.9.1.5. memory_NewVariable()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_NewVariable()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_NewVariable()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.9.html">2.9. Variable Allocation</A><BR>
+<UL><a href="devguide_2.9.1.html">2.9.1. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.9.1.5. memory_NewVariable()</H1>
+<A HREF="devguide_2.9.1.4.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.6.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function should be used whenever a new variable is to be allocated.
+The function returns a pointer to a <font size="3"><tt>FixSizeMemoryObject</tt></font> structure that
+holds the variable information and pointer to the memory that stores the
+actual value for the memory.
+<P>
+If there is not engough memory or the calling is illegal the returned value is <font size="3"><tt>NULL</tt></font>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pFixSizeMemoryObject memory_NewVariable(pMemoryObject pMo,
+                                        int type,
+                                        unsigned long LargeBlockSize
+  )@{
+</PRE></FONT>
+<P>
+The second argument gives the type of the memory object to be allocated. If this
+value is <font size="3"><tt>LARGE_BLOCK_TYPE</tt></font> then the third argument is used to determine the size of the
+memory to be allocated. If the type if NOT <font size="3"><tt>LARGE_BLOCK_TYPE</tt></font> then this argument is
+ignored and the proper size is allocated.
+<P>
+If the type has memory that was earlier allocated and released it is stored in a free list
+and is reused.<HR>
+<A HREF="devguide_2.9.1.4.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.6.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

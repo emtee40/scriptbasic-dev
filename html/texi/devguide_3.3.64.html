@@ -1,0 +1,52 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.3.64. scriba_GetVariable()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_GetVariable()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_GetVariable()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.3.64. scriba_GetVariable()</H1>
+<A HREF="devguide_3.3.63.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.65.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function retrieves the value of a variable.
+A new <font size="3"><tt>SbData</tt></font> object is created and the pointer to it
+is returned in <font size="3"><tt>pVariable</tt></font>. This memory space is automatically
+reclaimed when the program object is destroyed or the function
+<font size="3"><tt>DestroySbData</tt></font> can be called.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_GetVariable(pSbProgram pProgram,
+                       long lSerial,
+                       pSbData *pVariable
+  )@{
+</PRE></FONT>
+The argument <font size="3"><tt>lSerial</tt></font> should be the serial number of the global variable
+as returned by <a href="devguide_3.3.62.html">scriba_LookupVariableByName()</A>.
+<P>
+The funtion returns <font size="3"><tt>SCRIBA_ERROR_SUCCESS</tt></font> on success,
+<P>
+<font size="3"><tt>SCRIBA_ERROR_MEMORY_LOW</tt></font> if the data cannot be created or
+<P>
+<font size="3"><tt>SCRIBA_ERROR_FAIL</tt></font> if the parameter <font size="3"><tt>lSerial</tt></font> is invalid.<HR>
+<A HREF="devguide_3.3.63.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.65.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,39 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: besCONVERT2ZCHAR(x)</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besCONVERT2ZCHAR(x)">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besCONVERT2ZCHAR(x)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>besCONVERT2ZCHAR(x)</H1>
+<A HREF="devguide_4.5.70.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.72.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this macro to convert a <font size="3"><tt>VARIABLE</tt></font> that is already STRING type to zero character
+terminated string. This is needed many times when a BASIC string has to be passed to
+operating system functions.
+<P>
+The macro argument <font size="3"><tt>x</tt></font> is converted to zero character terminated string and the
+result will be pointed by <font size="3"><tt>y</tt></font>. <font size="3"><tt>y</tt></font> has to be a <font size="3"><tt>(char *)</tt></font> C variable.
+<P>
+If there is not enough memory the macro returns from the function with the error code
+<font size="3"><tt>COMMAND_ERROR_MEMORY_LOW</tt></font> thus there is no need to check the value of the variable <font size="3"><tt>y</tt></font>
+if it is <font size="3"><tt>NULL</tt></font>.
+<P>
+The memory allocated to store the ZCHAR string should be released by the macro <a href="devguide_4.5.4.htm">besFREE</A>.
+<P>
+Note that the macro does not check wheter the string already contains a zero character or not.
+It simply allocates a buffer that has length n+1 bytes to store the n bytes of the original
+BASIC string and an extra zero character.<HR>
+<A HREF="devguide_4.5.70.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.72.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

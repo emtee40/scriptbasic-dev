@@ -1,0 +1,22 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=mod_re.chm
+Contents file=mod_re.hhc
+Default topic=mod_re_title.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=mod_re.hhk
+Language=0x409 English (United States)
+Title=Documentation of the module re
+
+[FILES]
+mod_re_title.htm
+mod_re_1.htm
+mod_re_2.htm
+mod_re_3.htm
+mod_re_4.htm
+mod_re_5.htm
+mod_re_6.htm
+mod_re_7.htm
+mod_re_8.htm
+[INFOTYPES]

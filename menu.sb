@@ -1,0 +1,55 @@
+
+FUNCTION  SelectFolder(Title,Path)
+  fn = FREEFILE()
+  Exclude = "Guest|Shared|Public"
+  file_list = ""
+  myloop = 1
+  Border = STRING(LEN(Title), "-")
+  Search_Options = SbCollectDirectories
+
+
+  WHILE myloop
+    OPEN DIRECTORY Path PATTERN "" OPTION Search_Options AS #fn
+    RESET DIRECTORY #fn
+    fName = NEXTFILE(fn)
+
+    WHILE fName <> undef
+      IF NOT INSTR(Exclude, fName) = undef THEN 
+        IF LEFT(fName,1) <> "." THEN file_list &= fName & "\n"  
+      END IF
+      fName = NEXTFILE(fn)
+    WEND
+
+    CLOSE DIRECTORY #fn
+
+    SPLITA file_list BY "\n" TO users
+
+    PRINT "\x1b[2J\x1b[H"
+
+    PRINT Title,"\n",Border,"\n"
+
+    FOR idx = 0 TO UBOUND(users)
+        PRINT idx+1,") ",users[idx],"\n"
+    NEXT
+
+    PRINT Border,"\n","Select User: "
+
+    LINE INPUT uid
+
+    uid = VAL(CHOMP(uid-1))
+
+    IF users[uid] = undef THEN
+      PRINT ">> Invalid Selection <<\n"
+      SLEEP 1
+      file_list = undef
+    ELSE
+      myloop = 0
+    END IF
+  WEND
+
+  SelectFolder = users[uid]
+END FUNCTION
+
+selected = SelectFolder("Armando's Test Menu", "/Users")
+
+PRINT "\nYou Selected: ",selected,"\n"

@@ -1,0 +1,302 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 4.5. Module Support Functions</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Module Support Functions">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Module Support Functions">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_4.html">4. Extension Modules</A><BR>
+</UL>
+</UL>
+<P>
+<H1>4.5. Module Support Functions</H1>
+<A HREF="devguide_4.4.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_4.5.1.html">4.5.1. Basic Extension Support functions, structures and macros</A><BR>
+<A HREF="devguide_4.5.2.html">4.5.2. besALLOC(X)</A><BR>
+<A HREF="devguide_4.5.3.html">4.5.3. besPROCALLOC(X)</A><BR>
+<A HREF="devguide_4.5.4.html">4.5.4. besFREE(X)</A><BR>
+<A HREF="devguide_4.5.5.html">4.5.5. besPROCFREE(X)</A><BR>
+<A HREF="devguide_4.5.6.html">4.5.6. besPROCMEMORYSEGMENT</A><BR>
+<A HREF="devguide_4.5.7.html">4.5.7. besNEWMORTALSTRING(X)</A><BR>
+<A HREF="devguide_4.5.8.html">4.5.8. besNEWMORTALLONG</A><BR>
+<A HREF="devguide_4.5.9.html">4.5.9. besNEWMORTALREF</A><BR>
+<A HREF="devguide_4.5.10.html">4.5.10. besNEWMORTALDOUBLE</A><BR>
+<A HREF="devguide_4.5.11.html">4.5.11. besNEWMORTALARRAY(X,Y)</A><BR>
+<A HREF="devguide_4.5.12.html">4.5.12. besNEWSTRING(X)</A><BR>
+<A HREF="devguide_4.5.13.html">4.5.13. besNEWLONG</A><BR>
+<A HREF="devguide_4.5.14.html">4.5.14. besNEWREF</A><BR>
+<A HREF="devguide_4.5.15.html">4.5.15. besNEWDOUBLE</A><BR>
+<A HREF="devguide_4.5.16.html">4.5.16. besNEWARRAY(X,Y)</A><BR>
+<A HREF="devguide_4.5.17.html">4.5.17. besRELEASE(X)</A><BR>
+<A HREF="devguide_4.5.18.html">4.5.18. besSETREF(VAR,VAL)</A><BR>
+<A HREF="devguide_4.5.19.html">4.5.19. besCONFIG(X)</A><BR>
+<A HREF="devguide_4.5.20.html">4.5.20. besCONFIGFINDNODE(X,Y,Z)</A><BR>
+<A HREF="devguide_4.5.21.html">4.5.21. besCONFIGEX(CT,CS,NS,CSS,LS,DS,IS)</A><BR>
+<A HREF="devguide_4.5.22.html">4.5.22. besCONFIGENUMFIRST(X,Y)</A><BR>
+<A HREF="devguide_4.5.23.html">4.5.23. besCONFIGENUMNEXT(X,Y)</A><BR>
+<A HREF="devguide_4.5.24.html">4.5.24. besCONFIGGETKEY(X,Y)</A><BR>
+<A HREF="devguide_4.5.25.html">4.5.25. besNEWSYMBOLTABLE</A><BR>
+<A HREF="devguide_4.5.26.html">4.5.26. besFREESYMBOLTABLE(X)</A><BR>
+<A HREF="devguide_4.5.27.html">4.5.27. besTRAVERSESYMBOLTABLE(X,Y,Z)</A><BR>
+<A HREF="devguide_4.5.28.html">4.5.28. besLOOKUPSYMBOL(X,Y,Z)</A><BR>
+<A HREF="devguide_4.5.29.html">4.5.29. besDeleteSymbol(X,Y,Z)</A><BR>
+<A HREF="devguide_4.5.30.html">4.5.30. besLOADLIBRARY(X)</A><BR>
+<A HREF="devguide_4.5.31.html">4.5.31. besFREELIBRARY(X)</A><BR>
+<A HREF="devguide_4.5.32.html">4.5.32. besGETFUNCTIONBYNAME(X)</A><BR>
+<A HREF="devguide_4.5.33.html">4.5.33. besFOPEN</A><BR>
+<A HREF="devguide_4.5.34.html">4.5.34. besFCLOSE</A><BR>
+<A HREF="devguide_4.5.35.html">4.5.35. besSIZE</A><BR>
+<A HREF="devguide_4.5.36.html">4.5.36. besTIME_ACCESSED</A><BR>
+<A HREF="devguide_4.5.37.html">4.5.37. besTIME_MODIFIED</A><BR>
+<A HREF="devguide_4.5.38.html">4.5.38. besTIME_CREATED</A><BR>
+<A HREF="devguide_4.5.39.html">4.5.39. besISDIR</A><BR>
+<A HREF="devguide_4.5.40.html">4.5.40. besISREG</A><BR>
+<A HREF="devguide_4.5.41.html">4.5.41. besEXISTS</A><BR>
+<A HREF="devguide_4.5.42.html">4.5.42. besTRUNCATE</A><BR>
+<A HREF="devguide_4.5.43.html">4.5.43. besFGETC</A><BR>
+<A HREF="devguide_4.5.44.html">4.5.44. besFREAD</A><BR>
+<A HREF="devguide_4.5.45.html">4.5.45. besFWRITE</A><BR>
+<A HREF="devguide_4.5.46.html">4.5.46. besSETMODE</A><BR>
+<A HREF="devguide_4.5.47.html">4.5.47. besBINMODE</A><BR>
+<A HREF="devguide_4.5.48.html">4.5.48. besTEXTMODE</A><BR>
+<A HREF="devguide_4.5.49.html">4.5.49. besFERROR</A><BR>
+<A HREF="devguide_4.5.50.html">4.5.50. besFPUTC</A><BR>
+<A HREF="devguide_4.5.51.html">4.5.51. besFLOCK</A><BR>
+<A HREF="devguide_4.5.52.html">4.5.52. besLOCK</A><BR>
+<A HREF="devguide_4.5.53.html">4.5.53. besFEOF</A><BR>
+<A HREF="devguide_4.5.54.html">4.5.54. besMKDIR</A><BR>
+<A HREF="devguide_4.5.55.html">4.5.55. besRMDIR</A><BR>
+<A HREF="devguide_4.5.56.html">4.5.56. besREMOVE</A><BR>
+<A HREF="devguide_4.5.57.html">4.5.57. besDELTREE</A><BR>
+<A HREF="devguide_4.5.58.html">4.5.58. besMAKEDIRECTORY</A><BR>
+<A HREF="devguide_4.5.59.html">4.5.59. besOPENDIR</A><BR>
+<A HREF="devguide_4.5.60.html">4.5.60. besREADDIR</A><BR>
+<A HREF="devguide_4.5.61.html">4.5.61. besCLOSEDIR</A><BR>
+<A HREF="devguide_4.5.62.html">4.5.62. besOPTION(X)</A><BR>
+<A HREF="devguide_4.5.63.html">4.5.63. besSETOPTION(x,y)</A><BR>
+<A HREF="devguide_4.5.64.html">4.5.64. besRESETOPTION(X)</A><BR>
+<A HREF="devguide_4.5.65.html">4.5.65. besCONVERT2STRING(x)</A><BR>
+<A HREF="devguide_4.5.66.html">4.5.66. besCONVERT2LONG(x)</A><BR>
+<A HREF="devguide_4.5.67.html">4.5.67. besGETLONGVALUE(x)</A><BR>
+<A HREF="devguide_4.5.68.html">4.5.68. besCONVERT2DOUBLE(x)</A><BR>
+<A HREF="devguide_4.5.69.html">4.5.69. besGETDOUBLEVALUE(x)</A><BR>
+<A HREF="devguide_4.5.70.html">4.5.70. besISSTRINGINTEGER(x)</A><BR>
+<A HREF="devguide_4.5.71.html">4.5.71. besCONVERT2ZCHAR(x)</A><BR>
+<A HREF="devguide_4.5.72.html">4.5.72. besREINITINTERFACE</A><BR>
+<A HREF="devguide_4.5.73.html">4.5.73. besLOADMODULE(x,y)</A><BR>
+<A HREF="devguide_4.5.74.html">4.5.74. besGETMODULEFUNCTIONBYNAME</A><BR>
+<A HREF="devguide_4.5.75.html">4.5.75. besUNLOADALLMODULES</A><BR>
+<A HREF="devguide_4.5.76.html">4.5.76. besUNLOADMODULE(x)</A><BR>
+<A HREF="devguide_4.5.77.html">4.5.77. besSLEEP(x)</A><BR>
+<A HREF="devguide_4.5.78.html">4.5.78. besCURDIR(x,y)</A><BR>
+<A HREF="devguide_4.5.79.html">4.5.79. besCHDIR(x)</A><BR>
+<A HREF="devguide_4.5.80.html">4.5.80. besCHOWN(x,y)</A><BR>
+<A HREF="devguide_4.5.81.html">4.5.81. besSETCREATETIME(x,y)</A><BR>
+<A HREF="devguide_4.5.82.html">4.5.82. besSETMODIFYTIME(x,y)</A><BR>
+<A HREF="devguide_4.5.83.html">4.5.83. besSETACCESSTIME(x,y)</A><BR>
+<A HREF="devguide_4.5.84.html">4.5.84. besGETHOSTNAME(x,y)</A><BR>
+<A HREF="devguide_4.5.85.html">4.5.85. besGETHOST(x,y)</A><BR>
+<A HREF="devguide_4.5.86.html">4.5.86. besTCPCONNECT(x,y)</A><BR>
+<A HREF="devguide_4.5.87.html">4.5.87. besTCPSEND(x,y,z)</A><BR>
+<A HREF="devguide_4.5.88.html">4.5.88. besTCPRECV(x,y,z)</A><BR>
+<A HREF="devguide_4.5.89.html">4.5.89. besTCPCLOSE(y)</A><BR>
+<A HREF="devguide_4.5.90.html">4.5.90. besKILLPROC(x)</A><BR>
+<A HREF="devguide_4.5.91.html">4.5.91. besGETOWNER(x,y,z)</A><BR>
+<A HREF="devguide_4.5.92.html">4.5.92. besCRYPT(x,y,z)</A><BR>
+<A HREF="devguide_4.5.93.html">4.5.93. besMD5INIT(C)</A><BR>
+<A HREF="devguide_4.5.94.html">4.5.94. besMD5UPDATE(C,I,L)</A><BR>
+<A HREF="devguide_4.5.95.html">4.5.95. besMD5FINAL(D,C)</A><BR>
+<A HREF="devguide_4.5.96.html">4.5.96. besCREATEPROCESS(X)</A><BR>
+<A HREF="devguide_4.5.97.html">4.5.97. besCOPYCOMMANDTABLE(X)</A><BR>
+<A HREF="devguide_4.5.98.html">4.5.98. besGETCOMMANDBYNAME(X,Y)</A><BR>
+<A HREF="devguide_4.5.99.html">4.5.99. besEVALUATEEXPRESSION(X)</A><BR>
+<A HREF="devguide_4.5.100.html">4.5.100. _besEVALUATEEXPRESSION(X)</A><BR>
+<A HREF="devguide_4.5.101.html">4.5.101. _besEVALUATEEXPRESSION_A(X)</A><BR>
+<A HREF="devguide_4.5.102.html">4.5.102. besEVALUATELEFTVALUE(X)</A><BR>
+<A HREF="devguide_4.5.103.html">4.5.103. besEVALUATELEFTVALUE_A(X)</A><BR>
+<A HREF="devguide_4.5.104.html">4.5.104. besIMMORTALIZE(x)</A><BR>
+<A HREF="devguide_4.5.105.html">4.5.105. besDEREFERENCE(X)</A><BR>
+<A HREF="devguide_4.5.106.html">4.5.106. besMatchIndex(X)</A><BR>
+<A HREF="devguide_4.5.107.html">4.5.107. besMatchIniSets(X)</A><BR>
+<A HREF="devguide_4.5.108.html">4.5.108. besMatchModifySet(X,Y,Z,W,Q)</A><BR>
+<A HREF="devguide_4.5.109.html">4.5.109. besMatchMatch(P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12)</A><BR>
+<A HREF="devguide_4.5.110.html">4.5.110. besMatchCount(X,Y)</A><BR>
+<A HREF="devguide_4.5.111.html">4.5.111. besMatchParameter(P1,P2,P3,P4,P5,P6,P7)</A><BR>
+<A HREF="devguide_4.5.112.html">4.5.112. besMatchSize(P1,P2,P3,P4,P5)</A><BR>
+<A HREF="devguide_4.5.113.html">4.5.113. besCreateThread(X,Y,Z)</A><BR>
+<A HREF="devguide_4.5.114.html">4.5.114. besExitThread</A><BR>
+<A HREF="devguide_4.5.115.html">4.5.115. besInitMutex(X)</A><BR>
+<A HREF="devguide_4.5.116.html">4.5.116. besFinishMutex(X)</A><BR>
+<A HREF="devguide_4.5.117.html">4.5.117. besLockMutex(X)</A><BR>
+<A HREF="devguide_4.5.118.html">4.5.118. besUnlockMutex(X)</A><BR>
+<A HREF="devguide_4.5.119.html">4.5.119. besInitSharedLock(X)</A><BR>
+<A HREF="devguide_4.5.120.html">4.5.120. besFinishSharedLock(X)</A><BR>
+<A HREF="devguide_4.5.121.html">4.5.121. besLockSharedRead(X)</A><BR>
+<A HREF="devguide_4.5.122.html">4.5.122. besLockSharedWrite(X)</A><BR>
+<A HREF="devguide_4.5.123.html">4.5.123. besUnlockSharedRead(X)</A><BR>
+<A HREF="devguide_4.5.124.html">4.5.124. besUnlockSharedWrite(X)</A><BR>
+<A HREF="devguide_4.5.125.html">4.5.125. besScribaNew(F0,F1)</A><BR>
+<A HREF="devguide_4.5.126.html">4.5.126. besScribaDestroy(F0)</A><BR>
+<A HREF="devguide_4.5.127.html">4.5.127. besScribaNewSbData(F0)</A><BR>
+<A HREF="devguide_4.5.128.html">4.5.128. besScribaNewSbLong(F0,F1)</A><BR>
+<A HREF="devguide_4.5.129.html">4.5.129. besScribaNewSbDouble(F0,F1)</A><BR>
+<A HREF="devguide_4.5.130.html">4.5.130. besScribaNewSbUndef(F0)</A><BR>
+<A HREF="devguide_4.5.131.html">4.5.131. besScribaNewSbString(F0,F1)</A><BR>
+<A HREF="devguide_4.5.132.html">4.5.132. besScribaNewSbBytes(F0,F1,F2)</A><BR>
+<A HREF="devguide_4.5.133.html">4.5.133. besScribaDestroySbData(F0,F1)</A><BR>
+<A HREF="devguide_4.5.134.html">4.5.134. besScribaPurgeReaderMemory(F0)</A><BR>
+<A HREF="devguide_4.5.135.html">4.5.135. besScribaPurgeLexerMemory(F0)</A><BR>
+<A HREF="devguide_4.5.136.html">4.5.136. besScribaPurgeSyntaxerMemory(F0)</A><BR>
+<A HREF="devguide_4.5.137.html">4.5.137. besScribaPurgeBuilderMemory(F0)</A><BR>
+<A HREF="devguide_4.5.138.html">4.5.138. besScribaPurgeExecuteMemory(F0)</A><BR>
+<A HREF="devguide_4.5.139.html">4.5.139. besScribaSetFileName(F0,F1)</A><BR>
+<A HREF="devguide_4.5.140.html">4.5.140. besScribaLoadConfiguration(F0,F1)</A><BR>
+<A HREF="devguide_4.5.141.html">4.5.141. besScribaInheritConfiguration(F0,F1)</A><BR>
+<A HREF="devguide_4.5.142.html">4.5.142. besScribaSetCgiFlag(F0)</A><BR>
+<A HREF="devguide_4.5.143.html">4.5.143. besScribaSetReportFunction(F0,F1)</A><BR>
+<A HREF="devguide_4.5.144.html">4.5.144. besScribaSetReportPointer(F0,F1)</A><BR>
+<A HREF="devguide_4.5.145.html">4.5.145. besScribaSetStdin(F0,F1)</A><BR>
+<A HREF="devguide_4.5.146.html">4.5.146. besScribaSetStdout(F0,F1)</A><BR>
+<A HREF="devguide_4.5.147.html">4.5.147. besScribaSetEmbedPointer(F0,F1)</A><BR>
+<A HREF="devguide_4.5.148.html">4.5.148. besScribaSetEnvironment(F0,F1)</A><BR>
+<A HREF="devguide_4.5.149.html">4.5.149. besScribaLoadBinaryProgram(F0)</A><BR>
+<A HREF="devguide_4.5.150.html">4.5.150. besScribaInheritBinaryProgram(F0,F1)</A><BR>
+<A HREF="devguide_4.5.151.html">4.5.151. besScribaReadSource(F0)</A><BR>
+<A HREF="devguide_4.5.152.html">4.5.152. besScribaDoLexicalAnalysis(F0)</A><BR>
+<A HREF="devguide_4.5.153.html">4.5.153. besScribaDoSyntaxAnalysis(F0)</A><BR>
+<A HREF="devguide_4.5.154.html">4.5.154. besScribaBuildCode(F0)</A><BR>
+<A HREF="devguide_4.5.155.html">4.5.155. besScribaIsFileBinaryFormat(F0)</A><BR>
+<A HREF="devguide_4.5.156.html">4.5.156. besScribaGetCacheFileName(F0)</A><BR>
+<A HREF="devguide_4.5.157.html">4.5.157. besScribaUseCacheFile(F0)</A><BR>
+<A HREF="devguide_4.5.158.html">4.5.158. besScribaSaveCacheFile(F0)</A><BR>
+<A HREF="devguide_4.5.159.html">4.5.159. besScribaRunExternalPreprocessor(F0,F1)</A><BR>
+<A HREF="devguide_4.5.160.html">4.5.160. besScribaSaveCode(F0,F1)</A><BR>
+<A HREF="devguide_4.5.161.html">4.5.161. besScribaSaveCCode(F0,F1)</A><BR>
+<A HREF="devguide_4.5.162.html">4.5.162. besScribaLoadSourceProgram(F0)</A><BR>
+<A HREF="devguide_4.5.163.html">4.5.163. besScribaRun(F0,F1)</A><BR>
+<A HREF="devguide_4.5.164.html">4.5.164. besScribaNoRun(F0)</A><BR>
+<A HREF="devguide_4.5.165.html">4.5.165. besScribaResetVariables(F0)</A><BR>
+<A HREF="devguide_4.5.166.html">4.5.166. besScribaCall(F0,F1)</A><BR>
+<A HREF="devguide_4.5.167.html">4.5.167. besScribaCallArg(F0,F1,F2,F3)</A><BR>
+<A HREF="devguide_4.5.168.html">4.5.168. besScribaDestroySbArgs(F0,F1,F2)</A><BR>
+<A HREF="devguide_4.5.169.html">4.5.169. besScribaNewSbArgs(F0,F1,F2)</A><BR>
+<A HREF="devguide_4.5.170.html">4.5.170. besScribaCallArgEx(F0,F1,F2,F3,F4)</A><BR>
+<A HREF="devguide_4.5.171.html">4.5.171. besScribaLookupFunctionByName(F0,F1)</A><BR>
+<A HREF="devguide_4.5.172.html">4.5.172. besScribaLookupVariableByName(F0,F1)</A><BR>
+<A HREF="devguide_4.5.173.html">4.5.173. besScribaGetVariableType(F0,F1)</A><BR>
+<A HREF="devguide_4.5.174.html">4.5.174. besScribaGetVariable(F0,F1,F2)</A><BR>
+<A HREF="devguide_4.5.175.html">4.5.175. besScribaSetVariable(F0,F1,F2,F3,F4,F5,F6)</A><BR>
+<A HREF="devguide_4.5.176.html">4.5.176. besLogState(X)</A><BR>
+<A HREF="devguide_4.5.177.html">4.5.177. besLogInit(F0,F1,F2,F3,F4,F5)</A><BR>
+<A HREF="devguide_4.5.178.html">4.5.178. besLogPrintf(pLOG,FORMAT, ...)</A><BR>
+<A HREF="devguide_4.5.179.html">4.5.179. besLogShutdown(pLOG)</A><BR>
+<A HREF="devguide_4.5.180.html">4.5.180. besHandleGetHandle(X,Y)</A><BR>
+<A HREF="devguide_4.5.181.html">4.5.181. besHandleGetPointer(X,Y)</A><BR>
+<A HREF="devguide_4.5.182.html">4.5.182. besHandleFreeHandle(X,Y)</A><BR>
+<A HREF="devguide_4.5.183.html">4.5.183. besHandleDestroyHandleArray(X)</A><BR>
+<A HREF="devguide_4.5.184.html">4.5.184. besINIT_SEGMENT(MAF,MRF)</A><BR>
+<A HREF="devguide_4.5.185.html">4.5.185. besSEGMENT_LIMIT(PMS,L)</A><BR>
+<A HREF="devguide_4.5.186.html">4.5.186. besFREE_SEGMENT(PMS)</A><BR>
+<A HREF="devguide_4.5.187.html">4.5.187. besFINISH_SEGMENT(PMS)</A><BR>
+<A HREF="devguide_4.5.188.html">4.5.188. besFUNCTION(X)</A><BR>
+<A HREF="devguide_4.5.189.html">4.5.189. besASSERT_FUNCTION</A><BR>
+<A HREF="devguide_4.5.190.html">4.5.190. besCOMMAND(X)</A><BR>
+<A HREF="devguide_4.5.191.html">4.5.191. besASSERT_COMMAND</A><BR>
+<A HREF="devguide_4.5.192.html">4.5.192. besEND_COMMAND</A><BR>
+<A HREF="devguide_4.5.193.html">4.5.193. besARGNR</A><BR>
+<A HREF="devguide_4.5.194.html">4.5.194. besARGUMENT(X)</A><BR>
+<A HREF="devguide_4.5.195.html">4.5.195. besPARAMETERLIST</A><BR>
+<A HREF="devguide_4.5.196.html">4.5.196. besLEFTVALUE(X,Y)</A><BR>
+<A HREF="devguide_4.5.197.html">4.5.197. besVERSION_NEGOTIATE</A><BR>
+<A HREF="devguide_4.5.198.html">4.5.198. besSUB_START</A><BR>
+<A HREF="devguide_4.5.199.html">4.5.199. besSUB_FINISH</A><BR>
+<A HREF="devguide_4.5.200.html">4.5.200. besSUB_ERRMSG</A><BR>
+<A HREF="devguide_4.5.201.html">4.5.201. besSUB_PROCESS_START</A><BR>
+<A HREF="devguide_4.5.202.html">4.5.202. besSUB_PROCESS_FINISH</A><BR>
+<A HREF="devguide_4.5.203.html">4.5.203. besSUB_KEEP</A><BR>
+<A HREF="devguide_4.5.204.html">4.5.204. besSUB_SHUTDOWN</A><BR>
+<A HREF="devguide_4.5.205.html">4.5.205. besSUB_AUTO</A><BR>
+<A HREF="devguide_4.5.206.html">4.5.206. besEND</A><BR>
+<A HREF="devguide_4.5.207.html">4.5.207. besRETURNVALUE</A><BR>
+<A HREF="devguide_4.5.208.html">4.5.208. besMODULEPOINTER</A><BR>
+<A HREF="devguide_4.5.209.html">4.5.209. besALLOC_RETURN_STRING(X)</A><BR>
+<A HREF="devguide_4.5.210.html">4.5.210. besALLOC_RETURN_POINTER</A><BR>
+<A HREF="devguide_4.5.211.html">4.5.211. besALLOC_RETURN_LONG</A><BR>
+<A HREF="devguide_4.5.212.html">4.5.212. besALLOC_RETURN_DOUBLE</A><BR>
+<A HREF="devguide_4.5.213.html">4.5.213. besRETURN_STRING(X)</A><BR>
+<A HREF="devguide_4.5.214.html">4.5.214. besSET_RETURN_STRING(X)</A><BR>
+<A HREF="devguide_4.5.215.html">4.5.215. besRETURN_MEM(X,Y)</A><BR>
+<A HREF="devguide_4.5.216.html">4.5.216. besRETURN_POINTER(X)</A><BR>
+<A HREF="devguide_4.5.217.html">4.5.217. besRETURN_LONG(X)</A><BR>
+<A HREF="devguide_4.5.218.html">4.5.218. besRETURN_DOUBLE</A><BR>
+<A HREF="devguide_4.5.219.html">4.5.219. besSETCOMMAND(X,Y)</A><BR>
+<A HREF="devguide_4.5.220.html">4.5.220. besGETCOMMAND(X)</A><BR>
+<A HREF="devguide_4.5.221.html">4.5.221. INTERFACE_VERSION</A><BR>
+<A HREF="devguide_4.5.222.html">4.5.222. besHOOK_FILE_ACCESS</A><BR>
+<A HREF="devguide_4.5.223.html">4.5.223. besHOOK_FOPEN</A><BR>
+<A HREF="devguide_4.5.224.html">4.5.224. besHOOK_FCLOSE</A><BR>
+<A HREF="devguide_4.5.225.html">4.5.225. besHOOK_SIZE</A><BR>
+<A HREF="devguide_4.5.226.html">4.5.226. besHOOK_TIME_ACCESSED</A><BR>
+<A HREF="devguide_4.5.227.html">4.5.227. besHOOK_TIME_MODIFIED</A><BR>
+<A HREF="devguide_4.5.228.html">4.5.228. besHOOK_TIME_CREATED</A><BR>
+<A HREF="devguide_4.5.229.html">4.5.229. besHOOK_ISDIR</A><BR>
+<A HREF="devguide_4.5.230.html">4.5.230. besHOOK_ISREG</A><BR>
+<A HREF="devguide_4.5.231.html">4.5.231. besHOOK_EXISTS</A><BR>
+<A HREF="devguide_4.5.232.html">4.5.232. besHOOK_TRUNCATE</A><BR>
+<A HREF="devguide_4.5.233.html">4.5.233. besHOOK_FGETC</A><BR>
+<A HREF="devguide_4.5.234.html">4.5.234. besHOOK_FREAD</A><BR>
+<A HREF="devguide_4.5.235.html">4.5.235. besHOOK_FWRITE</A><BR>
+<A HREF="devguide_4.5.236.html">4.5.236. besHOOK_FERROR</A><BR>
+<A HREF="devguide_4.5.237.html">4.5.237. besHOOK_PUTC</A><BR>
+<A HREF="devguide_4.5.238.html">4.5.238. besHOOK_FLOCK</A><BR>
+<A HREF="devguide_4.5.239.html">4.5.239. besHOOK_LOCK</A><BR>
+<A HREF="devguide_4.5.240.html">4.5.240. besHOOK_FEOF</A><BR>
+<A HREF="devguide_4.5.241.html">4.5.241. besHOOK_MKDIR</A><BR>
+<A HREF="devguide_4.5.242.html">4.5.242. besHOOK_RMDIR</A><BR>
+<A HREF="devguide_4.5.243.html">4.5.243. besHOOK_REMOVE</A><BR>
+<A HREF="devguide_4.5.244.html">4.5.244. besHOOK_DELTREE</A><BR>
+<A HREF="devguide_4.5.245.html">4.5.245. besHOOK_MAKEDIRECTORY</A><BR>
+<A HREF="devguide_4.5.246.html">4.5.246. besHOOK_OPENDIR</A><BR>
+<A HREF="devguide_4.5.247.html">4.5.247. besHOOK_READDIR</A><BR>
+<A HREF="devguide_4.5.248.html">4.5.248. besHOOK_CLOSEDIR</A><BR>
+<A HREF="devguide_4.5.249.html">4.5.249. besHOOK_SLEEP</A><BR>
+<A HREF="devguide_4.5.250.html">4.5.250. besHOOK_CURDIR</A><BR>
+<A HREF="devguide_4.5.251.html">4.5.251. besHOOK_CHDIR</A><BR>
+<A HREF="devguide_4.5.252.html">4.5.252. besHOOK_CHOWN</A><BR>
+<A HREF="devguide_4.5.253.html">4.5.253. besHOOK_SETCREATETIME</A><BR>
+<A HREF="devguide_4.5.254.html">4.5.254. besHOOK_SETMODIFYTIME</A><BR>
+<A HREF="devguide_4.5.255.html">4.5.255. besHOOK_SETACCESSTIME</A><BR>
+<A HREF="devguide_4.5.256.html">4.5.256. besHOOK_GETHOSTNAME</A><BR>
+<A HREF="devguide_4.5.257.html">4.5.257. besHOOK_GETHOST</A><BR>
+<A HREF="devguide_4.5.258.html">4.5.258. besHOOK_TCPCONNECT</A><BR>
+<A HREF="devguide_4.5.259.html">4.5.259. besHOOK_TCPSEND</A><BR>
+<A HREF="devguide_4.5.260.html">4.5.260. besHOOK_TCPRECV</A><BR>
+<A HREF="devguide_4.5.261.html">4.5.261. besHOOK_TCPCLOSE</A><BR>
+<A HREF="devguide_4.5.262.html">4.5.262. besHOOK_KILLPROC</A><BR>
+<A HREF="devguide_4.5.263.html">4.5.263. besHOOK_GETOWNER</A><BR>
+<A HREF="devguide_4.5.264.html">4.5.264. besHOOK_CREATEPROCESS</A><BR>
+<A HREF="devguide_4.5.265.html">4.5.265. besHOOK_CALLSCRIBAFUNCTION</A><BR>
+<A HREF="devguide_4.5.266.html">4.5.266. besSETHOOK(X,Y)</A><BR>
+<A HREF="devguide_4.5.267.html">4.5.267. besDLL_MAIN</A><BR>
+<A HREF="devguide_4.5.268.html">4.5.268. INITLOCK</A><BR>
+<A HREF="devguide_4.5.269.html">4.5.269. basext_GetArgsF()</A><BR>
+<HR>
+<P>
+
+Module support functions and macros are to ease the life of the extension programmers. They are defined in the file `<font size="3"><tt>basext.c</tt></font>' and in the file `<font size="3"><tt>basext.h</tt></font>' generated from `<font size="3"><tt>basext.c</tt></font>' using the tool `<font size="3"><tt>headerer.pl</tt></font>'.
+<P>
+It is highly recommended that the extensions use these functions and that the extensions use the macros to call the functions the way the documentation suggests. The reason for this is to create readable code and to provide maintainability.<HR>
+<A HREF="devguide_4.4.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,144 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.19.4. match</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: match">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: match">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.19.html">2.19. Simple Pattern Matching</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.19.4. match</H1>
+<A HREF="devguide_2.19.3.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.19.5.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c Match pattern to string
+FUNCTION:
+<P>
+<font size="3"><tt>match</tt></font> checks if pszString matches the pattern pszPattern.
+pszPattern is a string containing joker characters. These are:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+ * matches one or more any character
+ # matches one or more digit
+ $ matches one or more alphanumeric character
+ @ matches one or more alpha character
+   (space) matches one or more spaces
+ ? matches a single character
+</PRE></FONT>
+<P>
+ <font size="3"><tt>~x</tt></font> matches <font size="3"><tt>x</tt></font> even if <font size="3"><tt>x</tt></font> is pattern matching character or tilde
+<P>
+ <font size="3"><tt>x</tt></font> matches character <font size="3"><tt>x</tt></font> unless it is a joker character
+<P>
+RETURN VALUE:
+<P>
+The function returns zero if no error occures and returns an error code
+in case some of the memory buffer does not have enough space. (Either
+pszBuffer or ParameterArray)
+<P>
+PARAMETERS:
+<P>
+<font size="3"><tt>pszPattern</tt></font> IN
+the pattern to match
+<P>
+--
+<P>
+<font size="3"><tt>cbPattern</tt></font> IN
+the number of characters in the pattern
+<P>
+--
+<P>
+<font size="3"><tt>pszString</tt></font> IN 
+the string which is compared to the pattern
+<P>
+--
+<P>
+<font size="3"><tt>cbString</tt></font> IN
+the number of characters in the string
+<P>
+--
+<P>
+<font size="3"><tt>ParameterArray</tt></font> OUT
+is an uninitialized character pointer array. Upon return
+<font size="3"><tt>ParameterArray[i]</tt></font> points the string that matches the
+<font size="3"><tt>i</tt></font>-th joker character.
+<P>
+--
+<P>
+<font size="3"><tt>pcbParameterArray</tt></font> OUT
+is an uninititalized <font size="3"><tt>unsigned long</tt></font> array. Upon return
+<font size="3"><tt>pcbParameterArray[i]</tt></font> contains the length of the
+output parameter <font size="3"><tt>ParameterArray[i]</tt></font>.
+<P>
+--
+<P>
+<font size="3"><tt>pszBuffer</tt></font> OUT
+should point to a buffer. The size of the buffer
+should be specified by cbBufferSize. A size equal
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+             cbString
+</PRE></FONT>
+is a safe size. The actual strings matching the joker characters
+will get into this buffer zero terminated one after the other:
+<P>
+--
+<P>
+<font size="3"><tt>cArraySize</tt></font> IN
+number of elements in the array <font size="3"><tt>ParameterArray</tt></font>
+<P>
+--
+<P>
+<font size="3"><tt>cbBufferSize</tt></font> IN
+size of the buffer pointed by pszBuffer
+<P>
+--
+<P>
+<font size="3"><tt>fCase</tt></font> IN
+pattern matching is performed case sensitive if this value if TRUE.
+<P>
+--
+<P>
+<font size="3"><tt>iResult</tt></font> OUT
+TRUE if <font size="3"><tt>pszString</tt></font> matches the pattern <font size="3"><tt>pszPattern</tt></font>.
+FALSE otherwise.
+<P>
+NOTE:
+<P>
+<font size="3"><tt>pszPattern</tt></font> and <font size="3"><tt>pszString</tt></font> are NOT changed.
+<P>
+If the function returns non-zero (error code) none of the output
+variables can be reliably used.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int match_match(char *pszPattern,
+                unsigned long cbPattern,
+                char *pszString,
+                unsigned long cbString,
+                char **ParameterArray,
+                unsigned long *pcbParameterArray,
+                char *pszBuffer,
+                int cArraySize,
+                int cbBufferSize,
+                int fCase,
+                pMatchSets pThisMatchSets,
+                int *iResult
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.19.3.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.19.5.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

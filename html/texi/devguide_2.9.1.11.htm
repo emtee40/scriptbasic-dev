@@ -1,0 +1,32 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: memory_IsUndef()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_IsUndef()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_IsUndef()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>memory_IsUndef()</H1>
+<A HREF="devguide_2.9.1.10.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.12.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function returns if the examined variable is <font size="3"><tt>undef</tt></font>. Since a
+variable containing <font size="3"><tt>undef</tt></font> but having other variables referencing this
+variable is NOT stored as <font size="3"><tt>NULL</tt></font> examining the variable agains <font size="3"><tt>NULL</tt></font> is
+not enough anymore since reference variables were introduced.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int memory_IsUndef(pFixSizeMemoryObject pVar
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.9.1.10.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.12.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

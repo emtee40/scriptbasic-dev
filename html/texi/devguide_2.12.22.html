@@ -1,0 +1,42 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.12.22. hook_lock</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: hook_lock">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: hook_lock">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.12.html">2.12. Hook Functions</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.12.22. hook_lock</H1>
+<A HREF="devguide_2.12.21.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.12.23.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c  lock
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int hook_lock(pExecuteObject pEo,
+              FILE *fp,
+              int iLockType,
+              long lStart,
+              long lLength
+  )@{
+  return file_lock(fp,iLockType,lStart,lLength);
+</PRE></FONT><HR>
+<A HREF="devguide_2.12.21.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.12.23.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

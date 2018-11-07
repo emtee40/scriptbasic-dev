@@ -1,0 +1,38 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_InitStaticModules()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_InitStaticModules()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_InitStaticModules()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_InitStaticModules()</H1>
+<A HREF="devguide_3.3.65.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.67.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function calls the initialization functions of the modules that are statically linked
+into the interpreter. This is essential to call this fucntion from the embedding <font size="3"><tt>main()</tt></font> program
+in a variation that has one or more external modules staticallyl linked. If this function is not
+called the module initialization will not be called, because the module is never actually loaded and
+thus the operating system does not call the <font size="3"><tt>DllMain</tt></font> or <font size="3"><tt>_init</tt></font> function.
+<P>
+The function has to be called before the first interpreter thread starts. In case of a single
+thread variation this means that the function has to be called before the BASIC program starts.
+<P>
+The function does not take any argument and does not return any value.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void scriba_InitStaticModules(void
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_3.3.65.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.67.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

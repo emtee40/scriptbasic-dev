@@ -1,0 +1,34 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: memory_NewString()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_NewString()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_NewString()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>memory_NewString()</H1>
+<A HREF="devguide_2.9.1.6.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.8.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function should be used to allocate string variable.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pFixSizeMemoryObject memory_NewString(pMemoryObject pMo,
+                                      unsigned long StringSize
+  )@{
+</PRE></FONT>
+<P>
+The second argument specifies the length of th required string including.
+<P>
+The function checks the desired length and if this is small then is allocates a fix size
+object. If this is too large then it allocates a <font size="3"><tt>LARGE_BLOCK_TYPE</tt></font><HR>
+<A HREF="devguide_2.9.1.6.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.8.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

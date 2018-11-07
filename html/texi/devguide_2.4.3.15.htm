@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: _new_SymbolUF()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: _new_SymbolUF()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: _new_SymbolUF()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>_new_SymbolUF()</H1>
+<A HREF="devguide_2.4.3.14.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.16.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function should be used to create a new user defined function symbol.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pSymbolUF _new_SymbolUF(peXobject pEx
+  )@{
+</PRE></FONT>
+<P>
+A user function is defined by its serial number (serial number is actually not used in the
+current sytsem) and by the node number where the function actually starts.
+<P>
+The number of arguments and the number of local variables are defined in the generated
+command and not in the symbol table. This way these numbers are available as they should be
+during run time.<HR>
+<A HREF="devguide_2.4.3.14.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.16.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

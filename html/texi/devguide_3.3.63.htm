@@ -1,0 +1,43 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_GetVariableType()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_GetVariableType()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_GetVariableType()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_GetVariableType()</H1>
+<A HREF="devguide_3.3.62.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.64.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Get the type of the value that a variable is currently holding. This
+value can be
+<P>
+<UL>
+<LI> <font size="3"><tt>SBT_UNDEF</tt></font>
+<LI> <font size="3"><tt>SBT_DOUBLE</tt></font>
+<LI> <font size="3"><tt>SBT_LONG</tt></font>
+<LI> <font size="3"><tt>SBT_STRING</tt></font>
+@end itemize
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+long scriba_GetVariableType(pSbProgram pProgram,
+                            long lSerial
+  )@{
+</PRE></FONT>
+The argument <font size="3"><tt>lSerial</tt></font> should be the serial number of 
+the variable as returned by <a href="devguide_3.3.62.htm">scriba_LookupVariableByName()</A>.
+<P>
+If there is no variable for the specified serian mumber (<font size="3"><tt>lSerial</tt></font> is not positive
+or larger than the number of variables) the function returns <font size="3"><tt>SBT_UNDEF</tt></font>.<HR>
+<A HREF="devguide_3.3.62.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.64.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

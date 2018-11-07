@@ -1,0 +1,46 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 4.5.72. besREINITINTERFACE</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besREINITINTERFACE">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besREINITINTERFACE">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_4.html">4. Extension Modules</A><BR>
+<UL><a href="devguide_4.5.html">4.5. Module Support Functions</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>4.5.72. besREINITINTERFACE</H1>
+<A HREF="devguide_4.5.71.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.73.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This macro calls the function <a href="devguide_2.17.1.html">modu_Init</A> to reset the module interface to
+point to the original functions.
+<P>
+External modules are allowed to alter the support function table implementing their
+own functions and thus altering the behavior of other extensions. These extensions
+usually set some of the entries of the support function table to point to functions
+implemented in the external module. However these functions are available only so long
+as long the extension is in memory. When the extension is exiting the pointers should
+be restored. Otherwise it may happen that the extension is already unloaded and the function
+is used by another module exiting later.
+<P>
+Because there is no guaranteed order of extension module unload the modules should call
+this function to restore the support function table and should not rely on altered
+function calls during module exit code is executed.<HR>
+<A HREF="devguide_4.5.71.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.73.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

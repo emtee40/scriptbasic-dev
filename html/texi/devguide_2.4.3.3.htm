@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: expression_PushNameSpace()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: expression_PushNameSpace()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: expression_PushNameSpace()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>expression_PushNameSpace()</H1>
+<A HREF="devguide_2.4.3.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.4.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+When a <font size="3"><tt>module name</tt></font> instruction is encountered the name space is modified. However
+the old name space should be reset when an <font size="3"><tt>end module</tt></font> statement is reached. As the
+modules can be nested into each other the name spaces are stored in a name space stack
+during syntax analysis.
+<P>
+This function pushes the current name space onto the stack. After calling
+this function the caller can put the new string into the <font size="3"><tt>pEx-</tt></font>&gt;<font size="3"><tt>CurrentNameSpace</tt></font>
+variable and later calling <a href="devguide_htm">ex_PopNameSpace()</A> can be called to retrive the saved name space.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int expression_PushNameSpace(peXobject pEx
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.4.3.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.4.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

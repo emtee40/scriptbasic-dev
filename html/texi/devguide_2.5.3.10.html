@@ -1,0 +1,53 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.5.3.10. build_SaveCore()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: build_SaveCore()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: build_SaveCore()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.5.html">2.5. Builder</A><BR>
+<UL><a href="devguide_2.5.3.html">2.5.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.5.3.10. build_SaveCore()</H1>
+<A HREF="devguide_2.5.3.9.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.11.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function saves the binary content of the compiled file into an
+already opened file. This is called from both <font size="3"><tt>build_SaveCode</tt></font> and from
+<font size="3"><tt>build_SaveECode</tt></font>.
+<P>
+Arguments:
+<UL>
+<LI> <font size="3"><tt>pBuild</tt></font> is the build object
+<LI> <font size="3"><tt>fp</tt></font> is the <font size="3"><tt>FILE *</tt></font> file pointer to an already binary write opened (<font size="3"><tt>"wb"</tt></font>) file.
+@end itemize
+<P>
+The file <font size="3"><tt>fp</tt></font> is not closed even if error occures while writing the file.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int build_SaveCore(pBuildObject pBuild,
+                   FILE *fp
+  )@{
+</PRE></FONT>
+The function returns <font size="3"><tt>BU_ERROR_SUCCESS</tt></font> (zero) if there was no error or <font size="3"><tt>BU_ERROR_FAIL</tt></font> if the function fails
+writing the file.<HR>
+<A HREF="devguide_2.5.3.9.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.11.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,53 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.17.5. modu_LoadModule</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: modu_LoadModule">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: modu_LoadModule">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.17.html">2.17. Module Management</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.17.5. modu_LoadModule</H1>
+<A HREF="devguide_2.17.4.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.17.6.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c Load a module
+<P>
+This function loads a module and returns the module pointer to in the argument
+<font size="3"><tt>pThisModule</tt></font>. If the module is already loaded it just returns the module
+pointer.
+<P>
+When the function is called first time for a module it loads the module, calls
+the version negotiation function and the module initializer.
+<P>
+If module file name given in the argument <font size="3"><tt>pszLibrary</tt></font> file name is an absolute
+file name this is used as it is. Otherwise the different configured module
+directories are seached for the module file, and the operating system specific
+extension is also appended to the file name automatically.
+<P>
+If the caller does not need the pointer to the module the argument <font size="3"><tt>pThisModule</tt></font>
+can be <font size="3"><tt>NULL</tt></font>.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int modu_LoadModule(pExecuteObject pEo,
+                    char *pszLibraryFile,
+                    pModule **pThisModule
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.17.4.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.17.6.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

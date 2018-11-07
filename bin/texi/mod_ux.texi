@@ -1,0 +1,87 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\input texinfo @c -*-texinfo-*-
+@c %**start of header
+@setfilename mod_ux
+@settitle Documentation of the module ux
+@setchapternewpage odd
+@c %**end of header
+@ifinfo
+@end ifinfo
+
+@titlepage
+@title Documentation of the module ux
+@author Peter Verhas
+
+@page
+@vskip 0pt plus 1filll
+
+@end titlepage
+@summarycontents
+@contents
+
+@menu
+@end menu
+
+@chapter Introduction
+
+
+@chapter  Unix specific functions
+This module implements some UNIX system calls that are not implemented 
+in the core of ScriptBasic but can be helpful for those who want to write 
+system maintenance scripts using ScriptBasic.
+
+The reason that these functions are not implemented inside ScriptBasic 
+is that ScriptBasic itself is portable, and whenever a programmer writes a 
+program in pure ScriptBasic it should execute the same way under UNIX as well 
+as under Windows NT/Win98/W2K.
+
+Programs using the module ux however are UNIX specific and will 
+not run unaltered under Windows NT.
+
+
+@chapter  Fork the process
+
+@example
+pid = ux::fork()
+if pid then
+  print "The sub process pid is ",pid
+else
+  print "Oh I am the child process"
+end if
+@end example
+
+
+@chapter  Change file access mode
+@example
+ux::chmod("file_name",mode)
+@end example
+
+This function implements the @code{chmod} UNIX system call.
+ 
+

@@ -1,0 +1,47 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Run Time Options Handling</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Run Time Options Handling">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Run Time Options Handling">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Run Time Options Handling</H1>
+<A HREF="devguide_2.17.9.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.18.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+@c Setting and getting option values
+<P>
+Each BASIC interpreter maintains a symbol table holding option values.
+These option values can be set using the BASIC command <font size="3"><tt>OPTION</tt></font> and an
+option value can be retrieved using the function <font size="3"><tt>OPTION()</tt></font>.
+<P>
+An option has an integer value (<font size="3"><tt>long</tt></font>). Options are usually used to
+alter the behaviour of some commands or modules, altough BASIC programs
+are free to use any string to name an option. For example the option
+<font size="3"><tt>compare</tt></font> may alter the behavior of the string comparision function
+to be case sensitive or insensitive:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+OPTION compare 1
+</PRE></FONT>
+<P>
+Unitialized options are treated as being zero. There is no special option value for uninitialized 
+options. In other words BASIC programs can not distinguish between unitialized options and
+options having the value zero.
+<P>
+This file contains the functions that handle the option symbol table. The option
+symbol tableis pointed by the field <font size="3"><tt>OptionsTable</tt></font> of the execution object. This
+pointer is initialized to be <font size="3"><tt>NULL</tt></font>, which means no options are available, or in other
+words all options are zero.<HR>
+<A HREF="devguide_2.17.9.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.18.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

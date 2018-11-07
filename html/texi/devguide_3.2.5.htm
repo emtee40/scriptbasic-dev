@@ -1,0 +1,44 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Loading Configuration</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Loading Configuration">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Loading Configuration">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Loading Configuration</H1>
+<A HREF="devguide_3.2.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.6.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  scriba_LoadConfiguration(pProgram,pszForcedConfigurationFileName);
+</PRE></FONT>
+<P>
+The next function call is <a href="devguide_3.3.20.htm">scriba_LoadConfiguration()</A>. This function gets the configuration information from the compiled configuration file. The details of configuration files is detailed in section
+<a href="devguide_2.7.htm">Configuration File Handling</A>.
+<P>
+It is not a must to call this function from the embedding application, but with some few exceptions most embedding applications will do. Most ScriptBasic interpreter program objects need configuration information to be executed successfully.
+<P>
+To get the configuration for a program object there are two ways:
+<P>
+<UL>
+<LI> Load the configuration from a file.
+<LI> Inherit the configuration information from another program object.
+</UL>
+<P>
+The second approach is necessary to gain performance in case there are several interpreters running one after the other or in parallel threads in the same process. If all these interpreters need the same configuration information they can use the same memory data, because the configuration information is not alterable by the interpreter. This way you can save the successive file loading and the extra memory space.
+<P>
+When the configuration is inherited it is very important that the program object holding the configuration is not destroyed while any of the inheriting program objects are alive. Therefore such applications usually create a program object that does not run any program but holds the configuration information loaded calling <a href="devguide_htm"> scriba_LoadConfiguration()</A> and that exists for the life of the whole process.
+<P>
+For more information how to inherit the configuration information see the function <a href="devguide_3.3.22.htm">scriba_InheritConfiguration()</A>.<HR>
+<A HREF="devguide_3.2.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.6.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

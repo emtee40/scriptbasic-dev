@@ -1,0 +1,28 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Finalizer function</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Finalizer function">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Finalizer function">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Finalizer function</H1>
+<A HREF="devguide_2.6.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Finalizer function pointers are available for each command type. This way they are similar to command parameters. There can be many OPEN statements in a program they share a common finalizer pointer. Each finalizer pointer is initialized to <font size="3"><tt>NULL</tt></font>.
+<P>
+The code fragments may put a function entry address in the finalizer pointer. When the execution of a program is finished the executing function calls each function that has a non NULL pointer in the finalizer array.
+<P>
+The <font size="3"><tt>_r</tt></font> in the function name tells that this is a recursive function that may call itself when an expression evaluation performs a function or subroutine call.<HR>
+<A HREF="devguide_2.6.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

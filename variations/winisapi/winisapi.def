@@ -1,0 +1,13 @@
+LIBRARY scribais.dll
+
+DESCRIPTION 'ScriptBasic ISAPI Extension Variation'
+
+EXPORTS
+
+    DllMain
+
+    HttpExtensionProc
+    GetExtensionVersion
+	TerminateExtension
+
+

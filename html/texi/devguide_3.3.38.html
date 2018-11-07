@@ -1,0 +1,63 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.3.38. scriba_LoadInternalPreprocessor()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_LoadInternalPreprocessor()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_LoadInternalPreprocessor()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.3.38. scriba_LoadInternalPreprocessor()</H1>
+<A HREF="devguide_3.3.37.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.39.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function can be used by embedding applications to load an
+internal preprocessor into the interpereter. Note that preprocessors
+are usually loaded by the reader module when a <font size="3"><tt>preprocess</tt></font> statement
+is found. However some preprocessors in some variation of the interpreter
+may be loaded due to configuration or command line option and not
+because the source requests it.
+<P>
+The preprocessors that are requested to be loaded because the source
+contains a <font size="3"><tt>preprocess</tt></font> line usually implement special language
+fetures. The preprocessors that are loaded independent of the source
+because command line option or some other information tells the variation
+to call this function are usually debuggers, profilers.
+<P>
+(To be honest, by the time I write it there is no any internal preprocessors
+developed except the test one, but the statement above will become true.)
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_LoadInternalPreprocessor(pSbProgram pProgram,
+                            char *ppszPreprocessorName[]
+  )@{
+</PRE></FONT>
+The first argument is the program object. If the program object does not
+have a preprocessor object the time it is called the preprocessor object is
+created and initiated.
+<P>
+The second argument is the array of names of the preprocessor as it is present
+in the configuration file. This is not the name of the DLL/SO file, but
+rather the symbolic name, which is associated with the file. The final element
+of the array has to be <font size="3"><tt>NULL</tt></font>.
+<P>
+The return value is zero or the error code.<HR>
+<A HREF="devguide_3.3.37.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.39.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

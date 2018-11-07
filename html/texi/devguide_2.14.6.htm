@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: thread_UnlockMutex</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: thread_UnlockMutex">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: thread_UnlockMutex">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>thread_UnlockMutex</H1>
+<A HREF="devguide_2.14.5.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.14.7.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Unlock a mutex object
+<P>
+Calling this function unlocks the mutex pointed by the argument. Calling this function on a mutex
+currently not locked is a programming error and results undefined result. Different operating system
+may repond different.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void thread_UnlockMutex(PMUTEX pMutex
+  )@{
+</PRE></FONT>
+Arguments:
+<UL>
+<LI> <font size="3"><tt>pMutex</tt></font> should point to an initialized mutex variable of the type <font size="3"><tt>MUTEX</tt></font>
+@end itemize<HR>
+<A HREF="devguide_2.14.5.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.14.7.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

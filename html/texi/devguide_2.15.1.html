@@ -1,0 +1,44 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.15.1. dynlolib_LoadLibrary</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: dynlolib_LoadLibrary">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: dynlolib_LoadLibrary">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.15.html">2.15. Dynamic Library Handling Support Functions</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.15.1. dynlolib_LoadLibrary</H1>
+<A HREF="devguide_2.15.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.15.2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c Load a library
+<P>
+This function loads a library and returns a pointer that can be used in other functions
+referencing the loaded library.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void *dynlolib_LoadLibrary(
+  char *pszLibraryFile
+  )@{
+</PRE></FONT>
+The argument <font size="3"><tt>pszLibraryFile</tt></font> is the ZCHAR file name.
+<P>
+The file name is either absolute or relative. When a relative file name is specified the
+directories searched may be different on different operating systems.<HR>
+<A HREF="devguide_2.15.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.15.2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

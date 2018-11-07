@@ -1,0 +1,56 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: hook_file_access</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: hook_file_access">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: hook_file_access">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>hook_file_access</H1>
+<A HREF="devguide_2.12.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.12.3.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c  file_access
+<P>
+This function gets a file name as an argument and return an integer code that tells
+the caller if the program is allowed to read, write or both read and write to the file.
+The default implementation just dumbly answers that the program is allowed both read
+and write. This function is called by each other hook functions that access a file via the
+file name. If a module wants to restrict the basic code to access files based on the file
+name the module does not need to alter all hook functions that access files via file name.
+<P>
+The module has to write its own <font size="3"><tt>file_access</tt></font> hook function instead, alter the hook function table
+to point to the module's function and all file accessing functions will ask the module's
+hook function if the code may access the file.
+<P>
+The argument <font size="3"><tt>pszFileName</tt></font> is the name of the file that the ScriptBasic program
+want to do something. The actual <font size="3"><tt>file_access</tt></font> hook function should decide if the
+basic program is
+<P>
+<UL>
+<LI> 0 not allowed to access the file
+<LI> 1 allowed to read the file
+<LI> 2 allowed to write the file (modify)
+<LI> 3 allowed to read and write the file
+@end itemize
+<P>
+The default implementation of this function just
+allows the program to do anything. Any extension module may
+have its own implementation and restrict the basic program to
+certain files.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int hook_file_access(pExecuteObject pEo,
+                     char *pszFileName
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.12.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.12.3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

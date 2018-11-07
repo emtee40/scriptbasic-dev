@@ -1,0 +1,46 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.20.2. sym_FreeSymbolTable()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: sym_FreeSymbolTable()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: sym_FreeSymbolTable()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.20.html">2.20. Symbol Table Handling</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.20.2. sym_FreeSymbolTable()</H1>
+<A HREF="devguide_2.20.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.20.3.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function should be used to release the memory allocated for a symbol table.
+This function releases all the memory that was allocated during symbol table creation
+and during symbol insertion.
+<P>
+Note that the memory allocated outside the symbol table handling routines is not
+released. This means that it is the caller responsibility to relase all memory
+that holds the actual values associated with the symbols.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void sym_FreeSymbolTable(
+  SymbolTable table,
+  void (*memory_releasing_function)(void *,void *),
+  void *pMemorySegment
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.20.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.20.3.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

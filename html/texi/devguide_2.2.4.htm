@@ -1,0 +1,45 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: reader_ReadLines_r()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: reader_ReadLines_r()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: reader_ReadLines_r()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>reader_ReadLines_r()</H1>
+<A HREF="devguide_2.2.3.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.2.5.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function reads the lines of a file and creates a linked list
+of the read lines.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int reader_ReadLines_r(pReadObject pRo,
+                       char *szFileName,
+                       pSourceLine *pLine
+  )@{
+</PRE></FONT>
+The file is identified by its name given in the string variable <font size="3"><tt>szFileName</tt></font>. The
+file is opened by the function pointed by pRo-&gt;fpOpenFile This function should return
+a void pointer and this void pointer is passed to <a href="devguide_2.2.2.htm">reader_gets()</A> (<font size="3"><tt>reader_gets</tt></font>) to get a
+single character.
+<P>
+The argument <font size="3"><tt>pLine</tt></font> is a pointer to a <font size="3"><tt>SourceLine</tt></font> pointer. The linked list lines read
+will be chained into this pointer. The last read line will be followed by the line pointed by
+<font size="3"><tt>*pLine</tt></font> and <font size="3"><tt>*pLine</tt></font> will point to the first line.
+<P>
+This design makes it easy to use and elegant to perform file inclusions. The caller has to
+pass the address of the pointer field <font size="3"><tt>next</tt></font> of the source line after which the file is to
+be inserted.
+<P>
+See also <font size="3"><tt>ReadLines</tt></font> that calls this function.<HR>
+<A HREF="devguide_2.2.3.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.2.5.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

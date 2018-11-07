@@ -1,0 +1,39 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: besASSERT_FUNCTION</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besASSERT_FUNCTION">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besASSERT_FUNCTION">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>besASSERT_FUNCTION</H1>
+<A HREF="devguide_4.5.188.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.190.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this macro to check inside a besFUNCTION that the function was called
+as a sub and not command. If the include file declares the function as
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+declare command XXX alias "xxx" lib "library"
+</PRE></FONT>
+<P>
+instead of
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+declare sub XXX alias "xxx" lib "library"
+</PRE></FONT>
+<P>
+then you can not execute the rest of the code safely. This macro returns
+with the error code <font size="3"><tt>COMMAND_ERROR_BAD_CALL</tt></font> if the function was
+declared the wrong way.<HR>
+<A HREF="devguide_4.5.188.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.190.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

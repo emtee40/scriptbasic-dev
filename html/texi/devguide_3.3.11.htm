@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_DestroySbData()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_DestroySbData()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_DestroySbData()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_DestroySbData()</H1>
+<A HREF="devguide_3.3.10.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.12.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Call this function to release the memory that was allocated by any
+of the <font size="3"><tt>NewSbXXX</tt></font> functions. This function releases the memory and
+also cares to release the memory occupied by the characters in case the
+value had the type <font size="3"><tt>SBT_STRING</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void scriba_DestroySbData(pSbProgram pProgram,
+                          pSbData p
+  )@{
+</PRE></FONT>
+See also <a href="devguide_3.3.6.htm">scriba_NewSbLong()</A>, <a href="devguide_3.3.7.htm">scriba_NewSbDouble()</A>, <a href="devguide_3.3.8.htm">scriba_NewSbUndef()</A>, <a href="devguide_3.3.9.htm">scriba_NewSbString()</A>,
+<a href="devguide_3.3.10.htm">scriba_NewSbBytes()</A>, <a href="devguide_3.3.11.htm">scriba_DestroySbData()</A>.<HR>
+<A HREF="devguide_3.3.10.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.12.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

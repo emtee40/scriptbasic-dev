@@ -1,0 +1,48 @@
+<HEAD>
+<TITLE>Documentation of the module cgi: 2. Handle CGI input and output</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module cgi: Handle CGI input and output">
+<META NAME="keywords" CONTENT="Documentation of the module cgi: Handle CGI input and output">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_cgi_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>2. Handle CGI input and output</H1>
+<A HREF="mod_cgi_1.html">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_3.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+=abstract
+Functions that handle web input data for the standalone module running as CGI or
+ISAPI or Eszter SB Engine variation.
+=end
+<P>
+The module CGI is implemented as an external module written in the language C. Whenever the 
+programmer wants to write a program using the language ScriptBasic that uses the CGI interface of the web 
+server he or she can use this module. Although this is not a must to use this module for CGI programming 
+it IS a wise choice. 
+<P>
+The module comes from the developers of the language interpreter. Most of its code is implemented as C 
+code, executing fast and efficient. In its very first version of the module it already supports such 
+advanced features as file upload in a robust and secure way. It handles cookies, POST and GET operations 
+and will support other interfaces in the future like Apache Module interface or FastCGI in a compatible 
+manner.
+<P>
+The basic programs using the ISAPI interpreter should use the module the same way as CGI versions. In 
+other words if you write a CGI program it should work executed by the ISAPI version of the interpreter 
+without modification.
+/**<HR>
+<A HREF="mod_cgi_1.html">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_3.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

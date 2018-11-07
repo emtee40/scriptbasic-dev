@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: memory_Immortalize()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_Immortalize()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_Immortalize()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>memory_Immortalize()</H1>
+<A HREF="devguide_2.9.1.22.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.24.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this function to immortalize a variable. This can be used when the result of an expression
+evaluation gets into a mortal variable and instead of copiing the value from the mortal variable to
+an immortal variable the caller can immortalize the variable. However it should know which mortal list
+the variable is on.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void memory_Immortalize(pFixSizeMemoryObject p,
+                        pMortalList pMortal
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.9.1.22.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.24.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

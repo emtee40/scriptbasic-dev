@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: log_shutdown()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: log_shutdown()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: log_shutdown()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>log_shutdown()</H1>
+<A HREF="devguide_2.11.3.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.12.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Calling this function starts the shutdown of a log queue. This function allways return 0 as success.
+When the function returns the log queue does not accept more log items, however the queue is not completely
+shut down. If the caller wants to wait for the queue to shut down it has to wait and call the function
+<a href="devguide_2.11.1.htm">log_state</A> to ensure that the shutdown procedure has been finished.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int log_shutdown(ptLogger pLOG
+  )@{
+</PRE></FONT>
+ <HR>
+<A HREF="devguide_2.11.3.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.12.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

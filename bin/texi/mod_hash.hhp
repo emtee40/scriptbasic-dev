@@ -1,0 +1,33 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=mod_hash.chm
+Contents file=mod_hash.hhc
+Default topic=mod_hash_title.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=mod_hash.hhk
+Language=0x409 English (United States)
+Title=Using the module HASH
+
+[FILES]
+mod_hash_title.htm
+mod_hash_1.htm
+mod_hash_2.htm
+mod_hash_3.htm
+mod_hash_4.htm
+mod_hash_5.htm
+mod_hash_5.1.htm
+mod_hash_5.2.htm
+mod_hash_5.3.htm
+mod_hash_5.4.htm
+mod_hash_5.5.htm
+mod_hash_5.6.htm
+mod_hash_5.7.htm
+mod_hash_5.8.htm
+mod_hash_5.9.htm
+mod_hash_5.10.htm
+mod_hash_5.11.htm
+mod_hash_5.12.htm
+mod_hash_5.13.htm
+mod_hash_6.htm
+[INFOTYPES]

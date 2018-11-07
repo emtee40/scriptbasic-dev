@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 5.3.3. PreprocessorReadDone0</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: PreprocessorReadDone0">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: PreprocessorReadDone0">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_5.html">5. Preprocessors</A><BR>
+<UL><a href="devguide_5.3.html">5.3. Preprocessor Entry Points</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>5.3.3. PreprocessorReadDone0</H1>
+<A HREF="devguide_5.3.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.4.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This entry point is used when the reader has done the reading of the source file, but did not do any processing further. The parameter <font size="3"><tt>p</tt></font> points to the <font size="3"><tt>ReadObject</tt></font>. The preprocessor at this point can access the lines of the core BASIC program file without the included files and the very first line of the program that may be a Windows NT or UNIX special line (like <font size="3"><tt>#!/usr/bin/scriba</tt></font>) is still in the input lines.
+<P>
+The function has to return zero or the error code and should set the parameter <font size="3"><tt>*pCmd</tt></font> to <font size="3"><tt>PreprocessorContinue</tt></font>, <font size="3"><tt>PreprocessorDone</tt></font>, or <font size="3"><tt>PreprocessorUnload</tt></font>.<HR>
+<A HREF="devguide_5.3.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.4.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

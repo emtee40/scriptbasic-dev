@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>Documentation of the module curl: curl::finish</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: curl::finish">
+<META NAME="keywords" CONTENT="Documentation of the module curl: curl::finish">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>curl::finish</H1>
+<A HREF="mod_curl_5.16.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_7.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+You can call this function to close the connection that was used by CURL and to release
+all resources that were allocated to handle the connection. To call this function is not
+a must as all the releasing tasks are automatically performed as soon as the interpreter
+finishes execution the BASIC program. However it is a good practice to call this functions
+especially if you want to access the file the perform routine downloaded.
+<P>
+Usage:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::finish CURL
+</PRE></FONT>
+<P>
+This function closes the connection to the remote URL, closes the local file (if there was opened any), and
+releases the memory that was used for the connection.<HR>
+<A HREF="mod_curl_5.16.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_7.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,34 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: ex_CleanNameSpaceStack()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_CleanNameSpaceStack()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_CleanNameSpaceStack()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ex_CleanNameSpaceStack()</H1>
+<A HREF="devguide_2.4.3.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.6.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function cleans the name space stack. This cleaning does not need to be done during
+syntax analysis. It is needed after the analysis has been done to detect unclosed modules.
+<P>
+Note that the <font size="3"><tt>main::</tt></font> module is implicit and can not and should not be closed
+unless it was explicitly opened.
+<P>
+The function calls the report function if the name space is not empty when the function is called.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void ex_CleanNameSpaceStack(peXobject pEx
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.4.3.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.6.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

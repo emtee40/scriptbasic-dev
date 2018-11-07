@@ -1,0 +1,44 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.3.30. scriba_SetReportPointer()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_SetReportPointer()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_SetReportPointer()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.3.30. scriba_SetReportPointer()</H1>
+<A HREF="devguide_3.3.29.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.31.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This pointer will be passed to the reporting function. The default
+reporting uses this pointer as a <font size="3"><tt>FILE *</tt></font> pointer. The default value
+for this pointer is <font size="3"><tt>stderr</tt></font>.
+<P>
+Other implementations of the reporting function may use this pointer
+according their needs. For example the WIN32 IIS ISAPI implementation
+uses this pointer to point to the extension controll block structure.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void scriba_SetReportPointer(pSbProgram pProgram,
+                             void *pReportPointer
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_3.3.29.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.31.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

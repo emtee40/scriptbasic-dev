@@ -1,0 +1,352 @@
+<HEAD>
+<TITLE>Documentation of the module mt</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module mt: Table of Contents">
+<META NAME="keywords" CONTENT="Documentation of the module mt: Table of Contents">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<H1>Documentation of the module mt</H1>
+<H3>by Peter Verhas</H3>
+<A NAME="contents"><H2>Table of Contents</H2></A>
+<UL>
+<A HREF="#1.">1.   Introduction</A><BR>
+<A HREF="#2.">2.   The module MT</A><BR>
+<A HREF="#3.">3.   What are session and variables</A><BR>
+<A HREF="#4.">4.   mt::SetSessionId "session id"</A><BR>
+<A HREF="#5.">5.   mt::CheckSessionId("sessionid")</A><BR>
+<A HREF="#6.">6.   mt::SessionCount()</A><BR>
+<A HREF="#7.">7.   mt::NewSessionId(["optional random string"])</A><BR>
+<A HREF="#8.">8.   mt::DeleteSession ["sessionid"]</A><BR>
+<A HREF="#9.">9.   mt::GetSessionId()</A><BR>
+<A HREF="#10.">10.   mt::SetSessionVariabe "variablename",value</A><BR>
+<A HREF="#11.">11.   mt::GetSessionVariabe("variablename")</A><BR>
+<A HREF="#12.">12.   mt::SetVariable "variablename",value</A><BR>
+<A HREF="#13.">13.   mt::GetVariable("variablename")</A><BR>
+<A HREF="#14.">14.   mt::LockWrite "variablename"</A><BR>
+<A HREF="#15.">15.   mt::LockRead "variablename"</A><BR>
+<A HREF="#16.">16.   mt::UnlockWrite "variablename"</A><BR>
+<A HREF="#17.">17.   mt::UnlockRead "variablename"</A><BR>
+<A HREF="#18.">18.   mt::SessionTimeout [sec]</A><BR>
+<A HREF="#19.">19.   mt::GetSessionTimeout ["sessionid"]</A><BR>
+<A HREF="#20.">20.   mt::GetSessionPingTime ["sessionid"]</A><BR>
+<A HREF="#21.">21.   mt::ListSessions</A><BR>
+</UL>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="1."><H1>1. Introduction</H1></A>
+
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="2."><H1>2. The module MT</H1></A>
+=abstract
+Support for multi-thread implementation web applications.
+=end
+<P>
+This module delivers functions that can be used by ScriptBasic
+programs executed by a multi-thread basic interpreter. This means
+that the programs are executed in the same process one after the
+other or in synchron. The typical example is the Eszter SB Engine
+that is a standalone webserver execution BASIC programs to answer
+http questions. Those programs may ask this module to store
+session variables, wait for eachother.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="3."><H1>3. What are session and variables</H1></A>
+=abstract
+Some description on what is a session and what are session and MT variables.
+=end
+<P>
+Formally a session is the series of consecutive execution of ScriptBasic scripts
+that belong to the same calculation. Typically this is the series of web script
+executions that serve the same client.
+<P>
+When a client meets the web server the first time the program creates a new session and
+when the user goes on with the web application the same session information is used. The
+session ID is usually sent to the client in HTTP cookie and when the browser sends
+the cookie back the server application remembers that this client is the same as the one
+before. What the application really remembers is that state of the transaction the user
+performed in the session. The tipical example is the consumer basket in an eShop. The user
+behind the browser puts several things into the basket while shopping and the application
+has to remember what is in the basket.
+<P>
+Conventional CGI applications usually store the session information in plain text files
+or in database. That is usually a slow solution unless you need to store these information
+for a longer period. But session state is usually not stored for long time. 
+<P>
+When a browser first comes to the site a new session is created calling <a href="#">NewSessionId</A>. Later
+when the user gets to the next page the session id is sent from the browser and the application
+checks that the session really exists calling <a href="#">CheckSessionId</A> and if it exists it tells the
+MT extension module calling <a href="#">SetSessionID</A> that the actual session served by the currently 
+running interpreter thread is this.
+<P>
+To store a value that belongs to that session the application can call <a href="#">SetSessionVariable</A> and
+to retrieve the value call <a href="#">GetSessionVariable</A>. Session variables are kept in memory and can
+be reached extremely fast. They are available until the session is deleted calling <a href="#">DeleteSession</A>.
+<P>
+There can be not two interpreter threads running concurrently accessing the same session data.
+Each session has its own variable set and in case a session has a variable named "BASKET" this
+has nothing to do with the other sessions variable of the same name.
+<P>
+MT variables on the other hand are shared by all sessions. An MT variable has a name, and in case
+a session modifies the MT variable named "BASKET" the other session looking at the MT variable "BASKET"
+will see the changed value. MT variables are global among the sessions.
+<P>
+When accessing an MT variable the variable can not be accesses by other interpreter threads. Thus
+there is no chance that an MT variable gets up messed. What is more a program may decide to lock an
+MT variable preventing other programs to alter it or even to read its value until the variable
+is unlocked. For this the program should call <a href="#">LockWrite</A>, <a href="#">LockRead</A> and to unlock <a href="#">UnlockWrite</A>,
+<a href="#">UnlockRead</A><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4."><H1>4. mt::SetSessionId "session id"</H1></A>
+
+Set the session for the script. This function can and should be used to specify the session that the
+program actions belong to. Before calling this function and specifying the session the program can not
+access the session variables.
+<P>
+The session ID is usually given by the client program by some means. Typically web browser cookies hold
+the session identifier.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="5."><H1>5. mt::CheckSessionId("sessionid")</H1></A>
+
+Checks that a session already exists. The function returns <font size="3"><tt>TRUE</tt></font>
+if the session id already exists.
+<P>
+This function can and should be used to check that a session is valid or not based
+on its existence. If the session is not existent the program can still call the
+function <a href="#">SetSessionId</A> to set the session and the new session is autmatically created.
+<P>
+However calling this function is a good chanhe to check if any session initialization is
+needed, for example password check.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="6."><H1>6. mt::SessionCount()</H1></A>
+
+This function returns the number of the active sessions.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="7."><H1>7. mt::NewSessionId(["optional random string"])</H1></A>
+
+This function creates a new session and returns the ID of the newly created
+session and returns the id of the session.
+<P>
+If no argument is provided the function just count the session and 
+creates a 32 bytes session id using MD5.
+<P>
+If there is an optional argument that is also used to create the
+MD5 session id. That may provide some more randimity from the
+application level.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="8."><H1>8. mt::DeleteSession ["sessionid"]</H1></A>
+
+Call this function to delete a session. The function deletes the session and releases
+all memory that was allocated to store session variables.
+<P>
+If no argumentum is supplied then the function deletes the actual session.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="9."><H1>9. mt::GetSessionId()</H1></A>
+
+This function returns the actual session id. This is usually known by
+the program because this is the id that was set calling <a href="#">SetSessionId</A> or
+was created and returned by <a href="#">NewSessionId</A>. However some programs may need
+to call this function.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="10."><H1>10. mt::SetSessionVariabe "variablename",value</H1></A>
+
+Call this function to set the value of a session variable. The first
+argument has to be a string that names the session variable. The second
+argument is the new value of the session variable.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="11."><H1>11. mt::GetSessionVariabe("variablename")</H1></A>
+
+Get the value of a session variable. The argument has to be a string that
+identifies the session variable.
+<P>
+The value of a session variable can be set using <a href="#">SetSessionVariable</A>.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="12."><H1>12. mt::SetVariable "variablename",value</H1></A>
+
+Set the value of an MT variable. The first argument has to be a string that
+identifies the variable. The second argument is the new value of the
+variable.
+<P>
+MT variables are global, all running scripts like the same values.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="13."><H1>13. mt::GetVariable("variablename")</H1></A>
+
+Get Mt variable. This function gets the value of an Mt variable.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="14."><H1>14. mt::LockWrite "variablename"</H1></A>
+
+Lock mt variable for write protection. While the variable is locked no programs can access it, not even
+the one that locked the variable.
+<P>
+Usually there is no need to alter the MT variables, as the variables are automatically locked while
+their value is altered. Locking is needed when a program needs to alter more than one MT variable in
+a coincise manner. Another possibility is when a program wants to alter a variable and the new value depends
+on the previous value. As a simplest example is when aprogram wants to increment a variable.
+<P>
+In either case the programs have to have a pseudo MT variable, which is used in the locking and
+unlocking functions. Usually the programs use these variables only to lock and to release
+and do not care their values, albeit there is nothing that would prohibit using the values.
+<P>
+For example a program (X) wants to increment the MT variable "B" and it has to keep track of the 
+variable "BB" to ensure that "BB" is the double of "B".
+<P>
+In the meantime another (Y) program wants to decrement "BB" by two and set "B" to the half of "BB" to
+keep the rule.
+<P>
+Program X:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mt::GetVariable "B",B
+B = B+1
+mt::SetVariable "B",B
+mt::SetVariable "BB",2*B
+</PRE></FONT>
+<P>
+Program Y:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mt::GetVariable "BB",BB
+BB = BB-2
+mt::SetVariable "BB",BB
+mt::SetVariable "B",B \ 2
+</PRE></FONT>
+<P>
+The lines of the two programs can execute in any mixed order.
+<P>
+See the following scenario:
+<UL>
+<LI> Program X examines B and sees that B is 3 (for example)
+<LI> Program Y examines BB and sees that BB is 6.
+<LI> Program X increments B to be 4.
+<LI> Program Y decrements BB to be 4.
+<LI> Program Y sets B to be the half of BB to 2.
+<LI> Program X sets the variable BB to the double of B, which is 8 for that program.
+=end itemize
+<P>
+Instead a variable called "BLCK" has to be used (BLCK is just for example):
+<P>
+Program X:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mt::LockWrite "BLCK"
+mt::GetVariable "B",B
+B = B+1
+mt::SetVariable "B",B
+mt::SetVariable "BB",2*B
+mt::UnlockWrite "BLCK"
+</PRE></FONT>
+<P>
+Program Y:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mt::LockWrite "BLCK"
+mt::GetVariable "BB",BB
+BB = BB-2
+mt::SetVariable "BB",BB
+mt::SetVariable "B",B \ 2
+mt::UnlockWrite "BLCK"
+</PRE></FONT>
+<P>
+The locking at the start of the critical code segments prevents two programs to enter the critical part at the
+same time.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="15."><H1>15. mt::LockRead "variablename"</H1></A>
+
+Lock mt variable for read protection. Several concurrent programs can read lock a variable,
+but so long as long there are read locks no program can write lock a variable.
+<P>
+The function will wait until it can lock the variable. A variable can not be read locked if
+the variable is write locked or there is a write lock waiting for the variable.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="16."><H1>16. mt::UnlockWrite "variablename"</H1></A>
+
+Unlock mt variable from write protection.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="17."><H1>17. mt::UnlockRead "variablename"</H1></A>
+Unlock mt variable from read protection<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="18."><H1>18. mt::SessionTimeout [sec]</H1></A>
+
+Call this function to set session timeout (20 minutes in the example)
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mt::SessionTimeout 20*60
+</PRE></FONT>
+or
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mt::SessionTimeout
+</PRE></FONT>
+cancelling session timeout.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="19."><H1>19. mt::GetSessionTimeout ["sessionid"]</H1></A>
+
+This function returns the time when the session times out. This value is
+expressed as GMT seconds since January 1, 1970. 0:00.
+<P>
+If the argument is missing the actual argument is used.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="20."><H1>20. mt::GetSessionPingTime ["sessionid"]</H1></A>
+
+This function returns the time when the session was last used (assigned to a script).
+This value is expressed as GMT seconds since January 1, 1970. 0:00.
+<P>
+If the argument is missing the actual argument is used.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="21."><H1>21. mt::ListSessions</H1></A>
+
+This subroutine collects the session ids.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  call mt::ListSessions Array,Sm,SM,Pm,PM,Tm,TM
+</PRE></FONT>
+<P>
+The first argument to the subroutine should be a variable. This variable will loose its previous
+value and gets a new array value containing the session strings.
+<P>
+If there is no more arguments to the subroutine call this array will contain all the
+existing sessions in the MT module. However the programmer may define six optional
+parameters that select only certain sessions that have time value parameters that
+are between the specified values. These are
+<P>
+<UL>
+<LI> <font size="3"><tt>Sm</tt></font> required minimal start time of the session
+<LI> <font size="3"><tt>SM</tt></font> required maximal start time of the session
+<LI> <font size="3"><tt>Pm</tt></font> required minimal ping time of the session
+<LI> <font size="3"><tt>PM</tt></font> required maximal ping time of the session
+<LI> <font size="3"><tt>Tm</tt></font> required minimal time-out time of the session
+<LI> <font size="3"><tt>TM</tt></font> required maximal time-out time of the session
+</UL>
+<P>
+These time values have to be expressed as GTM time stamps. If a value is zero or <font size="3"><tt>undef</tt></font>
+the value in the constraint is ignored. Unspecified arguments are <font size="3"><tt>undef</tt></font> by ScriptBasic behaviour.
+<P>
+For example to get the list of all sessions that are older than an hour
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+call mt::ListSession Array,undef,GmTime()-60*60
+</PRE></FONT>
+<P>
+To get all session IDs that timed out:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+call mt::ListSession Array,undef,undef,undef,undef,undef,GmTime()
+</PRE></FONT>
+<P>
+To get all sessions that are idle for more than ten minutes
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+call mt::ListSession Array,undef,undef,undef,GmTime()-600
+</PRE></FONT>
+<P>
+Note that this subroutine is rarely used in "cgi" scripts. This
+subroutine has to be used in scripts that are run by the Eszter
+SB Engine asynchronously started using the configuration
+key <font size="3"><tt>httpd.run.[re]start</tt></font>. Those scripts start before the
+engine starts to listen on a port and run so long as long
+the engine runs and are able to scan the sessions from time to
+time and delete the old sessions freeing the memoryof the module
+MT.
+<P>
+ 
+

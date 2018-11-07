@@ -1,0 +1,101 @@
+module utf8
+
+
+declare option DeclareVars
+
+
+' """
+Convert an iso-latin-1 encoded string to UTF8
+
+The first argument of the function is the string containing the ISO 8859-1
+encoded string. The second argument is optional. If this is present and
+is TRUE then then the conversion function will put a three byte BOM in in front
+of the resulting string. This is generally used in text files to denote that
+the content of the file is UTF-8 encoded.
+
+The output of the function is the UTF-8 encoded string.
+
+"""
+function iso1_to_utf8(IsoString,UseBom)
+  local UtfString
+
+  ' initialize the output string to contain no characters
+  UtfString = ""
+
+  ' if the Byte Order Mark is to be used, then put it in
+  ' front of the output string
+  if UseBom then
+    UtfString = "\xEF\xBB\xBF"
+  end if
+
+  local CharacterIndex
+  for CharacterIndex = 1 to len(IsoString)
+    local ActualCharacter
+    ActualCharacter = mid$(IsoString,CharacterIndex,1)
+    if asc(ActualCharacter) < 0x80 then
+      UtfString = UtfString & ActualCharacter
+    else
+      if asc(ActualCharacter) < 0xC0 then
+        UtfString = UtfString & "\xC2" & ActualCharacter
+      else
+        UtfString = UtfString & "\xC3" & chr(asc(ActualCharacter)-64)
+      endif
+    end if
+  next
+  iso1_to_utf8 = UtfString
+end function
+
+' """
+Convert an UTF8 encoded string to iso-latin-1
+
+The first argument of the function is the string containing the UTF-8 encoded
+string. The second argument is optional. If this is present and
+is TRUE then then the conversion function will IGNORE the three byte BOM in 
+in front of the utf-8 string, even if it is there.
+This is generally used in text files to denote that the content of the file is UTF-8 encoded.
+
+The output of the function is the ISO 8859-1 encoded string.
+
+"""
+function utf8_to_iso1(UtfString,IgnoreBom)
+  local IsoString
+
+  ' initialize the output string to contain no characters
+  IsoString = ""
+
+  ' if there is a bom at the start of the string then chop it off
+  if not IgnoreBom and _
+     asc(mid(UtfString,1,1)) = 0xFE and _
+     asc(mid(UtfString,2,1)) = 0xBB and _
+     asc(mid(UtfString,3,1)) = 0xBF then
+     UtfString = mid(UtfString,4)
+  end if
+
+  local CharacterIndex
+  ' Get each byte. NOTE: 'len' returns the bytes and not the character count
+  for CharacterIndex = 1 to len(UtfString)
+    local ActualCharacter
+    ActualCharacter = mid$(UtfString,CharacterIndex,1)
+    if asc(ActualCharacter) = 0xC2 then
+      CharacterIndex = CharacterIndex + 1
+      ActualCharacter = mid$(UtfString,CharacterIndex,1)
+      IsoString = IsoString & ActualCharacter
+    else if asc(ActualCharacter) = 0xC3 then
+      CharacterIndex = CharacterIndex + 1
+      ActualCharacter = mid$(UtfString,CharacterIndex,1)
+      IsoString = IsoString & chr(asc(ActualCharacter)+64)
+    else
+      IsoString = IsoString & ActualCharacter
+    end if
+  next
+  utf8_to_iso1 = IsoString
+end function
+
+end module
+
+open "test.txt" for output as 1
+
+print#1, utf8::iso1_to_utf8("halihõõõõ",true)
+close 1
+
+print "halihõõõí\n",utf8::utf8_to_iso1(utf8::iso1_to_utf8("halihõõõí"))

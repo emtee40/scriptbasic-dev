@@ -1,0 +1,57 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.7.1.5. cft_FindNode()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: cft_FindNode()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: cft_FindNode()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.7.html">2.7. Configuration File Handling</A><BR>
+<UL><a href="devguide_2.7.1.html">2.7.1. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.7.1.5. cft_FindNode()</H1>
+<A HREF="devguide_2.7.1.4.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.6.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Find a node starting from the start node <font size="3"><tt>lStartNode</tt></font>
+and searching for the <font size="3"><tt>key</tt></font>.
+<P>
+The function returns zero if the key is not found in the configuration
+information tree <font size="3"><tt>pCT</tt></font> or returns the node id of the key. This node
+can either be an internal node or leaf.
+<P>
+Note that the string <font size="3"><tt>key</tt></font> may contain dot characters. In this case the
+key is searched down in the configuration tree. (You can set the separator character
+different from the dot character.)
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+CFT_NODE cft_FindNode(ptConfigTree pCT,
+                      CFT_NODE lStartNode,
+                      char *key
+  )@{
+</PRE></FONT>
+You need this function when you want to iterate over the sub-keys of a node. You get the
+node id for the key and then you can call <a href="devguide_2.7.1.8.html">cft_EnumFirst</A> to start the loop and then <a href="devguide_2.7.1.9.html">cft_EnumNext</A> to
+iterate the loop over the sub-keys.
+<P>
+If you just want to get the value of a single key you can call the function <a href="devguide_2.7.1.6.html">cft_GetEx</A> that
+uses this function.<HR>
+<A HREF="devguide_2.7.1.4.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.6.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

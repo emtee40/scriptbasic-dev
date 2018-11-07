@@ -1,0 +1,96 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.4.3. Functions implemented in this module</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Functions implemented in this module">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Functions implemented in this module">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.4.html">2.4. Syntax Analyzer</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.4.3. Functions implemented in this module</H1>
+<A HREF="devguide_2.4.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_2.4.3.1.html">2.4.3.1. What is an expression in ScriptBasic</A><BR>
+<A HREF="devguide_2.4.3.2.html">2.4.3.2. ex_DumpVariables()</A><BR>
+<A HREF="devguide_2.4.3.3.html">2.4.3.3. expression_PushNameSpace()</A><BR>
+<A HREF="devguide_2.4.3.4.html">2.4.3.4. ex_CheckUndefinedLabels()</A><BR>
+<A HREF="devguide_2.4.3.5.html">2.4.3.5. ex_CleanNameSpaceStack()</A><BR>
+<A HREF="devguide_2.4.3.6.html">2.4.3.6. expression_PopNameSpace()</A><BR>
+<A HREF="devguide_2.4.3.7.html">2.4.3.7. ex_PushWaitingLabel()</A><BR>
+<A HREF="devguide_2.4.3.8.html">2.4.3.8. ex_PopWaitingLabel()</A><BR>
+<A HREF="devguide_2.4.3.9.html">2.4.3.9. _ex_PushLabel()</A><BR>
+<A HREF="devguide_2.4.3.10.html">2.4.3.10. _ex_PopLabel()</A><BR>
+<A HREF="devguide_2.4.3.11.html">2.4.3.11. _ex_CleanLabelStack()</A><BR>
+<A HREF="devguide_2.4.3.12.html">2.4.3.12. Some NOTE on SymbolXXX functions</A><BR>
+<A HREF="devguide_2.4.3.13.html">2.4.3.13. _new_SymbolLABEL()</A><BR>
+<A HREF="devguide_2.4.3.14.html">2.4.3.14. _new_SymbolVAR()</A><BR>
+<A HREF="devguide_2.4.3.15.html">2.4.3.15. _new_SymbolUF()</A><BR>
+<A HREF="devguide_2.4.3.16.html">2.4.3.16. _new_eNODE()</A><BR>
+<A HREF="devguide_2.4.3.17.html">2.4.3.17. _new_eNODE_l()</A><BR>
+<A HREF="devguide_2.4.3.18.html">2.4.3.18. ex_free()</A><BR>
+<A HREF="devguide_2.4.3.19.html">2.4.3.19. ex_init()</A><BR>
+<A HREF="devguide_2.4.3.20.html">2.4.3.20. ex_CleanNamePath()</A><BR>
+<A HREF="devguide_2.4.3.21.html">2.4.3.21. ex_ConvertName()</A><BR>
+<A HREF="devguide_2.4.3.22.html">2.4.3.22. ex_IsBFun()</A><BR>
+<A HREF="devguide_2.4.3.23.html">2.4.3.23. ex_IsUnop()</A><BR>
+<A HREF="devguide_2.4.3.24.html">2.4.3.24. ex_IsBinop()</A><BR>
+<A HREF="devguide_2.4.3.25.html">2.4.3.25. ex_LeftValueList()</A><BR>
+<A HREF="devguide_2.4.3.26.html">2.4.3.26. ex_ExpressionList()</A><BR>
+<A HREF="devguide_2.4.3.27.html">2.4.3.27. ex_Local()</A><BR>
+<A HREF="devguide_2.4.3.28.html">2.4.3.28. ex_LocalList()</A><BR>
+<A HREF="devguide_2.4.3.29.html">2.4.3.29. ex_Global()</A><BR>
+<A HREF="devguide_2.4.3.30.html">2.4.3.30. ex_GlobalList()</A><BR>
+<A HREF="devguide_2.4.3.31.html">2.4.3.31. ex_LookupUserFunction()</A><BR>
+<A HREF="devguide_2.4.3.32.html">2.4.3.32. ex_LookupGlobalVariable</A><BR>
+<A HREF="devguide_2.4.3.33.html">2.4.3.33. ex_LookupLocallyDeclaredGlobalVariable</A><BR>
+<A HREF="devguide_2.4.3.34.html">2.4.3.34. ex_LookupLocalVariable</A><BR>
+<A HREF="devguide_2.4.3.35.html">2.4.3.35. ex_Tag</A><BR>
+<A HREF="devguide_2.4.3.36.html">2.4.3.36. ex_Expression_i</A><BR>
+<A HREF="devguide_2.4.3.37.html">2.4.3.37. ex_Expression_r</A><BR>
+<A HREF="devguide_2.4.3.38.html">2.4.3.38. ex_IsSymbolValidLval(pEx)</A><BR>
+<A HREF="devguide_2.4.3.39.html">2.4.3.39. ex_LeftValue</A><BR>
+<A HREF="devguide_2.4.3.40.html">2.4.3.40. ex_PredeclareGlobalLongConst()</A><BR>
+<A HREF="devguide_2.4.3.41.html">2.4.3.41. ex_IsCommandThis</A><BR>
+<A HREF="devguide_2.4.3.42.html">2.4.3.42. ex_Command_r()</A><BR>
+<A HREF="devguide_2.4.3.43.html">2.4.3.43. ex_Command_l()</A><BR>
+<A HREF="devguide_2.4.3.44.html">2.4.3.44. ex_Pragma</A><BR>
+<A HREF="devguide_2.4.3.45.html">2.4.3.45. ex_IsCommandCALL()</A><BR>
+<A HREF="devguide_2.4.3.46.html">2.4.3.46. ex_IsCommandOPEN()</A><BR>
+<A HREF="devguide_2.4.3.47.html">2.4.3.47. ex_IsCommandSLIF()</A><BR>
+<A HREF="devguide_2.4.3.48.html">2.4.3.48. ex_IsCommandIF()</A><BR>
+<A HREF="devguide_2.4.3.49.html">2.4.3.49. ex_IsCommandLET()</A><BR>
+<HR>
+<P>
+
+The following subsections list the functions that are implemented in this module. The source text of this documentation was extracted from the source
+Documentation embedded in the C source as comment. Treat these subsections more as reference documentation and less tutorial like.
+<P>
+
+<P>
+
+<P>
+
+The functions in this file compile a ScriptBasic expression into
+internal form. The functions are quite general, and do NOT depend
+on the actual operators that are implemented in the actual version.
+<P>
+This means that you can define extra operators as well as extra
+built-in functions easily adding entries into tables and need not modify
+the compiling code.<HR>
+<A HREF="devguide_2.4.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,31 @@
+<HEAD>
+<TITLE>Using the module HASH: Value</TITLE>
+
+<META NAME="description" CONTENT="Using the module HASH: Value">
+<META NAME="keywords" CONTENT="Using the module HASH: Value">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Value</H1>
+<A HREF="mod_hash_5.2.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_hash_5.4.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+q = hash::Value(h,key)
+</PRE></FONT>
+
+This function should be used retrieve the value associated with a given key.  If the key did not exist in the hash the return value is <font size="3"><tt>undef</tt></font>. The hash iteration pointer is modified by this function setting it to point to the found pair.
+
+A key may present in the hash and have an associated value of <font size="3"><tt>undef</tt></font>. To separate the two cases you can use the function <font size="3"><tt>hash::Exists(h,key)</tt></font>.
+<HR>
+<A HREF="mod_hash_5.2.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_hash_5.4.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

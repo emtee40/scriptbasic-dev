@@ -1,0 +1,53 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.20.5. sym_DeleteSymbol()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: sym_DeleteSymbol()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: sym_DeleteSymbol()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.20.html">2.20. Symbol Table Handling</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.20.5. sym_DeleteSymbol()</H1>
+<A HREF="devguide_2.20.4.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function should be used to delete a symbol from the symbol table
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int sym_DeleteSymbol(
+  char *s,                 /* zero terminated string containing the symbol                 */
+  SymbolTable hashtable,   /* the symbol table                                             */
+  void (*memory_releasing_function)(void *, void *),
+  void *pMemorySegment
+  )@{
+</PRE></FONT>
+<P>
+This function searches the given symbol and if the symbol is found it deletes it from the
+symbol table. If the symbol was found in the symbol table the return value is zero. If
+the symbol was not found the return value is 1. This may be interpreted by the caller as
+an error or as a warning.
+<P>
+Note that this function only deletes the memory that was part of the symbol table. The
+memory allocated by the caller and handled via the pointer <font size="3"><tt>value</tt></font> usually returned by
+<a href="devguide_2.20.4.html">sym_LookupSymbol()</A> should be released by the caller.
+<P>
+ <HR>
+<A HREF="devguide_2.20.4.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

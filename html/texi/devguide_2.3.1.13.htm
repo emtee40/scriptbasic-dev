@@ -1,0 +1,31 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: lex_StrLen()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: lex_StrLen()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: lex_StrLen()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>lex_StrLen()</H1>
+<A HREF="devguide_2.3.1.12.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.14.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+When the type of the current lexeme is <font size="3"><tt>LEX_T_STRING</tt></font> during the lexeme iteration
+this function should be used to retrieve the length of the current lexeme. This is
+more accurate than calling <font size="3"><tt>strlen</tt></font> on the actual string because the string itself may
+contain zero characters.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+long lex_StrLen(pLexObject pLex
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.3.1.12.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.14.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,45 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.3.35. scriba_LoadBinaryProgramWithOffset()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_LoadBinaryProgramWithOffset()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_LoadBinaryProgramWithOffset()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.3.35. scriba_LoadBinaryProgramWithOffset()</H1>
+<A HREF="devguide_3.3.34.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.36.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Use this function to load ScriptBasic program from a file that is already compiled into
+internal form, and the content of the program is starting on <font size="3"><tt>lOffset</tt></font>
+<P>
+The return value is the number of errors (hopefully zero) during program load.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_LoadBinaryProgramWithOffset(pSbProgram pProgram,
+                                       long lOffset,
+                                       long lEOFfset
+  )@{
+</PRE></FONT>
+Before calling this function the function <a href="devguide_3.3.18.html">scriba_SetFileName()</A> should have been called specifying the
+file name.<HR>
+<A HREF="devguide_3.3.34.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.36.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

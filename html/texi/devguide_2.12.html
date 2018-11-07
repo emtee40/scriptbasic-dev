@@ -1,0 +1,97 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.12. Hook Functions</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Hook Functions">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Hook Functions">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+</UL>
+</UL>
+<P>
+<H1>2.12. Hook Functions</H1>
+<A HREF="devguide_2.11.4.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.12.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_2.12.1.html">2.12.1. hook_Init</A><BR>
+<A HREF="devguide_2.12.2.html">2.12.2. hook_file_access</A><BR>
+<A HREF="devguide_2.12.3.html">2.12.3. hook_fopen</A><BR>
+<A HREF="devguide_2.12.4.html">2.12.4. hook_fclose</A><BR>
+<A HREF="devguide_2.12.5.html">2.12.5. hook_size</A><BR>
+<A HREF="devguide_2.12.6.html">2.12.6. hook_time_accessed</A><BR>
+<A HREF="devguide_2.12.7.html">2.12.7. hook_time_modified</A><BR>
+<A HREF="devguide_2.12.8.html">2.12.8. hook_time_created</A><BR>
+<A HREF="devguide_2.12.9.html">2.12.9. hook_isdir</A><BR>
+<A HREF="devguide_2.12.10.html">2.12.10. hook_isreg</A><BR>
+<A HREF="devguide_2.12.11.html">2.12.11. hook_fileexists</A><BR>
+<A HREF="devguide_2.12.12.html">2.12.12. hook_truncate</A><BR>
+<A HREF="devguide_2.12.13.html">2.12.13. hook_fgetc</A><BR>
+<A HREF="devguide_2.12.14.html">2.12.14. hook_ferror</A><BR>
+<A HREF="devguide_2.12.15.html">2.12.15. hook_fread</A><BR>
+<A HREF="devguide_2.12.16.html">2.12.16. hook_setmode</A><BR>
+<A HREF="devguide_2.12.17.html">2.12.17. hook_binmode</A><BR>
+<A HREF="devguide_2.12.18.html">2.12.18. hook_textmode</A><BR>
+<A HREF="devguide_2.12.19.html">2.12.19. hook_fwrite</A><BR>
+<A HREF="devguide_2.12.20.html">2.12.20. hook_fputc</A><BR>
+<A HREF="devguide_2.12.21.html">2.12.21. hook_flock</A><BR>
+<A HREF="devguide_2.12.22.html">2.12.22. hook_lock</A><BR>
+<A HREF="devguide_2.12.23.html">2.12.23. hook_feof</A><BR>
+<A HREF="devguide_2.12.24.html">2.12.24. hook_mkdir</A><BR>
+<A HREF="devguide_2.12.25.html">2.12.25. hook_rmdir</A><BR>
+<A HREF="devguide_2.12.26.html">2.12.26. hook_remove</A><BR>
+<A HREF="devguide_2.12.27.html">2.12.27. hook_deltree</A><BR>
+<A HREF="devguide_2.12.28.html">2.12.28. hook_MakeDirectory</A><BR>
+<A HREF="devguide_2.12.29.html">2.12.29. hook_opendir</A><BR>
+<A HREF="devguide_2.12.30.html">2.12.30. hook_readdir</A><BR>
+<A HREF="devguide_2.12.31.html">2.12.31. hook_closedir</A><BR>
+<A HREF="devguide_2.12.32.html">2.12.32. hook_sleep</A><BR>
+<A HREF="devguide_2.12.33.html">2.12.33. hook_curdir</A><BR>
+<A HREF="devguide_2.12.34.html">2.12.34. hook_chdir</A><BR>
+<A HREF="devguide_2.12.35.html">2.12.35. hook_chown</A><BR>
+<A HREF="devguide_2.12.36.html">2.12.36. hook_SetCreateTime</A><BR>
+<A HREF="devguide_2.12.37.html">2.12.37. hook_SetModifyTime</A><BR>
+<A HREF="devguide_2.12.38.html">2.12.38. hook_SetAccessTime</A><BR>
+<A HREF="devguide_2.12.39.html">2.12.39. hook_gethostname</A><BR>
+<A HREF="devguide_2.12.40.html">2.12.40. hook_gethost</A><BR>
+<A HREF="devguide_2.12.41.html">2.12.41. hook_tcpconnect</A><BR>
+<A HREF="devguide_2.12.42.html">2.12.42. hook_tcpsend</A><BR>
+<A HREF="devguide_2.12.43.html">2.12.43. hook_tcprecv</A><BR>
+<A HREF="devguide_2.12.44.html">2.12.44. hook_tcpclose</A><BR>
+<A HREF="devguide_2.12.45.html">2.12.45. hook_killproc</A><BR>
+<A HREF="devguide_2.12.46.html">2.12.46. hook_getowner</A><BR>
+<A HREF="devguide_2.12.47.html">2.12.47. hook_fcrypt</A><BR>
+<A HREF="devguide_2.12.48.html">2.12.48. hook_CreateProcess</A><BR>
+<A HREF="devguide_2.12.49.html">2.12.49. hook_CreateProcessEx</A><BR>
+<A HREF="devguide_2.12.50.html">2.12.50. hook_waitpid</A><BR>
+<A HREF="devguide_2.12.51.html">2.12.51. hook_CallScribaFunction</A><BR>
+<HR>
+<P>
+
+<P>
+This file contains the hook functions that are called by the commands whenever
+a command wants to access the operating system functions. The hook functions
+implemented here are transparent, they call the operating system. However these hook
+functions are called via the HookFunctions function pointer table and external modules
+may alter this table supplying their own hook functions.
+<P>
+There are some hook functions, which do not exist by default. In this case the hook functions table
+points to <font size="3"><tt>NULL</tt></font>. These functions, if defined are called by ScriptBasic at certain points of execution.
+For example the function <font size="3"><tt>HOOK_ExecBefore</tt></font> is called each time before executing a command in case
+an external module defines the function altering the hook function table.
+<P>
+The hook functions have the same arguments as the original function preceeded by the
+pointer to the execution object <font size="3"><tt>pExecuteObject pEo</tt></font>. For example the function <font size="3"><tt>fopen</tt></font> has two arguments
+to <font size="3"><tt>char *</tt></font>, and therefore HOOK_fopen has three. The first should point to <font size="3"><tt>pEo</tt></font> and the second and third should
+point to <HR>
+<A HREF="devguide_2.11.4.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.12.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,57 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: reader_ProcessIncludeFiles()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: reader_ProcessIncludeFiles()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: reader_ProcessIncludeFiles()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>reader_ProcessIncludeFiles()</H1>
+<A HREF="devguide_2.2.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.2.6.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function is called from <a href="devguide_2.2.3.htm">reader_ReadLines()</A> after calling <a href="devguide_2.2.4.htm">reader_ReadLines_r()</A>.
+<P>
+This function goes through all the lines and checks if there is any line
+containing an include directive.
+<P>
+An include directive is a line starting with a word INCLUDE (case insensitive) and
+is followed by the file name. The file name can be enclodes between double quotes.
+<P>
+Note that the processing of the include directives are done on the characters on the
+line, because they are processed before any tokenization of the lexer module. This
+can cause some problem only when there is an include like line inside a multiline string.
+For example:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+a = """Hey this is a multiline string
+include "subfile.txt"
+"""
+</PRE></FONT>
+<P>
+This <B>will</B> include the file <font size="3"><tt>subfile.txt</tt></font> and its content will become part of the string.
+This becomes more complicated when the file <font size="3"><tt>subfile.txt</tt></font> contains strings.
+<P>
+The file name may not be enclosed between double quotes. In this case the file is tried to be
+found in predefined system directories.
+<P>
+If the programmer uses the command IMPORT instead of INCLUDE the file will only be included if
+it was not included yet into the current program.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void reader_ProcessIncludeFiles(pReadObject pRo,
+                                pSourceLine *pLine
+  )@{
+</PRE></FONT>
+<P>
+The file read is inserted into the plce where the include statement was.<HR>
+<A HREF="devguide_2.2.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.2.6.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

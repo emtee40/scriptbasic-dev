@@ -1,0 +1,47 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: file_gethost</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: file_gethost">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: file_gethost">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>file_gethost</H1>
+<A HREF="devguide_2.16.38.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.40.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Get host by name or by address
+<P>
+This function gets the <font size="3"><tt>struct hostent</tt></font> entry for the given address.
+The address can be given as a FQDN or as an IP octet tuple, like
+www.digital.com or 16.193.48.55
+<P>
+Optionally the address may contain a port number separated by : from
+the name or the IP number. The port number is simply ignored.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int file_gethost(char *pszBuffer,
+                 struct hostent *pHost
+  )@{
+</PRE></FONT>
+<font size="3"><tt>pszBuffer</tt></font> should hold the name or the address of the target machine.
+This buffer is not altered during the function.
+<P>
+<font size="3"><tt>pHost</tt></font> should point to a buffer ready to hold the hostent information.
+<P>
+Note that the structure <font size="3"><tt>hostent</tt></font> contains pointers outside the structre.
+Those pointers are copied verbatim thus they point to the original content
+as returned by the underlying socket layer. This means that the values
+the <font size="3"><tt>hostent</tt></font> structure points to should not be freed, altered and 
+the values needed later should be copied as soon as possible into a safe
+location before any other socket call is done.<HR>
+<A HREF="devguide_2.16.38.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.40.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

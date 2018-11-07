@@ -1,0 +1,90 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: basext_GetArgsF()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: basext_GetArgsF()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: basext_GetArgsF()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>basext_GetArgsF()</H1>
+<A HREF="devguide_4.5.268.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function can be used to get arguments simple and fast in extension modules.
+All functionality of this function can be individually programmed using the
+<font size="3"><tt>besXXX</tt></font> macros. Here it is to ease the programming of extension modules for most of
+the cases.
+<P>
+This function should be called like
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  iError = besGETARGS "ldz",&amp;l1,&amp;d1,&amp;s besGETARGE
+</PRE></FONT>
+<P>
+The macro <font size="3"><tt>besGETARGS</tt></font> (read GET ARGument Start) hides the complexity of the
+function call and the macro <font size="3"><tt>besGETARGE</tt></font> (read Get ARGument End) simply closes the
+function call.
+<P>
+The first argument is format string. Each character specifies how the next argument
+should be treated.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int basext_GetArgsF(pSupportTable pSt,
+                    pFixSizeMemoryObject pParameters,
+                    char *pszFormat,
+                    ...
+  )@{
+</PRE></FONT>
+The following characters are recognized:
+<P>
+<UL>
+<LI> <font size="3"><tt>i</tt></font> the next argument of the function call should point to a <font size="3"><tt>long</tt></font> variable.
+           The ScriptBasic argument will be converted to <font size="3"><tt>long</tt></font> using the macro
+           <font size="3"><tt>besCONVERT2LONG</tt></font> and will be stored in the <font size="3"><tt>long</tt></font> variable.
+<LI> <font size="3"><tt>r</tt></font> the same as <font size="3"><tt>l</tt></font> except that the argument should point a <font size="3"><tt>double</tt></font> and the
+           basic argument is converted to <font size="3"><tt>double</tt></font> using <font size="3"><tt>besCONVERT2DOUBLE</tt></font>.
+<LI> <font size="3"><tt>z</tt></font> the next argument should point to a <font size="3"><tt>char *</tt></font> pointer. The function takes
+           the next BASIC argument as string, converts it to zero terminated string
+           allocating space for it. These variables SHOULD be released by the caller
+           using the macro <font size="3"><tt>besFREE</tt></font>.
+<LI> <font size="3"><tt>s</tt></font> the next argument should point to a <font size="3"><tt>unsigned char *</tt></font> pointer. The function takes
+           the next BASIC argument as string, converting it in case conversion is needed, and
+           sets the <font size="3"><tt>unsigned char *</tt></font> pointer to point to the string. This format character
+           should be used together with the character <font size="3"><tt>l</tt></font>
+<LI> <font size="3"><tt>l</tt></font> the next argument should point to a <font size="3"><tt>long</tt></font> and the value of the variable
+           will be the length of the last string atgument (either <font size="3"><tt>z</tt></font> or <font size="3"><tt>s</tt></font>).
+           If there was no previous string argument the value returned will be zero.
+<LI> <font size="3"><tt>p</tt></font> the next argument should point to a <font size="3"><tt>void *</tt></font> pointer. The BASIC argument value
+           should be a string of <font size="3"><tt>sizeof(void *)</tt></font> characters that will be copied into the
+           pointer argument. If the argument is not string or has not the proper size the function
+           returns <font size="3"><tt>COMMAND_ERROR_ARGUMENT_RANGE</tt></font>.
+<LI> <font size="3"><tt>[</tt></font> The arguments following this character are optional. Optional arguments may be
+           unspecified. This is the case when the BASIC function call has less number of
+           arguments or when the actual argument value is <font size="3"><tt>undef</tt></font>. In case of optional
+           arguments the <font size="3"><tt>undef</tt></font> values are converted to zero value of the appropriate
+           type. This means 0 in case of long, 0.0 in case of double, NULL in case of pointer
+           and zero length string in case of strings.
+<LI> <font size="3"><tt>]</tt></font> Arguments following this character are mandatory (are not optional). When the
+           function starts to process the arguments they are mandatory by default. Using this
+           notation you can enclode the optional arguments between <font size="3"><tt>[</tt></font> and <font size="3"><tt>]</tt></font>. For example
+           the format string <font size="3"><tt>"ii[z]"</tt></font> means two long arguments and an optional zero terminated
+           string argument.
+<LI> <font size="3"><tt>*</tt></font> The argument is skipped. This may be used during development of a function.
+@end itemize
+<P>
+The return value of the function is zero in case there is no error or the error code.
+ 
+<P>
+
+<HR>
+<A HREF="devguide_4.5.268.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

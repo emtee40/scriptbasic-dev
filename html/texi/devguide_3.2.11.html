@@ -1,0 +1,44 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.2.11. Saving Binary File</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Saving Binary File">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Saving Binary File">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.2.html">3.2. Sample Embedding</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.2.11. Saving Binary File</H1>
+<A HREF="devguide_3.2.10.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.12.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Before executing the loaded program the application may save the compiled binary version of the program. This can be done calling the function <a href="devguide_3.3.48.html">scriba_SaveCode()</A> to save the binary code into a specific file, or calling the function <a href="devguide_3.3.46.html">scriba_SaveCacheFile()</A> to save the binary code into the cache with an automatically calculated name.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+    if( szOutputFile ){
+      if( isCoutput )
+        scriba_SaveCCode(pProgram,szOutputFile);
+      else
+        scriba_SaveCode(pProgram,szOutputFile);
+      if( !execute )exit(0);
+      }
+     if( ! nocache )scriba_SaveCacheFile(pProgram);
+ </PRE></FONT><HR>
+<A HREF="devguide_3.2.10.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.12.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

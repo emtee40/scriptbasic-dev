@@ -1,0 +1,75 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: report_report()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: report_report()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: report_report()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>report_report()</H1>
+<A HREF="devguide_2.10.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.11.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function implements the default error reporting function for both run-time and parse time errors and
+warnings.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void report_report(void *filepointer,
+                   char *FileName,
+                   long LineNumber,
+                   unsigned int iErrorCode,
+                   int iErrorSeverity,
+                   int *piErrorCounter,
+                   char *szErrorString,
+                   unsigned long *fFlags
+  )@{
+</PRE></FONT>
+Aguments:
+<UL>
+<P>
+<LI> <font size="3"><tt>filepointer</tt></font> is a <font size="3"><tt>void *</tt></font> pointer. The default value of this pointer is <font size="3"><tt>stderr</tt></font> unless the
+variation sets it different. This implementation uses this pointer as a <font size="3"><tt>FILE *</tt></font> pointer. Other implementations
+of this function may use it for any other purpose so long as long the usage of this pointer fits the variation.
+<P>
+<LI> <font size="3"><tt>FileName</tt></font> is the name of the source file where the error was detected. This parameter is <font size="3"><tt>NULL</tt></font> in case of
+a run-time error. The reporting function is encouraged to display this information for the user.
+<P>
+<LI> <font size="3"><tt>LineNumber</tt></font> is the line number within the source file where the error has happened. This parameter is valid
+only in case the parameter <font size="3"><tt>FileName</tt></font> is not <font size="3"><tt>NULL</tt></font>
+<P>
+<LI> <font size="3"><tt>iErrorCode</tt></font> is the error code.
+<P>
+<LI> <font size="3"><tt>iErrorSeverity</tt></font> should define the severity of the error. It can be
+<font size="3"><tt>REPORT_INFO</tt></font>,
+<font size="3"><tt>REPORT_WARNING</tt></font>,
+<font size="3"><tt>REPORT_ERROR</tt></font>,
+<font size="3"><tt>REPORT_FATAL</tt></font>,
+<font size="3"><tt>REPORT_INTERNAL</tt></font>.
+Whenever the error severity is above the warning level the <font size="3"><tt>*piErrorCounter</tt></font> has to be incremented.
+<P>
+<LI> <font size="3"><tt>piErrorCounter</tt></font> points to an <font size="3"><tt>int</tt></font> counter that counts the number of errors. If there are errors
+during syntax analysis the ScriptBasic interpreter stops its execution before starting execution.
+<P>
+<LI> <font size="3"><tt>szErrorString</tt></font> is an optional error parameter string and not the displayable error message.
+The error message is stored in the global constant array <font size="3"><tt>en_error_messages</tt></font>. This string may
+contain a <font size="3"><tt>%s</tt></font> control referring to the error parameter string.
+<P>
+<LI> <font size="3"><tt>fFlags</tt></font> is an <font size="3"><tt>unsigned long</tt></font> bit field. The bits currently used are:
+<font size="3"><tt>REPORT_F_CGI</tt></font> is set if the error is to be reported as a CGI script. See the code for more details.
+<font size="3"><tt>REPORT_F_FRST</tt></font> is reset when the report function is called first time and is set by the report function. 
+This allows the report function to report a header in case it needs.
+Other bits are reserved for later use.
+<P>
+@end itemize
+ <HR>
+<A HREF="devguide_2.10.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.11.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

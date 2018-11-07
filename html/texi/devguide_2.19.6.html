@@ -1,0 +1,95 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.19.6. parameter</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: parameter">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: parameter">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.19.html">2.19. Simple Pattern Matching</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.19.6. parameter</H1>
+<A HREF="devguide_2.19.5.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.19.7.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c Fill parameters into format string
+<P>
+This function takes a format string and a string array and
+copies the format string replacing <font size="3"><tt>$0</tt></font>, <font size="3"><tt>$1</tt></font> ... <font size="3"><tt>$n</tt></font> values with
+the appropriate string values given in the array pointed by
+ParameterArray.
+<P>
+RETURN VALUE:
+<P>
+The function returns zero if no error occures and returns an error code
+in case some of the memory buffer does not have enough space or invalid
+parameter is referenced.
+<P>
+PARAMETERS:
+<font size="3"><tt>pszFormat</tt></font> IN
+The format string containing the $i placeholders.
+<P>
+--
+<P>
+<font size="3"><tt>cbFormat</tt></font> IN
+The number of characters in the format string
+<P>
+--
+<P>
+<font size="3"><tt>ParameterArray</tt></font> IN
+string array so that <font size="3"><tt>ParameterArray[i]</tt></font> is to be inserted in place of the <font size="3"><tt>$i</tt></font> placeholders
+<P>
+--
+<P>
+<font size="3"><tt>pcbParameterArray</tt></font> IN
+array of <font size="3"><tt>unsigned long</tt></font> values. <font size="3"><tt>pcbParameterArray[i]</tt></font> gives the length of the i-th string parameter.
+<P>
+--
+<P>
+<font size="3"><tt>pszBuffer</tt></font> OUT
+buffer to put the result
+<P>
+--
+<P>
+<font size="3"><tt>cArraySize</tt></font> IN
+Number of parameters given in the ParameterArray
+<P>
+--
+<P>
+<font size="3"><tt>pcbBufferSize</tt></font> IN/OUT
+Available bytes in buffer pointed by <font size="3"><tt>pszBuffer</tt></font>. Upon return it contains the number of characters
+that were placed in the buffer.
+<P>
+--
+<P>
+NOTE:
+<P>
+If the function returns non-zero (error code) none of the output
+variables can be reliably used.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int match_parameter(char *pszFormat,
+                    unsigned long cbFormat,
+                    char **ParameterArray,
+                    unsigned long *pcbParameterArray,
+                    char *pszBuffer,
+                    int cArraySize,
+                    unsigned long *pcbBufferSize
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.19.5.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.19.7.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

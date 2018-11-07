@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Preprocessor Entry Points</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Preprocessor Entry Points">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Preprocessor Entry Points">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Preprocessor Entry Points</H1>
+<A HREF="devguide_5.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<P>
+Lets recall the prototype of the preprocessor function, which has to be implemented in each preprocessor:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int DLL_EXPORT preproc(pPrepext pEXT,
+                       long *pCmd,
+                       void *p);
+</PRE></FONT>
+<P>
+This function has to be implemented in each internal preprocessor and is called when the preprocessor is loaded or when some the processing of the source program has reached a certain point. To inform the function about this point the argument <font size="3"><tt>pCmd</tt></font> is used. This argument points to a <font size="3"><tt>long</tt></font> that holds the a constant identifying the reason why the preprocessor function was called. The following subsections list these identifiers.<HR>
+<A HREF="devguide_5.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

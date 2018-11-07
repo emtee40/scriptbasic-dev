@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: thread_InitMutex</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: thread_InitMutex">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: thread_InitMutex">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>thread_InitMutex</H1>
+<A HREF="devguide_2.14.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.14.4.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Initialize a mutex object
+<P>
+This function initializes a <font size="3"><tt>MUTEX</tt></font> variable. A <font size="3"><tt>MUTEX</tt></font> variable can be used for exclusive access.
+If a mutex is locked another lock on that mutex will wait until the first lock is removed. If there are
+several threads waiting for a mutex to be released a random thread will get the lock when 
+the actually locking thread releases the mutex. In other words
+if there are several threads waiting for a mutex there is no guaranteed order of the threads getting the
+mutex lock.
+<P>
+Before the first use of a <font size="3"><tt>MUTEX</tt></font> variable it has to be initialized calling this function.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void thread_InitMutex(PMUTEX pMutex
+  )@{
+</PRE></FONT>
+Arguments:
+<UL>
+<LI> <font size="3"><tt>pMutex</tt></font> should point to a mutex variable of the type <font size="3"><tt>MUTEX</tt></font>
+@end itemize<HR>
+<A HREF="devguide_2.14.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.14.4.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

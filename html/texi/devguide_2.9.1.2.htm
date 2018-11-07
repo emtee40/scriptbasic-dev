@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: memory_RegisterType()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_RegisterType()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_RegisterType()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>memory_RegisterType()</H1>
+<A HREF="devguide_2.9.1.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.3.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function should be used to register a variable type. The return value
+is the serial number of the type that should later be used to reference the type.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int memory_RegisterType(pMemoryObject pMo,
+                        unsigned long SizeOfThisType
+  )@{
+</PRE></FONT>
+The argument of the function is the size of the type in terms of bytes. Usually this
+is calculated using the C structure <font size="3"><tt>sizeof</tt></font>.
+<P>
+If the type can not be registered -1 is returned.<HR>
+<A HREF="devguide_2.9.1.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

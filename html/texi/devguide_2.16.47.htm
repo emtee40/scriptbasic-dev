@@ -1,0 +1,65 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: file_CreateProcessEx</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: file_CreateProcessEx">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: file_CreateProcessEx">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>file_CreateProcessEx</H1>
+<A HREF="devguide_2.16.46.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.48.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Run a new program and wait for it
+<P>
+This function starts a new process and starts to wait for the process.
+The caller can specify a timeout period in seconds until the function
+waits.
+<P>
+When the process terminates or the timeout period is over the function returns.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int file_CreateProcessEx(char *pszCommandLine,
+                          long lTimeOut,
+                          unsigned long *plPid,
+                          unsigned long *plExitCode
+  )@{
+</PRE></FONT>
+Arguments:
+<UL>
+<LI> <font size="3"><tt>pszCommandLine</tt></font> the command to execute
+<LI> <font size="3"><tt>lTimeOut</tt></font> the maximum number of seconds to wait for the process to finish. If this is zero the
+function will not wait for the process. If the value is <font size="3"><tt>-1</tt></font> the function wait without limit until the created
+process finishes.
+<LI> <font size="3"><tt>plPid</tt></font> pointer to variable where the PID of the new process is placed.
+This parameter can be <font size="3"><tt>NULL</tt></font>. If the function returns after the new process has terminated this
+value is more or less useless. However this parameter can be used to kill processes that reach the
+timeout period and do not terminate.
+<LI> <font size="3"><tt>plExitCode</tt></font> pointer to a variable where the exit code of the new process is placed. If the
+process is still running when the function returns this parameter is unaltered.
+@end itemize
+<P>
+The return value indicates the success of the execution of the new process:
+<P>
+<UL>
+<LI> <font size="3"><tt>FILESYSE_SUCCESS</tt></font> The process was started and terminated within the specified timeout period.
+<LI> <font size="3"><tt>FILESYSE_NOTSTARTED</tt></font> The function could not start the new process. (not used under UNIX)
+<LI> <font size="3"><tt>FILESYSE_TIMEOUT</tt></font> The process was started but did not finish during the timeout period.
+<LI> <font size="3"><tt>FILESYSE_NOCODE</tt></font> The process was started and finished within the timeout period but
+it was not possible to retrieve the exit code.
+@end itemize
+<P>
+Note that the behaviour of this function is slightly different on Windows NT and on UNIX. On Windows NT
+the function will return <font size="3"><tt>FILESYSE_NOTSTARTED</tt></font> when the new process can not be started. Under UNIX
+the process performs a <font size="3"><tt>fork()</tt></font> and then an <font size="3"><tt>execv</tt></font>. The <font size="3"><tt>fork()</tt></font> does not return an error value. When the
+<font size="3"><tt>execvp</tt></font> fails it is already in the new process and can not return an error code. It exists using the
+exit code 1. This may not be distinguished from the program started and returning an exit code 1.<HR>
+<A HREF="devguide_2.16.46.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.48.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

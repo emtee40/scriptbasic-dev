@@ -1,0 +1,51 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.5.3.3. build_StringIndex()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: build_StringIndex()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: build_StringIndex()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.5.html">2.5. Builder</A><BR>
+<UL><a href="devguide_2.5.3.html">2.5.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.5.3.3. build_StringIndex()</H1>
+<A HREF="devguide_2.5.3.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.4.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+In the built code all the strings are references using the offset of the string
+from the string table (See <a href="devguide_2.5.3.2.html">build_AllocateStringTable()</A>). This function calculates this value
+for the string.
+<P>
+This function is used repetitively during the code building. Whenever a string index is
+sought that is not in the string table yet the string is put into the table and the
+index is returned.
+<P>
+If there is not enough space in the string table the function calls the system function
+<font size="3"><tt>exit</tt></font> and stops the process. This is rude especially in a multithread application
+but it should not ever happen. If this happens then it is a serious internal error.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+unsigned long build_StringIndex(pBuildObject pBuild,
+                                char *s,
+                                long sLen
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.5.3.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.4.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

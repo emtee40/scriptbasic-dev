@@ -1,0 +1,49 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.4.3.16. _new_eNODE()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: _new_eNODE()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: _new_eNODE()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.4.html">2.4. Syntax Analyzer</A><BR>
+<UL><a href="devguide_2.4.3.html">2.4.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.4.3.16. _new_eNODE()</H1>
+<A HREF="devguide_2.4.3.15.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.17.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function should be used to create a new <font size="3"><tt>eNODE</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+peNODE _new_eNODE(peXobject pEx
+  )@{
+</PRE></FONT>
+<P>
+Each <font size="3"><tt>eNODE</tt></font> and <font size="3"><tt>eNODE_l</tt></font> structure has a serial number. The <font size="3"><tt>eNODE</tt></font>s
+are referencing each other using pointers. However after build these pointers
+become integer numbers that refer to the ordinal number of the node. Nodes are
+stored in a single memory block after they are packed during build.
+<P>
+An <font size="3"><tt>eNODE</tt></font> is a structure that stores a unit of compiled code. For example
+an addition in an expression is stored in an <font size="3"><tt>eNODE</tt></font> containing the code for the
+addition operator and containing pointers to the operands.<HR>
+<A HREF="devguide_2.4.3.15.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.17.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

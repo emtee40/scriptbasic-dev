@@ -1,0 +1,58 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 5.3.1. PreprocessorLoad</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: PreprocessorLoad">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: PreprocessorLoad">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_5.html">5. Preprocessors</A><BR>
+<UL><a href="devguide_5.3.html">5.3. Preprocessor Entry Points</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>5.3.1. PreprocessorLoad</H1>
+<A HREF="devguide_5.3.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This entry point is used when the preprocessor is loaded. The pointer <font size="3"><tt>p</tt></font> is <font size="3"><tt>NULL</tt></font>.
+<P>
+When the preprocessor function is called with this argument it can be sure that this is the very first call to the function within the actual interpreter thread. It also can depend on the support function table and on the preprocessor memory segment pointer being initialized and ready to allocate memory.
+<P>
+It has to check that the version the preprocessor was designed and compiled for is appropriate and works together with the ScriptBasic interpreter that invoked the preprocessor. This can easily be done checking the version information in the preprocessor structure. Sample code:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+      if( pEXT-&gt;lVersion != IP_INTERFACE_VERSION ){
+        *pCmd = PreprocessorUnload;
+        return 0;
+        }
+</PRE></FONT>
+<P>
+This code is the appropriate place to allocate space for the preprocessor structure that hold the thread local variables. For example:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+      pDO = pEXT-&gt;pST-&gt;Alloc(sizeof(DebuggerObject),pEXT-&gt;pMemorySegment);
+      *pCmd = PreprocessorUnload;
+      if( pDO == NULL )return 1;
+</PRE></FONT>
+<P>
+Note that this example is a simplified version of the one that you can find in the sample debugger preprocessor. This example uses the <font size="3"><tt>Alloc</tt></font> support function that is usually points to the function <font size="3"><tt>alloc_Alloc</tt></font> implemented in the file `<font size="3"><tt>myalloc.c</tt></font>'. When coding an external preprocessor you can rely on ScriptBasic that as soon as the preprocessor is unloaded the memory allocated using this function with the memory segment initiated for the preprocessor (like above) will be released.
+<P>
+The preprocessor has to return the error code or zero and may alter the value of the parameter <font size="3"><tt>*pCmd</tt></font> to <font size="3"><tt>PreprocessorContinue</tt></font> or <font size="3"><tt>PreprocessorUnload</tt></font>.
+<P>
+Although the calling code ignores the value returned in <font size="3"><tt>*pCmd</tt></font> unless it is <font size="3"><tt>PreprocessorUnload</tt></font> it is required by principle to set a value in this variable. The value <font size="3"><tt>PreprocessorDone</tt></font> can not be used when returning from this entry.<HR>
+<A HREF="devguide_5.3.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

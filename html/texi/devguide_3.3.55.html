@@ -1,0 +1,44 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.3.55. scriba_ResetVariables()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_ResetVariables()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_ResetVariables()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.3.55. scriba_ResetVariables()</H1>
+<A HREF="devguide_3.3.54.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.56.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Call this function if you want to execute a program object that was already executed
+but you do not want the global variables to keep their value they had when
+the last execution of the BASIC code finished.
+<P>
+Global variables in ScriptBasic are guaranteed to be <font size="3"><tt>undef</tt></font> before they get any other
+value and some programs depend on this.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void scriba_ResetVariables(pSbProgram pProgram
+  )@{
+</PRE></FONT>
+See also <a href="devguide_3.3.65.html">scriba_SetVariable()</A>, <a href="devguide_3.3.53.html">scriba_Run()</A>, <a href="devguide_3.3.54.html">scriba_NoRun()</A>.<HR>
+<A HREF="devguide_3.3.54.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.56.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

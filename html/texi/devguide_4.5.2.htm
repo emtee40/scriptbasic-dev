@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: besALLOC(X)</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besALLOC(X)">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besALLOC(X)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>besALLOC(X)</H1>
+<A HREF="devguide_4.5.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.3.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this macro to allocate memory in an extension like you would use
+<font size="3"><tt>malloc</tt></font> in a normal, old fashioned C program. The argument is the size of the memory in
+byte count to be allocated. The result is the pointer to the allocated memory or <font size="3"><tt>NULL</tt></font> if there
+is not enough memory available.
+<P>
+The allocated memory is assigned to the memory segment of the execution thread and thus this memory
+is released automatically when the module is unloaded from the interpreter. In other words if
+a module uses <font size="3"><tt>besALLOC</tt></font> to allocate memory there is no need to call <a href="devguide_4.5.4.htm">besFREE(X)</A>.
+<P>
+Modules written for multi-thread variations of ScriptBasic should also be aware of the fact that
+the memory allocated by this macro is released whent he calling interpreter thread finishes.
+<P>
+This macro calls the function <a href="devguide_2.8.1.7.htm">alloc_Alloc()</A><HR>
+<A HREF="devguide_4.5.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

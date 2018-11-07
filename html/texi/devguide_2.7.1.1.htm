@@ -1,0 +1,67 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: cft_init()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: cft_init()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: cft_init()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>cft_init()</H1>
+<A HREF="devguide_2.7.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.2.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Before calling any other configuration handling function the caller has to prepare a <font size="3"><tt>tConfigTree</tt></font>
+structure. To do this it has to call this function.
+<P>
+The first argument has to point to an allocated and uninitialized <font size="3"><tt>tConfigTree</tt></font> structure. The second
+argument has to point to a memory allocating function. The third argument has to point to the memory releasing
+function that is capable releasing the memory allocated by the memory allocating function.
+<P>
+The argument <font size="3"><tt>pMemorySegment</tt></font> should be the segment pointer to the memory handling functions. All memory allocation
+will be performed calling the <font size="3"><tt>memory_allocating_function</tt></font> and passing the <font size="3"><tt>pMemorySegment</tt></font> pointer as second argument
+to it. All memory releasing will be done via the function <font size="3"><tt>memory_releasing_function</tt></font> passing 
+<font size="3"><tt>pMemorySegment</tt></font> pointer as second argument. This lets the caller to use sophisticated memory handling architecture.
+<P>
+<B>On the other hand for the simple use</B> all these three arguments can be <font size="3"><tt>NULL</tt></font>. In this case the configuration
+management system will use its own memory allocating and releasing function that simply uses <font size="3"><tt>malloc</tt></font> and <font size="3"><tt>free</tt></font>.
+In this case <font size="3"><tt>pMemorySegment</tt></font> is ignored.
+<P>
+For a ready made module that delivers more features see the alloc module of the ScriptBasic project at
+<font size="3"><tt>http://scriptbasic.com</tt></font>
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int cft_init(ptConfigTree pCT,
+              void *(*memory_allocating_function)(size_t, void *),
+              void (*memory_releasing_function)(void *, void *),
+              void *pMemorySegment
+  )@{
+</PRE></FONT>
+Note that suggested convention is to use the '<font size="3"><tt>.</tt></font>' character as separator for hierarchical key structures, but
+this is only a suggestion. In other words the module writers advice is to use <font size="3"><tt>key.subkey.subsubkey</tt></font> as key string
+for hierarchical strings. On the other hand you can use any character as separator except the zero character and
+except the characters that are used as key characters. You can write
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+key\subkey\subsubkey
+</PRE></FONT>
+<P>
+if you are a windows geek. To do this you have to change the character saying
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+    pCT-&gt;TC = '\\';
+</PRE></FONT>
+<P>
+after calling the initialization function. You can change this character any time, this character is not
+used in the configuration structure. The only point is that you have to use the actual character when you have
+changed it. The best practice is to use the dot  ever.<HR>
+<A HREF="devguide_2.7.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.2.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

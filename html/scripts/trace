@@ -1,0 +1,687 @@
+000:D:-: version()=2.03
+000:D:-: reference()=This page was created using <a href="http://www.isys.hu/c/verhas/progs/perl/jamal">jamal</A> v2.03
+000:D:-: timeNow()=1066381623
+001:F:0: survey.html.jam:
+001:L:0: <HTML>
+002:L:0: <HEAD>
+003:L:0: <TITLE>ScriptBasic Online Survey</TITLE>
+004:L:0: </HEAD>
+005:L:0: <body>
+006:L:0: <FONT FACE="Verdana, Ariel" SIZE="2">
+007:L:0: <h1>ScriptBasic Online Survey</h1>
+008:L:0: 
+009:L:0: "I do not want to fill in any survey! I want to <a href="http://scriptbasic.com/html/download.html">download</a>!"
+010:L:0: Go ahead if you are in a hurry.
+011:L:0: <P>
+012:L:0: <a href="http://scriptbasic.com/html/download.html">I have already filled this form!</a>
+013:L:0: <P>
+014:L:0: <FONT SIZE="1">
+015:L:0: Please devote some time to take this survey before you download the ScriptBasic
+016:L:0: package of your desire. Filling this form will help the developers to gain
+017:L:0: information on the use of ScriptBasic and to align the development directions
+018:L:0: with needs. (Blah blah... I want to know what you do with my stuff so I can
+019:L:0: develop it the way you need it.)
+020:L:0: <p>
+021:L:0: You can fill in the form with your name or anonymously.
+022:L:0: You may answer all the questions or only some of the questions.
+023:L:0: You can totally skip the survey and proceed to the
+024:L:0: <a href="http://scriptbasic.com/html/download.html">download</a> page.
+025:L:0: My only strong request is that you do not, please cannibalize the survey:
+026:L:0: fill in once only and with real data.
+027:L:0: <p>
+028:L:0: The data you enter including any personal data is stored on the ScriptBasic.com
+029:L:0: web site and on offline sites for later processing. The data will not ever be
+030:L:0: disclosed to any third party except anonimized or aggregated, statistical data.
+031:L:0: In case of any information disclose we will pay careful attention so that the
+032:L:0: disclosed data should not be directly or indirectly be connected to the person
+033:L:0: filling the form. We do not store the IP number or any other network information
+034:L:0: collected from the act of somebody filling the form together with the data
+035:L:0: entered.
+036:L:0: </FONT>
+037:L:0: 
+038:L:0: <!--message-->
+039:L:0: 
+040:L:0: <form name="SBSURVEY001" action="survey.cgi" method="POST">
+041:L:0: <!--
+042:L:0: this is just to tell the cgi to process the form instead
+043:L:0: of just displaying the page
+044:L:0: -->
+045:L:0: <input type="hidden" name="hid" value="1">
+046:L:0: 
+047:L:0: <table border="0">
+049:M:0: {#define SEPLINE=<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>}
+049:L:0: #define SEPLINE=<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+049:M:0: {#define SEPLINE=<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>}
+049:D:-: SEPLINE()=<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+051:M:0: {#define Q/QDEF/QID/QCOMM/QFIELD/QDESC=
+052:M:0: {SEPLINE}
+053:M:0: <tr>
+054:M:0: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+055:M:0: QDEF:</FONT>
+056:M:0: </td>
+057:M:0: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+058:M:0: QFIELD
+059:M:0: <p>
+060:M:0: <FONT SIZE="1" COLOR="BLUE">
+061:M:0: QCOMM
+062:M:0: </FONT>
+063:M:0: </td>
+064:M:0: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+065:M:0: QDESC
+066:M:0: </FONT></td>
+067:M:0: </tr>}
+051:L:0: #define Q/QDEF/QID/QCOMM/QFIELD/QDESC=
+052:M:0: {SEPLINE}
+052:L:0: SEPLINE
+052:M:0: {SEPLINE}
+052:L:1: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+052:L:0: 
+053:L:0: <tr>
+054:L:0: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+055:L:0: QDEF:</FONT>
+056:L:0: </td>
+057:L:0: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+058:L:0: QFIELD
+059:L:0: <p>
+060:L:0: <FONT SIZE="1" COLOR="BLUE">
+061:L:0: QCOMM
+062:L:0: </FONT>
+063:L:0: </td>
+064:L:0: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+065:L:0: QDESC
+066:L:0: </FONT></td>
+067:L:0: </tr>
+051:M:0: {#define Q/QDEF/QID/QCOMM/QFIELD/QDESC=
+052:M:0: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+053:M:0: <tr>
+054:M:0: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+055:M:0: QDEF:</FONT>
+056:M:0: </td>
+057:M:0: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+058:M:0: QFIELD
+059:M:0: <p>
+060:M:0: <FONT SIZE="1" COLOR="BLUE">
+061:M:0: QCOMM
+062:M:0: </FONT>
+063:M:0: </td>
+064:M:0: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+065:M:0: QDESC
+066:M:0: </FONT></td>
+067:M:0: </tr>}
+051:D:-: Q()=
+052:D:-: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+053:D:-: <tr>
+054:D:-: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+055:D:-: QDEF:</FONT>
+056:D:-: </td>
+057:D:-: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+058:D:-: QFIELD
+059:D:-: <p>
+060:D:-: <FONT SIZE="1" COLOR="BLUE">
+061:D:-: QCOMM
+062:D:-: </FONT>
+063:D:-: </td>
+064:D:-: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+065:D:-: QDESC
+066:D:-: </FONT></td>
+067:D:-: </tr>
+069:M:0: {#define QINPUT/QDEF/QID/QCOMM/QDESC={Q/QDEF/QID/QCOMM/<input type="text" name="QID" MAXLENGTH="20" SIZE="20" value="<!--QID-->">/QDESC}}
+069:L:0: #define QINPUT/QDEF/QID/QCOMM/QDESC=
+069:M:0: {Q/QDEF/QID/QCOMM/<input type="text" name="QID" MAXLENGTH="20" SIZE="20" value="<!--QID-->">/QDESC}
+069:L:0: Q/QDEF/QID/QCOMM/<input type="text" name="QID" MAXLENGTH="20" SIZE="20" value="<!--QID-->">/QDESC
+069:M:0: {Q/QDEF/QID/QCOMM/<input type="text" name="QID" MAXLENGTH="20" SIZE="20" value="<!--QID-->">/QDESC}
+069:L:1: 
+069:L:1: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+069:L:1: <tr>
+069:L:1: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+069:L:1: QDEF:</FONT>
+069:L:1: </td>
+069:L:1: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+069:L:1: <input type="text" name="QID" MAXLENGTH="20" SIZE="20" value="<!--QID-->">
+069:L:1: <p>
+069:L:1: <FONT SIZE="1" COLOR="BLUE">
+069:L:1: QCOMM
+069:L:1: </FONT>
+069:L:1: </td>
+069:L:1: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+069:L:1: QDESC
+069:L:1: </FONT></td>
+069:L:1: </tr>
+069:M:0: {#define QINPUT/QDEF/QID/QCOMM/QDESC=
+070:M:0: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+071:M:0: <tr>
+072:M:0: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+073:M:0: QDEF:</FONT>
+074:M:0: </td>
+075:M:0: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+076:M:0: <input type="text" name="QID" MAXLENGTH="20" SIZE="20" value="<!--QID-->">
+077:M:0: <p>
+078:M:0: <FONT SIZE="1" COLOR="BLUE">
+079:M:0: QCOMM
+080:M:0: </FONT>
+081:M:0: </td>
+082:M:0: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+083:M:0: QDESC
+084:M:0: </FONT></td>
+085:M:0: </tr>}
+069:D:-: QINPUT()=
+070:D:-: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+071:D:-: <tr>
+072:D:-: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+073:D:-: QDEF:</FONT>
+074:D:-: </td>
+075:D:-: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+076:D:-: <input type="text" name="QID" MAXLENGTH="20" SIZE="20" value="<!--QID-->">
+077:D:-: <p>
+078:D:-: <FONT SIZE="1" COLOR="BLUE">
+079:D:-: QCOMM
+080:D:-: </FONT>
+081:D:-: </td>
+082:D:-: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+083:D:-: QDESC
+084:D:-: </FONT></td>
+085:D:-: </tr>
+070:M:0: {#define QTEXTAREA/QDEF/QID/QCOMM/QDESC={Q|QDEF|QID|QCOMM|<TEXTAREA name="QID" COLS="50" ROWS="10">
+071:M:0: <!--QID-->
+072:M:0: </TEXTAREA>|QDESC}}
+070:L:0: #define QTEXTAREA/QDEF/QID/QCOMM/QDESC=
+070:M:0: {Q|QDEF|QID|QCOMM|<TEXTAREA name="QID" COLS="50" ROWS="10">
+071:M:0: <!--QID-->
+072:M:0: </TEXTAREA>|QDESC}
+070:L:0: Q|QDEF|QID|QCOMM|<TEXTAREA name="QID" COLS="50" ROWS="10">
+071:L:0: <!--QID-->
+072:L:0: </TEXTAREA>|QDESC
+070:M:0: {Q|QDEF|QID|QCOMM|<TEXTAREA name="QID" COLS="50" ROWS="10">
+071:M:0: <!--QID-->
+072:M:0: </TEXTAREA>|QDESC}
+070:L:1: 
+070:L:1: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+070:L:1: <tr>
+070:L:1: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+070:L:1: QDEF:</FONT>
+070:L:1: </td>
+070:L:1: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+070:L:1: <TEXTAREA name="QID" COLS="50" ROWS="10">
+070:L:1: <!--QID-->
+070:L:1: </TEXTAREA>
+070:L:1: <p>
+070:L:1: <FONT SIZE="1" COLOR="BLUE">
+070:L:1: QCOMM
+070:L:1: </FONT>
+070:L:1: </td>
+070:L:1: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+070:L:1: QDESC
+070:L:1: </FONT></td>
+070:L:1: </tr>
+070:M:0: {#define QTEXTAREA/QDEF/QID/QCOMM/QDESC=
+071:M:0: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+072:M:0: <tr>
+073:M:0: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+074:M:0: QDEF:</FONT>
+075:M:0: </td>
+076:M:0: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+077:M:0: <TEXTAREA name="QID" COLS="50" ROWS="10">
+078:M:0: <!--QID-->
+079:M:0: </TEXTAREA>
+080:M:0: <p>
+081:M:0: <FONT SIZE="1" COLOR="BLUE">
+082:M:0: QCOMM
+083:M:0: </FONT>
+084:M:0: </td>
+085:M:0: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+086:M:0: QDESC
+087:M:0: </FONT></td>
+088:M:0: </tr>}
+070:D:-: QTEXTAREA()=
+071:D:-: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+072:D:-: <tr>
+073:D:-: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+074:D:-: QDEF:</FONT>
+075:D:-: </td>
+076:D:-: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+077:D:-: <TEXTAREA name="QID" COLS="50" ROWS="10">
+078:D:-: <!--QID-->
+079:D:-: </TEXTAREA>
+080:D:-: <p>
+081:D:-: <FONT SIZE="1" COLOR="BLUE">
+082:D:-: QCOMM
+083:D:-: </FONT>
+084:D:-: </td>
+085:D:-: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+086:D:-: QDESC
+087:D:-: </FONT></td>
+088:D:-: </tr>
+073:M:0: {@define QCHECKBOXES/QDEF/QID/QCOMM/QDESC/QBOXES=
+074:M:0: {Q|QDEF|QID|QCOMM|
+075:M:0: {#for boxid (,QBOXES)
+076:M:0: <checkbox name="QID_boxid QBOXES" value="1"><BR>
+077:M:0: }
+078:M:0: |QDESC}}
+073:D:-: QCHECKBOXES()=
+074:D:-: {Q|QDEF|QID|QCOMM|
+075:D:-: {#for boxid (,QBOXES)
+076:D:-: <checkbox name="QID_boxid QBOXES" value="1"><BR>
+077:D:-: }
+078:D:-: |QDESC}
+081:M:0: {QINPUT
+082:M:0: Name
+083:M:0: name
+084:M:0: you may fill in the survey anonymous, but it is polite to introduce yourself
+085:M:0: Please fill in this fill so that I know who the answers belong to. This is not a
+086:M:0: technical data, it is only some few thousand years of practice that we identify
+087:M:0: ourselves with names. Generally: this a polite act to introduce
+088:M:0: yourself when you enter a place before you start to talk.}
+081:L:0: QINPUT
+082:L:0: Name
+083:L:0: name
+084:L:0: you may fill in the survey anonymous, but it is polite to introduce yourself
+085:L:0: Please fill in this fill so that I know who the answers belong to. This is not a
+086:L:0: technical data, it is only some few thousand years of practice that we identify
+087:L:0: ourselves with names. Generally: this a polite act to introduce
+088:L:0: yourself when you enter a place before you start to talk.
+081:M:0: {QINPUT
+082:M:0: Name
+083:M:0: name
+084:M:0: you may fill in the survey anonymous, but it is polite to introduce yourself
+085:M:0: Please fill in this fill so that I know who the answers belong to. This is not a
+086:M:0: technical data, it is only some few thousand years of practice that we identify
+087:M:0: ourselves with names. Generally: this a polite act to introduce
+088:M:0: yourself when you enter a place before you start to talk.}
+081:L:1: 
+081:L:1: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+081:L:1: <tr>
+081:L:1: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+081:L:1: Name:</FONT>
+081:L:1: </td>
+081:L:1: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+081:L:1: <input type="text" name="name" MAXLENGTH="20" SIZE="20" value="<!--name-->">
+081:L:1: <p>
+081:L:1: <FONT SIZE="1" COLOR="BLUE">
+081:L:1: you may fill in the survey anonymous, but it is polite to introduce yourself
+081:L:1: </FONT>
+081:L:1: </td>
+081:L:1: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+081:L:1: Please fill in this fill so that I know who the answers belong to. This is not a
+081:L:1: technical data, it is only some few thousand years of practice that we identify
+081:L:1: ourselves with names. Generally: this a polite act to introduce
+081:L:1: yourself when you enter a place before you start to talk.
+081:L:1: 
+081:L:1: </FONT></td>
+081:L:1: </tr>
+092:M:0: {QINPUT
+093:M:0: eMail
+094:M:0: email
+095:M:0: we need it in case we have questions
+096:M:0: This field should contain your eMail address. Specifying your eMail here will
+097:M:0: be used in non-autmated human mailing in case your data provided in the survey
+098:M:0: is interesting and we want to ask you something. Specifying here the eMail
+099:M:0: address will not subscribe you to any mailing list (but do subscribe to the
+100:M:0: ScriptBasic mailing list if you have not done so), will not appear on any web
+101:M:0: site.}
+092:L:0: QINPUT
+093:L:0: eMail
+094:L:0: email
+095:L:0: we need it in case we have questions
+096:L:0: This field should contain your eMail address. Specifying your eMail here will
+097:L:0: be used in non-autmated human mailing in case your data provided in the survey
+098:L:0: is interesting and we want to ask you something. Specifying here the eMail
+099:L:0: address will not subscribe you to any mailing list (but do subscribe to the
+100:L:0: ScriptBasic mailing list if you have not done so), will not appear on any web
+101:L:0: site.
+092:M:0: {QINPUT
+093:M:0: eMail
+094:M:0: email
+095:M:0: we need it in case we have questions
+096:M:0: This field should contain your eMail address. Specifying your eMail here will
+097:M:0: be used in non-autmated human mailing in case your data provided in the survey
+098:M:0: is interesting and we want to ask you something. Specifying here the eMail
+099:M:0: address will not subscribe you to any mailing list (but do subscribe to the
+100:M:0: ScriptBasic mailing list if you have not done so), will not appear on any web
+101:M:0: site.}
+092:L:1: 
+092:L:1: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+092:L:1: <tr>
+092:L:1: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+092:L:1: eMail:</FONT>
+092:L:1: </td>
+092:L:1: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+092:L:1: <input type="text" name="email" MAXLENGTH="20" SIZE="20" value="<!--email-->">
+092:L:1: <p>
+092:L:1: <FONT SIZE="1" COLOR="BLUE">
+092:L:1: we need it in case we have questions
+092:L:1: </FONT>
+092:L:1: </td>
+092:L:1: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+092:L:1: This field should contain your eMail address. Specifying your eMail here will
+092:L:1: be used in non-autmated human mailing in case your data provided in the survey
+092:L:1: is interesting and we want to ask you something. Specifying here the eMail
+092:L:1: address will not subscribe you to any mailing list (but do subscribe to the
+092:L:1: ScriptBasic mailing list if you have not done so), will not appear on any web
+092:L:1: site.
+092:L:1: 
+092:L:1: </FONT></td>
+092:L:1: </tr>
+104:M:0: {QCHECKBOXES/
+105:M:0: Operating System/
+106:M:0: os/
+107:M:0: specify the operating system you use/
+108:M:0: Please define the operating system that you run ScriptBasic on./Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else}
+104:L:0: QCHECKBOXES/
+105:L:0: Operating System/
+106:L:0: os/
+107:L:0: specify the operating system you use/
+108:L:0: Please define the operating system that you run ScriptBasic on./Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:0: {QCHECKBOXES/
+105:M:0: Operating System/
+106:M:0: os/
+107:M:0: specify the operating system you use/
+108:M:0: Please define the operating system that you run ScriptBasic on./Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else}
+104:M:1: {Q|
+104:M:1: Operating System|
+104:M:1: os|
+104:M:1: specify the operating system you use|
+104:M:1: {#for boxid (,Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: )
+104:M:1: <checkbox name="
+104:M:1: os_boxid Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: }
+104:M:1: |
+104:M:1: Please define the operating system that you run ScriptBasic on.}
+104:L:1: Q|
+104:L:1: Operating System|
+104:L:1: os|
+104:L:1: specify the operating system you use|
+104:M:1: {#for boxid (,Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: )
+104:M:1: <checkbox name="
+104:M:1: os_boxid Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>}
+104:L:1: #for boxid (,Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:1: )
+104:L:1: <checkbox name="
+104:L:1: os_boxid Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:1: " value="1"><BR>
+104:M:1: {#for boxid (,Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: )
+104:M:1: <checkbox name="
+104:M:1: os_boxid Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>}
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_Linux Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_Windows Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_MacOS Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_Solaris Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_Tru64 Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_HP-UX Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_AIX Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_BeOS Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_NeXT Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_SCO Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_MSDOS Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_something else
+104:L:2:  Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:1: 
+104:L:1: |
+104:L:1: Please define the operating system that you run ScriptBasic on.
+104:M:1: {Q|
+104:M:1: Operating System|
+104:M:1: os|
+104:M:1: specify the operating system you use|
+104:M:1: 
+104:M:1: <checkbox name="
+104:M:1: os_Linux Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: 
+104:M:1: <checkbox name="
+104:M:1: os_Windows Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: 
+104:M:1: <checkbox name="
+104:M:1: os_MacOS Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: 
+104:M:1: <checkbox name="
+104:M:1: os_Solaris Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: 
+104:M:1: <checkbox name="
+104:M:1: os_Tru64 Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: 
+104:M:1: <checkbox name="
+104:M:1: os_HP-UX Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: 
+104:M:1: <checkbox name="
+104:M:1: os_AIX Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: 
+104:M:1: <checkbox name="
+104:M:1: os_BeOS Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: 
+104:M:1: <checkbox name="
+104:M:1: os_NeXT Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: 
+104:M:1: <checkbox name="
+104:M:1: os_SCO Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: 
+104:M:1: <checkbox name="
+104:M:1: os_MSDOS Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: 
+104:M:1: <checkbox name="
+104:M:1: os_something else
+104:M:1:  Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:M:1: " value="1"><BR>
+104:M:1: 
+104:M:1: |
+104:M:1: Please define the operating system that you run ScriptBasic on.}
+104:L:2: 
+104:L:2: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+104:L:2: <tr>
+104:L:2: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+104:L:2: 
+104:L:2: Operating System:</FONT>
+104:L:2: </td>
+104:L:2: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+104:L:2: 
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_Linux Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_Windows Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_MacOS Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_Solaris Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_Tru64 Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_HP-UX Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_AIX Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_BeOS Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_NeXT Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_SCO Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_MSDOS Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: <checkbox name="
+104:L:2: os_something else
+104:L:2:  Linux,Windows,MacOS,Solaris,Tru64,HP-UX,AIX,BeOS,NeXT,SCO,MSDOS,something else
+104:L:2: " value="1"><BR>
+104:L:2: 
+104:L:2: 
+104:L:2: <p>
+104:L:2: <FONT SIZE="1" COLOR="BLUE">
+104:L:2: 
+104:L:2: specify the operating system you use
+104:L:2: </FONT>
+104:L:2: </td>
+104:L:2: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+104:L:2: 
+104:L:2: Please define the operating system that you run ScriptBasic on.
+104:L:2: </FONT></td>
+104:L:2: </tr>
+111:M:0: {QINPUT
+112:M:0: Version used
+113:M:0: version
+114:M:0: specify the ScriptBasic version that you use
+115:M:0: If you are going to download version 2.0.0 then this is version is most probably
+116:M:0: 1.0b30. Please specify that. In this case type it in or just leave the field
+117:M:0: blank. If you use some of the older version then please specify which version you
+118:M:0: use.}
+111:L:0: QINPUT
+112:L:0: Version used
+113:L:0: version
+114:L:0: specify the ScriptBasic version that you use
+115:L:0: If you are going to download version 2.0.0 then this is version is most probably
+116:L:0: 1.0b30. Please specify that. In this case type it in or just leave the field
+117:L:0: blank. If you use some of the older version then please specify which version you
+118:L:0: use.
+111:M:0: {QINPUT
+112:M:0: Version used
+113:M:0: version
+114:M:0: specify the ScriptBasic version that you use
+115:M:0: If you are going to download version 2.0.0 then this is version is most probably
+116:M:0: 1.0b30. Please specify that. In this case type it in or just leave the field
+117:M:0: blank. If you use some of the older version then please specify which version you
+118:M:0: use.}
+111:L:1: 
+111:L:1: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+111:L:1: <tr>
+111:L:1: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+111:L:1: Version used:</FONT>
+111:L:1: </td>
+111:L:1: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+111:L:1: <input type="text" name="version" MAXLENGTH="20" SIZE="20" value="<!--version-->">
+111:L:1: <p>
+111:L:1: <FONT SIZE="1" COLOR="BLUE">
+111:L:1: specify the ScriptBasic version that you use
+111:L:1: </FONT>
+111:L:1: </td>
+111:L:1: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+111:L:1: If you are going to download version 2.0.0 then this is version is most probably
+111:L:1: 1.0b30. Please specify that. In this case type it in or just leave the field
+111:L:1: blank. If you use some of the older version then please specify which version you
+111:L:1: use.
+111:L:1: 
+111:L:1: </FONT></td>
+111:L:1: </tr>
+121:M:0: {QTEXTAREA
+122:M:0: Why do you use old version
+123:M:0: whyversion
+124:M:0: skip it if you usually use the latest version
+125:M:0: Please tell us why you use an older version instead of the newest available. It
+126:M:0: may help us understand your concerns preventing your upgrade and understaning may
+127:M:0: help us to improve the development to give you better versions of the software.}
+121:L:0: QTEXTAREA
+122:L:0: Why do you use old version
+123:L:0: whyversion
+124:L:0: skip it if you usually use the latest version
+125:L:0: Please tell us why you use an older version instead of the newest available. It
+126:L:0: may help us understand your concerns preventing your upgrade and understaning may
+127:L:0: help us to improve the development to give you better versions of the software.
+121:M:0: {QTEXTAREA
+122:M:0: Why do you use old version
+123:M:0: whyversion
+124:M:0: skip it if you usually use the latest version
+125:M:0: Please tell us why you use an older version instead of the newest available. It
+126:M:0: may help us understand your concerns preventing your upgrade and understaning may
+127:M:0: help us to improve the development to give you better versions of the software.}
+121:L:1: 
+121:L:1: <tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+121:L:1: <tr>
+121:L:1: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Courier New" SIZE="3">
+121:L:1: Why do you use old version:</FONT>
+121:L:1: </td>
+121:L:1: <td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+121:L:1: <TEXTAREA name="whyversion" COLS="50" ROWS="10">
+121:L:1: <!--whyversion-->
+121:L:1: </TEXTAREA>
+121:L:1: <p>
+121:L:1: <FONT SIZE="1" COLOR="BLUE">
+121:L:1: skip it if you usually use the latest version
+121:L:1: </FONT>
+121:L:1: </td>
+121:L:1: <td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+121:L:1: Please tell us why you use an older version instead of the newest available. It
+121:L:1: may help us understand your concerns preventing your upgrade and understaning may
+121:L:1: help us to improve the development to give you better versions of the software.
+121:L:1: 
+121:L:1: </FONT></td>
+121:L:1: </tr>
+128:L:0: 
+129:L:0: 
+130:L:0: 
+131:L:0: 
+132:L:0: </table>
+133:L:0: <INPUT TYPE="SUBMIT" NAME="SUBMIT" VALUE="Press this button to submit survey">
+134:L:0: </form>
+135:L:0: 
+136:L:0: </FONT>
+137:L:0: </body>
+138:L:0: </HTML>

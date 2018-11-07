@@ -1,0 +1,46 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: cft_FindNode()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: cft_FindNode()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: cft_FindNode()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>cft_FindNode()</H1>
+<A HREF="devguide_2.7.1.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.6.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Find a node starting from the start node <font size="3"><tt>lStartNode</tt></font>
+and searching for the <font size="3"><tt>key</tt></font>.
+<P>
+The function returns zero if the key is not found in the configuration
+information tree <font size="3"><tt>pCT</tt></font> or returns the node id of the key. This node
+can either be an internal node or leaf.
+<P>
+Note that the string <font size="3"><tt>key</tt></font> may contain dot characters. In this case the
+key is searched down in the configuration tree. (You can set the separator character
+different from the dot character.)
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+CFT_NODE cft_FindNode(ptConfigTree pCT,
+                      CFT_NODE lStartNode,
+                      char *key
+  )@{
+</PRE></FONT>
+You need this function when you want to iterate over the sub-keys of a node. You get the
+node id for the key and then you can call <a href="devguide_2.7.1.8.htm">cft_EnumFirst</A> to start the loop and then <a href="devguide_2.7.1.9.htm">cft_EnumNext</A> to
+iterate the loop over the sub-keys.
+<P>
+If you just want to get the value of a single key you can call the function <a href="devguide_2.7.1.6.htm">cft_GetEx</A> that
+uses this function.<HR>
+<A HREF="devguide_2.7.1.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.6.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

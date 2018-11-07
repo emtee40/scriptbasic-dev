@@ -1,0 +1,49 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: besSUB_SHUTDOWN</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besSUB_SHUTDOWN">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besSUB_SHUTDOWN">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>besSUB_SHUTDOWN</H1>
+<A HREF="devguide_4.5.203.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.205.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this macro to start a module shutdown function.
+<P>
+This shutdown function is called before a module is unloaded from the process 
+space. The function is similar to <a href="devguide_4.5.199.htm">besSUB_FINISH</A>. That function is called when
+the interpreter finishes. When there are many interpreter threads in a single process
+that uses the module the function <a href="devguide_4.5.199.htm">besSUB_FINISH</A> is called each time an
+interpreter finishes. The function <a href="devguide_4.5.204.htm">besSUB_SHUTDOWN</A> is called only once, before the
+interpreter unloads the extesion from memory.
+<P>
+The difference between <font size="3"><tt>besSUB_SHUTDOWN</tt></font> and <a href="devguide_4.5.202.htm">besSUB_PROCESS_FINISH</A> is that <font size="3"><tt>besSUB_SHUTDOWN</tt></font>
+is called by the interpreter, <a href="devguide_4.5.202.htm">besSUB_PROCESS_FINISH</A> is called by the operating system.
+<font size="3"><tt>besSUB_SHUTDOWN</tt></font> can access the support functions because it gets the <font size="3"><tt>pSt</tt></font> argument,
+<a href="devguide_4.5.202.htm">besSUB_PROCESS_FINISH</A> can not access these functions.
+<P>
+When a single thread interpreter finishes it first calls the function <a href="devguide_4.5.199.htm">besSUB_FINISH</A> to unload
+the module and after that it calls <font size="3"><tt>besSUB_SHUTDOWN</tt></font>.
+<P>
+This is not an error if a module does not implement these functions.
+<P>
+The function should return <font size="3"><tt>COMMAND_ERROR_SUCCESS</tt></font> if the module has no remaining activity and
+is ready to be unloaded.
+<P>
+The function should return <font size="3"><tt>COMMAND_ERROR_STAYS_IN_MEMORY</tt></font> if there are unstopped threads
+that use the module code. In this case unloading the module would cause segmentation
+fault that would interfere with the still running shutdown procedures. In that case the module
+is not unloaded by the program, but only when the process finishes by the operating system.<HR>
+<A HREF="devguide_4.5.203.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.205.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

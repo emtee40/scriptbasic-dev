@@ -1,0 +1,39 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.2.7. Setting the File Name</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Setting the File Name">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Setting the File Name">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.2.html">3.2. Sample Embedding</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.2.7. Setting the File Name</H1>
+<A HREF="devguide_3.2.6.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.8.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+To successfully load a program there is a need for the name of the file that holds the source code. To specify this file name for a program object the function <a href="devguide_html"> scriba_SetFileName()</A> should be used.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  scriba_SetFileName(pProgram,szInputFile);
+</PRE></FONT>
+<P>
+This is the usual way getting the program into the program object, but there is another way. Some applications do not store the BASIC program string in text files, but in some other mass media, like relation database. In that case the application has to load the program string into the application memory and call <a href="devguide_html"> scriba_LoadProgramString()</A> to compile and execute the BASIC program. However in this case the program should not contain any <font size="3"><tt>include</tt></font> or <font size="3"><tt>import</tt></font> statement.<HR>
+<A HREF="devguide_3.2.6.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.8.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

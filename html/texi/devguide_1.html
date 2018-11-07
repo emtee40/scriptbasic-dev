@@ -1,0 +1,67 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 1. Introduction</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Introduction">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Introduction">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>1. Introduction</H1>
+[&lt;&lt;&lt;] <A HREF="devguide_1.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_1.1.html">1.1. Chapters</A><BR>
+<HR>
+<P>
+
+<P>
+ScriptBasic is an open source scripting implementation of the programming language BASIC. The language and the implementation make the software a considerable choice in many cases when there is a need for some scripting tool. This software can be used where traditionally Perl, Python, TCL or some other scripting interpreter is used.
+<P>
+The language itself is BASIC with powerful command set and large number of extension modules. The language was designed so that this is familiar for all BASIC programmers no matter which dialect one has experience with. Thus the learning curve of the language is very steep: you can start to write your first programs just in few minutes.
+<P>
+The interpreter is built modular, well documented, and easy to read source code and has well defined and documented interfaces. It is easy to embed the interpreter into an application and it is also easy to write external modules extending the language. Applications embedding ScriptBasic can build virtual machines in multiple or in single process running interpreters simultaneously independent of each other, but they can also execute multi-thread applications running interpreter threads that provide features for the BASIC programs running parallel to communicate to each other.
+<P>
+This means that ScriptBasic can be the language of choice in situations when the application programmer wants to implement some programmability feature into the application. It will attract the users of the application because there is no need to learn a new programming language at the time when they have to learn the functions of the application anyway. The programmer on the other hand has an easy job to integrate ScriptBasic into the application because it was designed for the purpose.
+<P>
+To sum up these in a listing the language and the implementation has the following features:
+ 
+<UL>
+<P>
+<LI>
+IT IS BASIC. No question, this is the MOST important feature of ScriptBasic. 
+There are a lot of people who can program BASIC and only BASIC. There are many people, who can not really program. Those who do not really know what programming is, and still: they write their five-liners in BASIC to solve their simple problems. They never write Perl, Tcl, Java or C. Therefore it is BASIC.
+<P>
+<LI>
+SCRIPTING language. There are no data types in the language. You can store real numbers, integer numbers and strings in any variable. You can mix them and conversion is done automatically.
+<P>
+<LI>
+PORTABLE Available in C source and can be compiled on UNIXes as well as on Windows NT.
+<P>
+<LI>
+4E LANGUAGE, which means easy to extend, easy to embed. ScriptBasic was developed to provide clean and clear interfaces around it, and inside it. It is easy to embed the language to an application and use it as a macro language just like TCL. It is also easy to implement new built-in function and new commands. 
+You can develop dynamically loaded libraries that ScriptBasic may load at run time. The language source is clean, well documented and development guides are on the way.
+<P>
+<LI>
+COMPILED CODE ScriptBasic creates intermediate compiled code, which is interpreted afterwards. Syntax analysis is done at first and only syntactically perfect programs start to run. The compiled code is put into a continuous memory space and compiled code can be saved and loaded again to run without recompilation. This is vital for CGI scripts and is not available for most scripting programming languages. Compiled code is binary, not readable. 
+Therefore you can develop and distribute programs and getting some help to protect your intellectual property. You need not give the source code. 
+<P>
+<LI>
+MULTI THREAD aware. Although the current implementation is not multi thread, all the code was designed to be thread safe. You can embed the code into systems that run multiple interpreters in the same process. On the other hand the interpreter can run the same code in multiple threads and was designed to be capable handling call-back functions, and multithread programs in the future. 
+<P>
+<LI>
+DEBUGGER The BASIC programs can be debugged using the external debugger.
+<P>
+</UL><HR>
+[&lt;&lt;&lt;] <A HREF="devguide_1.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

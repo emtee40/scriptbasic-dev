@@ -1,0 +1,53 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.3.1.17. lex_XXX()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: lex_XXX()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: lex_XXX()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.3.html">2.3. Lexer</A><BR>
+<UL><a href="devguide_2.3.1.html">2.3.1. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.3.1.17. lex_XXX()</H1>
+<A HREF="devguide_2.3.1.16.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.18.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+These access functions are implemented as macros and are put into &lt;lexer.h&gt; by the program <font size="3"><tt>headerer.pl</tt></font>
+<P>
+The macros access <font size="3"><tt>Int</tt></font>, <font size="3"><tt>Symbol</tt></font>, <font size="3"><tt>Float</tt></font> etc values of the current lexeme. However these are strored
+in a location which is named a bit different. For example the string of a symbol is stored in the string
+field of the lexeme. To be readable and to be compatible with future versions use these macros to access
+lexeme values when lexeme has any of these types.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+/*
+TO_HEADER:
+#define lex_Int(x) lex_Long(x)
+#define lex_Symbol(x) lex_String(x)
+#define lex_Float(x) lex_Double(x)
+#define lex_Char(x) lex_Long(x)
+#define lex_Token(x) lex_Long(x)
+#define lex_Code(x) lex_Long(x)
+*/
+/*
+</PRE></FONT><HR>
+<A HREF="devguide_2.3.1.16.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.18.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

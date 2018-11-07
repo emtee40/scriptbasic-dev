@@ -1,0 +1,170 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\input texinfo @c -*-texinfo-*-
+@c %**start of header
+@setfilename mod_mxml
+@settitle Documentation of the module mxml
+@setchapternewpage odd
+@c %**end of header
+@ifinfo
+@end ifinfo
+
+@titlepage
+@title Documentation of the module mxml
+@author Peter Verhas
+
+@page
+@vskip 0pt plus 1filll
+
+@end titlepage
+@summarycontents
+@contents
+
+@menu
+@end menu
+
+@chapter Introduction
+
+
+
+@chapter  Load an XML file and read into memory
+
+You should use this function to read the content of an XML file into memory.
+The argument of the function is the name of the file to be read. The function
+will return a handle to the structure created during the parsing of the file
+content.
+
+@example
+ DOC = mxml::LoadDoc("my_file.xml")
+@end example
+
+
+@chapter  Get the next node of a document node
+
+This function should be used to get the handle to the  next node in a
+document node
+
+@example
+ node = mxml::GetNext(<node pointer>)
+@end example
+
+@chapter  Get the next Child node of a document node
+
+This function should be used to get the handle to the next Childe node of a
+document node
+
+@example
+ node = mxml::GetChild(<node pointer>)
+@end example
+
+@chapter  Get the value of a document node
+
+This function should be used to get the value (text) of a node
+
+@example
+ text = mxml::GetNodeValue(<node pointer>)
+@end example
+
+@chapter  Get the a property value of a document node
+
+This function should be used to get the
+value of a property of a document node
+
+@example
+ text = mxml:: mxml::GetProperty(<node pointer>,<string identifier>)
+@end example
+
+@chapter  Get a handle to a specified node
+
+This function should be used to get the handle of a specific node.
+It uses XPATH syntax, which resembles a UNIX path.
+
+Ex, node = mxml::GetNode(doc, "/stufflist/stuff_test3/painting/img")
+
+@example
+ node = mxml::GetNode(<node pointer>,<path-like string>)
+@end example
+*/    
+besFUNCTION(GetNode)
+    mxml_node_t *rootNode, *node;
+    char *pszValue;
+    char *token, tmpStr[_MAX_PATH];
+
+    besARGUMENTS("pz")
+    &rootNode,&pszValue
+  besARGEND    
+    
+    node = rootNode;
+
+    memset(tmpStr,0,sizeof(tmpStr));
+    strncpy(tmpStr, pszValue, strlen(pszValue));
+    
+
+    token = strtok(tmpStr, "/");
+  while ( token  ) {
+        node = mxmlFindElement(node,node,token,NULL,NULL,MXML_DESCEND);
+    token = strtok( NULL, "/" );
+  }
+        
+    besRETURN_POINTER(node);
+besEND
+
+/**
+
+@chapter  Save to an XML file
+
+This function should be used to save the contents of an XML tree
+to a disk file
+
+@example
+ mxml::SaveDoc(<DOC (root) node pointer>,<string filename>)
+@end example
+
+@chapter  Create a new XML document in memory
+
+This function should be used to create a new XML document in memory.
+
+The second parameter (xml version) is optional.  If not provided,
+it defaults to version="1.0"
+
+It would create a header that looks like:
+    <?xml version="1.0">
+
+@example
+ doc = mxml::NewDoc(<string version>)
+@end example
+
+@chapter  Releases/Destroys an XML tree in memory
+
+This function should be used to delete an new XML document in memory.
+
+@example
+ mxml::FreeDoc(<doc pointer>)
+@end example
+ 
+

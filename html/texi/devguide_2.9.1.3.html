@@ -1,0 +1,52 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.9.1.3. memory_RegisterTypes()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_RegisterTypes()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_RegisterTypes()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.9.html">2.9. Variable Allocation</A><BR>
+<UL><a href="devguide_2.9.1.html">2.9.1. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.9.1.3. memory_RegisterTypes()</H1>
+<A HREF="devguide_2.9.1.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.4.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function should be used to initialize the usual <font size="3"><tt>FixSizeMemoryObject</tt></font> types. This
+sets some usual string sizes, but the caller may not call this function and set different
+size objects.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void memory_RegisterTypes(pMemoryObject pMo
+  )@{
+</PRE></FONT>
+This function registers the different string sizes. In the current implementation a string has
+at least 32 characters. If this is longer that that (including the terminating zchar) then
+a 64 byte fix size object is allocated. If this is small enough then a 128 byte fix size memory
+object is allocated and so on up to 1024 bytes. If a string is longer that that then a LARGE_OBJECT_TYPE
+is allocated.
+<P>
+The reason to register these types is that this memory management module keeps a list for these
+memory pieces and when a new short string is needed it may be available already without calling
+<font size="3"><tt>malloc</tt></font>. On the other hand when a <font size="3"><tt>LARGE_OBJECT_TYPE</tt></font> value is released it is always passed back
+to the operating system calling <font size="3"><tt>free</tt></font>.<HR>
+<A HREF="devguide_2.9.1.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.4.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

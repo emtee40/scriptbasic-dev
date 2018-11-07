@@ -1,0 +1,61 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.3.9. scriba_NewSbString()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_NewSbString()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_NewSbString()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.3.9. scriba_NewSbString()</H1>
+<A HREF="devguide_3.3.8.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.10.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function allocates and returns a pointer pointing to a structure of
+type <font size="3"><tt>SbData</tt></font> holding a string value. If the allocation failed the return
+value is <font size="3"><tt>NULL</tt></font>. If the memory allocation was successful the allocated
+structure will have the type <font size="3"><tt>SBT_STRING</tt></font> and will hold the initial value
+specified by the argument <font size="3"><tt>pszInitValue</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pSbData scriba_NewSbString(pSbProgram pProgram,
+                           char *pszInitValue
+  )@{
+</PRE></FONT>
+<B>Note on ZCHAR termination:</B>
+<P>
+The init value <font size="3"><tt>pszInitValue</tt></font> should be a zchar terminated string. Note that
+ScriptBasic internally stores the strings as series byte and the length of the
+string without any terminating zchar. Therefore the length of the string
+that is stored should have been <font size="3"><tt>strlen(pszInitValue)</tt></font>. This does not contain the
+terminating zchar.
+<P>
+In reality however we allocate an extra byte that stores the zchar, but the
+size of the string is one character less. Therefore ScriptBasic routines
+will recognize the size of the string correct and also the caller can
+use the string using the macro <font size="3"><tt>scriba_GetString</tt></font> as a zchar terminated
+C string. This requires an extra byte of storage for each string passed from the
+embedding C application to ScriptBasic, but saves a lot of hedeache and also
+memory copy when the string has to be used as a zchar terminated string.
+<P>
+See also <a href="devguide_3.3.6.html">scriba_NewSbLong()</A>, <a href="devguide_3.3.7.html">scriba_NewSbDouble()</A>, <a href="devguide_3.3.8.html">scriba_NewSbUndef()</A>, <a href="devguide_3.3.9.html">scriba_NewSbString()</A>,
+<a href="devguide_3.3.10.html">scriba_NewSbBytes()</A>, <a href="devguide_3.3.11.html">scriba_DestroySbData()</A>.<HR>
+<A HREF="devguide_3.3.8.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.10.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

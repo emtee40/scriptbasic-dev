@@ -1,0 +1,34 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: alloc_FreeSegment()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: alloc_FreeSegment()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: alloc_FreeSegment()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>alloc_FreeSegment()</H1>
+<A HREF="devguide_2.8.1.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.6.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this function to release all the memory that was allocated to the segment <font size="3"><tt>p</tt></font>.
+Note that after calling this function the segment is still usable, only the memory
+that it handled was released. If you do not need the segment anymore call the function
+<a href="devguide_2.8.1.6.htm">alloc_FinishSegment()</A> that calls this function and then releases the memory allocated to store
+the segment information.
+<P>
+Sloppy programmers may pass <font size="3"><tt>NULL</tt></font> as argument, it just returns.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void alloc_FreeSegment(void *p
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.8.1.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.6.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

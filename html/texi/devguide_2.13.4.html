@@ -1,0 +1,44 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.13.4. handle_DestroyHandleArray</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: handle_DestroyHandleArray">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: handle_DestroyHandleArray">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.13.html">2.13. Handle Pointers in External Modules Support Functions</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.13.4. handle_DestroyHandleArray</H1>
+<A HREF="devguide_2.13.3.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.14.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c DestroyHandleArray
+<P>
+Call this function to release the handle array after all handles are
+freed and there is no need for the handle heap.
+<P>
+Use the same memory head <font size="3"><tt>pMEM</tt></font> that was used in <a href="devguide_html">GetHandle</A>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void handle_DestroyHandleArray(void **pHandle,
+                               void *pMEM
+  )@{
+</PRE></FONT>
+ <HR>
+<A HREF="devguide_2.13.3.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.14.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

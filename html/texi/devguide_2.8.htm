@@ -1,0 +1,51 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Memory Allocation</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Memory Allocation">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Memory Allocation">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Memory Allocation</H1>
+<A HREF="devguide_2.7.1.13.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+This module is a general purpose memory allocation module, which can be used in any project
+that needs heavy and sophisticated memory allocation. Originally the module was developed for
+the ScriptBasic project. Later we used it for Index.hu Rt AdEgine project and multi-thread
+features were introduced.
+<P>
+The major problem with memory allocation is that memory should be released. Old programs depend
+on the operating system to release the memory when the process exists and do not release the memory
+before program termination. Such programs are extremely difficult to port to multi-thread operation.
+In multi thread operation a thread my exit, but the memory still belongs to the process that goes on.
+<P>
+This module provides a bit of abstraction that helps the programmer to release the memory. The abstraction is
+the following:
+<P>
+A piece of memory is always allocated from a segment. A segment is logical entity and you should not think of
+a segment in this content as a continuous memory area. I could also say that: whenever a piece of 
+memory is allocated it is assigned to a segment. When a piece of memory is released it is removed from the segment.
+A segment is an administrative entity that keep track of the memory pieces that were allocated and assigned to the
+segment.
+<P>
+To explain segment to the fines details: segments are implemented as linked lists. Each element of the list contains
+the allocated memory piece as well as a pointer to the next and previous list members.
+<P>
+Whenever the programmer starts a sophisticated task that allocates several memory pieces it has to create a new segment
+and allocate the memory from that segment. When the memory is to be release the programmer can just say: release all the
+memory from the segment. This way he or she does not need keep track of the allocated memory structures, and walk through
+the memory pointers of his or her program which are designed to the program function instead of releasing the memory.
+<P>
+The overhead is the space allocated by two pointers for each memory piece and the size of the three pointers for
+each segment.<HR>
+<A HREF="devguide_2.7.1.13.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,61 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Compilation under UNIX</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Compilation under UNIX">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Compilation under UNIX">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Compilation under UNIX</H1>
+<A HREF="devguide_6.htm">[&lt;&lt;&lt;]</A> [&gt;&gt;&gt;]
+<P>
+
+Compilation starts from the clean source package. You unzip it or gunzip untar it into the source directory. To be safe you can run
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+sh convert.sh
+</PRE></FONT>
+<P>
+that converts all text files from Windows line feed convention to UNIX convention. If you have a tarball rather than a ZIP file then you may already have the correct line ending, but running the conversion does not hurt. Well, if you feel better by that you can run it many times. On the other hand if you uploaded the Windows source package you will not get along compiling the package without this conversion.
+<P>
+To compile the code you have to issue the command
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+./setup
+</PRE></FONT>
+<P>
+This will run all the commands that are needed before compilation to generate the C source files from the “real” source files and also compiles the make files from their macro source. Finally it runs the compilation processes.
+<P>
+The program `<font size="3"><tt>setup.pl</tt></font>' started by the shell script `<font size="3"><tt>setup</tt></font>' is a huge Perl script that automates the compilation under UNIX and under Windows NT as well.
+<P>
+To install the compiled code the script `<font size="3"><tt>setup.pl</tt></font>' has to be started again, this time using the argument:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+./setup –-install
+</PRE></FONT>
+<P>
+Although its use may imply it does not install ScriptBasic. It “only” creates the file `<font size="3"><tt>install.sh</tt></font>' that you can run later any time
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+$ su
+Password: **********
+# ./install.sh
+</PRE></FONT>
+<P>
+from the root account. It is recommended that you examine and understand the content of the script before executing it. It actually installs ScriptBasic, compiles the configuration information, stops the Eszter SB Application Engine and many other things.
+<P>
+I said &gt;&gt;“only” creates the file ...&lt;&lt; in double quotes, because it does many things before actually creating the file. It interactively asks you about the destination directories, installs an experimental installation of ScriptBasic locally to run some test programs, examines which modules were compiled fine and so on. It even tests the possible maximal value for the configuration key <font size="3"><tt>maxlevel</tt></font> that limits the maximal recursive function call level inside ScriptBasic. To do so it creates a configuration that does not limit the depth and runs a test program until it crashes. The test program in each level of depth opens a file and appends a single byte to the file. Finally the length of the file gives the maximal possible recursive function depth on your installation.
+<P>
+
+<HR>
+<A HREF="devguide_6.htm">[&lt;&lt;&lt;]</A> [&gt;&gt;&gt;]
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,57 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.14.1. thread_CreateThread</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: thread_CreateThread">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: thread_CreateThread">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.14.html">2.14. Thread Support Functions</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.14.1. thread_CreateThread</H1>
+<A HREF="devguide_2.14.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.14.2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c Create a new thread
+<P>
+This is a simplified implementation of the create thread interface.
+<P>
+The function creates a new <B>detached</B> thread.
+If the thread can not be created for some reason the return value is the error
+code returned by the system call <font size="3"><tt>pthread_start</tt></font> on UNIX or <font size="3"><tt>GetLastError</tt></font> on NT.
+<P>
+If the thread was started the return value is 0.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int thread_CreateThread(PTHREADHANDLE pThread,
+                      void *pStartFunction,
+                      void *pThreadParameter
+  )@{
+</PRE></FONT>
+The arguments
+<UL>
+<LI> <font size="3"><tt>pThread</tt></font> is a thread handle. This should be a pointer to a variable of type <font size="3"><tt>THREADHANDLE</tt></font>. This
+argument is set to hold the thread handle returned by <font size="3"><tt>CreateThread</tt></font> on NT or the pointer
+returned as first argument of <font size="3"><tt>pthread_create</tt></font> under UNIX. This argument is not used further in this
+module but can be used if calling system dependant functions.
+<LI> <font size="3"><tt>pStartFunction</tt></font> should be a pointer pointing to the start function where the thread should start. This
+is usually just the name of the function to start in the separate thread.
+<LI> <font size="3"><tt>pThreadParameter</tt></font> is the pointer passed as argument to the start function.
+@end itemize<HR>
+<A HREF="devguide_2.14.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.14.2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

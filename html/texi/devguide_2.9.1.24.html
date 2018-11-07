@@ -1,0 +1,50 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.9.1.24. memory_NewMortal()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_NewMortal()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_NewMortal()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.9.html">2.9. Variable Allocation</A><BR>
+<UL><a href="devguide_2.9.1.html">2.9.1. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.9.1.24. memory_NewMortal()</H1>
+<A HREF="devguide_2.9.1.23.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.25.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+When an expression is evaluated mortal variables are needed to store
+the intermediate results. These variables are called mortal variables.
+Such a variable is is allocated using this function and specifying a
+variable of type <font size="3"><tt>MortalList</tt></font> to assign the mortal to the list of
+mortal variables.
+<P>
+When the expression is evaluated all mortal variables are to be released
+and they are calling the function <font size="3"><tt>memory_ReleaseMortals</tt></font> (see <a href="devguide_2.9.1.28.html">memory_ReleaseMortals()</A>).
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pFixSizeMemoryObject memory_NewMortal(pMemoryObject pMo,
+                                      BYTE type,
+                                      unsigned long LargeBlockSize,
+                                      pMortalList pMortal
+  )@{
+</PRE></FONT>
+If the parameter <font size="3"><tt>pMortal</tt></font> is <font size="3"><tt>NULL</tt></font> the generated variable is not mortal.<HR>
+<A HREF="devguide_2.9.1.23.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.25.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,45 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 4.5.67. besGETLONGVALUE(x)</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besGETLONGVALUE(x)">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besGETLONGVALUE(x)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_4.html">4. Extension Modules</A><BR>
+<UL><a href="devguide_4.5.html">4.5. Module Support Functions</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>4.5.67. besGETLONGVALUE(x)</H1>
+<A HREF="devguide_4.5.66.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.68.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+Use this macro to get the long value of a variable. This macro is not the same as <font size="3"><tt>LONGVALUE</tt></font>.
+The macro <font size="3"><tt>LONGVALUE</tt></font> simply accesses the long value of a variable and thus can also be used
+as a left value assigning value to. On the other hand <font size="3"><tt>besGETLONGVALUE</tt></font> is a function call that
+returns a long value when the argumentum variable is <font size="3"><tt>NULL</tt></font>, <font size="3"><tt>double</tt></font>, string or some other value.
+In such situation using <font size="3"><tt>LONGVALUE</tt></font> would be erroneous.
+<P>
+The macro <font size="3"><tt>LONGVALUE</tt></font> should be used to access the long value of a variable that is known to
+hold a long value or when the long value of a variable is to be set.
+<P>
+The macro <font size="3"><tt>besGETLONGVALUE</tt></font> has to be used in a situation when we want to use a variable
+for its value being long. It is faster and consumes less memory than converting the variable to
+long allocating a new mortal just to access the long value of the new mortal using <font size="3"><tt>LONGVALUE</tt></font>.
+<P>
+The same statements hold for <font size="3"><tt>DOUBLEVALUE</tt></font> and <a href="devguide_4.5.69.html">besGETDOUBLEVALUE</A>.<HR>
+<A HREF="devguide_4.5.66.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.68.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

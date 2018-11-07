@@ -1,0 +1,39 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_InheritBinaryProgram()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_InheritBinaryProgram()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_InheritBinaryProgram()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_InheritBinaryProgram()</H1>
+<A HREF="devguide_3.3.36.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.38.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this function in application that keeps the program code in memory.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_InheritBinaryProgram(pSbProgram pProgram,
+                                pSbProgram pFrom
+  )@{
+</PRE></FONT>
+<P>
+The function inherits the binary code from the program object <font size="3"><tt>pFrom</tt></font>.
+In server type applications the compiled binary code of a BASIC program may
+be kept in memory. To do this a pseudo program object should be created that
+loads the binary code and is not destroyed.
+<P>
+The program object used to execute the code should inherit the binary code from
+this pseudo object calling this function. This is similar to the configuration
+inheritance.<HR>
+<A HREF="devguide_3.3.36.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.38.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

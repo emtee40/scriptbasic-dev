@@ -1,0 +1,71 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.4.3.41. ex_IsCommandThis</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_IsCommandThis">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_IsCommandThis">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.4.html">2.4. Syntax Analyzer</A><BR>
+<UL><a href="devguide_2.4.3.html">2.4.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.4.3.41. ex_IsCommandThis</H1>
+<A HREF="devguide_2.4.3.40.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.42.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This is the most general syntax analysis function that tries to match the syntax
+of the actual line syntax provided in argument <font size="3"><tt>p</tt></font> against the token list at the actual
+position.
+<P>
+The function has several side effects altering optionally the global and local variable table,
+define user defined functions and so on.
+<P>
+The function signals the success of its operation via the argument <font size="3"><tt>piFailure</tt></font> setting the <font size="3"><tt>int</tt></font>
+pointed by it to be zero or the error code.
+<P>
+If the syntax does not match the token list then the function cleans up all its actions if possible
+to allow the caller to iterate over to the next syntax defintion. In such a situation
+<font size="3"><tt>*piFailure</tt></font> is set <font size="3"><tt>EX_ERROR_SYNTAX</tt></font>
+<P>
+If the syntax does not match the token list but the analysis went too far and had side effects that
+cannot be reversed then no cleanup is made. In such a situation <font size="3"><tt>*piFailure</tt></font> is set
+<font size="3"><tt>EX_ERROR_SYNTAX_FATAL</tt></font>.
+<P>
+<font size="3"><tt>*piFailure</tt></font> is also set to this value if the syntax definition reaches a "star" point. If the syntax
+analysis matches a line up to a "star" point then the line should match that syntax definition or is
+known erroneous. For example a command starting with the two keywords <font size="3"><tt>'declare' 'command'</tt></font> after these
+two keywords reach a "star" point because no other line syntax but extrenal command declaration starts
+with these two keywords. In such a situation signalling fatal syntax error saves the compiler time
+to check other syntax definition.
+<P>
+A "star" point is named this way, because the file <font size="3"><tt>syntax.def</tt></font> uses the character <font size="3"><tt>*</tt></font> to denote
+this point in the syntax definitions.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+peNODE ex_IsCommandThis(peXobject pEx,
+                        pLineSyntax p,
+                        int *piFailure
+  )@{
+</PRE></FONT>
+If the syntax analysis fully matches the syntax definition provided in the argument
+then the function returns the node that was generated. If more then one nodes were generated
+during the syntax analysis of the line then the root node of the generated nodes is returned.<HR>
+<A HREF="devguide_2.4.3.40.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.42.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,66 @@
+<HEAD>
+<TITLE>Documentation of the module odbc: 1. Introduction</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module odbc: Introduction">
+<META NAME="keywords" CONTENT="Documentation of the module odbc: Introduction">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_odbc_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>1. Introduction</H1>
+[&lt;&lt;&lt;] <A HREF="mod_odbc_2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+
+ODBC Database Connection Module
+<P>
+This module implements ODBC interface to connect to relational databases. Using this module
+you can use SQL RDBMS implementations from Windows/Unix/Linux platform independant of the
+actual database system.
+<P>
+Though this module does not deliver all functions of the ODBC system it does implement
+most of the functions that are needed to write SQL based applications. You can connect to
+ODBC databases, disconnect, issue SQL commands and retrieve the data resulted by the queries.
+<P>
+To use this module from a BASIC program you have to include the file <font size="3"><tt>odbc.bas</tt></font> with the line
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import odbc.bas
+</PRE></FONT>
+<P>
+to have all the neccessary function defintiions. This file and the neccessary <font size="3"><tt>odbc.dll</tt></font> (or <font size="3"><tt>odbc.so</tt></font>)
+are installed in the include and in the modules directories on Windows.
+<P>
+A typical BASIC application using this module first calls <a href="mod_odbc_10.html">Connect</A> or <a href="mod_odbc_9.html">RealConnect</A> to get a
+connection to the database. Then the program calls <a href="mod_odbc_7.html">Query</A> to execute SQL queries, altering the
+database and <a href="mod_odbc_4.html">FetchHash</A> and/or <a href="mod_odbc_3.html">FetchArray</A> to get the result of queries. Finally the program
+optionally calls <a href="mod_odbc_8.html">Close</A> to close the connection.
+<P>
+(Calling <a href="mod_odbc_8.html">Close</A> is optional. <a href="mod_odbc_8.html">Close</A> is automatically called for each opened database connection
+when the interpreter finishes.)
+<P>
+The underlying ODBC system layer implements connection pooling on process level. Thus there is
+no need to use the ScriptBasic resource pooling module as it is done by the MySQL module. (By the
+time I write this the ScriptBasic resource pool support module is still experimental, and so is the
+MySQL module interface utilizing it.)
+<P>
+When the ODBC module is initialized the module requests the underlying ODBC layer to perform process
+level connection pooling. The module also implements the multi-thread interface functions that allow
+the module to remain in memory if used in multi-thread application.
+<P>
+The module raises module specific errors. For more information see <a href="mod_odbc_6.html">Error</A>.<HR>
+[&lt;&lt;&lt;] <A HREF="mod_odbc_2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,74 @@
+<HEAD>
+<TITLE>Documentation of the module curl: curl::option</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: curl::option">
+<META NAME="keywords" CONTENT="Documentation of the module curl: curl::option">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>curl::option</H1>
+<A HREF="mod_curl_2.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Call this function to set the various options of the actual curl session.
+<P>
+Usage:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CURL, "option" [, value]
+</PRE></FONT>
+<P>
+The various options that the current version of the module supports are listed in the following sections.
+Note that the documentation is mainly copied from the original CURL lib documentation.
+<P>
+Some of the options require a string as a parameter. The strings usually should not contain zero character.
+The exception is the option <font size="3"><tt>POSTFIELDS</tt></font>, which is handled in a special way to allow the programmer to send
+arbitrary binary data as HTTP POST parameter.
+<P>
+The option names in the section titles in this document are followed by one of the words <I>string</I>, <I>integer</I> and <I>flag</I>.
+<P>
+<UL>
+<LI>
+Options followed by the word <I>string</I> need string argument. If the option value is not specified zero length
+string is used. Because this is nonsense in most cases, you better use a third string argument for these options.
+<LI>
+Options followed by the word <I>flag</I> are yes/no type options. Presenting them without value means switching the
+option on. To switch such an option off the programmer has to explicitely specify zero value as third argument.
+In other words omitting the option value in such a case is the same as specifying <font size="3"><tt>1</tt></font> or <font size="3"><tt>TRUE</tt></font> or any other
+non-zero value. To switch off a <I>flag</I> option you can specify the value as <font size="3"><tt>FALSE</tt></font> (which is zero in ScriptBasic)
+for more readability.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CURL,"VERBOSE"
+curl::option CURL,"VERBOSE",TRUE
+curl::option CURL,"VERBOSE",1
+</PRE></FONT>
+are the same as well as the oposit
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CURL,"VERBOSE",FALSE
+curl::option CURL,"VERBOSE",0
+</PRE></FONT>
+are the same.
+<LI>
+Options followed by the word <I>integer</I> accept integer value. If the value is missing for such an option zero is used.
+For example:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CURL,"RESUME_FROM"
+curl::option CURL,"RESUME_FROM",0
+</PRE></FONT>
+are the same.
+</UL>
+<P>
+
+The option names are implemented case sensitive in this module, thus you can not use <font size="3"><tt>"verbose"</tt></font>
+instead of <font size="3"><tt>"VERBOSE"</tt></font>. Also the programmer should type the option names precisely, no mispelling is
+tolerated by the program.<HR>
+<A HREF="mod_curl_2.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

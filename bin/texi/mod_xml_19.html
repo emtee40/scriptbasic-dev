@@ -1,0 +1,42 @@
+<HEAD>
+<TITLE>Documentation of the module xml: 19. Create a new document node</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module xml: Create a new document node">
+<META NAME="keywords" CONTENT="Documentation of the module xml: Create a new document node">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_xml_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>19. Create a new document node</H1>
+<A HREF="mod_xml_18.html">[&lt;&lt;&lt;]</A> <A HREF="mod_xml_20.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Use this function to create a new document node.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  newNode = xml::NewDocNode(parent,nameSpace,name,content)
+</PRE></FONT>
+<P>
+Arguments:
+<UL>
+<LI> <font size="3"><tt>parent</tt></font>     is the parent node. The function will appens a new child node after
+                    the last child node of the <font size="3"><tt>parent</tt></font> node.
+<LI> <font size="3"><tt>nameSpace</tt></font>  is optional handler to the name space. May be <font size="3"><tt>undef</tt></font>.
+<LI> <font size="3"><tt>name</tt></font>       is the name of the new node, should be a string.
+<LI> <font size="3"><tt>content</tt></font>    optional string content.
+</UL><HR>
+<A HREF="mod_xml_18.html">[&lt;&lt;&lt;]</A> <A HREF="mod_xml_20.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,40 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: size</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: size">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: size">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>size</H1>
+<A HREF="devguide_2.19.6.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.20.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Calculate the neccessary buffer size
+<P>
+Calculate the size of the output. The IN/OUT parameter <font size="3"><tt>cbBufferSize</tt></font>
+is increased by the number of needed characters.
+<P>
+The return value is zero if no error occured or the error code.
+<P>
+NOTE: cbBuffer size should be initialized to 0 if you want to get the
+size of the buffer needed.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int match_size(char *pszFormat,
+               unsigned long cbFormat,
+               unsigned long *pcbParameterArray,
+               int cArraySize,
+               int *cbBufferSize
+  )@{
+</PRE></FONT>
+ <HR>
+<A HREF="devguide_2.19.6.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.20.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

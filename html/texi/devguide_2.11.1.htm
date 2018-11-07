@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: log_state()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: log_state()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: log_state()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>log_state()</H1>
+<A HREF="devguide_2.11.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.11.2.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function safely returns the actual state of the log. This can be:
+<P>
+<UL>
+<LI> <font size="3"><tt>LOGSTATE_NORMAL</tt></font> the log is normal state accepting log items
+<LI> <font size="3"><tt>LOGSTATE_SHUTTING</tt></font> the log is currently performing shut down, it does not accept any log item
+<LI> <font size="3"><tt>LOGSTATE_DEAD</tt></font> the log is shut down all files are closed
+<LI> <font size="3"><tt>LOGSTATE_SYNCHRONOUS</tt></font> the log is synchronous accepting log items
+@end itemize
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int log_state(ptLogger pLOG
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.11.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.11.2.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

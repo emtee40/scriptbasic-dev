@@ -1,0 +1,90 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 5.1. Loading Preprocessor</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Loading Preprocessor">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Loading Preprocessor">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_5.html">5. Preprocessors</A><BR>
+</UL>
+</UL>
+<P>
+<H1>5.1. Loading Preprocessor</H1>
+<A HREF="devguide_5.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Loading a preprocessor depends on the embedding application. To load an internal preprocessor the function <font size="3"><tt>ipreproc_LoadInternalPreprocessor</tt></font> is called (implemented in the file `<font size="3"><tt>ipreproc.c</tt></font>').
+<P>
+This function gets the name of an external preprocessor to load. The function searches the configuration information for the named preprocessor, loads the DLL/SO and invokes the initiation function of the preprocessor.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int ipreproc_LoadInternalPreprocessor(pPreprocObject pPre,
+                                      char *pszPreprocessorName);
+</PRE></FONT>
+<P>
+The first argument is the pointer to the ScriptBasic preprocessor object to access the configuration information and the list of loaded preprocessors to put the actual one on the list.
+<P>
+The second argument is the name of the preprocessor as named in the configuration file, for example
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+preproc (
+  internal (
+    sample "C:\\ScriptBasic\\bin\\samplepreprocessor.dll"
+    )
+</PRE></FONT>
+<P>
+The return value is zero or the error code.
+<P>
+(Note that this documentation may not be up-to date about the precise functioning of this function. For most up-to date information see the source documentation that is extracted from the source comment using the tool `<font size="3"><tt>esd2html.pl</tt></font>'.)
+<P>
+
+In the code base of ScriptBasic this function is called by the reader `<font size="3"><tt>reader.c</tt></font>' in the function <font size="3"><tt>reader_LoadPreprocessors</tt></font>. This is called automatically when the source is read and include files were also included. This function (<font size="3"><tt>reader_LoadPreprocessors</tt></font>) goes through all the lines and searches for lines that start with the word <font size="3"><tt>preprocess</tt></font> and name a preprocessor. The function loads the preprocessor and deletes the source line.
+<P>
+The function <font size="3"><tt> ipreproc_LoadInternalPreprocessor</tt></font> is also called from the function <font size="3"><tt>scriba_LoadInternalPreprocessor</tt></font> in source file `<font size="3"><tt>scriba.c</tt></font>'
+<P>
+This function can and should be used by the embedding programs to load all internal preprocessors that are to be loaded based on some external conditions. For example the VARIATION STANDARD of ScriptBasic (aka. the command line embedding variation) loads all internal preprocessors that were named after the command line option `<font size="3"><tt>-i</tt></font>'.
+<P>
+Other embedding application may get the information of desired preprocessors from different sources, like environment variables, configuration files and so on.
+<P>
+Note that internal preprocessors are not used whenever an already compiled version of the program is executing. If there is a <font size="3"><tt>preprocess</tt></font> line in the source code and the program has generated a cache or any other binary format BASIC program and that file is used to execute the program the preprocessor will no effect. The interpreter will not load the preprocessor and thus it will act as it did not exist.
+<P>
+There are two kind of preprocessors:
+<P>
+
+<UL>
+<LI> Altering preprocessors
+<P>
+The "altering" preprocessors act as conventional preprocessor altering the source code and/or altering the compilation environment during compilation that results finally a binary BASIC file. These preprocessors ask the ScriptBasic interpreter to unload the preprocessor before the actual execution of the program starts as they have nothing to do with the actual, executed program.
+<P>
+<LI> Debugger preprocessors
+<P>
+Debugger preprocessor collects symbolic information during the compilation phase and alters the hook functions <font size="3"><tt>HOOK_ExecBefore</tt></font>, <font size="3"><tt>HOOK_ExecAfter</tt></font>, <font size="3"><tt>HOOK_ExecCall</tt></font>, <font size="3"><tt>HOOK_ExecReturn</tt></font>.
+<P>
+During execution these "preprocessors" remain in the process and execute the functions that the altered hook pointers point to performing debugging, profiling or some other development support features.
+<P>
+The sample preprocessor <font size="3"><tt>dbg</tt></font> does this implementing a command line debugger.
+<P>
+<LI> Mixed preprocessors
+<P>
+It is possible, though I see no reason to write a preprocessor that belongs to both categories above.
+<P>
+</UL>
+<P>
+Altering preprocessors are BASIC program specific and are usually invoked because the program contains a line <font size="3"><tt>preprocess</tt></font>.
+<P>
+Debugger type preprocessors are loaded the way of the execution of the program requests it. For example the user uses the option `<font size="3"><tt>-i</tt></font>'. In this case the command line version of ScriptBasic does not use cache file to ensure that the program really does using the preprocessor and starts the debugger, for example.<HR>
+<A HREF="devguide_5.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

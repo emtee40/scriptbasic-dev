@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: cft_EnumFirst()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: cft_EnumFirst()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: cft_EnumFirst()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>cft_EnumFirst()</H1>
+<A HREF="devguide_2.7.1.7.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.9.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Whenever you need to enumerate the sub-keys of a key you have to
+get the node associated with the key (see <a href="devguide_2.7.1.6.htm">cft_GetEx</A> or <a href="devguide_2.7.1.5.htm">cft_FindNode</A>).
+When you have the node associated with the key you can get the node of the
+first sub-key calling this function.
+<P>
+The function needs the node id <font size="3"><tt>lNodeId</tt></font> of the key for which
+we need to enumerate the sub keys and returns the node id of the
+first sub key.
+<P>
+If the key is associated with a leaf node the function returns zero.
+<P>
+If the key is associated with a branch node that has no sub-keys the
+function returns zero.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+CFT_NODE cft_EnumFirst(ptConfigTree pCT,
+                       CFT_NODE lNodeId
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.7.1.7.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.9.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

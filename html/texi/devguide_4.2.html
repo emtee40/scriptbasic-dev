@@ -1,0 +1,155 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 4.2. A Simple Sample Module</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: A Simple Sample Module">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: A Simple Sample Module">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_4.html">4. Extension Modules</A><BR>
+</UL>
+</UL>
+<P>
+<H1>4.2. A Simple Sample Module</H1>
+<A HREF="devguide_4.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.3.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+After you have got a slight overview how ScriptBasic handles the modules get a jump-start looking at the simplest sample module <font size="3"><tt>trial.c</tt></font>!
+<P>
+This module was the very first module the developers wrote to test the module handling functionality of ScriptBasic. This does almost nothing, but prints out some trace messages so that you can see how the different functions are called in the module. There is only one function in this module that the basic code can call. This is trial. This function increments a long value and returns the actual value of this state variable.
+<P>
+Here is the whole code:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+#include &lt;stdio.h&gt;
+<P>
+#include "../../basext.h"
+<P>
+besVERSION_NEGOTIATE
+<P>
+  printf("The function bootmodu was started and the requested version is %d\n",Version);
+  printf("The variation is: %s\n",pszVariation);
+  printf("We are returning accepted version %d\n",(int)INTERFACE_VERSION);
+<P>
+  return (int)INTERFACE_VERSION;
+<P>
+besEND
+<P>
+besSUB_START
+  long *pL;
+<P>
+  besMODULEPOINTER = besALLOC(sizeof(long));
+  if( besMODULEPOINTER == NULL )return 0;
+  pL = (long *)besMODULEPOINTER;
+  *pL = 0L;
+<P>
+  printf("The function bootmodu was started.\n");
+<P>
+besEND
+<P>
+
+besSUB_FINISH
+  printf("The function finimodu was started.\n");
+besEND
+<P>
+besFUNCTION(trial)
+<P>
+  long *pL;
+<P>
+  printf("Function trial was started...\n");
+  pL = (long *)besMODULEPOINTER;
+  (*pL)++;
+  besRETURNVALUE = besNEWMORTALLONG;
+  LONGVALUE(besRETURNVALUE) = *pL;
+<P>
+  printf("Module directory is %s\n",besCONFIG("module"));
+  printf("dll extension is %s\n",besCONFIG("dll"));
+  printf("include directory is %s\n",besCONFIG("include"));
+<P>
+besEND
+<P>
+besCOMMAND(iff)
+  NODE nItem;
+  VARIABLE Op1;
+  long ConditionValue;
+<P>
+
+  USE_CALLER_MORTALS;
+<P>
+  /* evaluate the parameter */
+  nItem = besPARAMETERLIST;
+  if( ! nItem ){
+    RESULT = NULL;
+    RETURN;
+    }
+  Op1 = besEVALUATEEXPRESSION(CAR(nItem));
+  ASSERTOKE;
+<P>
+  if( Op1 == NULL )ConditionValue = 0;
+  else{
+    Op1 = besCONVERT2LONG(Op1);
+    ConditionValue = LONGVALUE(Op1);
+    }
+<P>
+  if( ! ConditionValue )
+    nItem = CDR(nItem);
+<P>
+  if( ! nItem ){
+    RESULT = NULL;
+    RETURN;
+    }
+  nItem = CDR(nItem);
+<P>
+  RESULT = besEVALUATEEXPRESSION(CAR(nItem));
+  ASSERTOKE;
+  
+  RETURN;
+besEND_COMMAND
+</PRE></FONT>
+<P>
+
+<P>
+As you can see there is a lot of code hidden behind the macros. You can not see <font size="3"><tt>versmodu</tt></font>, <font size="3"><tt>bootmodu</tt></font> or <font size="3"><tt>finimodu</tt></font>, because they are implemented using the macro <font size="3"><tt>besVERSION_NEGOTIATE</tt></font>, <font size="3"><tt>besSUB_START</tt></font> and <font size="3"><tt>bes_SUB_FINISH</tt></font>. These macros are provided in the header file `<font size="3"><tt>basext.h</tt></font>', along with other type definitions and include statements that are needed to compile a module. To have a deeper understanding feel free to have a look at the file `<font size="3"><tt>basext.c</tt></font>' containing the source for <font size="3"><tt>basext.h</tt></font>.
+<P>
+All the macros defined in the header file for the extensions start with the three letters <font size="3"><tt>bes</tt></font>. These stand for <font size="3"><tt>b</tt></font>asic <font size="3"><tt>e</tt></font>xtension <font size="3"><tt>s</tt></font>upport.
+<P>
+The version negotiation function prototype and function start is created using the macro <font size="3"><tt>besVERSION_NEGOTIATE</tt></font>. This macro generates the function head with the parameters named <font size="3"><tt>Version</tt></font>, <font size="3"><tt>pszVariation</tt></font> and <font size="3"><tt>ppModuleInternal</tt></font>. The accepted version is returned using the macro <font size="3"><tt>INTERFACE_VERSION</tt></font>. The reason to use this macro is to ease maintainability.
+<P>
+The current version of the interface is 10 (or more). Later interfaces may probably support more callback interface functions, but it is unlikely that the interfaces become incompatible on the source level. When the module is recompiled in an environment that uses a newer interface it will automatically return the interface version that it really supports. If the interfaces become incompatible in source level the compilation phase will most probably fail.
+<P>
+The <font size="3"><tt>bootmodu</tt></font> function is created using the macro <font size="3"><tt>besSUB_START</tt></font>. In this example this allocates a state variable, which is a long. The memory allocation is performed using a callback function and with the aid of the macro <font size="3"><tt>besALLOC</tt></font>.
+<P>
+Here we can stop a bit and examine, how the callback functions work. The ScriptBasic interpreter has several functions that are available for the extensions. To access these functions the module should know the entry point (address) of the functions. To get the entry points ScriptBasic creates a table of the callback functions. A pointer to this table is passed as the first argument to each module function except the version negotiation function <font size="3"><tt>versmodu</tt></font>. In C syntax this table is a <font size="3"><tt>struct</tt></font> named <font size="3"><tt>SupportTable</tt></font>.
+<P>
+There are numerous functions that an extension can and should use to communicate with ScriptBasic. One of the most important functions is memory allocation. The field of the <font size="3"><tt>SupportTable</tt></font> named <font size="3"><tt>Alloc</tt></font> is initialized to point to the function <font size="3"><tt>alloc_Alloc</tt></font> defined in the file `<font size="3"><tt>myalloc.c</tt></font>'. This allocation function needs the size of the needed memory block and a pointer to a so-called memory segment. The memory segment pointer to be used is available via the <font size="3"><tt>SupportTable</tt></font>. The first member of the table is a pointer to another table containing the current interpreter execution environment. This environment is also a &amp;code{struct} and contains the memory segment pointer.
+<P>
+This is a bit complicated and you can get confused. To ease coding use the macros available. These will hide all these nifty details. However know that these macros assume that you use them together. In other words <font size="3"><tt>besALLOC</tt></font> can only be used in a function when the function head was created using the macro <font size="3"><tt>besFUNCTION</tt></font> (or <font size="3"><tt>besSUB_START</tt></font> or <font size="3"><tt>besSUB_FINISH</tt></font> in case of <font size="3"><tt>bootmodu</tt></font> and <font size="3"><tt>finimodu</tt></font>). This is because the macros assume certain variable names in the arguments.
+<P>
+The function <font size="3"><tt>finimodu</tt></font> is created using the macro <font size="3"><tt>besSUB_FINISH</tt></font>. This function in this example does nothing but prints a test message. There is no need to release the memory allocated using <font size="3"><tt>besALLOC</tt></font>, because the memory is administered to belong to the segment of the interpreter execution environment and is released by the interpreter before the exits.
+<P>
+The real function of the module is named trial and is defined using the macro <font size="3"><tt>besFUNCTION</tt></font>. It gets the state variable via the module pointer. The module pointer is always passed to the module functions as the second argument. The functions can access it using the macro <font size="3"><tt>besMODULEPOINTER</tt></font>. Using this macro it looks like a local variable.
+<P>
+
+To return the counter value the function needs a basic variable. This variable should hold a long value and should be mortal. This is created using the macro <font size="3"><tt>besNEWMORTALLONG</tt></font>. The variable is actually a <font size="3"><tt>struct</tt></font> and the field containing the long value can be accessed using the macro <font size="3"><tt>LONGVALUE</tt></font>.
+<P>
+
+<P>
+You can notice that this macro does not start with the letters <font size="3"><tt>bes</tt></font>. The reason is that this macro comes from a different header file `<font size="3"><tt>command.h</tt></font>'. This header file is included by `<font size="3"><tt>basext.h</tt></font>' and the definitions in that file are mainly for implementing internal commands linked statically. However some of the macros can be used for dynamic modules as well.
+<P>
+The function trial finally writes out some configuration data. On one hand this is another example of a callback function used via a macro named <font size="3"><tt>besCONFIG</tt></font>. But this is more important than that. This shows you that the modules can access any configuration data. 
+<P>
+There is no need for any module to process separate configuration files. ScriptBasic reads the configuration file and stores each key and value pair it finds. It stores even those that do not mean anything for ScriptBasic itself, because they may be meaningful and needed by modules. The example module trial does not have its own data, therefore we print out the configuration data that ScriptBasic surely has.<HR>
+<A HREF="devguide_4.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.3.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

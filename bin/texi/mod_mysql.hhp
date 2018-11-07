@@ -1,0 +1,46 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=mod_mysql.chm
+Contents file=mod_mysql.hhc
+Default topic=mod_mysql_title.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=mod_mysql.hhk
+Language=0x409 English (United States)
+Title=Using the module MySQL
+
+[FILES]
+mod_mysql_title.htm
+mod_mysql_1.htm
+mod_mysql_2.htm
+mod_mysql_2.0.1.htm
+mod_mysql_2.0.2.htm
+mod_mysql_3.htm
+mod_mysql_4.htm
+mod_mysql_4.1.htm
+mod_mysql_4.2.htm
+mod_mysql_4.3.htm
+mod_mysql_4.4.htm
+mod_mysql_4.5.htm
+mod_mysql_4.6.htm
+mod_mysql_4.7.htm
+mod_mysql_4.8.htm
+mod_mysql_4.9.htm
+mod_mysql_4.10.htm
+mod_mysql_4.11.htm
+mod_mysql_4.12.htm
+mod_mysql_4.13.htm
+mod_mysql_4.14.htm
+mod_mysql_4.15.htm
+mod_mysql_4.16.htm
+mod_mysql_4.17.htm
+mod_mysql_4.18.htm
+mod_mysql_4.19.htm
+mod_mysql_4.20.htm
+mod_mysql_4.21.htm
+mod_mysql_4.22.htm
+mod_mysql_4.23.htm
+mod_mysql_4.24.htm
+mod_mysql_5.htm
+mod_mysql_6.htm
+[INFOTYPES]

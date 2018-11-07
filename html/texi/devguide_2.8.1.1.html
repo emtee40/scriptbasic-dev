@@ -1,0 +1,50 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.8.1.1. Multi-thread use of this module</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Multi-thread use of this module">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Multi-thread use of this module">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.8.html">2.8. Memory Allocation</A><BR>
+<UL><a href="devguide_2.8.1.html">2.8.1. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.8.1.1. Multi-thread use of this module</H1>
+<A HREF="devguide_2.8.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+You can use this module in multi threaded environment. In this case the module depend on the module <font size="3"><tt>thread.c</tt></font>
+which contains the thread and mutex interface functions that call the operating system thread and mutex functions
+on UNIX and on Windows NT.
+<P>
+In single thread environment there is no need to use the locking mechanism. To get a single-thread version either you can
+edit this file (<font size="3"><tt>myalloc.c</tt></font>) or compile is using the option <font size="3"><tt>-DMTHREAD=0</tt></font> The default compilation is multi threaded.
+<P>
+Multi thread implementation has two levels. One is that the subroutines implemented in this module call
+the appropriate locking functions to ensure that no two concurrent threads access and modify the same data at a time
+and thus assure that the data of the module is correct. The other level is that you can tell the module that the
+underlying memory allocation and deallocation modules are mot thread safe. There are global variables
+implementing global mutexes that are locked and unlocked if you use the module that way. This can be useful in some
+environment where <font size="3"><tt>malloc</tt></font> and <font size="3"><tt>free</tt></font> are not thread safe.
+<P>
+Note that this should not be the case if you call <font size="3"><tt>malloc</tt></font> and <font size="3"><tt>free</tt></font> or you linked the wrong versio of libc.
+However you may use a non-thread safe debug layer for example the one that ScriptBasic uses.<HR>
+<A HREF="devguide_2.8.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

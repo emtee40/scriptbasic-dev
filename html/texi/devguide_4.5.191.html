@@ -1,0 +1,48 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 4.5.191. besASSERT_COMMAND</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besASSERT_COMMAND">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besASSERT_COMMAND">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_4.html">4. Extension Modules</A><BR>
+<UL><a href="devguide_4.5.html">4.5. Module Support Functions</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>4.5.191. besASSERT_COMMAND</H1>
+<A HREF="devguide_4.5.190.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.192.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Use this macro to check inside a besCOMMAND that the command was called
+as a command. If the include file declares the function as
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+declare sub XXX alias "xxx" lib "library"
+</PRE></FONT>
+<P>
+instead of
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+declare command XXX alias "xxx" lib "library"
+</PRE></FONT>
+<P>
+then you can not execute the rest of the code safely. This macro returns
+with the error code <font size="3"><tt>COMMAND_ERROR_BAD_CALL</tt></font> if the function was
+declared the wrong way.<HR>
+<A HREF="devguide_4.5.190.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.192.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

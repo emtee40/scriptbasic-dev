@@ -1,0 +1,874 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Table of Contents</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Table of Contents">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Table of Contents">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<H1>ScriptBasic Developers Manual</H1>
+<H3>by Peter Verhas</H3>
+<H2>Table of Contents</H2>
+<UL>
+<A HREF="devguide_1.html">1. Introduction</A><BR>
+<UL>
+<A HREF="devguide_1.1.html">1.1. Chapters</A><BR>
+</UL>
+<A HREF="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL>
+<A HREF="devguide_2.1.html">2.1. External Preprocessor</A><BR>
+<UL>
+<A HREF="devguide_2.1.1.html">2.1.1. External preprocessor handling</A><BR>
+<A HREF="devguide_2.1.2.html">2.1.2. Execute external preprocessors</A><BR>
+</UL>
+<A HREF="devguide_2.2.html">2.2. Reader</A><BR>
+<UL>
+<A HREF="devguide_2.2.1.html">2.2.1. reader_IncreaseBuffer()</A><BR>
+<A HREF="devguide_2.2.2.html">2.2.2. reader_gets()</A><BR>
+<A HREF="devguide_2.2.3.html">2.2.3. reader_ReadLines()</A><BR>
+<A HREF="devguide_2.2.4.html">2.2.4. reader_ReadLines_r()</A><BR>
+<A HREF="devguide_2.2.5.html">2.2.5. reader_ProcessIncludeFiles()</A><BR>
+<A HREF="devguide_2.2.6.html">2.2.6. reader_LoadPreprocessors()</A><BR>
+<A HREF="devguide_2.2.7.html">2.2.7. reader_StartIteration()</A><BR>
+<A HREF="devguide_2.2.8.html">2.2.8. reader_NextLine()</A><BR>
+<A HREF="devguide_2.2.9.html">2.2.9. reader_NextCharacter()</A><BR>
+<A HREF="devguide_2.2.10.html">2.2.10. reader_FileName()</A><BR>
+<A HREF="devguide_2.2.11.html">2.2.11. reader_LineNumber()</A><BR>
+<A HREF="devguide_2.2.12.html">2.2.12. reader_InitStructure()</A><BR>
+<A HREF="devguide_2.2.13.html">2.2.13. reader_RelateFile()</A><BR>
+<A HREF="devguide_2.2.14.html">2.2.14. reader_DumpLines()</A><BR>
+</UL>
+<A HREF="devguide_2.3.html">2.3. Lexer</A><BR>
+<UL>
+<A HREF="devguide_2.3.1.html">2.3.1. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.3.1.1.html">2.3.1.1. lex_SymbolicName()</A><BR>
+<A HREF="devguide_2.3.1.2.html">2.3.1.2. lex_HandleContinuationLines()</A><BR>
+<A HREF="devguide_2.3.1.3.html">2.3.1.3. lex_RemoveSkipSymbols()</A><BR>
+<A HREF="devguide_2.3.1.4.html">2.3.1.4. lex_RemoveComments()</A><BR>
+<A HREF="devguide_2.3.1.5.html">2.3.1.5. lex_NextLexeme()</A><BR>
+<A HREF="devguide_2.3.1.6.html">2.3.1.6. lex_SavePosition()</A><BR>
+<A HREF="devguide_2.3.1.7.html">2.3.1.7. lex_RestorePosition()</A><BR>
+<A HREF="devguide_2.3.1.8.html">2.3.1.8. lex_StartIteration()</A><BR>
+<A HREF="devguide_2.3.1.9.html">2.3.1.9. lex_EOF()</A><BR>
+<A HREF="devguide_2.3.1.10.html">2.3.1.10. lex_Type()</A><BR>
+<A HREF="devguide_2.3.1.11.html">2.3.1.11. lex_Double()</A><BR>
+<A HREF="devguide_2.3.1.12.html">2.3.1.12. lex_String()</A><BR>
+<A HREF="devguide_2.3.1.13.html">2.3.1.13. lex_StrLen()</A><BR>
+<A HREF="devguide_2.3.1.14.html">2.3.1.14. lex_Long()</A><BR>
+<A HREF="devguide_2.3.1.15.html">2.3.1.15. lex_LineNumber()</A><BR>
+<A HREF="devguide_2.3.1.16.html">2.3.1.16. lex_FileName()</A><BR>
+<A HREF="devguide_2.3.1.17.html">2.3.1.17. lex_XXX()</A><BR>
+<A HREF="devguide_2.3.1.18.html">2.3.1.18. lex_Finish()</A><BR>
+<A HREF="devguide_2.3.1.19.html">2.3.1.19. lex_DumpLexemes()</A><BR>
+<A HREF="devguide_2.3.1.20.html">2.3.1.20. lex_ReadInput()</A><BR>
+<A HREF="devguide_2.3.1.21.html">2.3.1.21. lex_InitStructure()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.4.html">2.4. Syntax Analyzer</A><BR>
+<UL>
+<A HREF="devguide_2.4.1.html">2.4.1. Name Space</A><BR>
+<A HREF="devguide_2.4.2.html">2.4.2. Expression</A><BR>
+<A HREF="devguide_2.4.3.html">2.4.3. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.4.3.1.html">2.4.3.1. What is an expression in ScriptBasic</A><BR>
+<A HREF="devguide_2.4.3.2.html">2.4.3.2. ex_DumpVariables()</A><BR>
+<A HREF="devguide_2.4.3.3.html">2.4.3.3. expression_PushNameSpace()</A><BR>
+<A HREF="devguide_2.4.3.4.html">2.4.3.4. ex_CheckUndefinedLabels()</A><BR>
+<A HREF="devguide_2.4.3.5.html">2.4.3.5. ex_CleanNameSpaceStack()</A><BR>
+<A HREF="devguide_2.4.3.6.html">2.4.3.6. expression_PopNameSpace()</A><BR>
+<A HREF="devguide_2.4.3.7.html">2.4.3.7. ex_PushWaitingLabel()</A><BR>
+<A HREF="devguide_2.4.3.8.html">2.4.3.8. ex_PopWaitingLabel()</A><BR>
+<A HREF="devguide_2.4.3.9.html">2.4.3.9. _ex_PushLabel()</A><BR>
+<A HREF="devguide_2.4.3.10.html">2.4.3.10. _ex_PopLabel()</A><BR>
+<A HREF="devguide_2.4.3.11.html">2.4.3.11. _ex_CleanLabelStack()</A><BR>
+<A HREF="devguide_2.4.3.12.html">2.4.3.12. Some NOTE on SymbolXXX functions</A><BR>
+<A HREF="devguide_2.4.3.13.html">2.4.3.13. _new_SymbolLABEL()</A><BR>
+<A HREF="devguide_2.4.3.14.html">2.4.3.14. _new_SymbolVAR()</A><BR>
+<A HREF="devguide_2.4.3.15.html">2.4.3.15. _new_SymbolUF()</A><BR>
+<A HREF="devguide_2.4.3.16.html">2.4.3.16. _new_eNODE()</A><BR>
+<A HREF="devguide_2.4.3.17.html">2.4.3.17. _new_eNODE_l()</A><BR>
+<A HREF="devguide_2.4.3.18.html">2.4.3.18. ex_free()</A><BR>
+<A HREF="devguide_2.4.3.19.html">2.4.3.19. ex_init()</A><BR>
+<A HREF="devguide_2.4.3.20.html">2.4.3.20. ex_CleanNamePath()</A><BR>
+<A HREF="devguide_2.4.3.21.html">2.4.3.21. ex_ConvertName()</A><BR>
+<A HREF="devguide_2.4.3.22.html">2.4.3.22. ex_IsBFun()</A><BR>
+<A HREF="devguide_2.4.3.23.html">2.4.3.23. ex_IsUnop()</A><BR>
+<A HREF="devguide_2.4.3.24.html">2.4.3.24. ex_IsBinop()</A><BR>
+<A HREF="devguide_2.4.3.25.html">2.4.3.25. ex_LeftValueList()</A><BR>
+<A HREF="devguide_2.4.3.26.html">2.4.3.26. ex_ExpressionList()</A><BR>
+<A HREF="devguide_2.4.3.27.html">2.4.3.27. ex_Local()</A><BR>
+<A HREF="devguide_2.4.3.28.html">2.4.3.28. ex_LocalList()</A><BR>
+<A HREF="devguide_2.4.3.29.html">2.4.3.29. ex_Global()</A><BR>
+<A HREF="devguide_2.4.3.30.html">2.4.3.30. ex_GlobalList()</A><BR>
+<A HREF="devguide_2.4.3.31.html">2.4.3.31. ex_LookupUserFunction()</A><BR>
+<A HREF="devguide_2.4.3.32.html">2.4.3.32. ex_LookupGlobalVariable</A><BR>
+<A HREF="devguide_2.4.3.33.html">2.4.3.33. ex_LookupLocallyDeclaredGlobalVariable</A><BR>
+<A HREF="devguide_2.4.3.34.html">2.4.3.34. ex_LookupLocalVariable</A><BR>
+<A HREF="devguide_2.4.3.35.html">2.4.3.35. ex_Tag</A><BR>
+<A HREF="devguide_2.4.3.36.html">2.4.3.36. ex_Expression_i</A><BR>
+<A HREF="devguide_2.4.3.37.html">2.4.3.37. ex_Expression_r</A><BR>
+<A HREF="devguide_2.4.3.38.html">2.4.3.38. ex_IsSymbolValidLval(pEx)</A><BR>
+<A HREF="devguide_2.4.3.39.html">2.4.3.39. ex_LeftValue</A><BR>
+<A HREF="devguide_2.4.3.40.html">2.4.3.40. ex_PredeclareGlobalLongConst()</A><BR>
+<A HREF="devguide_2.4.3.41.html">2.4.3.41. ex_IsCommandThis</A><BR>
+<A HREF="devguide_2.4.3.42.html">2.4.3.42. ex_Command_r()</A><BR>
+<A HREF="devguide_2.4.3.43.html">2.4.3.43. ex_Command_l()</A><BR>
+<A HREF="devguide_2.4.3.44.html">2.4.3.44. ex_Pragma</A><BR>
+<A HREF="devguide_2.4.3.45.html">2.4.3.45. ex_IsCommandCALL()</A><BR>
+<A HREF="devguide_2.4.3.46.html">2.4.3.46. ex_IsCommandOPEN()</A><BR>
+<A HREF="devguide_2.4.3.47.html">2.4.3.47. ex_IsCommandSLIF()</A><BR>
+<A HREF="devguide_2.4.3.48.html">2.4.3.48. ex_IsCommandIF()</A><BR>
+<A HREF="devguide_2.4.3.49.html">2.4.3.49. ex_IsCommandLET()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.5.html">2.5. Builder</A><BR>
+<UL>
+<A HREF="devguide_2.5.1.html">2.5.1. Node Structure</A><BR>
+<A HREF="devguide_2.5.2.html">2.5.2. Binary File Format</A><BR>
+<A HREF="devguide_2.5.3.html">2.5.3. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.5.3.1.html">2.5.3.1. The structure of the string table</A><BR>
+<A HREF="devguide_2.5.3.2.html">2.5.3.2. build_AllocateStringTable()</A><BR>
+<A HREF="devguide_2.5.3.3.html">2.5.3.3. build_StringIndex()</A><BR>
+<A HREF="devguide_2.5.3.4.html">2.5.3.4. build_Build_l()</A><BR>
+<A HREF="devguide_2.5.3.5.html">2.5.3.5. build_Build_r()</A><BR>
+<A HREF="devguide_2.5.3.6.html">2.5.3.6. build_Build()</A><BR>
+<A HREF="devguide_2.5.3.7.html">2.5.3.7. build_MagicCode()</A><BR>
+<A HREF="devguide_2.5.3.8.html">2.5.3.8. build_SaveCCode()</A><BR>
+<A HREF="devguide_2.5.3.9.html">2.5.3.9. build_SaveCorePart()</A><BR>
+<A HREF="devguide_2.5.3.10.html">2.5.3.10. build_SaveCore()</A><BR>
+<A HREF="devguide_2.5.3.11.html">2.5.3.11. build_SaveCode()</A><BR>
+<A HREF="devguide_2.5.3.12.html">2.5.3.12. build_SaveECode()</A><BR>
+<A HREF="devguide_2.5.3.13.html">2.5.3.13. build_GetExeCodeOffset()</A><BR>
+<A HREF="devguide_2.5.3.14.html">2.5.3.14. build_LoadCore()</A><BR>
+<A HREF="devguide_2.5.3.15.html">2.5.3.15. build_LoadCodeWithOffset()</A><BR>
+<A HREF="devguide_2.5.3.16.html">2.5.3.16. build_LoadCode()</A><BR>
+<A HREF="devguide_2.5.3.17.html">2.5.3.17. build_IsFileBinaryFormat()</A><BR>
+<A HREF="devguide_2.5.3.18.html">2.5.3.18. build_pprint()</A><BR>
+<A HREF="devguide_2.5.3.19.html">2.5.3.19. build_CreateFTable()</A><BR>
+<A HREF="devguide_2.5.3.20.html">2.5.3.20. build_CreateVTable()</A><BR>
+<A HREF="devguide_2.5.3.21.html">2.5.3.21. build_LookupFunctionByName()</A><BR>
+<A HREF="devguide_2.5.3.22.html">2.5.3.22. build_LookupVariableByName()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.6.html">2.6. Executor</A><BR>
+<UL>
+<A HREF="devguide_2.6.1.html">2.6.1. Command parameters</A><BR>
+<A HREF="devguide_2.6.2.html">2.6.2. Instrunction parameters</A><BR>
+<A HREF="devguide_2.6.3.html">2.6.3. Finalizer function</A><BR>
+<A HREF="devguide_2.6.4.html">2.6.4. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.6.4.1.html">2.6.4.1. execute_GetCommandByName()</A><BR>
+<A HREF="devguide_2.6.4.2.html">2.6.4.2. execute_CopyCommandTable()</A><BR>
+<A HREF="devguide_2.6.4.3.html">2.6.4.3. execute_InitStructure()</A><BR>
+<A HREF="devguide_2.6.4.4.html">2.6.4.4. execute_ReInitStructure()</A><BR>
+<A HREF="devguide_2.6.4.5.html">2.6.4.5. execute_Execute_r()</A><BR>
+<A HREF="devguide_2.6.4.6.html">2.6.4.6. execute_InitExecute()</A><BR>
+<A HREF="devguide_2.6.4.7.html">2.6.4.7. execute_FinishExecute()</A><BR>
+<A HREF="devguide_2.6.4.8.html">2.6.4.8. execute_Execute()</A><BR>
+<A HREF="devguide_2.6.4.9.html">2.6.4.9. execute_ExecuteFunction()</A><BR>
+<A HREF="devguide_2.6.4.10.html">2.6.4.10. execute_Evaluate()</A><BR>
+<A HREF="devguide_2.6.4.11.html">2.6.4.11. execute_LeftValue()</A><BR>
+<A HREF="devguide_2.6.4.12.html">2.6.4.12. execute_EvaluateArray()</A><BR>
+<A HREF="devguide_2.6.4.13.html">2.6.4.13. execute_EvaluateSarray()</A><BR>
+<A HREF="devguide_2.6.4.14.html">2.6.4.14. execute_LeftValueArray()</A><BR>
+<A HREF="devguide_2.6.4.15.html">2.6.4.15. execute_LeftValueSarray()</A><BR>
+<A HREF="devguide_2.6.4.16.html">2.6.4.16. execute_Convert2String()</A><BR>
+<A HREF="devguide_2.6.4.17.html">2.6.4.17. execute_Convert2Long()</A><BR>
+<A HREF="devguide_2.6.4.18.html">2.6.4.18. execute_Convert2LongS()</A><BR>
+<A HREF="devguide_2.6.4.19.html">2.6.4.19. execute_Convert2Double()</A><BR>
+<A HREF="devguide_2.6.4.20.html">2.6.4.20. execute_Convert2DoubleS()</A><BR>
+<A HREF="devguide_2.6.4.21.html">2.6.4.21. execute_Convert2Numeric()</A><BR>
+<A HREF="devguide_2.6.4.22.html">2.6.4.22. execute_Dereference()</A><BR>
+<A HREF="devguide_2.6.4.23.html">2.6.4.23. execute_DereferenceS()</A><BR>
+<A HREF="devguide_2.6.4.24.html">2.6.4.24. execute_GetDoubleValue()</A><BR>
+<A HREF="devguide_2.6.4.25.html">2.6.4.25. execute_GetLongValue()</A><BR>
+<A HREF="devguide_2.6.4.26.html">2.6.4.26. execute_IsStringInteger()</A><BR>
+<A HREF="devguide_2.6.4.27.html">2.6.4.27. execute_IsInteger()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.7.html">2.7. Configuration File Handling</A><BR>
+<UL>
+<A HREF="devguide_2.7.1.html">2.7.1. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.7.1.1.html">2.7.1.1. cft_init()</A><BR>
+<A HREF="devguide_2.7.1.2.html">2.7.1.2. cft_GetConfigFileName()</A><BR>
+<A HREF="devguide_2.7.1.3.html">2.7.1.3. cft_start()</A><BR>
+<A HREF="devguide_2.7.1.4.html">2.7.1.4. strmyeq()</A><BR>
+<A HREF="devguide_2.7.1.5.html">2.7.1.5. cft_FindNode()</A><BR>
+<A HREF="devguide_2.7.1.6.html">2.7.1.6. cft_GetEx()</A><BR>
+<A HREF="devguide_2.7.1.7.html">2.7.1.7. cft_GetString()</A><BR>
+<A HREF="devguide_2.7.1.8.html">2.7.1.8. cft_EnumFirst()</A><BR>
+<A HREF="devguide_2.7.1.9.html">2.7.1.9. cft_EnumNext()</A><BR>
+<A HREF="devguide_2.7.1.10.html">2.7.1.10. cft_GetKey()</A><BR>
+<A HREF="devguide_2.7.1.11.html">2.7.1.11. cft_ReadConfig()</A><BR>
+<A HREF="devguide_2.7.1.12.html">2.7.1.12. cft_WriteConfig()</A><BR>
+<A HREF="devguide_2.7.1.13.html">2.7.1.13. cft_DropConfig()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.8.html">2.8. Memory Allocation</A><BR>
+<UL>
+<A HREF="devguide_2.8.1.html">2.8.1. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.8.1.1.html">2.8.1.1. Multi-thread use of this module</A><BR>
+<A HREF="devguide_2.8.1.2.html">2.8.1.2. alloc_InitSegment()</A><BR>
+<A HREF="devguide_2.8.1.3.html">2.8.1.3. alloc_GlobalUseGlobalMutex()</A><BR>
+<A HREF="devguide_2.8.1.4.html">2.8.1.4. alloc_SegmentLimit()</A><BR>
+<A HREF="devguide_2.8.1.5.html">2.8.1.5. alloc_FreeSegment()</A><BR>
+<A HREF="devguide_2.8.1.6.html">2.8.1.6. alloc_FinishSegment()</A><BR>
+<A HREF="devguide_2.8.1.7.html">2.8.1.7. alloc_Alloc()</A><BR>
+<A HREF="devguide_2.8.1.8.html">2.8.1.8. alloc_Free()</A><BR>
+<A HREF="devguide_2.8.1.9.html">2.8.1.9. alloc_Merge()</A><BR>
+<A HREF="devguide_2.8.1.10.html">2.8.1.10. alloc_MergeAndFinish()</A><BR>
+<A HREF="devguide_2.8.1.11.html">2.8.1.11. alloc_InitStat()</A><BR>
+<A HREF="devguide_2.8.1.12.html">2.8.1.12. alloc_GlobalGetStat()</A><BR>
+<A HREF="devguide_2.8.1.13.html">2.8.1.13. alloc_GetStat()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.9.html">2.9. Variable Allocation</A><BR>
+<UL>
+<A HREF="devguide_2.9.1.html">2.9.1. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.9.1.1.html">2.9.1.1. memory_InitStructure()</A><BR>
+<A HREF="devguide_2.9.1.2.html">2.9.1.2. memory_RegisterType()</A><BR>
+<A HREF="devguide_2.9.1.3.html">2.9.1.3. memory_RegisterTypes()</A><BR>
+<A HREF="devguide_2.9.1.4.html">2.9.1.4. memory_DebugDump()</A><BR>
+<A HREF="devguide_2.9.1.5.html">2.9.1.5. memory_NewVariable()</A><BR>
+<A HREF="devguide_2.9.1.6.html">2.9.1.6. memory_ReleaseVariable()</A><BR>
+<A HREF="devguide_2.9.1.7.html">2.9.1.7. memory_NewString()</A><BR>
+<A HREF="devguide_2.9.1.8.html">2.9.1.8. memory_NewCString()</A><BR>
+<A HREF="devguide_2.9.1.9.html">2.9.1.9. memory_SetRef()</A><BR>
+<A HREF="devguide_2.9.1.10.html">2.9.1.10. memory_NewRef()</A><BR>
+<A HREF="devguide_2.9.1.11.html">2.9.1.11. memory_IsUndef()</A><BR>
+<A HREF="devguide_2.9.1.12.html">2.9.1.12. memory_Type()</A><BR>
+<A HREF="devguide_2.9.1.13.html">2.9.1.13. memory_SelfOrRealUndef()</A><BR>
+<A HREF="devguide_2.9.1.14.html">2.9.1.14. memory_NewUndef()</A><BR>
+<A HREF="devguide_2.9.1.15.html">2.9.1.15. memory_ReplaceVariable()</A><BR>
+<A HREF="devguide_2.9.1.16.html">2.9.1.16. memory_NewLong()</A><BR>
+<A HREF="devguide_2.9.1.17.html">2.9.1.17. memory_NewDouble()</A><BR>
+<A HREF="devguide_2.9.1.18.html">2.9.1.18. memory_CopyArray</A><BR>
+<A HREF="devguide_2.9.1.19.html">2.9.1.19. memory_NewArray()</A><BR>
+<A HREF="devguide_2.9.1.20.html">2.9.1.20. memory_ReDimArray()</A><BR>
+<A HREF="devguide_2.9.1.21.html">2.9.1.21. memory_CheckArrayIndex()</A><BR>
+<A HREF="devguide_2.9.1.22.html">2.9.1.22. memory_Mortalize()</A><BR>
+<A HREF="devguide_2.9.1.23.html">2.9.1.23. memory_Immortalize()</A><BR>
+<A HREF="devguide_2.9.1.24.html">2.9.1.24. memory_NewMortal()</A><BR>
+<A HREF="devguide_2.9.1.25.html">2.9.1.25. memory_DupImmortal()</A><BR>
+<A HREF="devguide_2.9.1.26.html">2.9.1.26. memory_DupVar()</A><BR>
+<A HREF="devguide_2.9.1.27.html">2.9.1.27. memory_DupMortalize()</A><BR>
+<A HREF="devguide_2.9.1.28.html">2.9.1.28. memory_ReleaseMortals()</A><BR>
+<A HREF="devguide_2.9.1.29.html">2.9.1.29. memory_DebugDumpVariable()</A><BR>
+<A HREF="devguide_2.9.1.30.html">2.9.1.30. memory_DebugDumpMortals()</A><BR>
+<A HREF="devguide_2.9.1.31.html">2.9.1.31. memory_NewMortalString()</A><BR>
+<A HREF="devguide_2.9.1.32.html">2.9.1.32. memory_NewMortalCString()</A><BR>
+<A HREF="devguide_2.9.1.33.html">2.9.1.33. memory_NewMortalLong()</A><BR>
+<A HREF="devguide_2.9.1.34.html">2.9.1.34. memory_NewMortalRef()</A><BR>
+<A HREF="devguide_2.9.1.35.html">2.9.1.35. memory_NewMortalDouble()</A><BR>
+<A HREF="devguide_2.9.1.36.html">2.9.1.36. memory_NewMortalArray()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.10.html">2.10. Error Reporting</A><BR>
+<UL>
+<A HREF="devguide_2.10.1.html">2.10.1. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.10.1.1.html">2.10.1.1. report_report()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.11.html">2.11. The Logger Module</A><BR>
+<UL>
+<A HREF="devguide_2.11.1.html">2.11.1. log_state()</A><BR>
+<A HREF="devguide_2.11.2.html">2.11.2. log_init()</A><BR>
+<A HREF="devguide_2.11.3.html">2.11.3. log_printf()</A><BR>
+<A HREF="devguide_2.11.4.html">2.11.4. log_shutdown()</A><BR>
+</UL>
+<A HREF="devguide_2.12.html">2.12. Hook Functions</A><BR>
+<UL>
+<A HREF="devguide_2.12.1.html">2.12.1. hook_Init</A><BR>
+<A HREF="devguide_2.12.2.html">2.12.2. hook_file_access</A><BR>
+<A HREF="devguide_2.12.3.html">2.12.3. hook_fopen</A><BR>
+<A HREF="devguide_2.12.4.html">2.12.4. hook_fclose</A><BR>
+<A HREF="devguide_2.12.5.html">2.12.5. hook_size</A><BR>
+<A HREF="devguide_2.12.6.html">2.12.6. hook_time_accessed</A><BR>
+<A HREF="devguide_2.12.7.html">2.12.7. hook_time_modified</A><BR>
+<A HREF="devguide_2.12.8.html">2.12.8. hook_time_created</A><BR>
+<A HREF="devguide_2.12.9.html">2.12.9. hook_isdir</A><BR>
+<A HREF="devguide_2.12.10.html">2.12.10. hook_isreg</A><BR>
+<A HREF="devguide_2.12.11.html">2.12.11. hook_fileexists</A><BR>
+<A HREF="devguide_2.12.12.html">2.12.12. hook_truncate</A><BR>
+<A HREF="devguide_2.12.13.html">2.12.13. hook_fgetc</A><BR>
+<A HREF="devguide_2.12.14.html">2.12.14. hook_ferror</A><BR>
+<A HREF="devguide_2.12.15.html">2.12.15. hook_fread</A><BR>
+<A HREF="devguide_2.12.16.html">2.12.16. hook_setmode</A><BR>
+<A HREF="devguide_2.12.17.html">2.12.17. hook_binmode</A><BR>
+<A HREF="devguide_2.12.18.html">2.12.18. hook_textmode</A><BR>
+<A HREF="devguide_2.12.19.html">2.12.19. hook_fwrite</A><BR>
+<A HREF="devguide_2.12.20.html">2.12.20. hook_fputc</A><BR>
+<A HREF="devguide_2.12.21.html">2.12.21. hook_flock</A><BR>
+<A HREF="devguide_2.12.22.html">2.12.22. hook_lock</A><BR>
+<A HREF="devguide_2.12.23.html">2.12.23. hook_feof</A><BR>
+<A HREF="devguide_2.12.24.html">2.12.24. hook_mkdir</A><BR>
+<A HREF="devguide_2.12.25.html">2.12.25. hook_rmdir</A><BR>
+<A HREF="devguide_2.12.26.html">2.12.26. hook_remove</A><BR>
+<A HREF="devguide_2.12.27.html">2.12.27. hook_deltree</A><BR>
+<A HREF="devguide_2.12.28.html">2.12.28. hook_MakeDirectory</A><BR>
+<A HREF="devguide_2.12.29.html">2.12.29. hook_opendir</A><BR>
+<A HREF="devguide_2.12.30.html">2.12.30. hook_readdir</A><BR>
+<A HREF="devguide_2.12.31.html">2.12.31. hook_closedir</A><BR>
+<A HREF="devguide_2.12.32.html">2.12.32. hook_sleep</A><BR>
+<A HREF="devguide_2.12.33.html">2.12.33. hook_curdir</A><BR>
+<A HREF="devguide_2.12.34.html">2.12.34. hook_chdir</A><BR>
+<A HREF="devguide_2.12.35.html">2.12.35. hook_chown</A><BR>
+<A HREF="devguide_2.12.36.html">2.12.36. hook_SetCreateTime</A><BR>
+<A HREF="devguide_2.12.37.html">2.12.37. hook_SetModifyTime</A><BR>
+<A HREF="devguide_2.12.38.html">2.12.38. hook_SetAccessTime</A><BR>
+<A HREF="devguide_2.12.39.html">2.12.39. hook_gethostname</A><BR>
+<A HREF="devguide_2.12.40.html">2.12.40. hook_gethost</A><BR>
+<A HREF="devguide_2.12.41.html">2.12.41. hook_tcpconnect</A><BR>
+<A HREF="devguide_2.12.42.html">2.12.42. hook_tcpsend</A><BR>
+<A HREF="devguide_2.12.43.html">2.12.43. hook_tcprecv</A><BR>
+<A HREF="devguide_2.12.44.html">2.12.44. hook_tcpclose</A><BR>
+<A HREF="devguide_2.12.45.html">2.12.45. hook_killproc</A><BR>
+<A HREF="devguide_2.12.46.html">2.12.46. hook_getowner</A><BR>
+<A HREF="devguide_2.12.47.html">2.12.47. hook_fcrypt</A><BR>
+<A HREF="devguide_2.12.48.html">2.12.48. hook_CreateProcess</A><BR>
+<A HREF="devguide_2.12.49.html">2.12.49. hook_CreateProcessEx</A><BR>
+<A HREF="devguide_2.12.50.html">2.12.50. hook_waitpid</A><BR>
+<A HREF="devguide_2.12.51.html">2.12.51. hook_CallScribaFunction</A><BR>
+</UL>
+<A HREF="devguide_2.13.html">2.13. Handle Pointers in External Modules Support Functions</A><BR>
+<UL>
+<A HREF="devguide_2.13.1.html">2.13.1. handle_GetHandle</A><BR>
+<A HREF="devguide_2.13.2.html">2.13.2. handle_GetPointer</A><BR>
+<A HREF="devguide_2.13.3.html">2.13.3. handle_FreeHandle</A><BR>
+<A HREF="devguide_2.13.4.html">2.13.4. handle_DestroyHandleArray</A><BR>
+</UL>
+<A HREF="devguide_2.14.html">2.14. Thread Support Functions</A><BR>
+<UL>
+<A HREF="devguide_2.14.1.html">2.14.1. thread_CreateThread</A><BR>
+<A HREF="devguide_2.14.2.html">2.14.2. thread_ExitThread</A><BR>
+<A HREF="devguide_2.14.3.html">2.14.3. thread_InitMutex</A><BR>
+<A HREF="devguide_2.14.4.html">2.14.4. thread_FinishMutex</A><BR>
+<A HREF="devguide_2.14.5.html">2.14.5. thread_LockMutex</A><BR>
+<A HREF="devguide_2.14.6.html">2.14.6. thread_UnlockMutex</A><BR>
+<A HREF="devguide_2.14.7.html">2.14.7. thread_shlckstry</A><BR>
+<A HREF="devguide_2.14.8.html">2.14.8. thread_InitLock</A><BR>
+<A HREF="devguide_2.14.9.html">2.14.9. thread_FinishLock</A><BR>
+<A HREF="devguide_2.14.10.html">2.14.10. thread_LockRead</A><BR>
+<A HREF="devguide_2.14.11.html">2.14.11. thread_LockWrite</A><BR>
+<A HREF="devguide_2.14.12.html">2.14.12. thread_UnlockRead</A><BR>
+<A HREF="devguide_2.14.13.html">2.14.13. thread_UnlockWrite</A><BR>
+</UL>
+<A HREF="devguide_2.15.html">2.15. Dynamic Library Handling Support Functions</A><BR>
+<UL>
+<A HREF="devguide_2.15.1.html">2.15.1. dynlolib_LoadLibrary</A><BR>
+<A HREF="devguide_2.15.2.html">2.15.2. dynlolib_FreeLibrary</A><BR>
+<A HREF="devguide_2.15.3.html">2.15.3. dynlolib_GetFunctionByName</A><BR>
+</UL>
+<A HREF="devguide_2.16.html">2.16. Other System Dependant Functions</A><BR>
+<UL>
+<A HREF="devguide_2.16.1.html">2.16.1. file_fopen</A><BR>
+<A HREF="devguide_2.16.2.html">2.16.2. file_fclose</A><BR>
+<A HREF="devguide_2.16.3.html">2.16.3. file_size</A><BR>
+<A HREF="devguide_2.16.4.html">2.16.4. file_time_accessed</A><BR>
+<A HREF="devguide_2.16.5.html">2.16.5. file_time_modified</A><BR>
+<A HREF="devguide_2.16.6.html">2.16.6. file_time_created</A><BR>
+<A HREF="devguide_2.16.7.html">2.16.7. file_isdir</A><BR>
+<A HREF="devguide_2.16.8.html">2.16.8. file_isreg</A><BR>
+<A HREF="devguide_2.16.9.html">2.16.9. file_exists</A><BR>
+<A HREF="devguide_2.16.10.html">2.16.10. file_truncate</A><BR>
+<A HREF="devguide_2.16.11.html">2.16.11. file_fgetc</A><BR>
+<A HREF="devguide_2.16.12.html">2.16.12. file_ferror</A><BR>
+<A HREF="devguide_2.16.13.html">2.16.13. file_fread</A><BR>
+<A HREF="devguide_2.16.14.html">2.16.14. file_fwrite</A><BR>
+<A HREF="devguide_2.16.15.html">2.16.15. file_fputc</A><BR>
+<A HREF="devguide_2.16.16.html">2.16.16. file_setmode</A><BR>
+<A HREF="devguide_2.16.17.html">2.16.17. file_binmode</A><BR>
+<A HREF="devguide_2.16.18.html">2.16.18. file_textmode</A><BR>
+<A HREF="devguide_2.16.19.html">2.16.19. file_flock</A><BR>
+<A HREF="devguide_2.16.20.html">2.16.20. file_lock</A><BR>
+<A HREF="devguide_2.16.21.html">2.16.21. file_feof</A><BR>
+<A HREF="devguide_2.16.22.html">2.16.22. file_mkdir</A><BR>
+<A HREF="devguide_2.16.23.html">2.16.23. file_rmdir</A><BR>
+<A HREF="devguide_2.16.24.html">2.16.24. file_remove</A><BR>
+<A HREF="devguide_2.16.25.html">2.16.25. file_deltree</A><BR>
+<A HREF="devguide_2.16.26.html">2.16.26. file_MakeDirectory</A><BR>
+<A HREF="devguide_2.16.27.html">2.16.27. file_opendir</A><BR>
+<A HREF="devguide_2.16.28.html">2.16.28. file_readdir</A><BR>
+<A HREF="devguide_2.16.29.html">2.16.29. file_closedir</A><BR>
+<A HREF="devguide_2.16.30.html">2.16.30. file_sleep</A><BR>
+<A HREF="devguide_2.16.31.html">2.16.31. file_curdir</A><BR>
+<A HREF="devguide_2.16.32.html">2.16.32. file_chdir</A><BR>
+<A HREF="devguide_2.16.33.html">2.16.33. file_chown</A><BR>
+<A HREF="devguide_2.16.34.html">2.16.34. file_getowner</A><BR>
+<A HREF="devguide_2.16.35.html">2.16.35. file_SetCreateTime</A><BR>
+<A HREF="devguide_2.16.36.html">2.16.36. file_SetModifyTime</A><BR>
+<A HREF="devguide_2.16.37.html">2.16.37. file_SetAccessTime</A><BR>
+<A HREF="devguide_2.16.38.html">2.16.38. file_gethostname</A><BR>
+<A HREF="devguide_2.16.39.html">2.16.39. file_gethost</A><BR>
+<A HREF="devguide_2.16.40.html">2.16.40. file_tcpconnect</A><BR>
+<A HREF="devguide_2.16.41.html">2.16.41. file_tcpsend</A><BR>
+<A HREF="devguide_2.16.42.html">2.16.42. file_tcprecv</A><BR>
+<A HREF="devguide_2.16.43.html">2.16.43. file_tcpclose</A><BR>
+<A HREF="devguide_2.16.44.html">2.16.44. file_killproc</A><BR>
+<A HREF="devguide_2.16.45.html">2.16.45. file_fcrypt</A><BR>
+<A HREF="devguide_2.16.46.html">2.16.46. file_CreateProcess</A><BR>
+<A HREF="devguide_2.16.47.html">2.16.47. file_CreateProcessEx</A><BR>
+<A HREF="devguide_2.16.48.html">2.16.48. file_waitpid</A><BR>
+</UL>
+<A HREF="devguide_2.17.html">2.17. Module Management</A><BR>
+<UL>
+<A HREF="devguide_2.17.1.html">2.17.1. modu_Init</A><BR>
+<A HREF="devguide_2.17.2.html">2.17.2. modu_Preload</A><BR>
+<A HREF="devguide_2.17.3.html">2.17.3. modu_GetModuleFunctionByName</A><BR>
+<A HREF="devguide_2.17.4.html">2.17.4. modu_GetStaticFunctionByName</A><BR>
+<A HREF="devguide_2.17.5.html">2.17.5. modu_LoadModule</A><BR>
+<A HREF="devguide_2.17.6.html">2.17.6. modu_GetFunctionByName</A><BR>
+<A HREF="devguide_2.17.7.html">2.17.7. modu_UnloadAllModules</A><BR>
+<A HREF="devguide_2.17.8.html">2.17.8. modu_UnloadModule</A><BR>
+<A HREF="devguide_2.17.9.html">2.17.9. modu_ShutdownModule</A><BR>
+</UL>
+<A HREF="devguide_2.18.html">2.18. Run Time Options Handling</A><BR>
+<UL>
+<A HREF="devguide_2.18.1.html">2.18.1. options_Reset</A><BR>
+<A HREF="devguide_2.18.2.html">2.18.2. options_Set</A><BR>
+<A HREF="devguide_2.18.3.html">2.18.3. options_Get</A><BR>
+<A HREF="devguide_2.18.4.html">2.18.4. options_GetR</A><BR>
+</UL>
+<A HREF="devguide_2.19.html">2.19. Simple Pattern Matching</A><BR>
+<UL>
+<A HREF="devguide_2.19.1.html">2.19.1. match_index</A><BR>
+<A HREF="devguide_2.19.2.html">2.19.2. InitSets</A><BR>
+<A HREF="devguide_2.19.3.html">2.19.3. ModifySet</A><BR>
+<A HREF="devguide_2.19.4.html">2.19.4. match</A><BR>
+<A HREF="devguide_2.19.5.html">2.19.5. count</A><BR>
+<A HREF="devguide_2.19.6.html">2.19.6. parameter</A><BR>
+<A HREF="devguide_2.19.7.html">2.19.7. size</A><BR>
+</UL>
+<A HREF="devguide_2.20.html">2.20. Symbol Table Handling</A><BR>
+<UL>
+<A HREF="devguide_2.20.1.html">2.20.1. sym_NewSymbolTable()</A><BR>
+<A HREF="devguide_2.20.2.html">2.20.2. sym_FreeSymbolTable()</A><BR>
+<A HREF="devguide_2.20.3.html">2.20.3. sym_TraverseSymbolTable()</A><BR>
+<A HREF="devguide_2.20.4.html">2.20.4. sym_LookupSymbol()</A><BR>
+<A HREF="devguide_2.20.5.html">2.20.5. sym_DeleteSymbol()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL>
+<A HREF="devguide_3.1.html">3.1. Object Oriented Model of ScriptBasic</A><BR>
+<A HREF="devguide_3.2.html">3.2. Sample Embedding</A><BR>
+<UL>
+<A HREF="devguide_3.2.1.html">3.2.1. Include Header Files</A><BR>
+<A HREF="devguide_3.2.2.html">3.2.2. Function main(), Variable Declarations</A><BR>
+<A HREF="devguide_3.2.3.html">3.2.3. Command Line handling</A><BR>
+<A HREF="devguide_3.2.4.html">3.2.4. Creating Program Object</A><BR>
+<A HREF="devguide_3.2.5.html">3.2.5. Loading Configuration</A><BR>
+<A HREF="devguide_3.2.6.html">3.2.6. Loading Internal Preprocessors</A><BR>
+<A HREF="devguide_3.2.7.html">3.2.7. Setting the File Name</A><BR>
+<A HREF="devguide_3.2.8.html">3.2.8. Using the Cache</A><BR>
+<A HREF="devguide_3.2.9.html">3.2.9. Run External Preprocessors</A><BR>
+<A HREF="devguide_3.2.10.html">3.2.10. Loading the Source Program</A><BR>
+<A HREF="devguide_3.2.11.html">3.2.11. Saving Binary File</A><BR>
+<A HREF="devguide_3.2.12.html">3.2.12. Execute the BASIC Program</A><BR>
+<A HREF="devguide_3.2.13.html">3.2.13. Destroying the Program Object</A><BR>
+</UL>
+<A HREF="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+<UL>
+<A HREF="devguide_3.3.1.html">3.3.1. scriba_new()</A><BR>
+<A HREF="devguide_3.3.2.html">3.3.2. scriba_destroy()</A><BR>
+<A HREF="devguide_3.3.3.html">3.3.3. scriba_NewSbData()</A><BR>
+<A HREF="devguide_3.3.4.html">3.3.4. scriba_InitSbData()</A><BR>
+<A HREF="devguide_3.3.5.html">3.3.5. scriba_UndefSbData()</A><BR>
+<A HREF="devguide_3.3.6.html">3.3.6. scriba_NewSbLong()</A><BR>
+<A HREF="devguide_3.3.7.html">3.3.7. scriba_NewSbDouble()</A><BR>
+<A HREF="devguide_3.3.8.html">3.3.8. scriba_NewSbUndef()</A><BR>
+<A HREF="devguide_3.3.9.html">3.3.9. scriba_NewSbString()</A><BR>
+<A HREF="devguide_3.3.10.html">3.3.10. scriba_NewSbBytes()</A><BR>
+<A HREF="devguide_3.3.11.html">3.3.11. scriba_DestroySbData()</A><BR>
+<A HREF="devguide_3.3.12.html">3.3.12. scriba_PurgeReaderMemory()</A><BR>
+<A HREF="devguide_3.3.13.html">3.3.13. scriba_PurgeLexerMemory()</A><BR>
+<A HREF="devguide_3.3.14.html">3.3.14. scriba_PurgeSyntaxerMemory()</A><BR>
+<A HREF="devguide_3.3.15.html">3.3.15. scriba_PurgeBuilderMemory()</A><BR>
+<A HREF="devguide_3.3.16.html">3.3.16. scriba_PurgePreprocessorMemory()</A><BR>
+<A HREF="devguide_3.3.17.html">3.3.17. scriba_PurgeExecuteMemory()</A><BR>
+<A HREF="devguide_3.3.18.html">3.3.18. scriba_SetFileName()</A><BR>
+<A HREF="devguide_3.3.19.html">3.3.19. scriba_GettingConfiguration()</A><BR>
+<A HREF="devguide_3.3.20.html">3.3.20. scriba_LoadConfiguration()</A><BR>
+<A HREF="devguide_3.3.21.html">3.3.21. scriba_GetConfigFileName()</A><BR>
+<A HREF="devguide_3.3.22.html">3.3.22. scriba_InheritConfiguration()</A><BR>
+<A HREF="devguide_3.3.23.html">3.3.23. scriba_InitModuleInterface()</A><BR>
+<A HREF="devguide_3.3.24.html">3.3.24. scriba_InheritModuleInterface()</A><BR>
+<A HREF="devguide_3.3.25.html">3.3.25. scriba_InheritExecuteObject()</A><BR>
+<A HREF="devguide_3.3.26.html">3.3.26. scriba_SetProcessSbObject()</A><BR>
+<A HREF="devguide_3.3.27.html">3.3.27. scriba_ShutdownMtModules()</A><BR>
+<A HREF="devguide_3.3.28.html">3.3.28. scriba_SetCgiFlag()</A><BR>
+<A HREF="devguide_3.3.29.html">3.3.29. scriba_SetReportFunction()</A><BR>
+<A HREF="devguide_3.3.30.html">3.3.30. scriba_SetReportPointer()</A><BR>
+<A HREF="devguide_3.3.31.html">3.3.31. scriba_SetStdin()</A><BR>
+<A HREF="devguide_3.3.32.html">3.3.32. scriba_SetStdout()</A><BR>
+<A HREF="devguide_3.3.33.html">3.3.33. scriba_SetEmbedPointer()</A><BR>
+<A HREF="devguide_3.3.34.html">3.3.34. scriba_SetEnvironment()</A><BR>
+<A HREF="devguide_3.3.35.html">3.3.35. scriba_LoadBinaryProgramWithOffset()</A><BR>
+<A HREF="devguide_3.3.36.html">3.3.36. scriba_LoadBinaryProgram()</A><BR>
+<A HREF="devguide_3.3.37.html">3.3.37. scriba_InheritBinaryProgram()</A><BR>
+<A HREF="devguide_3.3.38.html">3.3.38. scriba_LoadInternalPreprocessor()</A><BR>
+<A HREF="devguide_3.3.39.html">3.3.39. scriba_ReadSource()</A><BR>
+<A HREF="devguide_3.3.40.html">3.3.40. scriba_DoLexicalAnalysis()</A><BR>
+<A HREF="devguide_3.3.41.html">3.3.41. scriba_DoSyntaxAnalysis()</A><BR>
+<A HREF="devguide_3.3.42.html">3.3.42. scriba_BuildCode()</A><BR>
+<A HREF="devguide_3.3.43.html">3.3.43. scriba_IsFileBinaryFormat()</A><BR>
+<A HREF="devguide_3.3.44.html">3.3.44. scriba_GetCacheFileName()</A><BR>
+<A HREF="devguide_3.3.45.html">3.3.45. scriba_UseCacheFile()</A><BR>
+<A HREF="devguide_3.3.46.html">3.3.46. scriba_SaveCacheFile()</A><BR>
+<A HREF="devguide_3.3.47.html">3.3.47. scriba_RunExternalPreprocessor()</A><BR>
+<A HREF="devguide_3.3.48.html">3.3.48. scriba_SaveCode()</A><BR>
+<A HREF="devguide_3.3.49.html">3.3.49. scriba_SaveCCode()</A><BR>
+<A HREF="devguide_3.3.50.html">3.3.50. scriba_SaveECode()</A><BR>
+<A HREF="devguide_3.3.51.html">3.3.51. scriba_LoadSourceProgram()</A><BR>
+<A HREF="devguide_3.3.52.html">3.3.52. scriba_LoadProgramString()</A><BR>
+<A HREF="devguide_3.3.53.html">3.3.53. scriba_Run()</A><BR>
+<A HREF="devguide_3.3.54.html">3.3.54. scriba_NoRun()</A><BR>
+<A HREF="devguide_3.3.55.html">3.3.55. scriba_ResetVariables()</A><BR>
+<A HREF="devguide_3.3.56.html">3.3.56. scriba_Call()</A><BR>
+<A HREF="devguide_3.3.57.html">3.3.57. scriba_CallArg()</A><BR>
+<A HREF="devguide_3.3.58.html">3.3.58. scriba_DestroySbArgs()</A><BR>
+<A HREF="devguide_3.3.59.html">3.3.59. scriba_NewSbArgs()</A><BR>
+<A HREF="devguide_3.3.60.html">3.3.60. scriba_CallArgEx()</A><BR>
+<A HREF="devguide_3.3.61.html">3.3.61. scriba_LookupFunctionByName()</A><BR>
+<A HREF="devguide_3.3.62.html">3.3.62. scriba_LookupVariableByName()</A><BR>
+<A HREF="devguide_3.3.63.html">3.3.63. scriba_GetVariableType()</A><BR>
+<A HREF="devguide_3.3.64.html">3.3.64. scriba_GetVariable()</A><BR>
+<A HREF="devguide_3.3.65.html">3.3.65. scriba_SetVariable()</A><BR>
+<A HREF="devguide_3.3.66.html">3.3.66. scriba_InitStaticModules()</A><BR>
+<A HREF="devguide_3.3.67.html">3.3.67. scriba_FinishStaticModules()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_4.html">4. Extension Modules</A><BR>
+<UL>
+<A HREF="devguide_4.1.html">4.1. How Extension Modules are Used</A><BR>
+<A HREF="devguide_4.2.html">4.2. A Simple Sample Module</A><BR>
+<A HREF="devguide_4.3.html">4.3. Compiling a Module</A><BR>
+<A HREF="devguide_4.4.html">4.4. Installing a Module</A><BR>
+<A HREF="devguide_4.5.html">4.5. Module Support Functions</A><BR>
+<UL>
+<A HREF="devguide_4.5.1.html">4.5.1. Basic Extension Support functions, structures and macros</A><BR>
+<A HREF="devguide_4.5.2.html">4.5.2. besALLOC(X)</A><BR>
+<A HREF="devguide_4.5.3.html">4.5.3. besPROCALLOC(X)</A><BR>
+<A HREF="devguide_4.5.4.html">4.5.4. besFREE(X)</A><BR>
+<A HREF="devguide_4.5.5.html">4.5.5. besPROCFREE(X)</A><BR>
+<A HREF="devguide_4.5.6.html">4.5.6. besPROCMEMORYSEGMENT</A><BR>
+<A HREF="devguide_4.5.7.html">4.5.7. besNEWMORTALSTRING(X)</A><BR>
+<A HREF="devguide_4.5.8.html">4.5.8. besNEWMORTALLONG</A><BR>
+<A HREF="devguide_4.5.9.html">4.5.9. besNEWMORTALREF</A><BR>
+<A HREF="devguide_4.5.10.html">4.5.10. besNEWMORTALDOUBLE</A><BR>
+<A HREF="devguide_4.5.11.html">4.5.11. besNEWMORTALARRAY(X,Y)</A><BR>
+<A HREF="devguide_4.5.12.html">4.5.12. besNEWSTRING(X)</A><BR>
+<A HREF="devguide_4.5.13.html">4.5.13. besNEWLONG</A><BR>
+<A HREF="devguide_4.5.14.html">4.5.14. besNEWREF</A><BR>
+<A HREF="devguide_4.5.15.html">4.5.15. besNEWDOUBLE</A><BR>
+<A HREF="devguide_4.5.16.html">4.5.16. besNEWARRAY(X,Y)</A><BR>
+<A HREF="devguide_4.5.17.html">4.5.17. besRELEASE(X)</A><BR>
+<A HREF="devguide_4.5.18.html">4.5.18. besSETREF(VAR,VAL)</A><BR>
+<A HREF="devguide_4.5.19.html">4.5.19. besCONFIG(X)</A><BR>
+<A HREF="devguide_4.5.20.html">4.5.20. besCONFIGFINDNODE(X,Y,Z)</A><BR>
+<A HREF="devguide_4.5.21.html">4.5.21. besCONFIGEX(CT,CS,NS,CSS,LS,DS,IS)</A><BR>
+<A HREF="devguide_4.5.22.html">4.5.22. besCONFIGENUMFIRST(X,Y)</A><BR>
+<A HREF="devguide_4.5.23.html">4.5.23. besCONFIGENUMNEXT(X,Y)</A><BR>
+<A HREF="devguide_4.5.24.html">4.5.24. besCONFIGGETKEY(X,Y)</A><BR>
+<A HREF="devguide_4.5.25.html">4.5.25. besNEWSYMBOLTABLE</A><BR>
+<A HREF="devguide_4.5.26.html">4.5.26. besFREESYMBOLTABLE(X)</A><BR>
+<A HREF="devguide_4.5.27.html">4.5.27. besTRAVERSESYMBOLTABLE(X,Y,Z)</A><BR>
+<A HREF="devguide_4.5.28.html">4.5.28. besLOOKUPSYMBOL(X,Y,Z)</A><BR>
+<A HREF="devguide_4.5.29.html">4.5.29. besDeleteSymbol(X,Y,Z)</A><BR>
+<A HREF="devguide_4.5.30.html">4.5.30. besLOADLIBRARY(X)</A><BR>
+<A HREF="devguide_4.5.31.html">4.5.31. besFREELIBRARY(X)</A><BR>
+<A HREF="devguide_4.5.32.html">4.5.32. besGETFUNCTIONBYNAME(X)</A><BR>
+<A HREF="devguide_4.5.33.html">4.5.33. besFOPEN</A><BR>
+<A HREF="devguide_4.5.34.html">4.5.34. besFCLOSE</A><BR>
+<A HREF="devguide_4.5.35.html">4.5.35. besSIZE</A><BR>
+<A HREF="devguide_4.5.36.html">4.5.36. besTIME_ACCESSED</A><BR>
+<A HREF="devguide_4.5.37.html">4.5.37. besTIME_MODIFIED</A><BR>
+<A HREF="devguide_4.5.38.html">4.5.38. besTIME_CREATED</A><BR>
+<A HREF="devguide_4.5.39.html">4.5.39. besISDIR</A><BR>
+<A HREF="devguide_4.5.40.html">4.5.40. besISREG</A><BR>
+<A HREF="devguide_4.5.41.html">4.5.41. besEXISTS</A><BR>
+<A HREF="devguide_4.5.42.html">4.5.42. besTRUNCATE</A><BR>
+<A HREF="devguide_4.5.43.html">4.5.43. besFGETC</A><BR>
+<A HREF="devguide_4.5.44.html">4.5.44. besFREAD</A><BR>
+<A HREF="devguide_4.5.45.html">4.5.45. besFWRITE</A><BR>
+<A HREF="devguide_4.5.46.html">4.5.46. besSETMODE</A><BR>
+<A HREF="devguide_4.5.47.html">4.5.47. besBINMODE</A><BR>
+<A HREF="devguide_4.5.48.html">4.5.48. besTEXTMODE</A><BR>
+<A HREF="devguide_4.5.49.html">4.5.49. besFERROR</A><BR>
+<A HREF="devguide_4.5.50.html">4.5.50. besFPUTC</A><BR>
+<A HREF="devguide_4.5.51.html">4.5.51. besFLOCK</A><BR>
+<A HREF="devguide_4.5.52.html">4.5.52. besLOCK</A><BR>
+<A HREF="devguide_4.5.53.html">4.5.53. besFEOF</A><BR>
+<A HREF="devguide_4.5.54.html">4.5.54. besMKDIR</A><BR>
+<A HREF="devguide_4.5.55.html">4.5.55. besRMDIR</A><BR>
+<A HREF="devguide_4.5.56.html">4.5.56. besREMOVE</A><BR>
+<A HREF="devguide_4.5.57.html">4.5.57. besDELTREE</A><BR>
+<A HREF="devguide_4.5.58.html">4.5.58. besMAKEDIRECTORY</A><BR>
+<A HREF="devguide_4.5.59.html">4.5.59. besOPENDIR</A><BR>
+<A HREF="devguide_4.5.60.html">4.5.60. besREADDIR</A><BR>
+<A HREF="devguide_4.5.61.html">4.5.61. besCLOSEDIR</A><BR>
+<A HREF="devguide_4.5.62.html">4.5.62. besOPTION(X)</A><BR>
+<A HREF="devguide_4.5.63.html">4.5.63. besSETOPTION(x,y)</A><BR>
+<A HREF="devguide_4.5.64.html">4.5.64. besRESETOPTION(X)</A><BR>
+<A HREF="devguide_4.5.65.html">4.5.65. besCONVERT2STRING(x)</A><BR>
+<A HREF="devguide_4.5.66.html">4.5.66. besCONVERT2LONG(x)</A><BR>
+<A HREF="devguide_4.5.67.html">4.5.67. besGETLONGVALUE(x)</A><BR>
+<A HREF="devguide_4.5.68.html">4.5.68. besCONVERT2DOUBLE(x)</A><BR>
+<A HREF="devguide_4.5.69.html">4.5.69. besGETDOUBLEVALUE(x)</A><BR>
+<A HREF="devguide_4.5.70.html">4.5.70. besISSTRINGINTEGER(x)</A><BR>
+<A HREF="devguide_4.5.71.html">4.5.71. besCONVERT2ZCHAR(x)</A><BR>
+<A HREF="devguide_4.5.72.html">4.5.72. besREINITINTERFACE</A><BR>
+<A HREF="devguide_4.5.73.html">4.5.73. besLOADMODULE(x,y)</A><BR>
+<A HREF="devguide_4.5.74.html">4.5.74. besGETMODULEFUNCTIONBYNAME</A><BR>
+<A HREF="devguide_4.5.75.html">4.5.75. besUNLOADALLMODULES</A><BR>
+<A HREF="devguide_4.5.76.html">4.5.76. besUNLOADMODULE(x)</A><BR>
+<A HREF="devguide_4.5.77.html">4.5.77. besSLEEP(x)</A><BR>
+<A HREF="devguide_4.5.78.html">4.5.78. besCURDIR(x,y)</A><BR>
+<A HREF="devguide_4.5.79.html">4.5.79. besCHDIR(x)</A><BR>
+<A HREF="devguide_4.5.80.html">4.5.80. besCHOWN(x,y)</A><BR>
+<A HREF="devguide_4.5.81.html">4.5.81. besSETCREATETIME(x,y)</A><BR>
+<A HREF="devguide_4.5.82.html">4.5.82. besSETMODIFYTIME(x,y)</A><BR>
+<A HREF="devguide_4.5.83.html">4.5.83. besSETACCESSTIME(x,y)</A><BR>
+<A HREF="devguide_4.5.84.html">4.5.84. besGETHOSTNAME(x,y)</A><BR>
+<A HREF="devguide_4.5.85.html">4.5.85. besGETHOST(x,y)</A><BR>
+<A HREF="devguide_4.5.86.html">4.5.86. besTCPCONNECT(x,y)</A><BR>
+<A HREF="devguide_4.5.87.html">4.5.87. besTCPSEND(x,y,z)</A><BR>
+<A HREF="devguide_4.5.88.html">4.5.88. besTCPRECV(x,y,z)</A><BR>
+<A HREF="devguide_4.5.89.html">4.5.89. besTCPCLOSE(y)</A><BR>
+<A HREF="devguide_4.5.90.html">4.5.90. besKILLPROC(x)</A><BR>
+<A HREF="devguide_4.5.91.html">4.5.91. besGETOWNER(x,y,z)</A><BR>
+<A HREF="devguide_4.5.92.html">4.5.92. besCRYPT(x,y,z)</A><BR>
+<A HREF="devguide_4.5.93.html">4.5.93. besMD5INIT(C)</A><BR>
+<A HREF="devguide_4.5.94.html">4.5.94. besMD5UPDATE(C,I,L)</A><BR>
+<A HREF="devguide_4.5.95.html">4.5.95. besMD5FINAL(D,C)</A><BR>
+<A HREF="devguide_4.5.96.html">4.5.96. besCREATEPROCESS(X)</A><BR>
+<A HREF="devguide_4.5.97.html">4.5.97. besCOPYCOMMANDTABLE(X)</A><BR>
+<A HREF="devguide_4.5.98.html">4.5.98. besGETCOMMANDBYNAME(X,Y)</A><BR>
+<A HREF="devguide_4.5.99.html">4.5.99. besEVALUATEEXPRESSION(X)</A><BR>
+<A HREF="devguide_4.5.100.html">4.5.100. _besEVALUATEEXPRESSION(X)</A><BR>
+<A HREF="devguide_4.5.101.html">4.5.101. _besEVALUATEEXPRESSION_A(X)</A><BR>
+<A HREF="devguide_4.5.102.html">4.5.102. besEVALUATELEFTVALUE(X)</A><BR>
+<A HREF="devguide_4.5.103.html">4.5.103. besEVALUATELEFTVALUE_A(X)</A><BR>
+<A HREF="devguide_4.5.104.html">4.5.104. besIMMORTALIZE(x)</A><BR>
+<A HREF="devguide_4.5.105.html">4.5.105. besDEREFERENCE(X)</A><BR>
+<A HREF="devguide_4.5.106.html">4.5.106. besMatchIndex(X)</A><BR>
+<A HREF="devguide_4.5.107.html">4.5.107. besMatchIniSets(X)</A><BR>
+<A HREF="devguide_4.5.108.html">4.5.108. besMatchModifySet(X,Y,Z,W,Q)</A><BR>
+<A HREF="devguide_4.5.109.html">4.5.109. besMatchMatch(P1,P2,P3,P4,P5,P6,P7,P8,P9,P10,P11,P12)</A><BR>
+<A HREF="devguide_4.5.110.html">4.5.110. besMatchCount(X,Y)</A><BR>
+<A HREF="devguide_4.5.111.html">4.5.111. besMatchParameter(P1,P2,P3,P4,P5,P6,P7)</A><BR>
+<A HREF="devguide_4.5.112.html">4.5.112. besMatchSize(P1,P2,P3,P4,P5)</A><BR>
+<A HREF="devguide_4.5.113.html">4.5.113. besCreateThread(X,Y,Z)</A><BR>
+<A HREF="devguide_4.5.114.html">4.5.114. besExitThread</A><BR>
+<A HREF="devguide_4.5.115.html">4.5.115. besInitMutex(X)</A><BR>
+<A HREF="devguide_4.5.116.html">4.5.116. besFinishMutex(X)</A><BR>
+<A HREF="devguide_4.5.117.html">4.5.117. besLockMutex(X)</A><BR>
+<A HREF="devguide_4.5.118.html">4.5.118. besUnlockMutex(X)</A><BR>
+<A HREF="devguide_4.5.119.html">4.5.119. besInitSharedLock(X)</A><BR>
+<A HREF="devguide_4.5.120.html">4.5.120. besFinishSharedLock(X)</A><BR>
+<A HREF="devguide_4.5.121.html">4.5.121. besLockSharedRead(X)</A><BR>
+<A HREF="devguide_4.5.122.html">4.5.122. besLockSharedWrite(X)</A><BR>
+<A HREF="devguide_4.5.123.html">4.5.123. besUnlockSharedRead(X)</A><BR>
+<A HREF="devguide_4.5.124.html">4.5.124. besUnlockSharedWrite(X)</A><BR>
+<A HREF="devguide_4.5.125.html">4.5.125. besScribaNew(F0,F1)</A><BR>
+<A HREF="devguide_4.5.126.html">4.5.126. besScribaDestroy(F0)</A><BR>
+<A HREF="devguide_4.5.127.html">4.5.127. besScribaNewSbData(F0)</A><BR>
+<A HREF="devguide_4.5.128.html">4.5.128. besScribaNewSbLong(F0,F1)</A><BR>
+<A HREF="devguide_4.5.129.html">4.5.129. besScribaNewSbDouble(F0,F1)</A><BR>
+<A HREF="devguide_4.5.130.html">4.5.130. besScribaNewSbUndef(F0)</A><BR>
+<A HREF="devguide_4.5.131.html">4.5.131. besScribaNewSbString(F0,F1)</A><BR>
+<A HREF="devguide_4.5.132.html">4.5.132. besScribaNewSbBytes(F0,F1,F2)</A><BR>
+<A HREF="devguide_4.5.133.html">4.5.133. besScribaDestroySbData(F0,F1)</A><BR>
+<A HREF="devguide_4.5.134.html">4.5.134. besScribaPurgeReaderMemory(F0)</A><BR>
+<A HREF="devguide_4.5.135.html">4.5.135. besScribaPurgeLexerMemory(F0)</A><BR>
+<A HREF="devguide_4.5.136.html">4.5.136. besScribaPurgeSyntaxerMemory(F0)</A><BR>
+<A HREF="devguide_4.5.137.html">4.5.137. besScribaPurgeBuilderMemory(F0)</A><BR>
+<A HREF="devguide_4.5.138.html">4.5.138. besScribaPurgeExecuteMemory(F0)</A><BR>
+<A HREF="devguide_4.5.139.html">4.5.139. besScribaSetFileName(F0,F1)</A><BR>
+<A HREF="devguide_4.5.140.html">4.5.140. besScribaLoadConfiguration(F0,F1)</A><BR>
+<A HREF="devguide_4.5.141.html">4.5.141. besScribaInheritConfiguration(F0,F1)</A><BR>
+<A HREF="devguide_4.5.142.html">4.5.142. besScribaSetCgiFlag(F0)</A><BR>
+<A HREF="devguide_4.5.143.html">4.5.143. besScribaSetReportFunction(F0,F1)</A><BR>
+<A HREF="devguide_4.5.144.html">4.5.144. besScribaSetReportPointer(F0,F1)</A><BR>
+<A HREF="devguide_4.5.145.html">4.5.145. besScribaSetStdin(F0,F1)</A><BR>
+<A HREF="devguide_4.5.146.html">4.5.146. besScribaSetStdout(F0,F1)</A><BR>
+<A HREF="devguide_4.5.147.html">4.5.147. besScribaSetEmbedPointer(F0,F1)</A><BR>
+<A HREF="devguide_4.5.148.html">4.5.148. besScribaSetEnvironment(F0,F1)</A><BR>
+<A HREF="devguide_4.5.149.html">4.5.149. besScribaLoadBinaryProgram(F0)</A><BR>
+<A HREF="devguide_4.5.150.html">4.5.150. besScribaInheritBinaryProgram(F0,F1)</A><BR>
+<A HREF="devguide_4.5.151.html">4.5.151. besScribaReadSource(F0)</A><BR>
+<A HREF="devguide_4.5.152.html">4.5.152. besScribaDoLexicalAnalysis(F0)</A><BR>
+<A HREF="devguide_4.5.153.html">4.5.153. besScribaDoSyntaxAnalysis(F0)</A><BR>
+<A HREF="devguide_4.5.154.html">4.5.154. besScribaBuildCode(F0)</A><BR>
+<A HREF="devguide_4.5.155.html">4.5.155. besScribaIsFileBinaryFormat(F0)</A><BR>
+<A HREF="devguide_4.5.156.html">4.5.156. besScribaGetCacheFileName(F0)</A><BR>
+<A HREF="devguide_4.5.157.html">4.5.157. besScribaUseCacheFile(F0)</A><BR>
+<A HREF="devguide_4.5.158.html">4.5.158. besScribaSaveCacheFile(F0)</A><BR>
+<A HREF="devguide_4.5.159.html">4.5.159. besScribaRunExternalPreprocessor(F0,F1)</A><BR>
+<A HREF="devguide_4.5.160.html">4.5.160. besScribaSaveCode(F0,F1)</A><BR>
+<A HREF="devguide_4.5.161.html">4.5.161. besScribaSaveCCode(F0,F1)</A><BR>
+<A HREF="devguide_4.5.162.html">4.5.162. besScribaLoadSourceProgram(F0)</A><BR>
+<A HREF="devguide_4.5.163.html">4.5.163. besScribaRun(F0,F1)</A><BR>
+<A HREF="devguide_4.5.164.html">4.5.164. besScribaNoRun(F0)</A><BR>
+<A HREF="devguide_4.5.165.html">4.5.165. besScribaResetVariables(F0)</A><BR>
+<A HREF="devguide_4.5.166.html">4.5.166. besScribaCall(F0,F1)</A><BR>
+<A HREF="devguide_4.5.167.html">4.5.167. besScribaCallArg(F0,F1,F2,F3)</A><BR>
+<A HREF="devguide_4.5.168.html">4.5.168. besScribaDestroySbArgs(F0,F1,F2)</A><BR>
+<A HREF="devguide_4.5.169.html">4.5.169. besScribaNewSbArgs(F0,F1,F2)</A><BR>
+<A HREF="devguide_4.5.170.html">4.5.170. besScribaCallArgEx(F0,F1,F2,F3,F4)</A><BR>
+<A HREF="devguide_4.5.171.html">4.5.171. besScribaLookupFunctionByName(F0,F1)</A><BR>
+<A HREF="devguide_4.5.172.html">4.5.172. besScribaLookupVariableByName(F0,F1)</A><BR>
+<A HREF="devguide_4.5.173.html">4.5.173. besScribaGetVariableType(F0,F1)</A><BR>
+<A HREF="devguide_4.5.174.html">4.5.174. besScribaGetVariable(F0,F1,F2)</A><BR>
+<A HREF="devguide_4.5.175.html">4.5.175. besScribaSetVariable(F0,F1,F2,F3,F4,F5,F6)</A><BR>
+<A HREF="devguide_4.5.176.html">4.5.176. besLogState(X)</A><BR>
+<A HREF="devguide_4.5.177.html">4.5.177. besLogInit(F0,F1,F2,F3,F4,F5)</A><BR>
+<A HREF="devguide_4.5.178.html">4.5.178. besLogPrintf(pLOG,FORMAT, ...)</A><BR>
+<A HREF="devguide_4.5.179.html">4.5.179. besLogShutdown(pLOG)</A><BR>
+<A HREF="devguide_4.5.180.html">4.5.180. besHandleGetHandle(X,Y)</A><BR>
+<A HREF="devguide_4.5.181.html">4.5.181. besHandleGetPointer(X,Y)</A><BR>
+<A HREF="devguide_4.5.182.html">4.5.182. besHandleFreeHandle(X,Y)</A><BR>
+<A HREF="devguide_4.5.183.html">4.5.183. besHandleDestroyHandleArray(X)</A><BR>
+<A HREF="devguide_4.5.184.html">4.5.184. besINIT_SEGMENT(MAF,MRF)</A><BR>
+<A HREF="devguide_4.5.185.html">4.5.185. besSEGMENT_LIMIT(PMS,L)</A><BR>
+<A HREF="devguide_4.5.186.html">4.5.186. besFREE_SEGMENT(PMS)</A><BR>
+<A HREF="devguide_4.5.187.html">4.5.187. besFINISH_SEGMENT(PMS)</A><BR>
+<A HREF="devguide_4.5.188.html">4.5.188. besFUNCTION(X)</A><BR>
+<A HREF="devguide_4.5.189.html">4.5.189. besASSERT_FUNCTION</A><BR>
+<A HREF="devguide_4.5.190.html">4.5.190. besCOMMAND(X)</A><BR>
+<A HREF="devguide_4.5.191.html">4.5.191. besASSERT_COMMAND</A><BR>
+<A HREF="devguide_4.5.192.html">4.5.192. besEND_COMMAND</A><BR>
+<A HREF="devguide_4.5.193.html">4.5.193. besARGNR</A><BR>
+<A HREF="devguide_4.5.194.html">4.5.194. besARGUMENT(X)</A><BR>
+<A HREF="devguide_4.5.195.html">4.5.195. besPARAMETERLIST</A><BR>
+<A HREF="devguide_4.5.196.html">4.5.196. besLEFTVALUE(X,Y)</A><BR>
+<A HREF="devguide_4.5.197.html">4.5.197. besVERSION_NEGOTIATE</A><BR>
+<A HREF="devguide_4.5.198.html">4.5.198. besSUB_START</A><BR>
+<A HREF="devguide_4.5.199.html">4.5.199. besSUB_FINISH</A><BR>
+<A HREF="devguide_4.5.200.html">4.5.200. besSUB_ERRMSG</A><BR>
+<A HREF="devguide_4.5.201.html">4.5.201. besSUB_PROCESS_START</A><BR>
+<A HREF="devguide_4.5.202.html">4.5.202. besSUB_PROCESS_FINISH</A><BR>
+<A HREF="devguide_4.5.203.html">4.5.203. besSUB_KEEP</A><BR>
+<A HREF="devguide_4.5.204.html">4.5.204. besSUB_SHUTDOWN</A><BR>
+<A HREF="devguide_4.5.205.html">4.5.205. besSUB_AUTO</A><BR>
+<A HREF="devguide_4.5.206.html">4.5.206. besEND</A><BR>
+<A HREF="devguide_4.5.207.html">4.5.207. besRETURNVALUE</A><BR>
+<A HREF="devguide_4.5.208.html">4.5.208. besMODULEPOINTER</A><BR>
+<A HREF="devguide_4.5.209.html">4.5.209. besALLOC_RETURN_STRING(X)</A><BR>
+<A HREF="devguide_4.5.210.html">4.5.210. besALLOC_RETURN_POINTER</A><BR>
+<A HREF="devguide_4.5.211.html">4.5.211. besALLOC_RETURN_LONG</A><BR>
+<A HREF="devguide_4.5.212.html">4.5.212. besALLOC_RETURN_DOUBLE</A><BR>
+<A HREF="devguide_4.5.213.html">4.5.213. besRETURN_STRING(X)</A><BR>
+<A HREF="devguide_4.5.214.html">4.5.214. besSET_RETURN_STRING(X)</A><BR>
+<A HREF="devguide_4.5.215.html">4.5.215. besRETURN_MEM(X,Y)</A><BR>
+<A HREF="devguide_4.5.216.html">4.5.216. besRETURN_POINTER(X)</A><BR>
+<A HREF="devguide_4.5.217.html">4.5.217. besRETURN_LONG(X)</A><BR>
+<A HREF="devguide_4.5.218.html">4.5.218. besRETURN_DOUBLE</A><BR>
+<A HREF="devguide_4.5.219.html">4.5.219. besSETCOMMAND(X,Y)</A><BR>
+<A HREF="devguide_4.5.220.html">4.5.220. besGETCOMMAND(X)</A><BR>
+<A HREF="devguide_4.5.221.html">4.5.221. INTERFACE_VERSION</A><BR>
+<A HREF="devguide_4.5.222.html">4.5.222. besHOOK_FILE_ACCESS</A><BR>
+<A HREF="devguide_4.5.223.html">4.5.223. besHOOK_FOPEN</A><BR>
+<A HREF="devguide_4.5.224.html">4.5.224. besHOOK_FCLOSE</A><BR>
+<A HREF="devguide_4.5.225.html">4.5.225. besHOOK_SIZE</A><BR>
+<A HREF="devguide_4.5.226.html">4.5.226. besHOOK_TIME_ACCESSED</A><BR>
+<A HREF="devguide_4.5.227.html">4.5.227. besHOOK_TIME_MODIFIED</A><BR>
+<A HREF="devguide_4.5.228.html">4.5.228. besHOOK_TIME_CREATED</A><BR>
+<A HREF="devguide_4.5.229.html">4.5.229. besHOOK_ISDIR</A><BR>
+<A HREF="devguide_4.5.230.html">4.5.230. besHOOK_ISREG</A><BR>
+<A HREF="devguide_4.5.231.html">4.5.231. besHOOK_EXISTS</A><BR>
+<A HREF="devguide_4.5.232.html">4.5.232. besHOOK_TRUNCATE</A><BR>
+<A HREF="devguide_4.5.233.html">4.5.233. besHOOK_FGETC</A><BR>
+<A HREF="devguide_4.5.234.html">4.5.234. besHOOK_FREAD</A><BR>
+<A HREF="devguide_4.5.235.html">4.5.235. besHOOK_FWRITE</A><BR>
+<A HREF="devguide_4.5.236.html">4.5.236. besHOOK_FERROR</A><BR>
+<A HREF="devguide_4.5.237.html">4.5.237. besHOOK_PUTC</A><BR>
+<A HREF="devguide_4.5.238.html">4.5.238. besHOOK_FLOCK</A><BR>
+<A HREF="devguide_4.5.239.html">4.5.239. besHOOK_LOCK</A><BR>
+<A HREF="devguide_4.5.240.html">4.5.240. besHOOK_FEOF</A><BR>
+<A HREF="devguide_4.5.241.html">4.5.241. besHOOK_MKDIR</A><BR>
+<A HREF="devguide_4.5.242.html">4.5.242. besHOOK_RMDIR</A><BR>
+<A HREF="devguide_4.5.243.html">4.5.243. besHOOK_REMOVE</A><BR>
+<A HREF="devguide_4.5.244.html">4.5.244. besHOOK_DELTREE</A><BR>
+<A HREF="devguide_4.5.245.html">4.5.245. besHOOK_MAKEDIRECTORY</A><BR>
+<A HREF="devguide_4.5.246.html">4.5.246. besHOOK_OPENDIR</A><BR>
+<A HREF="devguide_4.5.247.html">4.5.247. besHOOK_READDIR</A><BR>
+<A HREF="devguide_4.5.248.html">4.5.248. besHOOK_CLOSEDIR</A><BR>
+<A HREF="devguide_4.5.249.html">4.5.249. besHOOK_SLEEP</A><BR>
+<A HREF="devguide_4.5.250.html">4.5.250. besHOOK_CURDIR</A><BR>
+<A HREF="devguide_4.5.251.html">4.5.251. besHOOK_CHDIR</A><BR>
+<A HREF="devguide_4.5.252.html">4.5.252. besHOOK_CHOWN</A><BR>
+<A HREF="devguide_4.5.253.html">4.5.253. besHOOK_SETCREATETIME</A><BR>
+<A HREF="devguide_4.5.254.html">4.5.254. besHOOK_SETMODIFYTIME</A><BR>
+<A HREF="devguide_4.5.255.html">4.5.255. besHOOK_SETACCESSTIME</A><BR>
+<A HREF="devguide_4.5.256.html">4.5.256. besHOOK_GETHOSTNAME</A><BR>
+<A HREF="devguide_4.5.257.html">4.5.257. besHOOK_GETHOST</A><BR>
+<A HREF="devguide_4.5.258.html">4.5.258. besHOOK_TCPCONNECT</A><BR>
+<A HREF="devguide_4.5.259.html">4.5.259. besHOOK_TCPSEND</A><BR>
+<A HREF="devguide_4.5.260.html">4.5.260. besHOOK_TCPRECV</A><BR>
+<A HREF="devguide_4.5.261.html">4.5.261. besHOOK_TCPCLOSE</A><BR>
+<A HREF="devguide_4.5.262.html">4.5.262. besHOOK_KILLPROC</A><BR>
+<A HREF="devguide_4.5.263.html">4.5.263. besHOOK_GETOWNER</A><BR>
+<A HREF="devguide_4.5.264.html">4.5.264. besHOOK_CREATEPROCESS</A><BR>
+<A HREF="devguide_4.5.265.html">4.5.265. besHOOK_CALLSCRIBAFUNCTION</A><BR>
+<A HREF="devguide_4.5.266.html">4.5.266. besSETHOOK(X,Y)</A><BR>
+<A HREF="devguide_4.5.267.html">4.5.267. besDLL_MAIN</A><BR>
+<A HREF="devguide_4.5.268.html">4.5.268. INITLOCK</A><BR>
+<A HREF="devguide_4.5.269.html">4.5.269. basext_GetArgsF()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_5.html">5. Preprocessors</A><BR>
+<UL>
+<A HREF="devguide_5.1.html">5.1. Loading Preprocessor</A><BR>
+<A HREF="devguide_5.2.html">5.2. Skeleton of a Preprocessor</A><BR>
+<A HREF="devguide_5.3.html">5.3. Preprocessor Entry Points</A><BR>
+<UL>
+<A HREF="devguide_5.3.1.html">5.3.1. PreprocessorLoad</A><BR>
+<A HREF="devguide_5.3.2.html">5.3.2. PreprocessorReadStart</A><BR>
+<A HREF="devguide_5.3.3.html">5.3.3. PreprocessorReadDone0</A><BR>
+<A HREF="devguide_5.3.4.html">5.3.4. PreprocessorReadDone1</A><BR>
+<A HREF="devguide_5.3.5.html">5.3.5. PreprocessorReadDone2</A><BR>
+<A HREF="devguide_5.3.6.html">5.3.6. PreprocessorReadDone3</A><BR>
+<A HREF="devguide_5.3.7.html">5.3.7. PreprocessorLexInit</A><BR>
+<A HREF="devguide_5.3.8.html">5.3.8. PreprocessorLexDone</A><BR>
+<A HREF="devguide_5.3.9.html">5.3.9. PreprocessorLexNASymbol</A><BR>
+<A HREF="devguide_5.3.10.html">5.3.10. PreprocessorLexASymbol</A><BR>
+<A HREF="devguide_5.3.11.html">5.3.11. PreprocessorLexSymbol</A><BR>
+<A HREF="devguide_5.3.12.html">5.3.12. PreprocessorLexString</A><BR>
+<A HREF="devguide_5.3.13.html">5.3.13. PreprocessorLexMString</A><BR>
+<A HREF="devguide_5.3.14.html">5.3.14. PreprocessorLexInteger</A><BR>
+<A HREF="devguide_5.3.15.html">5.3.15. PreprocessorLexReal</A><BR>
+<A HREF="devguide_5.3.16.html">5.3.16. PreprocessorLexCharacter</A><BR>
+<A HREF="devguide_5.3.17.html">5.3.17. PreprocessorExStart</A><BR>
+<A HREF="devguide_5.3.18.html">5.3.18. PreprocessorExStartLine</A><BR>
+<A HREF="devguide_5.3.19.html">5.3.19. PreprocessorExEnd</A><BR>
+<A HREF="devguide_5.3.20.html">5.3.20. PreprocessorExFinish</A><BR>
+<A HREF="devguide_5.3.21.html">5.3.21. PreprocessorExStartLocal</A><BR>
+<A HREF="devguide_5.3.22.html">5.3.22. PreprocessorExEndLocal</A><BR>
+<A HREF="devguide_5.3.23.html">5.3.23. PreprocessorExLineNode</A><BR>
+<A HREF="devguide_5.3.24.html">5.3.24. PreprocessorExeStart</A><BR>
+<A HREF="devguide_5.3.25.html">5.3.25. PreprocessorExeFinish</A><BR>
+<A HREF="devguide_5.3.26.html">5.3.26. PreprocessorExeNoRun</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_6.html">6. Compilation</A><BR>
+<UL>
+<A HREF="devguide_6.1.html">6.1. Compilation under UNIX</A><BR>
+</UL>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

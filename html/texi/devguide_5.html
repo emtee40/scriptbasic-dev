@@ -1,0 +1,69 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 5. Preprocessors</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Preprocessors">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Preprocessors">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>5. Preprocessors</H1>
+<A HREF="devguide_4.5.269.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_5.1.html">5.1. Loading Preprocessor</A><BR>
+<A HREF="devguide_5.2.html">5.2. Skeleton of a Preprocessor</A><BR>
+<A HREF="devguide_5.3.html">5.3. Preprocessor Entry Points</A><BR>
+<UL>
+<A HREF="devguide_5.3.1.html">5.3.1. PreprocessorLoad</A><BR>
+<A HREF="devguide_5.3.2.html">5.3.2. PreprocessorReadStart</A><BR>
+<A HREF="devguide_5.3.3.html">5.3.3. PreprocessorReadDone0</A><BR>
+<A HREF="devguide_5.3.4.html">5.3.4. PreprocessorReadDone1</A><BR>
+<A HREF="devguide_5.3.5.html">5.3.5. PreprocessorReadDone2</A><BR>
+<A HREF="devguide_5.3.6.html">5.3.6. PreprocessorReadDone3</A><BR>
+<A HREF="devguide_5.3.7.html">5.3.7. PreprocessorLexInit</A><BR>
+<A HREF="devguide_5.3.8.html">5.3.8. PreprocessorLexDone</A><BR>
+<A HREF="devguide_5.3.9.html">5.3.9. PreprocessorLexNASymbol</A><BR>
+<A HREF="devguide_5.3.10.html">5.3.10. PreprocessorLexASymbol</A><BR>
+<A HREF="devguide_5.3.11.html">5.3.11. PreprocessorLexSymbol</A><BR>
+<A HREF="devguide_5.3.12.html">5.3.12. PreprocessorLexString</A><BR>
+<A HREF="devguide_5.3.13.html">5.3.13. PreprocessorLexMString</A><BR>
+<A HREF="devguide_5.3.14.html">5.3.14. PreprocessorLexInteger</A><BR>
+<A HREF="devguide_5.3.15.html">5.3.15. PreprocessorLexReal</A><BR>
+<A HREF="devguide_5.3.16.html">5.3.16. PreprocessorLexCharacter</A><BR>
+<A HREF="devguide_5.3.17.html">5.3.17. PreprocessorExStart</A><BR>
+<A HREF="devguide_5.3.18.html">5.3.18. PreprocessorExStartLine</A><BR>
+<A HREF="devguide_5.3.19.html">5.3.19. PreprocessorExEnd</A><BR>
+<A HREF="devguide_5.3.20.html">5.3.20. PreprocessorExFinish</A><BR>
+<A HREF="devguide_5.3.21.html">5.3.21. PreprocessorExStartLocal</A><BR>
+<A HREF="devguide_5.3.22.html">5.3.22. PreprocessorExEndLocal</A><BR>
+<A HREF="devguide_5.3.23.html">5.3.23. PreprocessorExLineNode</A><BR>
+<A HREF="devguide_5.3.24.html">5.3.24. PreprocessorExeStart</A><BR>
+<A HREF="devguide_5.3.25.html">5.3.25. PreprocessorExeFinish</A><BR>
+<A HREF="devguide_5.3.26.html">5.3.26. PreprocessorExeNoRun</A><BR>
+<HR>
+<P>
+
+ScriptBasic is capable handling two kind of preprocessors. One is external preprocessors, the other one is internal preprocessor. The names <I>external</I> and the <I>internal</I> distinguish between the execution type of these preprocessors. External preprocessors are executed in a separate process. Internal preprocessors run in the interpreter thread.
+<P>
+Because of this external preprocessors are standalone command line tools, which may be written for any application and not specifically for ScriptBasic. You can edit the ScriptBasic configuration file so that you can use the C preprocessor, <font size="3"><tt>m4</tt></font> or <font size="3"><tt>jamal</tt></font> as a preprocessor. It is fairly easy to write an external preprocessor compared to internal preprocessors. External preprocessor reads a file and creates an output file. It need not know anything about the internal structures of ScriptBasic. Then only thing a ScriptBasic external preprocessor writer has to know is what it wants to do and how to read and write files.
+<P>
+Internal preprocessors are implemented in dynamic link libraries, work closely together with ScriptBasic and can not be started standalone. Internal preprocessors are written specifically for ScriptBasic and can and should access many of ScriptBasic internal structures.
+<P>
+From this you can see that external preprocessors are much easier to write, while internal preprocessors have much more possibilities. An internal preprocessor can never started as external and vice versa.
+<P>
+Before starting to write a preprocessor you have to carefully check what you want to gain and decide if you want to write an external preprocessor or an internal.
+<P>
+Because external preprocessors are just standalone programs and there is even a sample preprocessor HEB written in BASIC this chapter talks about the internal preprocessor capabilities. <a href="devguide_2.1.html">External Preprocessor</A><HR>
+<A HREF="devguide_4.5.269.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,105 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Interpreter Architecture</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Interpreter Architecture">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Interpreter Architecture">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Interpreter Architecture</H1>
+<A HREF="devguide_1.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This chapter tells you the architecture of the interpreter. It is not a must to read this chapter, and you may find that some topic is irrelevant or not needed to learn to embed or to extend ScriptBasic. However understanding the internal working order of ScriptBasic should help you understand why some of the extending or embedding interfaces work the way they actually do. So I recommend that you read on and do not skip this chapter.
+<P>
+To read this chapter and to understand the internal working of the interpreter is vital when you decide to write an internal preprocessor. Internal preprocessors interact with not only the execution system but also the reader, lexer, syntaxer and builder modules along the way one after the other as they do their unique job processing a BASIC program, thus internal preprocessor writers have to understand how these modules work.
+<P>
+ScriptBasic is not a real scripting language. This is a mix of a scripting language and compiled languages. The language is scripting in the sense that it is very easy to write small programs, there is no need for long variable and function declarations. On the other hand the language is compiled into an internal code that is executed afterwards. This is the same or similar technique, which is used in the implementations of the language Java, Perl, Python and many other languages.
+<P>
+ScriptBasic as a language is a BASIC dialect that implements most BASIC features that BASIC implementations usually do. However ScriptBasic variables are not typed, and dynamic storage, like arrays are automatically allocated and released. A ScriptBasic variable can store a string, an integer, a real value or an array. Naturally a variable can not store more than one of any of these types of values. But you need not declare a variable to be INTEGER or REAL, or STRING. A variable may store a string at a time and the next assignment command may release the original value and store a different value in the variable.
+<P>
+When a program is executed it goes through several steps. The individual steps are implemented in different modules each being coded in a separate C language source file. These modules were developed so that they provide clear interface and thus could be replaced. The lexical analyzer uses the functions provided by the reader, the syntax analyzer uses the functions provided by the lexical analyzer and so on. The modules never dig into each others private area.
+<P>
+The modules are listed here with some explanation.
+<P>
+<UL>
+<P>
+<LI>
+EXTERNAL PREPROCESSOR
+<P>
+This module executes external preprocessors. These preprocessors are standalone executable programs that read the source program and create another file that is read and processed by the ScriptBasic interpreter. If an external preprocessor is used the source file is usually not BASIC but rather some other language, usually a BASIC like language, which is extended some way and the preprocessor creates the pure ScriptBasic conformant BASIC program. The sample preprocessor supplied with ScriptBasic is the HEB (HTML Embedded BASIC) preprocessor that reads HTML embedded BASIC code and creates BASIC program. This HEB source file is a kind of HTML with embedded program fragments, which you may be familiar with in case you program PHP or Microsoft BASIC ASP pages. The HEB preprocessor itself is written in BASIC and is executed by ScriptBasic. Thus when a HEB "language" is executed by ScriptBasic it starts a separate instance of the interpreter and executes the HEB preprocessor on the source file. Of course the HEB preprocessor could be implemented in any language that can be compiled or some way executed on the target machine. Actually the very first version of the HEB preprocessor was written in Perl so when it was first tested the ScriptBasic interpreter started a Perl interpreter before reading the generated BASIC code.
+<P>
+Note that the HEB preprocessor provided in the ScriptBasic package is an example implementation and lacks many features. It can, for example, be fooled by putting a <font size="3"><tt>%&gt;</tt></font> characters into a BASIC string constant.
+<P>
+<LI>
+READER
+<P>
+This module reads the source file into the computer memory. Usually source programs are not too big compared to computer memory and thus can be read into the operational memory (RAM). ScriptBasic source code is approximately 1MB and I develop it on a station that has 386MB memory. This means that even a fairly large program can fit into the memory seamlessly. BASIC programs executed by the ScriptBasic interpreter are likely to be much smaller than that.
+<P>
+The source code is stored in memory pieces that form a linked list. Each element of the list contains one line of the source code and the information of the line for debugging and error reporting purposes. This information includes the file name that the line was read and the line number. Later when the lexer (detailed later) performs lexical analysis it will inherit this information and when there is a lexical or syntactical error the line number is reported correct.
+<P>
+The reader module also handles the <font size="3"><tt>include</tt></font> and <font size="3"><tt>import</tt></font> directives that are used to include files into the source file. (Note that <font size="3"><tt>import</tt></font> inserts the content of the file only if it was not loaded yet.)
+<P>
+The module also processes the lines that look 
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+use preprocessor
+</PRE></FONT>
+<P>
+and loads the internal preprocessor named on the line. <a href="devguide_5.htm">Preprocessors</A>
+<P>
+When the module is ready the latter modules have the full source file in memory ready to be processed. The module also provides <font size="3"><tt>getc</tt></font> and <font size="3"><tt>ungetc</tt></font> like functions to get the read characters one by one. These are is used by the lexer.
+<P>
+<LI>
+LEXER
+<P>
+The lexer module uses the line stream (or the character stream if we view it from a different point of view) provided by the reader. It reads the characters and builds up a linked list. Each element of the list contains a token, like BASIC keyword, a real or integer number, symbol, string, multi-line string, or character. The list of tokens is stored in a form of linked list in the order the tokens appear in the input. Each element also contains extra information about the token that identifies the name of the file and the line number inside the file where the token originally was.
+<P>
+When the lexer is finished the list of lines is not really needed any more and the reader is ready to release the memory occupied by the source lines read into memory.
+<P>
+The lexer also provides functions that are used by the syntax analyzer to read the tokens in sequence one after the other as needed by the syntax analysis.
+<P>
+<LI>
+SYNTAXER
+<P>
+The syntaxer reads the list of tokens provided by the lexical analysis module and creates an internal structure that is already very similar to the executable internal code of ScriptBasic. The syntax analyzer finds any programming error that is not syntactically correct and when it is ready the result is a huge, cross-linked memory structure that contains the almost-executable code.
+<P>
+The syntax analyzer is responsible building up the evaluation trees of the expressions, the execution nodes, variable numbering and so on.
+<P>
+When the code refers to a variable named for example <font size="3"><tt>variable</tt></font> the syntax analyzer is responsible to allocate a slot for the variable and to convert the name to a serial number that identifies the variable whenever it is used. Beyond the syntax analyzer there are no named variables anymore (except in case of debuggers). There are global variables listed from <font size="3"><tt>1</tt></font> to <font size="3"><tt>n</tt></font> and local variables also listed by numbers. There are also no names for the functions. Each function is identified by a C pointer to the node where the function starts.
+<P>
+To ease the life of those who want to embed ScriptBasic the symbol table that list the global variables and the functions and subroutines is appended to the byte-code and there are functions in the <font size="3"><tt>scriba_*</tt></font> embedding interface that handles these symbol tables. However ScriptBasic itself does not use variable or functions/subroutine names beyond the syntax analyzer.
+<P>
+<LI>
+BUILDER
+<P>
+The builder is the module that creates the code, which is used by the execution system. Why do we have a separate builder? Isn't it the role of the syntax analyzer to build the code?
+<P>
+Yes, and no. The code that was created by the syntax analyzer could be used to execute the BASIC program, but ScriptBasic still inserts an extra transformation before executing the program. The reason for this extra step is to create a byte code that can be stored in a continuous memory area and thus can easily be saved to or loaded from disk.
+<P>
+When the syntax analyzer creates the nodes it does not know the actual number of nodes of the byte-code, nor the number of different strings, or size of the string table. While the code is created the syntax analyzer allocates memory for each new block it creates one by one. The nodes are linked together using C pointers. This means that the final memory structure is neither continuous in memory nor can be saved or loaded back to disk.
+<P>
+When the builder starts the number of the nodes just as well as the total string constant size is known. The builder allocates the memory needed for the whole code and fills in the actual code. The node size is a bit smaller than that of the syntax analyzer and they refer to each other using node serial numbers instead of pointers. This is almost as efficient as using pointers and the actual value does not depend on the location of the node in memory and this way the code can be saved to disk and loaded again for execution.
+<P>
+<LI>
+EXECUTOR
+<P>
+The executor kills the code. Oh no! I am just kidding.
+<P>
+It actually executes the code. It gets the code that was generated by the module builder and executes the nodes one by one and finally exits.
+<P>
+</UL>
+<P>
+The following sections detail these modules and also some other modules that help these modules to perform their actual tasks.
+<HR>
+<A HREF="devguide_1.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

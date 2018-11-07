@@ -1,0 +1,43 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: file_tcpconnect</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: file_tcpconnect">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: file_tcpconnect">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>file_tcpconnect</H1>
+<A HREF="devguide_2.16.39.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.41.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Connect a socket to a server:port
+<P>
+This function tries to connect to the remote port of a remote server.
+The first argument of the function should be a pointer to <font size="3"><tt>SOCKET</tt></font>
+variable as defined in <font size="3"><tt>filesys.h</tt></font> or in the Windows header files. The
+second argument is a string that contains the name of the remote host,
+or the IP number of the remote host and the desired port number following
+the name separated by a colon. For example <font size="3"><tt>index.hu:80</tt></font> tries to connect
+to the http port of the server <font size="3"><tt>index.hu</tt></font>. You can also write
+<font size="3"><tt>16.192.80.33:80</tt></font> to get a connection. The function automatically recognizes
+IP numbers and host names. The socket is created automatically calling the
+system function <font size="3"><tt>socket</tt></font>.
+<P>
+If the function successfully connected to the remote server the return value
+is zero. Otherwise the return value is the error code.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int file_tcpconnect(SOCKET *sClient,
+                    char *pszRemoteSocket
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.16.39.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.41.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

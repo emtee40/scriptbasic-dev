@@ -1,0 +1,38 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: besRETURN_POINTER(X)</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besRETURN_POINTER(X)">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besRETURN_POINTER(X)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>besRETURN_POINTER(X)</H1>
+<A HREF="devguide_4.5.215.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.217.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this macro to return a pointer. The argument of the macro should be the pointer to return. The
+BASIC program will see this value as a string of four (32 bit machines) or eight (64bit machines)
+characters. The BASIC program should not alter the value but pass it back to the module wherever
+the program needs. In other words the program should treat the value as an abstract handle
+and not try to manipulate it.
+<P>
+The macro allocates the return string, copies the pointer into the string and returns from the function
+using the macro with no error (COMMAND_ERROR_SUCCESS).
+<P>
+If the return value can not be allocated the macro returns with COMMAND_ERROR_MEMORY_LOW.
+<P>
+If the pointer is <font size="3"><tt>NULL</tt></font> the function will return the BASIC value <font size="3"><tt>undef</tt></font>. This way you can not pass a
+<font size="3"><tt>NULL</tt></font> pointer back to the BASIC program stored as four (or eight) zero characters in a string. On the other
+hand this is usually not what you really want and the BASIC program can check <font size="3"><tt>undef</tt></font>indeness of the value.
+When <font size="3"><tt>undef</tt></font> is passed back to the module the argument handling functions convert it back to <font size="3"><tt>NULL</tt></font>.<HR>
+<A HREF="devguide_4.5.215.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.217.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

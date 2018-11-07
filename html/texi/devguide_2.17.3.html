@@ -1,0 +1,47 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.17.3. modu_GetModuleFunctionByName</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: modu_GetModuleFunctionByName">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: modu_GetModuleFunctionByName">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.17.html">2.17. Module Management</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.17.3. modu_GetModuleFunctionByName</H1>
+<A HREF="devguide_2.17.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.17.4.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c Get a function entry point from a module
+<P>
+This function gets the entrypoint of a module function. This module can either
+be statically or dynamically linked to ScriptBasic. This function is one level higher than
+<a href="devguide_html">GetStaticFunctionByName</A> or 
+<a href="devguide_2.15.3.html">dynlolib_GetFunctionByName</A>. The first argument to this function
+is not the module handle as returned by <a href="devguide_2.15.1.html">dynlolib_LoadLibrary</A> but rather the pointer to the
+module description structure that holds other information on the modula. Namely the information
+that the module is loaded from dll or so, or if the module is linked to the interpreter static.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void *modu_GetModuleFunctionByName(
+  pModule pThisModule,
+  char *pszFunctionName
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.17.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.17.4.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Compiling a Module</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Compiling a Module">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Compiling a Module">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Compiling a Module</H1>
+<A HREF="devguide_4.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.4.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Compiling a module is easy and straightforward. Just do it as you would do for any dynamic load library. On Linux you have to compile the source code to object file, saying
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+cc -c -o trial.o trial.c
+ld -d -warn-section-align -sort-comon -shared -o trial.so trial.o
+</PRE></FONT>
+assuming that the name of the file to compile is `<font size="3"><tt>trial.c</tt></font>'. On other Unix operating systems you have to issue similar commands.
+<P>
+On Windows NT you can use Visual C++ and create an empty project using the work space wizard to create a new dll file. You have to add your source code to the project, select release version and compile the program.
+<P>
+Note that Windows NT dll files do not automatically export each non-static function of a program. They have to be declared in a DEF file or the functions should be denoted with a special type casting keyword. If you use the predefined macros available including the file `<font size="3"><tt>basext.h</tt></font>' your functions will be exported without creating a def file.<HR>
+<A HREF="devguide_4.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.4.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

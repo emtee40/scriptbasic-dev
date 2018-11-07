@@ -1,0 +1,34 @@
+    ' AIR - Select user for backup
+     
+    FUNCTION SelectFolder(Title, Folder)
+      LOCAL fn, Exclude, Border, file_list, fName, users, idx, uid
+      fn = FREEFILE()
+      Exclude = "Guest|Shared"
+      Border = STRING(LEN(Title), "-")
+      file_list = ""
+      OPEN DIRECTORY Folder PATTERN "" OPTION SbCollectDirectories AS #fn
+      RESET DIRECTORY #fn
+      fName = NEXTFILE(fn)
+      WHILE fName <> undef
+        IF NOT INSTR(Exclude, fName) = undef THEN file_list &= fName & "\n"
+        fName = NEXTFILE(fn)
+      WEND
+      CLOSE DIRECTORY #fn
+      SPLITA file_list BY "\n" TO users
+      PRINT Title,"\n",Border,"\n"
+      FOR idx = 0 TO UBOUND(users)
+        PRINT idx,") ",users[idx],"\n"
+      NEXT
+      Enter:
+      PRINT Border,"\n","Select User: "
+      LINE INPUT uid
+      uid = VAL(CHOMP(uid))
+      IF uid > UBOUND(users) THEN
+        PRINT ">> Invalid Selection <<", "\n"
+        GOTO Enter
+      END IF
+      SelectFolder = users[uid]
+    END FUNCTION
+    selected = SelectFolder("Armando's Test Menu", "/Users")
+    PRINT "You Selected: ", selected, "\n"
+     

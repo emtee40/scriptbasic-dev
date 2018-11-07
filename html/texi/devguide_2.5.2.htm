@@ -1,0 +1,121 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Binary File Format</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Binary File Format">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Binary File Format">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Binary File Format</H1>
+<A HREF="devguide_2.5.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+The built code is usually saved to a cache file and this file is used later to load the already compiled code into memory for subsequent execution. The format of this file can be read from the function <font size="3"><tt>build_SaveCode</tt></font> in file `<font size="3"><tt>builder.c</tt></font>'. This function is quite linear it just saves several structures and is well commented so you should not have problem to understand it. However here I also give some description on the format of the binary file.
+<P>
+The binary file may or may not start with a textual line. This line is the usual UNIX <font size="3"><tt>#! /usr/bin/scriba</tt></font> string telling the operating system how to execute the text file. Altough we are talking now about a binary file, from the operating system point of view this is just a file, like a ScriptBasic source file, a Perl script or a <font size="3"><tt>bash</tt></font> script. The operating system starts to read the file and if the start of the file is something like
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+#! /usr/bin/scriba\n
+</PRE></FONT>
+<P>
+with a new-line character at the end then it can be executed from the command line if some other permission related constraints are met.
+<P>
+When ScriptBasic saves the binary format file it uses the same executable path that was given in the source file. If the source file starts with the line
+<font size="3"><tt>#! /usr/bin/mypath/scriba</tt></font> and the basic progam `<font size="3"><tt>myprog.bas</tt></font>' was started using the command line
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+/usr/bin/scriba -o myprog.bbf myprog.bas
+</PRE></FONT>
+<P>
+then the file `<font size="3"><tt>myprog.bbf</tt></font>' will start with the line <font size="3"><tt>#! /usr/bin/mypath/scriba</tt></font>.
+<P>
+The user's guide lists a small BASIC program that reads and writes the binary file and alters this line.
+<P>
+Having this line on the first place in the binary format BASIC file makes it possible to deliver programs in compiled format. For example you may develop a CGI application and deliver it as compiled format to protect your program from the customer. You can convert your source issuing the command line
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+/usr/bin/scriba -o outputdirectory/myprog.bas myprog.bas
+</PRE></FONT>
+<P>
+and deliver the binary `<font size="3"><tt>myprog.bas</tt></font>' to the customer. ScriptBasic does not care the file extension and does not expect a file with the extension <font size="3"><tt>.bas</tt></font> to be source BASIC. It automatically recognizes binary format BASIC programs and thus you need no alter even the URLs that refer to CGI BASIC programs.
+<P>
+The next byte in the file following this optional opening line is the size of a <font size="3"><tt>long</tt></font> on the machine the code was created. The binary code is not necessarily portable from one machine to another. It depends on pointer and <font size="3"><tt>long</tt></font> size as well as byte ordering. We experienced Windows NT and Linux to create the same binary file but this is not a must, may change.
+<P>
+The size of a <font size="3"><tt>long</tt></font> is stored in a single character as <font size="3"><tt>sizeof(long)+0x30</tt></font> so the ASCII character is either <font size="3"><tt>'4'</tt></font> or <font size="3"><tt>'8'</tt></font> on 32 and 64 bit machines.
+<P>
+This byte is followed by the version information. This is a <font size="3"><tt>struct</tt></font>:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  unsigned long MagicCode;
+  unsigned long VersionHigh, VersionLow;
+  unsigned long MyVersionHigh,MyVersionLow;
+  unsigned long Build;
+  unsigned long Date;
+  unsigned char Variation[9];
+</PRE></FONT>
+<P>
+The <font size="3"><tt>MagicCode</tt></font> is <font size="3"><tt>0x1A534142</tt></font>. On DOS based system this is the characters 'BAS' and <font size="3"><tt>^Z</tt></font> which means end of text file. Thus if you issue the command
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+C:\&gt; type mybinaryprogram.bbf
+</PRE></FONT>
+<P>
+you will get
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+4BAS
+</PRE></FONT>
+<P>
+without scrambling your screen. If you use UNIX system then be clever enough not to <font size="3"><tt>cat</tt></font> a binary program to the terminal.
+<P>
+The values <font size="3"><tt>VersionHigh</tt></font> and <font size="3"><tt>VersionLow</tt></font> are the version number of ScriptBasic core code. This is currently <font size="3"><tt>1</tt></font> and <font size="3"><tt>0</tt></font>. The fields <font size="3"><tt>MyVersionHigh</tt></font> and <font size="3"><tt>MyVersionLow</tt></font> are reserved for developers who develop a variation of ScriptBasic. The variation may alter some features and still is based on the same version of the core code. These two version fields are reserved here to distinguish between different variation versions based on the same core ScriptBasic code. To maintain these version numbers is essential for those who embed ScriptBasic into an application, especially if the different versions of the variations alter the binary file format which I doubt is really needed.
+<P>
+The field <font size="3"><tt>Build</tt></font> is the build of the core ScriptBasic code.
+<P>
+The <font size="3"><tt>Date</tt></font> is date when the file `<font size="3"><tt>builder.c</tt></font>' was compiled. The date is stored in a <font size="3"><tt>long</tt></font> in a tricky way that ensures that no two days result the same <font size="3"><tt>long</tt></font> number. In case you want to track how this is coded see the function <font size="3"><tt>build_MagicCode</tt></font> in file `<font size="3"><tt>builder.c</tt></font>'. This is really tricky.
+<P>
+
+The final field is <font size="3"><tt>Variation</tt></font> which is and should be an exactly 8 character long string and a zero character.
+<P>
+If you want to compile a different variation then alter the <font size="3"><tt>#define</tt></font> directives in the file `<font size="3"><tt>builder.c</tt></font>'
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+#define VERSION_HIGH 0x00000001
+#define VERSION_LOW  0x00000000
+#define MYVERSION_HIGH 0x00000000
+#define MYVERSION_LOW  0x00000000
+#define VARIATION "STANDARD"
+</PRE></FONT>
+<P>
+
+<P>
+To successfully load a binary format file to run in ScriptBasic the long size, the magic code, version information including the build and the variation string should match. Date may be different.
+<P>
+The following foru <font size="3"><tt>long</tt></font> numbers in the binary file define 
+<UL>
+<LI> the number of global variables, 
+<LI> the number of the nodes of the compiled program
+<LI> the index of the start node where the execution should be started
+<LI> the length of the string table
+</UL>
+<P>
+This is followed by the nodes themselves and the stringtable.
+<P>
+This is the last point that has to exist in a binary format file of a BASIC program. The following bytes are optional and may not be present in the file.
+<P>
+The optional part contains the size of the function table defined on a <font size="3"><tt>long</tt></font> and the function table. After this the size of the global variable table is stored in a <font size="3"><tt>long</tt></font> and the global variable table.
+<P>
+The global variable and function symbol table are list of elements, each containing a <font size="3"><tt>long</tt></font> followed by the zero character terminated symbolic name. The <font size="3"><tt>long</tt></font> stores the serial number of the variable or the entry point of the function (the node index where the function starts).
+<P>
+These two tables are not used by ScriptBasic by itself, ScriptBasic does not need any symbolic information to execute a BASIC program. Programmers embedding ScriptBasic however demanded access global variables by name and the ability to execute individual functions from a BASIC program. If this last part is missing from a binary format BASIC program you will not be able to use in an application that uses these features.<HR>
+<A HREF="devguide_2.5.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

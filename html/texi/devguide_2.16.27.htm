@@ -1,0 +1,40 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: file_opendir</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: file_opendir">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: file_opendir">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>file_opendir</H1>
+<A HREF="devguide_2.16.26.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.28.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Open a directory for listing
+<P>
+This function implements the <font size="3"><tt>opendir</tt></font> function of UNIX. The difference between this implementation and
+the UNIX version is that this implementation requires a <font size="3"><tt>DIR</tt></font> structure to be passed as an argument. The
+reason for this is that the Windows system calls do not allocate memory and pass return values in structures
+allocated by the caller. Because we did not want to implement memory allocation in these routines
+we followed the Windows like way.
+<P>
+The first argument <font size="3"><tt>pszDirectoryName</tt></font> is a ZCAR directory name to be scanned. The second argument is an
+allocated <font size="3"><tt>DIR</tt></font> structure that has to be valid until the <font size="3"><tt>file_closedir</tt></font> is called.
+<P>
+The second parameter under UNIX is not used. However to be safe and portable to Win32 the parameter
+should be handled with care.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+DIR *file_opendir(char *pszDirectoryName,
+                  tDIR *pDirectory
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.16.26.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.28.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

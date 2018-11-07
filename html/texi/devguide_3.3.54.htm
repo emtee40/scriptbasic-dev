@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_NoRun()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_NoRun()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_NoRun()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_NoRun()</H1>
+<A HREF="devguide_3.3.53.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.55.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+In case the embedding program want to set global variables and
+execute subroutines without or before starting the main program it has to call this
+function first. It does all the initializations that are done by
+<a href="devguide_3.3.53.htm">scriba_Run()</A> except that it does not actually execute the program.
+<P>
+After calling this function the main program may access global variables
+and call BASIC functions.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_NoRun(pSbProgram pProgram
+  )@{
+</PRE></FONT>
+See also <a href="devguide_3.3.53.htm">scriba_Run()</A>.<HR>
+<A HREF="devguide_3.3.53.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.55.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

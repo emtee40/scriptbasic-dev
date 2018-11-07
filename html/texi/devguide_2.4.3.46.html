@@ -1,0 +1,46 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.4.3.46. ex_IsCommandOPEN()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_IsCommandOPEN()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_IsCommandOPEN()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.4.html">2.4. Syntax Analyzer</A><BR>
+<UL><a href="devguide_2.4.3.html">2.4.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.4.3.46. ex_IsCommandOPEN()</H1>
+<A HREF="devguide_2.4.3.45.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.47.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+The open statement is a simple one. The only problem is that the last parameter
+defining the length of a record is optional. This can only be handled using a separate
+function
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+peNODE ex_IsCommandOPEN(peXobject pEx,
+                        pLineSyntax p,
+                        int *piFailure
+  )@{
+</PRE></FONT>
+<P>
+'open' expression 'for' absolute_symbol 'as' expression 'len' '=' expression nl<HR>
+<A HREF="devguide_2.4.3.45.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.47.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,110 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: How Extension Modules are Used</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: How Extension Modules are Used">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: How Extension Modules are Used">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>How Extension Modules are Used</H1>
+<A HREF="devguide_4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.2.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+To write external modules it is a good practice to learn first how ScriptBasic uses the modules.
+<P>
+External functions and external commands in ScriptBasic are declared using the declare sub or declare command statements. An example of such a statement is
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+declare sub alma alias "trial" lib "ext_tial"
+</PRE></FONT>
+or
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+declare command iff alias "iff" lib "ext_tial"
+</PRE></FONT>
+<P>
+Following this declaration the function or the command can be used just as it were implemented in BASIC.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+call alma(1,2,3)
+</PRE></FONT>
+<P>
+The difference between external functions and external commands is the way ScriptBasic handles the arguments passed to them. Both external functions and external commands are implemented as C functions in the extension module compiled into a DLL or shareable object. Both of them look like user defined functions in the BASIC source code.
+<P>
+The difference is that external functions are called after the actual arguments are evaluated, while external commands are called without evaluating the arguments. Because of this external functions and external commands are implemented in C functions that have different prototypes. There is a prototype for external functions and a different one for external commands. 
+<P>
+When ScriptBasic compiles this line the function or subroutine <font size="3"><tt>alma</tt></font> is defined just as a normal function or subroutine defined using the instructions of the basic language. Note that there are no differences other than syntax between subroutines and functions in ScriptBasic. When the program calls the function <font size="3"><tt>alma</tt></font> the ScriptBasic run-time system performs a function call to the basic function alma. In other words there is no difference from the caller point of view between the line above and the line:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+Sub alma(a,b)
+End sub
+</PRE></FONT>
+<P>
+The function call can be performed in two different ways. One way is when the function appears in an expression. The other way is when the function is called using the <font size="3"><tt>call</tt></font> statement. There is no difference between the two calling possibilities from the internal operation point of view of the interpreter. This is because <font size="3"><tt>CALL</tt></font> statement is implemented in a very simple way to simply evaluate the expression after the call statement and drop the result. 
+<P>
+The calling code does not evaluate the expressions passed to the function as arguments. This is usually the task of the functions. The functions get the node pointer to the expression list where the actual values for the arguments are and they can evaluate them.
+<P>
+The two different declarations <font size="3"><tt>declare sub</tt></font> and <font size="3"><tt>declare command</tt></font> differ in the way ScriptBasic interpreter handles the arguments. When an external function is declared using the command <font size="3"><tt>declare sub</tt></font> the arguments are evaluated by the interpreter before the function implemented in the external module is called. When an external command is declared using the command <font size="3"><tt>declare command</tt></font> the arguments are <I>NOT</I> evaluated by the ScriptBasic interpreter before calling the function implemented in the external module. In the latter case the external function has to decide if it wants certain arguments to be evaluated and can call the ScriptBasic function <font size="3"><tt>execute_Evaluate</tt></font> via the extension call-back table to evaluate the arguments. Also the prototype of a function declared using the statement <font size="3"><tt>declare command</tt></font> is different from the prototype of a function declared using the command <font size="3"><tt>declare sub</tt></font>.
+<P>
+When a function is implemented externally ScriptBasic sees a <font size="3"><tt>declare sub</tt></font> statement instead of a <font size="3"><tt>function</tt></font> or <font size="3"><tt>sub</tt></font> statement and starts to execute this statement calling the code implemented in the file `<font size="3"><tt>external.c</tt></font>' in the source directory `<font size="3"><tt>commands</tt></font>'.
+<P>
+The name of the example function is <font size="3"><tt>alma</tt></font> as declared in the statement above. However this is only a symbolic name that exists only during syntax analysis and is not available when the code is executed. The alias for the function is <font size="3"><tt>trial</tt></font>. This is the name of the function as it is implemented in the external module. When the interpreter executes this line the function name <font size="3"><tt>trial</tt></font> is used in the system call to locate the entry point. The module that contains the function is <font size="3"><tt>ext_trial</tt></font>. The actual file name is `<font size="3"><tt>ext_trial.dll</tt></font>' or `<font size="3"><tt>ext_trial.so</tt></font>' or some other name containing the given name and an extension specific to the operating system. During module load ScriptBasic automatically appends the appropriate extension as defined in the configuration file of ScriptBasic. (For further information on ScriptBasic configuration file syntax and location see the ScriptBasic Users' Guide!) ScriptBasic searches the module in the directories defined in the configuration file and tries to load it using absolute file name. This way the system specific search paths are not taken into account.
+<P>
+When function implemented in an external module is first called the interpreter checks if the module is loaded or not. If the module is not loaded the interpreter loads the module and calls module initialization functions. If the module was already loaded it locates the entry point of the function and calls the function.
+<P>
+During module load ScriptBasic appends the appropriate dynamic load library extension and tries to load the module from the directories defined in the configuration file. It takes the directories in the order they are specified in the configuration file and in case it can load the module from a directory listed it stops trying.
+<P>
+
+When the module is loaded ScriptBasic locates the function <font size="3"><tt>versmodu</tt></font> and calls it. The task of this function is to negotiate the interface version between the external module and ScriptBasic. The current interface version is defined in the file `<font size="3"><tt>basext.c</tt></font>' with the C macro <font size="3"><tt>INTERFACE_VERSION</tt></font>. ScriptBasic calls this function to tell the module what version ScriptBasic supports. The function can decide if the module can work with the indicated version and can answer: <I>yes it is OK, no it is not OK or yes, but I can support only version X.</I> This is a negotiation process that finally result some agreement or the module is abandoned if no agreement can be reached.
+<P>
+The function <font size="3"><tt>versmodu</tt></font> gets three arguments:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int versmodu(int Version, char *pszVariation, void **ppModuleInternal)
+</PRE></FONT>
+<P>
+The first argument is the version of the interface. The second argument is the ZCHAR terminated 8-character string of the variation. This is “STANDARD” for the standard, stand alone, command line version of ScriptBasic. The <font size="3"><tt>ppModuleInternal</tt></font> pointer points to the module pointer initialized to <font size="3"><tt>NULL</tt></font>. This pointer is hardly ever used in this function, but its address is passed as a third argument in case some application needs it. The role of this pointer will be discussed later.
+<P>
+The function should check the parameters passed and return either zero in case it can not accept the interface or the highest interface it can handle. If this is the same as the version passed in the first argument the module should be accepted. If this is smaller than the interface version offered by ScriptBasic the interpreter can decide if it can support the older interface required by the module.
+<P>
+If the function <font size="3"><tt>versmodu</tt></font> returns a version larger than the version offered the interpreter will interpret this as a negotiation failure and will treat the module as not loaded.
+<P>
+If there is no function named <font size="3"><tt>versmodu</tt></font> in the library ScriptBasic crosses the fingers and hopes the best and assumes that the module will be able to work with the interface ScriptBasic offers. (should we change it to be configurable to disallow such modules?)
+<P>
+After the successful version negotiation the interpreter calls the function named <font size="3"><tt>bootmodu</tt></font>. This function gets four arguments.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+<P>
+int bootmodu(pSupportTable pSt,
+             void **ppModuleInternal, 
+             pFixSizeMemoryObject pParameters,
+             pFixSizeMemoryObject *pReturnValue)
+</PRE></FONT>
+<P>
+The first parameter is a pointer to the interface structure. This interface structure can and should be used to communicate with ScriptBasic. The second parameter points to the module pointer. The last two parameters are NULL for this function. The reason to pass two NULL pointers is that this is the prototype of each function callable by ScriptBasic implemented in the module. The last two parameters point to the parameters of the function and to the left value where the function value is to be returned. <font size="3"><tt>bootmodu</tt></font> actually does not get any parameter and should not pass any value back.
+<P>
+This function can be used to initialize the module, to allocate memory for the common storage if the functions implemented in the module keep some state information. If there is no function named <font size="3"><tt>bootmodu</tt></font> in the library file ScriptBasic assumes that the module does not need initialization. If the function <font size="3"><tt>bootmodu</tt></font> exists it should return zero indicating success or an error code. If an error code is returned the module is treated as failed. And an error is raised. (Errors can be captured using the BASIC <font size="3"><tt>ON ERROR GOTO</tt></font> command.
+<P>
+When this function returns the ScriptBasic interpreter evaluates the arguments and performs a call to the function named trial in our example.
+<P>
+When the program has finished the interpreter tries to locate the function <font size="3"><tt>finimodu</tt></font> in the module. This function may exist and should have the same prototype as any other function (except <font size="3"><tt>versmodu</tt></font>):
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int finimodu(pSupportTable pSt,
+             void **ppModuleInternal,
+             pFixSizeMemoryObject pParameters,
+             pFixSizeMemoryObject *pReturnValue)
+</PRE></FONT>
+<P>
+This function can be used to perform clean-up tasks. The interpreter may call the <font size="3"><tt>finimodu</tt></font> functions of different modules in different threads asynchronously. (However it does not currently.)
+<P>
+Note that there is no need to release the allocated memory in case the module allocates memory using the memory allocation methods provided by the interface. Other resources may need release; for example files may need closing.<HR>
+<A HREF="devguide_4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.2.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

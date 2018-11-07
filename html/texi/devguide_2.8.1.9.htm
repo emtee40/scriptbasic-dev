@@ -1,0 +1,50 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: alloc_Merge()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: alloc_Merge()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: alloc_Merge()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>alloc_Merge()</H1>
+<A HREF="devguide_2.8.1.8.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.10.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Call this function in case you want to merge a segment into another. This can be the
+case when your program builds up a memory structure in several steps.
+<P>
+This function merges the segment <font size="3"><tt>p2</tt></font> into <font size="3"><tt>p1</tt></font>. This means that the segment <font size="3"><tt>p1</tt></font> will
+contain all the memory pieces that belonged to <font size="3"><tt>p2</tt></font> before and <font size="3"><tt>p2</tt></font> will not contain any
+allocated memory. However the segment <font size="3"><tt>p2</tt></font> is still valid and can be used to allocated memory
+from. If you also want to finish the segment <font size="3"><tt>p2</tt></font> call the function <a href="devguide_2.8.1.10.htm">alloc_MergeAndFinish()</A>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void alloc_Merge(void *p1, void *p2
+  )@{
+</PRE></FONT>
+<P>
+Note that the two segments SHOULD use the same, or at least compatible system memory handling functions!
+You better use the same functions for both segments.
+<P>
+Example:
+<P>
+ScriptBasic builds up a sophisticated memory structure during syntactical analysis. This memory structure
+contains the internal code generated from the program lines of the basic program. When ScriptBasic analyses
+a line it tries several syntax descriptions. It checks each syntax defintion against the tokens of the line
+until it finds one that fits. These checks need to build up memory structure. However if the check fails and
+ScriptBasic should go for the next syntac definition line to check the memory allocated during the failed
+checking should be released. Therefore these memory pieces are allocated from a segment that the program
+calls <font size="3"><tt>pMyMemorySegment</tt></font>. If the syntax check fails this segment if freed. If the syntax check succedes this
+segment is merged into another segement that contains the memory structures allocated from the previous basic program
+lines.<HR>
+<A HREF="devguide_2.8.1.8.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.10.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,45 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_NewSbBytes()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_NewSbBytes()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_NewSbBytes()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_NewSbBytes()</H1>
+<A HREF="devguide_3.3.9.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.11.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function allocates and returns a pointer pointing to a structure of
+type <font size="3"><tt>SbData</tt></font> holding a string value. If the allocation failed the return
+value is <font size="3"><tt>NULL</tt></font>. If the memory allocation was successful the allocated
+structure will have the type <font size="3"><tt>SBT_STRING</tt></font> and will hold the initial value
+specified by the argument <font size="3"><tt>pszInitValue</tt></font> of the length <font size="3"><tt>len</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pSbData scriba_NewSbBytes(pSbProgram pProgram,
+                          unsigned long len,
+                          unsigned char *pszInitValue
+  )@{
+</PRE></FONT>
+This function allocates <font size="3"><tt>len</tt></font>+1 number of bytes data and
+stores the initial value pointed by <font size="3"><tt>pszInitValue</tt></font> in it.
+<P>
+The extra plus one byte is an extra terminating zero char
+that may help the C programmers to handle the string
+in case it is not binary. Please also read the not on the terminating ZChar
+in the function <a href="devguide_3.3.9.htm">scriba_NewSbString()</A>.
+<P>
+See also <a href="devguide_3.3.6.htm">scriba_NewSbLong()</A>, <a href="devguide_3.3.7.htm">scriba_NewSbDouble()</A>, <a href="devguide_3.3.8.htm">scriba_NewSbUndef()</A>, <a href="devguide_3.3.9.htm">scriba_NewSbString()</A>,
+<a href="devguide_3.3.10.htm">scriba_NewSbBytes()</A>, <a href="devguide_3.3.11.htm">scriba_DestroySbData()</A>.<HR>
+<A HREF="devguide_3.3.9.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.11.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

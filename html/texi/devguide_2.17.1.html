@@ -1,0 +1,52 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.17.1. modu_Init</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: modu_Init">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: modu_Init">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.17.html">2.17. Module Management</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.17.1. modu_Init</H1>
+<A HREF="devguide_2.17.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.17.2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c Initialize the module management
+<P>
+This function allocates memory for the external module interface table and
+initializes the function pointers.
+<P>
+If the interface already exists and the function is called again it just
+silently returns.
+<P>
+The second argument can be zero or 1. The normal operation is zero. If <font size="3"><tt>iForce</tt></font>
+is true the function sets each function pointer to its initial value even if an
+initialization has already occured before.
+<P>
+This can be used in a rare case when a module modifies the interface table and
+want to reinitialize it to the original value. Be carefule with such
+constructions.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int modu_Init(pExecuteObject pEo,
+              int iForce
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.17.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.17.2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

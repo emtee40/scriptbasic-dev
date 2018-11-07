@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.2.4. Creating Program Object</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Creating Program Object">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Creating Program Object">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.2.html">3.2. Sample Embedding</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.2.4. Creating Program Object</H1>
+<A HREF="devguide_3.2.3.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.5.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<P>
+The real interesting piece of code starts at this fragment:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  pProgram = scriba_new(malloc,free);
+</PRE></FONT>
+<P>
+
+This code first of all creates a new program object calling <a href="devguide_3.3.1.html">scriba_new()</A>. The two arguments to this function should be two pointers to two functions that will be used by the interpreter to allocate and release memory. The two functions should exhibit behavior like <font size="3"><tt>malloc</tt></font> and <font size="3"><tt>free</tt></font>. All lower layers inherit these functions and call these functions to get and to release memory. In case there are more than one program objects used they may one after the other or in different threads at the same time use the same functions or different functions. The only requirement is that the functions pointed by the arguments should be thread safe if different threads are started executing ScriptBasic interpreters. Thread safeness also may play important role when some extension module is multi-thread.<HR>
+<A HREF="devguide_3.2.3.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.5.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

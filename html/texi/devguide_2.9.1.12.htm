@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: memory_Type()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_Type()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_Type()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>memory_Type()</H1>
+<A HREF="devguide_2.9.1.11.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.13.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function returns the type of the variable. In case the program
+does not want to check the <font size="3"><tt>NULL</tt></font> undef, but wants to get <font size="3"><tt>VTYPE_UNDEF</tt></font>
+even if the variable is real <font size="3"><tt>undef</tt></font> being <font size="3"><tt>NULL</tt></font> calling this function
+is safe. Use this function instead of the macro <font size="3"><tt>TYPE</tt></font> defined in <font size="3"><tt>command.h</tt></font>
+is there is doubt.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int memory_Type(pFixSizeMemoryObject pVar
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.9.1.11.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.13.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

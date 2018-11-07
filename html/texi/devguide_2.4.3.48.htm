@@ -1,0 +1,39 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: ex_IsCommandIF()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_IsCommandIF()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_IsCommandIF()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ex_IsCommandIF()</H1>
+<A HREF="devguide_2.4.3.47.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.49.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+The statement IF is quite simple. However there is another
+command that has almost the same syntax as the IF statement.
+This is the SLIF, single line IF.
+<P>
+The difference between the command IF and SLIF is that SLIF does
+not have the new line character after the keyword <font size="3"><tt>THEN</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+peNODE ex_IsCommandIF(peXobject pEx,
+                        pLineSyntax p,
+                        int *piFailure
+  )@{
+</PRE></FONT>
+<P>
+IF/IF:    'if' * expression 'then' go_forward(IF) nl
+SLIF/SLIF:  'slif' * expression 'then'<HR>
+<A HREF="devguide_2.4.3.47.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.49.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

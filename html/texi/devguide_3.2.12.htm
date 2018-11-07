@@ -1,0 +1,31 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Execute the BASIC Program</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Execute the BASIC Program">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Execute the BASIC Program">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Execute the BASIC Program</H1>
+<A HREF="devguide_3.2.11.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.13.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This is the step that all the previous steps were done. This function call to <a href="devguide_3.3.53.htm">scriba_Run()</A> executes the program.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  if( iError=scriba_Run(pProgram,CmdLinBuffer) ){
+ report_report(stderr,"",0,iError,REPORT_ERROR,&amp;iErrorCounter,NULL,&amp;fErrorFlags);
+    ERREXIT;
+    }
+</PRE></FONT><HR>
+<A HREF="devguide_3.2.11.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.13.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

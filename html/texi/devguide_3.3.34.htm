@@ -1,0 +1,51 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_SetEnvironment()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_SetEnvironment()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_SetEnvironment()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_SetEnvironment()</H1>
+<A HREF="devguide_3.3.33.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.35.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+You can call this function to define a special environment query function. This
+pointer should point to a function that accepts a <font size="3"><tt>(void *, char *, long )</tt></font> arguments.
+<P>
+Whenever the ScriptBasic program tries to get the value of an enviroment variable
+it calls this function. The first argument is the embedder pointer.
+<P>
+The second argument is the name of the environment variable to retrieve or <font size="3"><tt>NULL</tt></font>.
+<P>
+The third argument is either zero or is the serial number of the environment variable.
+<P>
+ScriptBasic never calls this function with both specifying the environment variable name
+and the serial number.
+<P>
+The return value of the function should either be <font size="3"><tt>NULL</tt></font> or should point to a string that
+holds the zero character terminated value of the environment variable. This string is not
+changed by ScriptBasic.
+<P>
+If the special environment function is not defined or is <font size="3"><tt>NULL</tt></font> ScriptBasic uses the
+usual environment of the process calling the system function<font size="3"><tt>getenv</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void scriba_SetEnvironment(pSbProgram pProgram,
+                           void *fpEnvirFunction
+  )@{
+</PRE></FONT>
+For a good example of a self-written environment function see the source of the Eszter SB Engine
+that alters the environment function so that the ScriptBasic programs feel as if they were executed in a
+real CGI environment.<HR>
+<A HREF="devguide_3.3.33.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.35.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

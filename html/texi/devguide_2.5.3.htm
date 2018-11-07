@@ -1,0 +1,51 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Functions implemented in this module</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Functions implemented in this module">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Functions implemented in this module">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Functions implemented in this module</H1>
+<A HREF="devguide_2.5.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+The following subsections list the functions that are implemented in this module. The source text of this documentation was extracted from the source
+Documentation embedded in the C source as comment. Treat these subsections more as reference documentation and less tutorial like.
+<P>
+
+<P>
+
+<P>
+
+<P>
+This module can and should be used to create the memory image for the
+executor module from the memory structure that was created by the module
+<font size="3"><tt>expression</tt></font>.
+<P>
+The memory structure created by <font size="3"><tt>expression</tt></font> is segmented, allocated
+in many separate memory chunks. When the module <font size="3"><tt>expression</tt></font> has been finished
+the size of the memory is known. This builder creates a single memory 
+chunk containing all the program code.
+<P>
+Note that the function names all start with the prefix <font size="3"><tt>build_</tt></font> in this module.
+<P>
+The first argument to each function is a pointer to a <font size="3"><tt>BuildObject</tt></font> structure
+that contains the "global" variables for the module. This technique is used to ensure
+multithread usage. There are no global variables which are really global within the
+process.
+<P>
+The functions in this module are:
+<P>
+=toc<HR>
+<A HREF="devguide_2.5.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

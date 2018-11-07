@@ -1,0 +1,34 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: memory_DupMortalize()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_DupMortalize()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_DupMortalize()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>memory_DupMortalize()</H1>
+<A HREF="devguide_2.9.1.26.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.28.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function creates a new mortal and copies the argument <font size="3"><tt>pVar</tt></font> into this
+new mortal only if the value is immortal. If the value is mortal the it returns
+the original value.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pFixSizeMemoryObject memory_DupMortalize(pMemoryObject pMo,
+                                         pFixSizeMemoryObject pVar,
+                                         pMortalList pMyMortal,
+                                         int *piErrorCode
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.9.1.26.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.28.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

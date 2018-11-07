@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: alloc_Free()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: alloc_Free()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: alloc_Free()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>alloc_Free()</H1>
+<A HREF="devguide_2.8.1.7.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.9.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+You should call this function whenever you want to release a single piece of memory
+allocated from a segment. Note that you also have to pass the segment pointer as the
+second argument, because the segment head pointed by this <font size="3"><tt>void</tt></font> pointer contains the
+memory releasing function pointer.
+<P>
+Sloppy programmers may try to release <font size="3"><tt>NULL</tt></font> pointer without harm.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void alloc_Free(void *pMem, void *p
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.8.1.7.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.9.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

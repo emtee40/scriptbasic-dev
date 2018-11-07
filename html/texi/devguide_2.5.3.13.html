@@ -1,0 +1,57 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.5.3.13. build_GetExeCodeOffset()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: build_GetExeCodeOffset()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: build_GetExeCodeOffset()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.5.html">2.5. Builder</A><BR>
+<UL><a href="devguide_2.5.3.html">2.5.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.5.3.13. build_GetExeCodeOffset()</H1>
+<A HREF="devguide_2.5.3.12.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.14.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function checks that the actually running exe contains the binary BASIC program
+attached to its end. It returns zero if not, otherwise it returns 1.
+<P>
+<UL>
+<LI> The argument <font size="3"><tt>pszInterpreter</tt></font> should be <font size="3"><tt>argv[0]</tt></font> thus the code can open the executable
+file and check if it really contains the BASIC code
+<LI> <font size="3"><tt>plOffset</tt></font> should point to a long variable ready to recieve the file offset where the BASIC
+code starts
+<LI> <font size="3"><tt>plEOFfset</tt></font> should point to a long variable ready to receive the file offset where the
+BASIC code finishes. This is the position of the last byte belonging to the BASIC code, thus if
+<font size="3"><tt>ftell(fp) </tt></font>&gt;<font size="3"><tt> *plEOFfset</tt></font> means the file pointer is after the code and should treat it as EOF
+condition when reading the BASIC program code.
+@end itemize
+<P>
+It is guaranteed that both <font size="3"><tt>*plOffset</tt></font> and <font size="3"><tt>*plEOFfset</tt></font> will be set to <font size="3"><tt>0</tt></font> (zero) if the file
+proves to be a standard BASIC interpreter without appended BASIC code.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int build_GetExeCodeOffset(char *pszInterpreter,
+                            long *plOffset,
+                            long *plEOFfset
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.5.3.12.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.14.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,134 @@
+<HEAD>
+<TITLE>Using the module HASH: ref[This]Value</TITLE>
+
+<META NAME="description" CONTENT="Using the module HASH: ref[This]Value">
+<META NAME="keywords" CONTENT="Using the module HASH: ref[This]Value">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ref[This]Value</H1>
+<A HREF="mod_hash_5.12.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_hash_6.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+v = hash::refThisValue(h)
+v = hash::refValue(h)
+</PRE></FONT>
+
+These two functions retrieve a reference to a value stored in a hash and should only be used by advanced programmers, who deeply understand how ScriptBasic stores variables and handles reference values. Use of these functions may help the advanced programmers to increase program speed and effectiveness. On the other hand improper use of the functions may result non-deterministic behavior and memory corruption, process halt, core dump.
+
+The simple definition of the functions is that they do the same as their non-ref pairs with the extension that they return the value of the element, while the non-ref pair returns a copy of the value. Lets see a simple example!
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import hash.bas
+Const nl="\n"
+h = hash::New()
+hash::SetValue h,"evil",666
+Zazu = hash::Value(h,"evil")
+print Zazu,nl
+Zazu = "BILL"
+print hash::Value(h,"evil"),nl
+hash::Release h
+</PRE></FONT>
+
+This will print the number <font size="3"><tt>666</tt></font> twice. This is what we have expected. We have a variable that is named <font size="3"><tt>Zazu</tt></font>, and we have assigned the string value <font size="3"><tt>"BILL"</tt></font> to it, but this has nothing to do with the hash. Now let us alter the code:
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import hash.bas
+Const nl="\n"
+h = hash::New()
+hash::SetValue h,"evil",666
+Zazu = hash::refValue(h,"evil")
+print Zazu,nl
+Zazu = "BILL"
+print hash::Value(h,"evil"),nl
+hash::Release h
+</PRE></FONT>
+
+The only difference is that we use the function <font size="3"><tt>hash::refValue</tt></font> instead of <font size="3"><tt>hash::Value</tt></font>. This time the program prints <font size="3"><tt>666</tt></font> on the first line and <font size="3"><tt>BILL</tt></font> on the second. The reason is that the variable <font size="3"><tt>Zazu</tt></font> not only holds the value assigned to the key evil, but it is the value.
+
+The situation is exactly the same as function argument passing and is implemented the same way. When a variable is passed to a function by reference the local variable holds a reference to the original variable and whenever the local variable is altered the original variable is altered. The functions <font size="3"><tt>hash::refThisValue</tt></font> and <font size="3"><tt>hash::refValue</tt></font> return a reference to the unnamed variable stored inside the hash structure holding the value. Whenever the variable is altered the referenced variable is altered inside the hash.
+
+What is the benefit? To have a reference to a value you can alter it without researching the hash. You can just assign a new value to the variable holding the reference value and in a snap you have altered the value of an existing key without searching for the key.
+
+What is the drawback? To have a reference to a value you should be careful otherwise you may get memory corrupting code. Let's see some erroneous examples.
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import hash.bas
+Const nl="\n"
+h = hash::New()
+hash::SetValue h,"good",999
+hash::SetValue h,"evil",666
+Zazu = hash::refValue(h,"evil")
+print Zazu,nl
+Zazu = "BILL"
+print hash::Value(h,"evil"),nl
+Zazu = hash::refValue(h,"good")
+hash::SetValue h,"evil","William"
+print Zazu,nl
+hash::Release h
+</PRE></FONT>
+
+This program will print out <font size="3"><tt>666</tt></font>, <font size="3"><tt>BILL</tt></font> and finally <font size="3"><tt>William</tt></font>. Why does it print <font size="3"><tt>William</tt></font> on the third line? Don't <font size="3"><tt>Zazu</tt></font> hold the value for the key <font size="3"><tt>"good"</tt></font>? (Yes, it does.) Why does it have to do anything with the altered value of the key <font size="3"><tt>"evil"</tt></font>?
+
+The answer is the following. When we have assigned the reference to the value of the key <font size="3"><tt>"evil"</tt></font> to the variable <font size="3"><tt>Zazu</tt></font> we actually said that all assignments to <font size="3"><tt>Zazu</tt></font> will alter the value in the hash. Assigning the reference to the value assigned to the key <font size="3"><tt>"good"</tt></font> to <font size="3"><tt>Zazu</tt></font> assigned the reference to this key to the value assigned to the key <font size="3"><tt>"evil"</tt></font>. This means that the keys <font size="3"><tt>"evil"</tt></font> and <font size="3"><tt>"good"</tt></font> share the same value, which sometimes they pretend to also in real life.
+
+You should never forget a variable that has a reference into the hash! In an artificial example the programmer forgets that the variable <font size="3"><tt>Zazu</tt></font> at a certain point in the program was already set to hold a reference to a value in the hash and tries to set it to hold another reference to the same key.
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import hash.bas
+Const nl="\n"
+h = hash::New()
+hash::SetValue h,"good",999
+hash::SetValue h,"evil",666
+Zazu = hash::refValue(h,"evil")
+print Zazu,nl
+Zazu = "BILL"
+' here the programmer makes a mistake and
+' forgets that Zazu holds a reference
+print hash::Value(h,"evil"),nl
+Zazu = hash::refValue(h,"evil")
+print Zazu,nl
+hash::Release h
+</PRE></FONT>
+
+The code stops with an error. When assigning the reference to the value of <font size="3"><tt>"evil"</tt></font> second time, the value of <font size="3"><tt>"evil"</tt></font> is assigned to itself. It becomes a reference that references itself. The program recognizes the situation. It stops with an error after a few iteration trying to resolve the reference. (Builds before 18 of ScriptBasicv1.0 got into an infinite loop.)
+
+The solution is to use the command <font size="3"><tt>ByVal</tt></font> as soon as we want to get rid of the reference in the variable. The following program runs fine:
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import hash.bas
+Const nl="\n"
+h = hash::New()
+hash::SetValue h,"good",999
+hash::SetValue h,"evil",666
+Zazu = hash::refValue(h,"evil")
+print Zazu,nl
+Zazu = "BILL"
+ByVal Zazu
+print hash::Value(h,"evil"),nl
+Zazu = hash::refValue(h,"evil")
+print Zazu,nl
+hash::Release h
+</PRE></FONT>
+
+Basic rules that you should keep when using references to hash values:
+
+<UL>
+<LI> ByVal a variable as soon as possible.
+<LI> ByVal any variable before releasing the hash.
+<LI> You need not ByVal local variables before returning from a function. The references will be dropped automatically.
+<LI> You need not ByVal local variables referencing a hash value even if the hash is released, but you should not use the local variable anymore. Not in assignment, not in expression and even not in a command ByVal.
+</UL>
+<HR>
+<A HREF="mod_hash_5.12.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_hash_6.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

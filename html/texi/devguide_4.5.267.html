@@ -1,0 +1,39 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 4.5.267. besDLL_MAIN</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besDLL_MAIN">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besDLL_MAIN">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_4.html">4. Extension Modules</A><BR>
+<UL><a href="devguide_4.5.html">4.5. Module Support Functions</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>4.5.267. besDLL_MAIN</H1>
+<A HREF="devguide_4.5.266.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.268.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+process header macro makes UNIX like dll loading and unloading
+on Win32. This just defines a wrapper DllMain that calls _init() and
+_fini() that a the default library loading and unloading functions
+under UNIX.
+<P>
+Use of this macro may be needed for modules that serve multi thread
+interpreters and share resources on the process level<HR>
+<A HREF="devguide_4.5.266.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.268.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,54 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.7.1.3. cft_start()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: cft_start()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: cft_start()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.7.html">2.7. Configuration File Handling</A><BR>
+<UL><a href="devguide_2.7.1.html">2.7.1. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.7.1.3. cft_start()</H1>
+<A HREF="devguide_2.7.1.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.4.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+When writing real applications you usually want to call this function. This function initializes the
+<font size="3"><tt>tConfigTree</tt></font> structure pointed by <font size="3"><tt>pCT</tt></font>, searches for the configuration file and reads it.
+<P>
+When trying to allocate the configuration file the static internal function <a href="devguide_html">GetConfigFileName</A> is used.
+<P>
+The argument <font size="3"><tt>Envir</tt></font> is the registry key under <font size="3"><tt>HKLM</tt></font>, eg <font size="3"><tt>Software\Myprog\conf</tt></font> under Win32 or
+the environment variable to look for the configuration file name. The argument <font size="3"><tt>pszDefaultFileName</tt></font>
+is the file name searched on WIN32 in the system directories or the full path to the default configuration
+file nam eunder UNIX. The argument <font size="3"><tt>pszForcedFileName</tt></font> can overrride the file name search or
+has to be <font size="3"><tt>NULL</tt></font> to let the reader search the environment and registry for file name.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int cft_start(ptConfigTree pCT,
+              void *(*memory_allocating_function)(size_t, void *),
+              void (*memory_releasing_function)(void *, void *),
+              void *pMemorySegment,
+              char *Envir,
+              char *pszDefaultFileName,
+              char *pszForcedFileName
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.7.1.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.4.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

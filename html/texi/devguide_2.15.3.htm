@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: dynlolib_GetFunctionByName</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: dynlolib_GetFunctionByName">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: dynlolib_GetFunctionByName">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>dynlolib_GetFunctionByName</H1>
+<A HREF="devguide_2.15.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Get the entry point of a function by its name
+<P>
+This function can be used to get the entry point of a function of a loaded module
+specifying the name of the function.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void *dynlolib_GetFunctionByName(
+  void *pLibrary,
+  char *pszFunctionName
+  )@{
+</PRE></FONT>
+The argument <font size="3"><tt>pLibrary</tt></font> is the pointer, which was returned by the function <a href="devguide_2.15.1.htm">dynlolib_LoadLibrary</A>
+<P>
+The argument <font size="3"><tt>pszFunctionName</tt></font> is the ZCAR function name.
+ <HR>
+<A HREF="devguide_2.15.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

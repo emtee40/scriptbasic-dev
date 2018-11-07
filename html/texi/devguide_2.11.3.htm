@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: log_printf()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: log_printf()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: log_printf()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>log_printf()</H1>
+<A HREF="devguide_2.11.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.11.4.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function can be used to send a formatted log to the log file. The
+function creates the formatted string and then puts it onto the log queue.
+The log is actually sent to the log file by the asynchronous logger thread.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int log_printf(ptLogger pLOG,
+               char *pszFormat,
+               ...
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.11.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.11.4.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

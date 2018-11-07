@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: hook_CallScribaFunction</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: hook_CallScribaFunction">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: hook_CallScribaFunction">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>hook_CallScribaFunction</H1>
+<A HREF="devguide_2.12.50.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.13.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c  Start to execute a scriba function
+<P>
+This is a hook function that performs its operation itself without
+calling underlying <font size="3"><tt>file_</tt></font> function. This function is called
+by external modules whenever the external module wants to execute
+certain ScriptBasic function.
+<P>
+The external module has to know the entry point of the ScriptBasic
+function.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int hook_CallScribaFunction(pExecuteObject pEo,
+                            unsigned long lStartNode,
+                            pFixSizeMemoryObject *pArgument,
+                            unsigned long NumberOfPassedArguments,
+                            pFixSizeMemoryObject *pFunctionResult
+  )@{
+</PRE></FONT>
+ <HR>
+<A HREF="devguide_2.12.50.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.13.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

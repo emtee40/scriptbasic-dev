@@ -1,0 +1,31 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: _besEVALUATEEXPRESSION(X)</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: _besEVALUATEEXPRESSION(X)">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: _besEVALUATEEXPRESSION(X)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>_besEVALUATEEXPRESSION(X)</H1>
+<A HREF="devguide_4.5.99.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.101.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This macro evaluates an expression and returns the result <font size="3"><tt>VARIABLE</tt></font>.
+This should usually be used only in extension <a href="devguide_4.5.190.htm">besCOMMAND</A> commands
+and not in <a href="devguide_4.5.188.htm">besFUNCTION</A>. The result is <B>NOT</B> duplicated and <B>NOT</B>
+mortalized and therefore the command modifying the <font size="3"><tt>VARIABLE</tt></font> may happen
+to modify a BASIC variable.
+<P>
+This should not be done! There are other ways to modify the value of a
+variable.<HR>
+<A HREF="devguide_4.5.99.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.101.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

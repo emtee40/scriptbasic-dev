@@ -1,0 +1,50 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.6.4.12. execute_EvaluateArray()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: execute_EvaluateArray()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: execute_EvaluateArray()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.6.html">2.6. Executor</A><BR>
+<UL><a href="devguide_2.6.4.html">2.6.4. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.6.4.12. execute_EvaluateArray()</H1>
+<A HREF="devguide_2.6.4.11.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.13.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function should be used to evaluate an array access to get the actual
+value. This is called by <a href="devguide_2.6.4.10.html">execute_Evaluate()</A>.
+<P>
+An array is stored in the expression as an operator with many operands. The first
+operand is a local or global variable, the rest of the operators are the indices.
+<P>
+Accessing a variable holding scalar value with array indices automatically converts
+the variable to array. Accessing an array variable without indices gets the "first"
+element of the array.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pFixSizeMemoryObject execute_EvaluateArray(pExecuteObject pEo,
+                                      unsigned long lExpressionRootNode,
+                                      pMortalList pMyMortal,
+                                      int *piErrorCode
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.6.4.11.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.13.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

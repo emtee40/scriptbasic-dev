@@ -1,0 +1,48 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: ex_ConvertName()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_ConvertName()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_ConvertName()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ex_ConvertName()</H1>
+<A HREF="devguide_2.4.3.20.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.22.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this function to convert a relative name to absolute containing name space.
+<P>
+This function checks if the variable or function name is relative or absolute. If the
+name is relative it creates the absolute name using the current name space as a base.
+<P>
+The result is always put into the <font size="3"><tt>Buffer</tt></font>.
+<P>
+A name is relative if it does NOT contain <font size="3"><tt>::</tt></font> at all (implicit relative),
+if it starts with <font size="3"><tt>::</tt></font> or is it starts with <font size="3"><tt>_::</tt></font> (explicit relative).
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int ex_ConvertName(char *s,          /* name to convert            */
+                   char *Buffer,     /* buffer to store the result */
+                   size_t cbBuffer,  /* size of the buffer         */
+                   peXobject pEx     /* current expression object  */
+  )@{
+</PRE></FONT>
+<P>
+The error value is <font size="3"><tt>EX_ERROR_SUCCESS</tt></font> (zero) menaing succesful conversion or
+<font size="3"><tt>EX_ERROR_TOO_LONG_VARIABLE</tt></font> meaning that the variable is too long for the
+buffer.
+<P>
+Note that the buffer is allocated in <a href="devguide_2.4.3.19.htm">ex_init()</A> according to the size value given in
+the class variable <font size="3"><tt>cbBuffer</tt></font>, which should be set by the main function calling
+syntax analysis.<HR>
+<A HREF="devguide_2.4.3.20.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.22.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

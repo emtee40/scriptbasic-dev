@@ -1,0 +1,50 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.3.51. scriba_LoadSourceProgram()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_LoadSourceProgram()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_LoadSourceProgram()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.3.51. scriba_LoadSourceProgram()</H1>
+<A HREF="devguide_3.3.50.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.52.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Call this function to load a BASIC program from its source format after
+optionally checking that there is no available cache file and after
+executing all required preprocessors. This function calls
+<a href="devguide_3.3.39.html">scriba_ReadSource()</A>, <a href="devguide_3.3.40.html">scriba_DoLexicalAnalysis()</A>, <a href="devguide_3.3.41.html">scriba_DoSyntaxAnalysis()</A>, <a href="devguide_3.3.42.html">scriba_BuildCode()</A>,
+and also releases the memory that was needed only for code building
+calling <a href="devguide_3.3.12.html">scriba_PurgeReaderMemory()</A>, <a href="devguide_3.3.13.html">scriba_PurgeLexerMemory()</A>, <a href="devguide_3.3.14.html">scriba_PurgeSyntaxerMemory()</A>.
+<P>
+After the successful completion of this program the BASIC program is in
+the memory in the ready-to-run state.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_LoadSourceProgram(pSbProgram pProgram
+  )@{
+</PRE></FONT>
+Before calling this function the function <a href="devguide_3.3.18.html">scriba_SetFileName()</A> should have been called specifying the
+file name.
+<P>
+The return value is zero (<font size="3"><tt>SCRIBA_ERROR_SUCCESS</tt></font>) or the error code returned by the
+underlying layer that has detected the error.<HR>
+<A HREF="devguide_3.3.50.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.52.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

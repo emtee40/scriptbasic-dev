@@ -1,0 +1,51 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: file_MakeDirectory</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: file_MakeDirectory">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: file_MakeDirectory">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>file_MakeDirectory</H1>
+<A HREF="devguide_2.16.25.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.27.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function is a bit out of the line of the other functions in this module. This function uses the
+<font size="3"><tt>file_mkdir</tt></font> function to create a directory. The difference is that this function tries to create a
+directory recursively. For example you can create the directory
+<P>
+<font size="3"><tt>/usr/bin/scriba</tt></font>
+<P>
+with a simple call and the function will create the directories <font size="3"><tt>/usr</tt></font> if it did not exist, then 
+<font size="3"><tt>/usr/bin</tt></font> and finally <font size="3"><tt>/usr/bin/scriba</tt></font> The function fails if the directory can not be created
+because of access restrictions or because the directory path or a sub path already exists, and is not
+a directory.
+<P>
+The argument of the function is the name of the desired directory.
+<P>
+The function alters the argument replacing each \ character to /
+<P>
+The argument may end with / since v1.0b30
+<P>
+If the argument is a Windows full path including the drive letter, like
+'C:' the function tries to create the directory 'C:', which fails, but
+ignores this error because only the last creation in the line down the
+directory path is significant.
+<P>
+In case of error, the argument may totally be destroyed.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int file_MakeDirectory(char *pszDirectoryName
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.16.25.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.27.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

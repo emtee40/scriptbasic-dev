@@ -1,0 +1,52 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.7.1.8. cft_EnumFirst()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: cft_EnumFirst()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: cft_EnumFirst()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.7.html">2.7. Configuration File Handling</A><BR>
+<UL><a href="devguide_2.7.1.html">2.7.1. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.7.1.8. cft_EnumFirst()</H1>
+<A HREF="devguide_2.7.1.7.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.9.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Whenever you need to enumerate the sub-keys of a key you have to
+get the node associated with the key (see <a href="devguide_2.7.1.6.html">cft_GetEx</A> or <a href="devguide_2.7.1.5.html">cft_FindNode</A>).
+When you have the node associated with the key you can get the node of the
+first sub-key calling this function.
+<P>
+The function needs the node id <font size="3"><tt>lNodeId</tt></font> of the key for which
+we need to enumerate the sub keys and returns the node id of the
+first sub key.
+<P>
+If the key is associated with a leaf node the function returns zero.
+<P>
+If the key is associated with a branch node that has no sub-keys the
+function returns zero.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+CFT_NODE cft_EnumFirst(ptConfigTree pCT,
+                       CFT_NODE lNodeId
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.7.1.7.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.7.1.9.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

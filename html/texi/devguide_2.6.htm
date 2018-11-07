@@ -1,0 +1,30 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Executor</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Executor">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Executor">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Executor</H1>
+<A HREF="devguide_2.5.3.22.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+The executor kills the code. Oh, no! I was just kidding. It executes the code, which means something different. Starts with the first node and goes on.
+<P>
+The execution of the code starts calling the function <font size="3"><tt>execute_Execute</tt></font> implemented in the file `<font size="3"><tt>execute.c</tt></font>'
+<P>
+This function initializes the execution environment that was not initialized before calling the function <font size="3"><tt>execute_InitStructure</tt></font>
+<P>
+It allocates global variables, it fills command and instruction parameters and finalizer function pointers with <font size="3"><tt>NULL</tt></font> and starts the function <font size="3"><tt>execute_Execute_r</tt></font><HR>
+<A HREF="devguide_2.5.3.22.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

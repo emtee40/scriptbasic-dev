@@ -1,0 +1,62 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: execute_GetCommandByName()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: execute_GetCommandByName()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: execute_GetCommandByName()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>execute_GetCommandByName()</H1>
+<A HREF="devguide_2.6.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.2.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+The op-code of a command can easily be identified, because <font size="3"><tt>syntax.h</tt></font> contains
+symbolic constant for it. This function can be used by external modules to
+get this opcode based on the name of the function. The argument <font size="3"><tt>pszCommandName</tt></font>
+should be the name of the command, for example <font size="3"><tt>"ONERRORRESUMENEXT"</tt></font>. The third 
+argument is the hint for the function to help to find the value. It should always
+be the opcode of the command. The return value is the actual opcode of the command.
+For example:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+i = execute_GetCommandByName(pEo,"ONERRORRESUMENEXT",CMD_ONERRORRESUMENEXT);
+</PRE></FONT>
+<P>
+will return <font size="3"><tt>CMD_ONERRORRESUMENEXT</tt></font>.
+<P>
+<I>Why is this function all about then?</I>
+<P>
+The reason is that the external module may not be sure that the code
+<font size="3"><tt>CMD_ONERRORRESUMENEXT</tt></font> is the same when the external module is compiled
+and when it is loaded. External modules negotiate the interface version
+information with the calling interpreter, but the opcodes may silently changed
+from interpreter version to the next interpreter version and still supporting
+the same extension interface version.
+<P>
+When an external module needs to know the opcode of a command of the calling
+interpreter it first calls this function telling:
+<P>
+I&lt;I need the code of the command ONERRORRESUMENEXT. I think that the code is
+CMD_ONERRORRESUMENEXT, but is it the real code?&gt;
+<P>
+The argument <font size="3"><tt>lCodeHint</tt></font> is required only, because it speeds up search.
+<P>
+If there is no function found for the given name the returnvalue is zero.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+long execute_GetCommandByName(pExecuteObject pEo,
+                              char *pszCommandName,
+                              long lCodeHint
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.6.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.2.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

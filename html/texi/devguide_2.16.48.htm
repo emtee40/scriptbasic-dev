@@ -1,0 +1,37 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: file_waitpid</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: file_waitpid">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: file_waitpid">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>file_waitpid</H1>
+<A HREF="devguide_2.16.47.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.17.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Check on a process
+<P>
+
+This function checks if a process identified by the
+process ID (PID) is still running.
+<P>
+If the process is live the return value is zero (FALSE), otherwise
+a positive value (TRUE) is returned and the second parameter contains
+the exited process's final status.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int file_waitpid(long pid,
+                 unsigned long *plExitCode
+   )@{
+</PRE></FONT>
+ <HR>
+<A HREF="devguide_2.16.47.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.17.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

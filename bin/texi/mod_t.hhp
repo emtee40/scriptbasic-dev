@@ -1,0 +1,25 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=mod_t.chm
+Contents file=mod_t.hhc
+Default topic=mod_t_title.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=mod_t.hhk
+Language=0x409 English (United States)
+Title=Documentation of the module t
+
+[FILES]
+mod_t_title.htm
+mod_t_1.htm
+mod_t_2.htm
+mod_t_3.htm
+mod_t_4.htm
+mod_t_5.htm
+mod_t_6.htm
+mod_t_7.htm
+mod_t_8.htm
+mod_t_9.htm
+mod_t_10.htm
+mod_t_11.htm
+[INFOTYPES]

@@ -1,0 +1,306 @@
+<HTML>
+<HEAD>
+<TITLE>ScriptBasic Online Survey</TITLE>
+</HEAD>
+<body>
+<FONT FACE="Verdana, Ariel" SIZE="2">
+<h1>ScriptBasic Online Survey</h1>
+
+"I do not want to fill in any survey! I want to <a href="http://scriptbasic.com/html/download.html">download</a>!"
+Go ahead if you are in a hurry.
+<P>
+<a href="http://scriptbasic.com/html/download.html">I have already filled this form!</a>
+<P>
+<FONT SIZE="1">
+Please devote some time to take this survey before you download the ScriptBasic
+package of your desire. Filling this form will help the developers to gain
+information on the use of ScriptBasic and to align the development directions
+with needs. (Blah blah... I want to know what you do with my stuff so I can
+develop it the way you need it.)
+<p>
+You can fill in the form with your name or anonymously.
+You may answer all the questions or only some of the questions.
+You can totally skip the survey and proceed to the
+<a href="http://scriptbasic.com/html/download.html">download</a> page.
+My only strong request is that you do not, please cannibalize the survey:
+fill in once only and with real data.
+<p>
+The data you enter including any personal data is stored on the ScriptBasic.com
+web site and on offline sites for later processing. The data will not ever be
+disclosed to any third party except anonimized or aggregated, statistical data.
+In case of any information disclose we will pay careful attention so that the
+disclosed data should not be directly or indirectly be connected to the person
+filling the form. We do not store the IP number or any other network information
+collected from the act of somebody filling the form together with the data
+entered.
+</FONT>
+
+<!--message-->
+
+<form name="SBSURVEY001" action="survey.cgi" method="POST">
+<!--
+this is just to tell the cgi to process the form instead
+of just displaying the page and also to specify which survey this is
+-->
+<input type="hidden" name="survey" value="1">
+
+<table border="0">
+
+{#define SEPLINE=<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>}
+{#define TEXTLINE/SECTIONTITLE=<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="3"><B>SECTIONTITLE</B></FONT></TD></tr>}
+{#define Q/QDEF/QID/QCOMM/QFIELD/QDESC=
+{SEPLINE}
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+QDEF</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+QFIELD
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+QCOMM
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+QDESC
+</FONT></td>
+</tr>
+}
+{#define QYESNO/QDEF/QID/QCOMM/QDESC={Q/QDEF/QID/QCOMM/<input type="radio" name="QID" value="1" Checked>Yes <input type="radio" name="QID" value="0">No/QDESC}}
+{#define QNOYES/QDEF/QID/QCOMM/QDESC={Q/QDEF/QID/QCOMM/<input type="radio" name="QID" value="1">Yes <input type="radio" name="QID" value="0" Checked>No/QDESC}}
+{#define QINPUT/QDEF/QID/QCOMM/QDESC={Q/QDEF/QID/QCOMM/<input type="text" name="QID" MAXLENGTH="20" SIZE="20" value="">/QDESC}}
+{#define QTEXTAREA/QDEF/QID/QCOMM/QDESC={Q|QDEF|QID|QCOMM|<TEXTAREA name="QID" COLS="50" ROWS="10">\
+</TEXTAREA>|QDESC}}
+{@define QCHECKBOXES/QDEF/QID/QCOMM/QDESC/QBOXES=
+{Q|QDEF|QID|QCOMM|
+<table border="0" cellspacing="0">
+{#for boxid (;QBOXES)
+<tr><td valign="top"><input type="checkbox" name="QID_boxid" value="1"></td><td><font size="2" color="BLACK">boxid</FONT></td></tr>
+}</table>
+|QDESC}
+}
+{@define QRADIOS/QDEF/QID/QCOMM/QDESC/QBOXES=
+{Q|QDEF|QID|QCOMM|
+{#for boxid (;QBOXES)
+<input type="radio" name="QID_boxid" value="1"><font size="2" color="BLACK">boxid</FONT><BR>
+}
+|QDESC}
+}
+
+{TEXTLINE Administrative questions}
+{QINPUT
+Name
+name
+you may fill in the survey anonymous, but it is polite to introduce yourself
+Please fill in this fill so that I know who the answers belong to. This is not a
+technical data, it is only some few thousand years of practice that we identify
+ourselves with names. Generally: this a polite act to introduce
+yourself when you enter a place before you start to talk.
+}
+
+
+{QINPUT
+eMail
+email
+we need it in case we have questions
+This field should contain your eMail address. Specifying your eMail here will
+be used in non-autmated human mailing in case your data provided in the survey
+is interesting and we want to ask you something. Specifying here the eMail
+address will not subscribe you to any mailing list (but do subscribe to the
+ScriptBasic mailing list if you have not done so), will not appear on any web
+site.
+}
+
+{QRADIOS/\
+Language/\
+language/\
+you probably speak English though/\
+What is your native language that is most easy for you to read documentation?/\
+English;German;Spanish;French;Chineese;Japan;Hutt;other\
+}
+
+{TEXTLINE General questions}
+{QTEXTAREA
+Why do you use ScriptBasic (you should use anyway!)
+why
+think of the reasons and type it here
+This is the hardest question to answer but also this can be the most valueable
+in this survey. Why do you use ScriptBasic to sove your programming tasks
+instead of Java, PHP, Perl, Python, Rexx, C or some other language? (I do not
+mean that you should use any of those instead, and I also do not mean that you
+should not!) What do you use ScriptBasic for? What are the tasks that you solve
+using ScriptBasic?
+<P>
+If you did not use ScriptBasic up to now, then leave this field blank.
+}
+
+{QCHECKBOXES/
+Operating System
+/\
+os/\
+select one or more
+/\
+Please define the operating system that you run ScriptBasic on. You can select
+one or more operating systems of your choice.
+/\
+Windows;MacOS;Linux;Solaris;Tru64;HP-UX;AIX;SCO;other UNIX;VMS;something else\
+}
+
+{QCHECKBOXES/
+How do you install ScriptBasic
+/\
+instway/\
+select one or more
+/\
+Please select the way you usually install ScriptBasic when a new version comes or
+if you have not installed many ScriptBasic versions during the last 4 years
+until now select the most probable way of installation that appeals to you.
+/\
+SETUP.EXE;Debian package;RPM;Windows install from ZIPped binaries;Windows compile; Linux/UNIX compile\
+}
+
+{QTEXTAREA
+Downloaded from
+downloadsite
+where did you download ScriptBasic
+If you downloaded ScriptBasic not from the original site, but from some other
+software repository, like tucows, then please specify the location and give
+some reasoning why you chose that source.
+}
+
+{QTEXTAREA
+Where did you know ScriptBasic?
+seekfrom
+how did you find this software
+Please tell us how you could find the ScriptBasic interpreter on the internet?
+Which search engine did you use, what did you seek for or who told you about it?
+}
+
+{QCHECKBOXES/
+Programming Languages
+/\
+otherprglang/\
+select one or more that you can program
+/\
+Please select the programming languages that you can program. BASIC should be
+one of the checked, but I never know...
+<p>
+This question helps us to understand the technical background of the usual
+ScriptBasic programmer.
+/\
+BASIC;C;C++;Java;C#;FORTRAN;PASCAL;LIST;PROLOG;COBOL;RPG;FOCAL;Perl;PHP;Python;\
+Rexx;Rebol;TCL;JavaScript;Assembly;ADA;PL1;other programming laguage
+}
+
+{QCHECKBOXES/
+Did you embed ScriptBasic into application?/\
+didyouembed/\
+select those that fit your use
+/\
+Please select some of the statements, that fit your use of ScriptBasic regrding
+ScriptBasic embedding into another application or writing extension modules, or
+internal preprocessors.
+/\
+No: I am a BASIC programmer;\
+I did some experiment writing an extension module, but did not succeed;\
+I did some experiment writing an extension module, and it worked;\
+I did some experiment writing an internal preprocessor, but it did not work;\
+I did some experiment writing an internal preprocessor, and it worked;\
+I embedded ScriptBasic into an application;\
+I am interested in embedding ScriptBasic, but I did not do any experiment
+}
+
+{QCHECKBOXES/
+Documentation
+/\
+docread/\
+select one or more that you read
+/\
+Please tell us, which of the documentation you read. The term "read" may mean
+any act that helped you using the interpreter. In other ways which are the
+documentations that helped you using ScriptBasic and without which it would
+have been much more difficult to use the software,
+/\
+Users' Guide;\
+Developers' Guide;\
+Documentation Guide;\
+Module Documentation;\
+Eszter SB Application Engine Documentation;\
+BASIC examples;\
+C Source Code\
+}
+
+{QCHECKBOXES/
+Documentation quality
+/\
+docquality/\
+select one or more that you think fits the documentation of the software
+/\
+Give some feedback on the perceived overall quality of the documentation.
+/\
+it is poor;\
+expectable;\
+good enogh;\
+outstanding generally better than usual in GPL field;\
+language could be improved;\
+more examples and tutorial would be nice;\
+developer documentation is lacking
+\
+}
+
+{QCHECKBOXES/
+Documentation format
+/\
+docformat/\
+which documentation format do you use?
+/\
+Select the boxes for the documentation format that you usually use to read
+ScriptBasic documentation
+/\
+Compiled HTML Microsoft help chm;\
+HTML;\
+PDF;\
+texi source;\
+dvi;\
+ps;\
+I print it out on physical paper
+\
+}
+
+{QINPUT
+Do you use an old version?
+version
+specify the ScriptBasic version that you use
+If you are going to download version 2.0.0 then this is version is most probably
+1.0b30. In this case type it in or just leave the field blank. If you use some
+of the older version then please specify which version you use.
+}
+
+{QTEXTAREA
+Why do you use old version
+whyversion
+skip it if you usually use the latest version
+Please tell us why you use an older version instead of the newest available. It
+may help us understand your concerns preventing your upgrade and understaning may
+help us to improve the development to give you better versions of the software.
+}
+
+{QYESNO
+Did you subscribe to the ScriptBasic mailing list?
+mailistyn
+select YES or select NO
+}
+
+{QNOYES
+Would you volunteer to translate the documentation to other languages?
+translateyn
+select YES or select NO
+}
+
+</table>
+<INPUT TYPE="SUBMIT" NAME="SUBMIT" VALUE="Press this button to submit survey">
+</form>
+
+</FONT>
+</body>
+</HTML>

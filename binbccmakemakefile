@@ -1,0 +1,211 @@
+
+
+
+all: \bin\bcc\exe\scriba.exe \bin\bcc\exe\sbhttpd.exe \bin\bcc\lib\libscriba.lib
+
+
+\bin\bcc\lib\libscriba.lib :  \bin\bcc\obj\basext.obj \bin\bcc\obj\builder.obj \bin\bcc\obj\buildnum.obj \bin\bcc\obj\confpile.obj \bin\bcc\obj\conftree.obj \bin\bcc\obj\dynlolib.obj \bin\bcc\obj\epreproc.obj \bin\bcc\obj\errcodes.obj \bin\bcc\obj\execute.obj \bin\bcc\obj\expression.obj \bin\bcc\obj\filesys.obj \bin\bcc\obj\getopt.obj \bin\bcc\obj\hndlptr.obj \bin\bcc\obj\hookers.obj \bin\bcc\obj\httpd.obj \bin\bcc\obj\ipreproc.obj \bin\bcc\obj\lexer.obj \bin\bcc\obj\logger.obj \bin\bcc\obj\lsp.obj \bin\bcc\obj\match.obj \bin\bcc\obj\memory.obj \bin\bcc\obj\modumana.obj \bin\bcc\obj\myalloc.obj \bin\bcc\obj\mygmtime.obj \bin\bcc\obj\options.obj  \bin\bcc\obj\reader.obj \bin\bcc\obj\report.obj \bin\bcc\obj\scriba.obj \bin\bcc\obj\sym.obj \bin\bcc\obj\syntax.obj \bin\bcc\obj\thread.obj \bin\bcc\obj\uniqfnam.obj \bin\bcc\obj\md5.obj \bin\bcc\obj\environ.obj \bin\bcc\obj\external.obj \bin\bcc\obj\extops.obj \bin\bcc\obj\file.obj \bin\bcc\obj\function.obj \bin\bcc\obj\goto.obj \bin\bcc\obj\if.obj \bin\bcc\obj\let.obj \bin\bcc\obj\mathfunc.obj \bin\bcc\obj\mathops.obj \bin\bcc\obj\print.obj \bin\bcc\obj\string.obj \bin\bcc\obj\time.obj \bin\bcc\obj\while.obj \bin\bcc\obj\stndlone.obj
+	tlib /a \bin\bcc\lib\libscriba.lib  \bin\bcc\obj\basext.obj \bin\bcc\obj\builder.obj \bin\bcc\obj\buildnum.obj \bin\bcc\obj\confpile.obj \bin\bcc\obj\conftree.obj \bin\bcc\obj\dynlolib.obj \bin\bcc\obj\epreproc.obj \bin\bcc\obj\errcodes.obj \bin\bcc\obj\execute.obj \bin\bcc\obj\expression.obj \bin\bcc\obj\filesys.obj \bin\bcc\obj\getopt.obj \bin\bcc\obj\hndlptr.obj \bin\bcc\obj\hookers.obj \bin\bcc\obj\httpd.obj \bin\bcc\obj\ipreproc.obj \bin\bcc\obj\lexer.obj \bin\bcc\obj\logger.obj \bin\bcc\obj\lsp.obj \bin\bcc\obj\match.obj \bin\bcc\obj\memory.obj \bin\bcc\obj\modumana.obj \bin\bcc\obj\myalloc.obj \bin\bcc\obj\mygmtime.obj \bin\bcc\obj\options.obj  \bin\bcc\obj\reader.obj \bin\bcc\obj\report.obj \bin\bcc\obj\scriba.obj \bin\bcc\obj\sym.obj \bin\bcc\obj\syntax.obj \bin\bcc\obj\thread.obj \bin\bcc\obj\uniqfnam.obj \bin\bcc\obj\md5.obj \bin\bcc\obj\environ.obj \bin\bcc\obj\external.obj \bin\bcc\obj\extops.obj \bin\bcc\obj\file.obj \bin\bcc\obj\function.obj \bin\bcc\obj\goto.obj \bin\bcc\obj\if.obj \bin\bcc\obj\let.obj \bin\bcc\obj\mathfunc.obj \bin\bcc\obj\mathops.obj \bin\bcc\obj\print.obj \bin\bcc\obj\string.obj \bin\bcc\obj\time.obj \bin\bcc\obj\while.obj \bin\bcc\obj\stndlone.obj
+
+
+\bin\bcc\lib\lscriba.lib :  \bin\bcc\obj\basext.obj \bin\bcc\obj\builder.obj \bin\bcc\obj\buildnum.obj \bin\bcc\obj\confpile.obj \bin\bcc\obj\conftree.obj \bin\bcc\obj\dynlolib.obj \bin\bcc\obj\epreproc.obj \bin\bcc\obj\errcodes.obj \bin\bcc\obj\execute.obj \bin\bcc\obj\expression.obj \bin\bcc\obj\filesys.obj \bin\bcc\obj\getopt.obj \bin\bcc\obj\hndlptr.obj \bin\bcc\obj\hookers.obj \bin\bcc\obj\httpd.obj \bin\bcc\obj\ipreproc.obj \bin\bcc\obj\lexer.obj \bin\bcc\obj\logger.obj \bin\bcc\obj\lsp.obj \bin\bcc\obj\match.obj \bin\bcc\obj\memory.obj \bin\bcc\obj\modumana.obj \bin\bcc\obj\myalloc.obj \bin\bcc\obj\mygmtime.obj \bin\bcc\obj\options.obj  \bin\bcc\obj\reader.obj \bin\bcc\obj\report.obj \bin\bcc\obj\scriba.obj \bin\bcc\obj\sym.obj \bin\bcc\obj\syntax.obj \bin\bcc\obj\thread.obj \bin\bcc\obj\uniqfnam.obj \bin\bcc\obj\md5.obj \bin\bcc\obj\environ.obj \bin\bcc\obj\external.obj \bin\bcc\obj\extops.obj \bin\bcc\obj\file.obj \bin\bcc\obj\function.obj \bin\bcc\obj\goto.obj \bin\bcc\obj\if.obj \bin\bcc\obj\let.obj \bin\bcc\obj\mathfunc.obj \bin\bcc\obj\mathops.obj \bin\bcc\obj\print.obj \bin\bcc\obj\string.obj \bin\bcc\obj\time.obj \bin\bcc\obj\while.obj
+	tlib /a \bin\bcc\lib\lscriba.lib  \bin\bcc\obj\basext.obj \bin\bcc\obj\builder.obj \bin\bcc\obj\buildnum.obj \bin\bcc\obj\confpile.obj \bin\bcc\obj\conftree.obj \bin\bcc\obj\dynlolib.obj \bin\bcc\obj\epreproc.obj \bin\bcc\obj\errcodes.obj \bin\bcc\obj\execute.obj \bin\bcc\obj\expression.obj \bin\bcc\obj\filesys.obj \bin\bcc\obj\getopt.obj \bin\bcc\obj\hndlptr.obj \bin\bcc\obj\hookers.obj \bin\bcc\obj\httpd.obj \bin\bcc\obj\ipreproc.obj \bin\bcc\obj\lexer.obj \bin\bcc\obj\logger.obj \bin\bcc\obj\lsp.obj \bin\bcc\obj\match.obj \bin\bcc\obj\memory.obj \bin\bcc\obj\modumana.obj \bin\bcc\obj\myalloc.obj \bin\bcc\obj\mygmtime.obj \bin\bcc\obj\options.obj  \bin\bcc\obj\reader.obj \bin\bcc\obj\report.obj \bin\bcc\obj\scriba.obj \bin\bcc\obj\sym.obj \bin\bcc\obj\syntax.obj \bin\bcc\obj\thread.obj \bin\bcc\obj\uniqfnam.obj \bin\bcc\obj\md5.obj \bin\bcc\obj\environ.obj \bin\bcc\obj\external.obj \bin\bcc\obj\extops.obj \bin\bcc\obj\file.obj \bin\bcc\obj\function.obj \bin\bcc\obj\goto.obj \bin\bcc\obj\if.obj \bin\bcc\obj\let.obj \bin\bcc\obj\mathfunc.obj \bin\bcc\obj\mathops.obj \bin\bcc\obj\print.obj \bin\bcc\obj\string.obj \bin\bcc\obj\time.obj \bin\bcc\obj\while.obj
+
+
+errcodes.c : errors.def
+	perl generrh.pl
+
+syntax.c : syntax.def
+	perl syntaxer.pl
+
+lmt_none.c : lmt_none.def
+	perl lmt_make.pl $?
+
+
+
+\bin\bcc\obj\confpile.obj : confpile.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\confpile.obj confpile.c
+
+\bin\bcc\obj\ipreproc.obj : ipreproc.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\ipreproc.obj ipreproc.c
+
+\bin\bcc\obj\lsp.obj : lsp.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\lsp.obj lsp.c
+
+\bin\bcc\obj\scriba.obj : scriba.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\scriba.obj scriba.c
+
+\bin\bcc\obj\buildnum.obj : buildnum.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\buildnum.obj buildnum.c
+
+\bin\bcc\obj\builder.obj : builder.c filesys.h report.h lexer.h sym.h expression.h myalloc.h builder.h errcodes.h buildnum.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\builder.obj builder.c
+
+\bin\bcc\obj\conftree.obj : conftree.c conftree.h errcodes.h filesys.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\conftree.obj conftree.c
+
+\bin\bcc\obj\dynlolib.obj : dynlolib.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\dynlolib.obj dynlolib.c
+
+\bin\bcc\obj\execute.obj : execute.c sym.h errcodes.h report.h lexer.h expression.h builder.h memory.h syntax.h execute.h myalloc.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\execute.obj execute.c
+
+\bin\bcc\obj\expression.obj : expression.c errcodes.h report.h lexer.h sym.h expression.h myalloc.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\expression.obj expression.c
+
+\bin\bcc\obj\filesys.obj : filesys.c errcodes.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\filesys.obj filesys.c
+
+\bin\bcc\obj\httpd.obj : httpd.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\httpd.obj httpd.c
+
+\bin\bcc\obj\getopt.obj : getopt.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\getopt.obj getopt.c
+
+\bin\bcc\obj\lexer.obj : lexer.c errcodes.h report.h lexer.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\lexer.obj lexer.c
+
+\bin\bcc\obj\match.obj : match.c errcodes.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\match.obj match.c
+
+\bin\bcc\obj\logger.obj : logger.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\logger.obj logger.c
+
+\bin\bcc\obj\mygmtime.obj : mygmtime.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\mygmtime.obj mygmtime.c
+
+\bin\bcc\obj\thread.obj : thread.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\thread.obj thread.c
+
+\bin\bcc\obj\hndlptr.obj : hndlptr.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\hndlptr.obj hndlptr.c
+
+\bin\bcc\obj\memory.obj : memory.c errcodes.h myalloc.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\memory.obj memory.c
+
+\bin\bcc\obj\modumana.obj : modumana.c basext.h sym.h errcodes.h report.h lexer.h expression.h builder.h memory.h syntax.h execute.h myalloc.h dynlolib.h modumana.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\modumana.obj modumana.c
+
+\bin\bcc\obj\hookers.obj : hookers.c basext.h sym.h errcodes.h report.h lexer.h expression.h builder.h memory.h syntax.h execute.h myalloc.h dynlolib.h hookers.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\hookers.obj hookers.c
+
+\bin\bcc\obj\myalloc.obj : myalloc.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\myalloc.obj myalloc.c
+
+\bin\bcc\obj\epreproc.obj : epreproc.c myalloc.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\epreproc.obj epreproc.c
+
+\bin\bcc\obj\options.obj : options.c sym.h errcodes.h report.h lexer.h expression.h builder.h memory.h syntax.h execute.h myalloc.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\options.obj options.c
+
+\bin\bcc\obj\stndlone.obj : stndlone.c getopt.h scriba.h basext.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\stndlone.obj stndlone.c
+
+\bin\bcc\obj\reader.obj : reader.c filesys.h report.h errcodes.h conftree.h reader.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\reader.obj reader.c
+
+\bin\bcc\obj\report.obj : report.c errcodes.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\report.obj report.c
+
+\bin\bcc\obj\sym.obj : sym.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\sym.obj sym.c
+
+\bin\bcc\obj\basext.obj : basext.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\basext.obj basext.c
+
+\bin\bcc\obj\uniqfnam.obj : uniqfnam.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\uniqfnam.obj uniqfnam.c
+
+\bin\bcc\obj\errcodes.obj : errcodes.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\errcodes.obj errcodes.c
+
+\bin\bcc\obj\syntax.obj : syntax.c report.h lexer.h sym.h expression.h syntax.h
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\syntax.obj syntax.c
+
+\bin\bcc\obj\md5.obj : md5.c 
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\md5.obj md5.c
+
+
+
+
+\bin\bcc\obj\extops.obj : commands/extops.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\extops.obj commands/extops.c
+
+\bin\bcc\obj\environ.obj : commands/environ.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\environ.obj commands/environ.c
+
+\bin\bcc\obj\external.obj : commands/external.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\external.obj commands/external.c
+
+\bin\bcc\obj\file.obj : commands/file.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\file.obj commands/file.c
+
+\bin\bcc\obj\function.obj : commands/function.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\function.obj commands/function.c
+
+\bin\bcc\obj\goto.obj : commands/goto.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\goto.obj commands/goto.c
+
+\bin\bcc\obj\if.obj : commands/if.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\if.obj commands/if.c
+
+\bin\bcc\obj\let.obj : commands/let.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\let.obj commands/let.c
+
+\bin\bcc\obj\mathfunc.obj : commands/mathfunc.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\mathfunc.obj commands/mathfunc.c
+
+\bin\bcc\obj\mathops.obj : commands/mathops.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\mathops.obj commands/mathops.c
+
+\bin\bcc\obj\print.obj : commands/print.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\print.obj commands/print.c
+
+\bin\bcc\obj\string.obj : commands/string.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\string.obj commands/string.c
+
+\bin\bcc\obj\time.obj : commands/time.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\time.obj commands/time.c
+
+\bin\bcc\obj\while.obj : commands/while.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\while.obj commands/while.c
+
+
+
+
+
+
+
+
+\bin\bcc\exe\scriba.exe : \bin\bcc\lib\lscriba.lib \bin\bcc\var\standard\scribacmd.obj \bin\bcc\obj\lmt_none.obj
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -e\bin\bcc\exe\scriba.exe \bin\bcc\var\standard\scribacmd.obj \bin\bcc\obj\lmt_none.obj \bin\bcc\lib\lscriba.lib 
+	\bin\bcc\exe\scriba -v
+
+\bin\bcc\var\standard\scribacmd.obj : variations\standard\scribacmd.c
+	IF NOT EXIST "\bin\bcc\var\standard" mkdir "\bin\bcc\var\standard"
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\var\standard\scribacmd.obj variations\standard\scribacmd.c
+
+\bin\bcc\obj\lmt_none.obj : lmt_none.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\lmt_none.obj lmt_none.c
+
+
+
+
+\bin\bcc\exe\sbhttpd.exe : \bin\bcc\lib\lscriba.lib \bin\bcc\var\httpd\websrv.obj \bin\bcc\var\httpd\service.obj \bin\bcc\obj\lmt_none.obj
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -e\bin\bcc\exe\sbhttpd.exe \bin\bcc\var\httpd\websrv.obj \bin\bcc\var\httpd\service.obj \bin\bcc\obj\lmt_none.obj \bin\bcc\lib\lscriba.lib 
+
+
+\bin\bcc\var\httpd\websrv.obj : variations\httpd\websrv.c
+	IF NOT EXIST "\bin\bcc\var\httpd" mkdir "\bin\bcc\var\httpd"
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\var\httpd\websrv.obj variations\httpd\websrv.c
+
+
+
+\bin\bcc\var\httpd\service.obj : variations\httpd\service.c
+	IF NOT EXIST "\bin\bcc\var\httpd" mkdir "\bin\bcc\var\httpd"
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\var\httpd\service.obj variations\httpd\service.c
+
+
+\bin\bcc\obj\lmt_httpd.obj : lmt_httpd.c
+	bcc32 -6 -I"E:\Program Files\Borland\BCC32\Include" -L"E:\Program Files\Borland\BCC32\Lib" -DWIN32=1 -DBCC32=1 -w- -c -o\bin\bcc\obj\lmt_httpd.obj lmt_httpd.c
+

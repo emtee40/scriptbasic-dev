@@ -1,0 +1,215 @@
+
+
+
+all: T:\MyProjects\ScriptBasic\source\bin\vc7\exe\scriba.exe T:\MyProjects\ScriptBasic\source\bin\vc7\exe\sbhttpd.exe T:\MyProjects\ScriptBasic\source\bin\vc7\lib\libscriba.lib T:\MyProjects\ScriptBasic\source\bin\vc7\lib\libscriba.dll
+
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\lib\libscriba.lib :  T:\MyProjects\ScriptBasic\source\bin\vc7\obj\basext.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\builder.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\buildnum.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\confpile.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\conftree.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\dynlolib.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\epreproc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\errcodes.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\execute.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\expression.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\filesys.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\getopt.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hndlptr.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hookers.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\httpd.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\ipreproc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lexer.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\logger.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lsp.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\match.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\memory.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\modumana.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\myalloc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mygmtime.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\options.obj  T:\MyProjects\ScriptBasic\source\bin\vc7\obj\reader.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\report.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\scriba.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\sym.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\syntax.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\thread.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\uniqfnam.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\md5.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\environ.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\external.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\extops.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\file.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\function.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\goto.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\if.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\let.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathfunc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathops.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\print.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\string.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\time.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\while.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\stndlone.obj
+	lib /nologo /OUT:T:\MyProjects\ScriptBasic\source\bin\vc7\lib\libscriba.lib  T:\MyProjects\ScriptBasic\source\bin\vc7\obj\basext.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\builder.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\buildnum.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\confpile.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\conftree.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\dynlolib.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\epreproc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\errcodes.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\execute.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\expression.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\filesys.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\getopt.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hndlptr.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hookers.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\httpd.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\ipreproc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lexer.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\logger.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lsp.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\match.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\memory.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\modumana.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\myalloc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mygmtime.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\options.obj  T:\MyProjects\ScriptBasic\source\bin\vc7\obj\reader.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\report.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\scriba.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\sym.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\syntax.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\thread.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\uniqfnam.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\md5.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\environ.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\external.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\extops.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\file.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\function.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\goto.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\if.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\let.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathfunc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathops.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\print.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\string.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\time.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\while.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\stndlone.obj
+
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\lib\libscriba.dll :  T:\MyProjects\ScriptBasic\source\bin\vc7\obj\basext.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\builder.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\buildnum.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\confpile.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\conftree.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\dynlolib.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\epreproc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\errcodes.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\execute.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\expression.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\filesys.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\getopt.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hndlptr.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hookers.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\httpd.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\ipreproc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lexer.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\logger.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lsp.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\match.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\memory.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\modumana.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\myalloc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mygmtime.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\options.obj  T:\MyProjects\ScriptBasic\source\bin\vc7\obj\reader.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\report.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\scriba.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\sym.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\syntax.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\thread.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\uniqfnam.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\md5.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\environ.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\external.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\extops.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\file.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\function.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\goto.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\if.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\let.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathfunc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathops.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\print.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\string.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\time.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\while.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\stndlone.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lmt_none.obj
+	cl /LD /nologo /FeT:\MyProjects\ScriptBasic\source\bin\vc7\lib\libscriba.dll  T:\MyProjects\ScriptBasic\source\bin\vc7\obj\basext.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\builder.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\buildnum.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\confpile.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\conftree.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\dynlolib.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\epreproc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\errcodes.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\execute.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\expression.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\filesys.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\getopt.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hndlptr.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hookers.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\httpd.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\ipreproc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lexer.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\logger.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lsp.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\match.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\memory.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\modumana.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\myalloc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mygmtime.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\options.obj  T:\MyProjects\ScriptBasic\source\bin\vc7\obj\reader.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\report.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\scriba.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\sym.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\syntax.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\thread.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\uniqfnam.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\md5.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\environ.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\external.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\extops.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\file.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\function.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\goto.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\if.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\let.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathfunc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathops.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\print.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\string.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\time.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\while.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lmt_none.obj ws2_32.lib advapi32.lib
+
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\lib\lscriba.lib :  T:\MyProjects\ScriptBasic\source\bin\vc7\obj\basext.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\builder.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\buildnum.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\confpile.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\conftree.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\dynlolib.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\epreproc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\errcodes.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\execute.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\expression.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\filesys.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\getopt.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hndlptr.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hookers.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\httpd.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\ipreproc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lexer.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\logger.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lsp.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\match.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\memory.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\modumana.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\myalloc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mygmtime.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\options.obj  T:\MyProjects\ScriptBasic\source\bin\vc7\obj\reader.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\report.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\scriba.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\sym.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\syntax.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\thread.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\uniqfnam.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\md5.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\environ.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\external.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\extops.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\file.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\function.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\goto.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\if.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\let.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathfunc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathops.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\print.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\string.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\time.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\while.obj
+	lib /nologo /OUT:T:\MyProjects\ScriptBasic\source\bin\vc7\lib\lscriba.lib  T:\MyProjects\ScriptBasic\source\bin\vc7\obj\basext.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\builder.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\buildnum.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\confpile.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\conftree.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\dynlolib.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\epreproc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\errcodes.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\execute.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\expression.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\filesys.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\getopt.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hndlptr.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hookers.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\httpd.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\ipreproc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lexer.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\logger.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lsp.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\match.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\memory.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\modumana.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\myalloc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mygmtime.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\options.obj  T:\MyProjects\ScriptBasic\source\bin\vc7\obj\reader.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\report.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\scriba.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\sym.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\syntax.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\thread.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\uniqfnam.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\md5.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\environ.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\external.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\extops.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\file.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\function.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\goto.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\if.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\let.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathfunc.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathops.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\print.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\string.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\time.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\while.obj
+
+
+errcodes.c : errors.def
+	perl generrh.pl
+
+syntax.c : syntax.def
+	perl syntaxer.pl
+
+lmt_none.c : lmt_none.def
+	perl lmt_make.pl $?
+
+
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\confpile.obj : confpile.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\confpile.obj confpile.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\ipreproc.obj : ipreproc.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\ipreproc.obj ipreproc.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lsp.obj : lsp.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\lsp.obj lsp.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\scriba.obj : scriba.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\scriba.obj scriba.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\buildnum.obj : buildnum.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\buildnum.obj buildnum.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\builder.obj : builder.c filesys.h report.h lexer.h sym.h expression.h myalloc.h builder.h errcodes.h buildnum.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\builder.obj builder.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\conftree.obj : conftree.c conftree.h errcodes.h filesys.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\conftree.obj conftree.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\dynlolib.obj : dynlolib.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\dynlolib.obj dynlolib.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\execute.obj : execute.c sym.h errcodes.h report.h lexer.h expression.h builder.h memory.h syntax.h execute.h myalloc.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\execute.obj execute.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\expression.obj : expression.c errcodes.h report.h lexer.h sym.h expression.h myalloc.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\expression.obj expression.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\filesys.obj : filesys.c errcodes.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\filesys.obj filesys.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\httpd.obj : httpd.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\httpd.obj httpd.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\getopt.obj : getopt.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\getopt.obj getopt.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lexer.obj : lexer.c errcodes.h report.h lexer.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\lexer.obj lexer.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\match.obj : match.c errcodes.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\match.obj match.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\logger.obj : logger.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\logger.obj logger.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mygmtime.obj : mygmtime.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\mygmtime.obj mygmtime.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\thread.obj : thread.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\thread.obj thread.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hndlptr.obj : hndlptr.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\hndlptr.obj hndlptr.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\memory.obj : memory.c errcodes.h myalloc.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\memory.obj memory.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\modumana.obj : modumana.c basext.h sym.h errcodes.h report.h lexer.h expression.h builder.h memory.h syntax.h execute.h myalloc.h dynlolib.h modumana.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\modumana.obj modumana.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\hookers.obj : hookers.c basext.h sym.h errcodes.h report.h lexer.h expression.h builder.h memory.h syntax.h execute.h myalloc.h dynlolib.h hookers.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\hookers.obj hookers.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\myalloc.obj : myalloc.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\myalloc.obj myalloc.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\epreproc.obj : epreproc.c myalloc.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\epreproc.obj epreproc.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\options.obj : options.c sym.h errcodes.h report.h lexer.h expression.h builder.h memory.h syntax.h execute.h myalloc.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\options.obj options.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\stndlone.obj : stndlone.c getopt.h scriba.h basext.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\stndlone.obj stndlone.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\reader.obj : reader.c filesys.h report.h errcodes.h conftree.h reader.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\reader.obj reader.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\report.obj : report.c errcodes.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\report.obj report.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\sym.obj : sym.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\sym.obj sym.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\basext.obj : basext.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\basext.obj basext.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\uniqfnam.obj : uniqfnam.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\uniqfnam.obj uniqfnam.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\errcodes.obj : errcodes.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\errcodes.obj errcodes.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\syntax.obj : syntax.c report.h lexer.h sym.h expression.h syntax.h
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\syntax.obj syntax.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\md5.obj : md5.c 
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\md5.obj md5.c
+
+
+
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\extops.obj : commands/extops.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\extops.obj commands/extops.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\environ.obj : commands/environ.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\environ.obj commands/environ.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\external.obj : commands/external.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\external.obj commands/external.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\file.obj : commands/file.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\file.obj commands/file.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\function.obj : commands/function.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\function.obj commands/function.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\goto.obj : commands/goto.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\goto.obj commands/goto.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\if.obj : commands/if.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\if.obj commands/if.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\let.obj : commands/let.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\let.obj commands/let.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathfunc.obj : commands/mathfunc.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathfunc.obj commands/mathfunc.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathops.obj : commands/mathops.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\mathops.obj commands/mathops.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\print.obj : commands/print.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\print.obj commands/print.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\string.obj : commands/string.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\string.obj commands/string.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\time.obj : commands/time.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\time.obj commands/time.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\while.obj : commands/while.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\while.obj commands/while.c
+
+
+
+
+
+
+
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\exe\scriba.exe : T:\MyProjects\ScriptBasic\source\bin\vc7\lib\lscriba.lib T:\MyProjects\ScriptBasic\source\bin\vc7\var\standard\scribacmd.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lmt_none.obj
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /FeT:\MyProjects\ScriptBasic\source\bin\vc7\exe\scriba.exe T:\MyProjects\ScriptBasic\source\bin\vc7\var\standard\scribacmd.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lmt_none.obj T:\MyProjects\ScriptBasic\source\bin\vc7\lib\lscriba.lib ws2_32.lib advapi32.lib
+	T:\MyProjects\ScriptBasic\source\bin\vc7\exe\scriba -v
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\var\standard\scribacmd.obj : variations\standard\scribacmd.c
+	IF NOT EXIST "T:\MyProjects\ScriptBasic\source\bin\vc7\var\standard" mkdir "T:\MyProjects\ScriptBasic\source\bin\vc7\var\standard"
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\var\standard\scribacmd.obj variations\standard\scribacmd.c
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lmt_none.obj : lmt_none.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\lmt_none.obj lmt_none.c
+
+
+
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\exe\sbhttpd.exe : T:\MyProjects\ScriptBasic\source\bin\vc7\lib\lscriba.lib T:\MyProjects\ScriptBasic\source\bin\vc7\var\httpd\websrv.obj T:\MyProjects\ScriptBasic\source\bin\vc7\var\httpd\service.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lmt_none.obj
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /FeT:\MyProjects\ScriptBasic\source\bin\vc7\exe\sbhttpd.exe T:\MyProjects\ScriptBasic\source\bin\vc7\var\httpd\websrv.obj T:\MyProjects\ScriptBasic\source\bin\vc7\var\httpd\service.obj T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lmt_none.obj T:\MyProjects\ScriptBasic\source\bin\vc7\lib\lscriba.lib ws2_32.lib advapi32.lib
+
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\var\httpd\websrv.obj : variations\httpd\websrv.c
+	IF NOT EXIST "T:\MyProjects\ScriptBasic\source\bin\vc7\var\httpd" mkdir "T:\MyProjects\ScriptBasic\source\bin\vc7\var\httpd"
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\var\httpd\websrv.obj variations\httpd\websrv.c
+
+
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\var\httpd\service.obj : variations\httpd\service.c
+	IF NOT EXIST "T:\MyProjects\ScriptBasic\source\bin\vc7\var\httpd" mkdir "T:\MyProjects\ScriptBasic\source\bin\vc7\var\httpd"
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\var\httpd\service.obj variations\httpd\service.c
+
+
+T:\MyProjects\ScriptBasic\source\bin\vc7\obj\lmt_httpd.obj : lmt_httpd.c
+	cl /Ox /GA6s /DWIN32 /MT /nologo /W0 /c /FoT:\MyProjects\ScriptBasic\source\bin\vc7\obj\lmt_httpd.obj lmt_httpd.c
+

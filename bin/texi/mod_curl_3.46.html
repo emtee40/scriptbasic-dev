@@ -1,0 +1,40 @@
+<HEAD>
+<TITLE>Documentation of the module curl: 3.46. FORBID_REUSE flag</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: FORBID_REUSE flag">
+<META NAME="keywords" CONTENT="Documentation of the module curl: FORBID_REUSE flag">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_curl_toc.html">[Contents]</A><BR>
+<UL><a href="mod_curl_3.html">3. curl::option</A><BR>
+</UL>
+</UL>
+<P>
+<H1>3.46. FORBID_REUSE flag</H1>
+<A HREF="mod_curl_3.45.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.47.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"FORBID_REUSE"
+</PRE></FONT>
+<P>
+Set the option to make the next transfer explicitly close the
+connection when done. Normally, libcurl keep all connections alive when done
+with one transfer in case there comes a succeeding one that can re-use them.
+This option should be used with caution and only if you understand what it
+does. Set to 0 to have libcurl keep the connection open for possibly later
+re-use.<HR>
+<A HREF="mod_curl_3.45.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.47.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

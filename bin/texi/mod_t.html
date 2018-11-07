@@ -1,0 +1,151 @@
+<HEAD>
+<TITLE>Documentation of the module t</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module t: Table of Contents">
+<META NAME="keywords" CONTENT="Documentation of the module t: Table of Contents">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<H1>Documentation of the module t</H1>
+<H3>by Peter Verhas</H3>
+<A NAME="contents"><H2>Table of Contents</H2></A>
+<UL>
+<A HREF="#1.">1.   Introduction</A><BR>
+<A HREF="#2.">2.   Tools module</A><BR>
+<A HREF="#3.">3.   s = t::ArrayToString(Array)</A><BR>
+<A HREF="#4.">4.   s = t::ArrayToXML(Array)</A><BR>
+<A HREF="#5.">5.   t::StringToArray array,string</A><BR>
+<A HREF="#6.">6.   t::SaveString file,string</A><BR>
+<A HREF="#7.">7.   s = t::LoadString(file)</A><BR>
+<A HREF="#8.">8.   Calculate MD5</A><BR>
+<A HREF="#9.">9.   s = t::ArrayToStringMD5(Array)</A><BR>
+<A HREF="#10.">10.   t::StringToArrayMD5 array,string</A><BR>
+<A HREF="#11.">11.   t::Exit(n)</A><BR>
+</UL>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="1."><H1>1. Introduction</H1></A>
+
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="2."><H1>2. Tools module</H1></A>
+
+This module contains handy functions. These are general, system-independant functions
+that can be used to write effective programs, but are more complex or special
+purpose to include them into the core language.
+<P>
+The functions include file handling, string handling, array to string conversion and
+many more. See below:<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="3."><H1>3. s = t::ArrayToString(Array)</H1></A>
+
+Call this function to convert an array to a binary string. This string
+can be saved to a file or stored in memory and the function <a href="#">StringToArray</A>
+can convert it back to array. Note that arrays and associative arrays
+are not different in ScriptBasic.
+<P>
+Note that the include file <font size="3"><tt>t.bas</tt></font> also defines the <font size="3"><tt>Array2String</tt></font> name to the same
+function.
+<P>
+Also note that though the name of the function is <font size="3"><tt>ArrayToString</tt></font> you can convert
+any variable to binary string using this function. However this is most useful
+when the argumentum is an array.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4."><H1>4. s = t::ArrayToXML(Array)</H1></A>
+
+Call this function to convert an array to a string containing the XML
+representation of the array. This string can be saved to a file or stored in
+memory and the function <a href="#">XMLToArray</A> can convert it back to array.
+Note that arrays and associative arrays are not different in ScriptBasic.
+<P>
+Note that the include file <font size="3"><tt>t.bas</tt></font> also defines the <font size="3"><tt>Array2XML</tt></font> name to
+the same function.
+<P>
+Also note that though the name of the function is <font size="3"><tt>ArrayToXML</tt></font> you can convert
+any variable to binary string using this function. However this is most useful
+when the argumentum is an array.
+<P>
+The generated XML is not really for human reading. It is without any new
+line characters. Because the strings can be binary they are also encoded with
+all new line characters to hexa encoded XML character <font size="3"><tt>0A</tt></font>. If you want to
+prettyprint the output you have to format it. The purpose of this function is
+to provide a simple XML conversion routine to generate a format that can
+be processed by other applications.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="5."><H1>5. t::StringToArray array,string</H1></A>
+
+Call this subroutine to convert a string that was created as the result of
+calling the function <a href="#">ArrayToString</A>. Note that the include file <font size="3"><tt>t.bas</tt></font>
+also defines the <font size="3"><tt>String2Array</tt></font> function name to get to the same function.
+<P>
+If the string is invalid the function raises <font size="3"><tt>COMMAND_ERROR_ARGUMENT_RANGE</tt></font>
+error that can be captured using the command <font size="3"><tt>ON ERROR GOTO</tt></font>.
+<P>
+It is not an error if there are excess characters in the string after the
+string that was originally created by the function <font size="3"><tt>ArrayToSTring</tt></font><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="6."><H1>6. t::SaveString file,string</H1></A>
+
+Save a string to a file. This subroutine opens the file, creates it if it did
+not exist and prints the binary string to the file and closes the file.
+See also <a href="#">loadstring</A><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="7."><H1>7. s = t::LoadString(file)</H1></A>
+
+This function opens a file, reads its content into a new string variable and returns it.
+See also <a href="#">savestring</A><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="8."><H1>8. Calculate MD5</H1></A>
+Calculate the MD5 value of a string
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  q = t::MD5("string")
+</PRE></FONT>
+<P>
+Note that the return value is a 16 byte binary strig thus do not try to print it
+without first converting to some printable string.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="9."><H1>9. s = t::ArrayToStringMD5(Array)</H1></A>
+
+This function is the same as <a href="#">ArrayToString</A> with the extra feature that this function
+appends the MD5 fingerprint of the created string to the result, generating 16 characters
+longer result. This is a bit slower than <a href="#">ArrayToString</A> and creates longer string, but also
+ensures integrity and can eliminate file reading and write errors.
+<P>
+See also <a href="#">StringToArrayMD5</A>.
+<P>
+Note that because <a href="#">StringToArray</A> does not care excess characters at the end of the string
+you can use <a href="#">StringToArray</A> to convert a string back to array that was created using
+<font size="3"><tt>ArrayToStringMD5</tt></font>.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="10."><H1>10. t::StringToArrayMD5 array,string</H1></A>
+
+This function is the same as <a href="#">StringToArray</A> with the extra functionality that this
+function is the counterpart of the function <a href="#">ArrayToStringMD5</A> and this function
+does check MD5 integrity of the strig before starting to convert back.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="11."><H1>11. t::Exit(n)</H1></A>
+
+This function calls the operating system function <font size="3"><tt>exit()</tt></font> to terminate an
+application. A similar result can be reached in the command line version
+of the interpreter when an error is not handled. The differences that the
+programmer <B>has to be aware</B> before using this function are the following:
+<P>
+<UL>
+<LI> This function exits the program, even if there are higher level error
+handling routines defined.
+<LI> The interpreter finalization routines are not called. This may cause
+problem in some applications, where resources need specific release.
+<LI> This function will stop the process and not the thread. It means that
+calling this function from a multi-thread variation, like Eszter SB Application
+Engin will stop all running threads, all interpreters and quits the
+service.
+</UL>
+ 
+

@@ -1,0 +1,90 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.16. Other System Dependant Functions</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Other System Dependant Functions">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Other System Dependant Functions">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+</UL>
+</UL>
+<P>
+<H1>2.16. Other System Dependant Functions</H1>
+<A HREF="devguide_2.15.3.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_2.16.1.html">2.16.1. file_fopen</A><BR>
+<A HREF="devguide_2.16.2.html">2.16.2. file_fclose</A><BR>
+<A HREF="devguide_2.16.3.html">2.16.3. file_size</A><BR>
+<A HREF="devguide_2.16.4.html">2.16.4. file_time_accessed</A><BR>
+<A HREF="devguide_2.16.5.html">2.16.5. file_time_modified</A><BR>
+<A HREF="devguide_2.16.6.html">2.16.6. file_time_created</A><BR>
+<A HREF="devguide_2.16.7.html">2.16.7. file_isdir</A><BR>
+<A HREF="devguide_2.16.8.html">2.16.8. file_isreg</A><BR>
+<A HREF="devguide_2.16.9.html">2.16.9. file_exists</A><BR>
+<A HREF="devguide_2.16.10.html">2.16.10. file_truncate</A><BR>
+<A HREF="devguide_2.16.11.html">2.16.11. file_fgetc</A><BR>
+<A HREF="devguide_2.16.12.html">2.16.12. file_ferror</A><BR>
+<A HREF="devguide_2.16.13.html">2.16.13. file_fread</A><BR>
+<A HREF="devguide_2.16.14.html">2.16.14. file_fwrite</A><BR>
+<A HREF="devguide_2.16.15.html">2.16.15. file_fputc</A><BR>
+<A HREF="devguide_2.16.16.html">2.16.16. file_setmode</A><BR>
+<A HREF="devguide_2.16.17.html">2.16.17. file_binmode</A><BR>
+<A HREF="devguide_2.16.18.html">2.16.18. file_textmode</A><BR>
+<A HREF="devguide_2.16.19.html">2.16.19. file_flock</A><BR>
+<A HREF="devguide_2.16.20.html">2.16.20. file_lock</A><BR>
+<A HREF="devguide_2.16.21.html">2.16.21. file_feof</A><BR>
+<A HREF="devguide_2.16.22.html">2.16.22. file_mkdir</A><BR>
+<A HREF="devguide_2.16.23.html">2.16.23. file_rmdir</A><BR>
+<A HREF="devguide_2.16.24.html">2.16.24. file_remove</A><BR>
+<A HREF="devguide_2.16.25.html">2.16.25. file_deltree</A><BR>
+<A HREF="devguide_2.16.26.html">2.16.26. file_MakeDirectory</A><BR>
+<A HREF="devguide_2.16.27.html">2.16.27. file_opendir</A><BR>
+<A HREF="devguide_2.16.28.html">2.16.28. file_readdir</A><BR>
+<A HREF="devguide_2.16.29.html">2.16.29. file_closedir</A><BR>
+<A HREF="devguide_2.16.30.html">2.16.30. file_sleep</A><BR>
+<A HREF="devguide_2.16.31.html">2.16.31. file_curdir</A><BR>
+<A HREF="devguide_2.16.32.html">2.16.32. file_chdir</A><BR>
+<A HREF="devguide_2.16.33.html">2.16.33. file_chown</A><BR>
+<A HREF="devguide_2.16.34.html">2.16.34. file_getowner</A><BR>
+<A HREF="devguide_2.16.35.html">2.16.35. file_SetCreateTime</A><BR>
+<A HREF="devguide_2.16.36.html">2.16.36. file_SetModifyTime</A><BR>
+<A HREF="devguide_2.16.37.html">2.16.37. file_SetAccessTime</A><BR>
+<A HREF="devguide_2.16.38.html">2.16.38. file_gethostname</A><BR>
+<A HREF="devguide_2.16.39.html">2.16.39. file_gethost</A><BR>
+<A HREF="devguide_2.16.40.html">2.16.40. file_tcpconnect</A><BR>
+<A HREF="devguide_2.16.41.html">2.16.41. file_tcpsend</A><BR>
+<A HREF="devguide_2.16.42.html">2.16.42. file_tcprecv</A><BR>
+<A HREF="devguide_2.16.43.html">2.16.43. file_tcpclose</A><BR>
+<A HREF="devguide_2.16.44.html">2.16.44. file_killproc</A><BR>
+<A HREF="devguide_2.16.45.html">2.16.45. file_fcrypt</A><BR>
+<A HREF="devguide_2.16.46.html">2.16.46. file_CreateProcess</A><BR>
+<A HREF="devguide_2.16.47.html">2.16.47. file_CreateProcessEx</A><BR>
+<A HREF="devguide_2.16.48.html">2.16.48. file_waitpid</A><BR>
+<HR>
+<P>
+
+@c Handling system specific file operations
+=abstract
+The file <font size="3"><tt>filesys.h</tt></font> contains file handling primitive functions. The reason for this module
+is to have all system specific file handling functions to be separated in a single file.
+All other modules use these functions that behave the same on Win32 platform as well as on UNIX.
+=end
+These functions are to be used by other parts of the program. They implement system
+specific operations, and other levels need not care about these system specific stuff.
+<P>
+The function names are prefixed usually with <font size="3"><tt>file_</tt></font>, some are prefixed with <font size="3"><tt>sys_</tt></font>.
+<P>
+=toc<HR>
+<A HREF="devguide_2.15.3.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

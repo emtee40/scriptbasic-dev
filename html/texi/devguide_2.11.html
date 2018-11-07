@@ -1,0 +1,64 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.11. The Logger Module</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: The Logger Module">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: The Logger Module">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+</UL>
+</UL>
+<P>
+<H1>2.11. The Logger Module</H1>
+<A HREF="devguide_2.10.1.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.11.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_2.11.1.html">2.11.1. log_state()</A><BR>
+<A HREF="devguide_2.11.2.html">2.11.2. log_init()</A><BR>
+<A HREF="devguide_2.11.3.html">2.11.3. log_printf()</A><BR>
+<A HREF="devguide_2.11.4.html">2.11.4. log_shutdown()</A><BR>
+<HR>
+<P>
+
+<P>
+The logger module is included in ScriptBasic though it is not a critical part of it. The command line
+version itself does not use the functions implemented in this module, though the functions are
+available for external modules. The Eszter SB Application Engine uses this module to asynchronously
+log hits and other events to ASCII text log files.
+<P>
+This module can be used to log events. The module implements two type of logs.
+<P>
+<UL>
+<LI> synchronous logs
+<LI> asynchronous logs
+@end itemize
+<P>
+<B>Synchronous</B> logs are just the normal plain logging technic writing messages to a log file. This
+is low performance, because the caller has to wait until the logging is performed and written to a file.
+On the other hand this is a safe logging.
+<P>
+Asynchronous logging is a fast performance logging method. In this case the caller passes
+the log item to the logger. The logger puts the item on a queue and sends it to the log file
+in another thread when disk I/O bandwith permits. This is high performance, because the caller
+does not need to wait for the log item written to the disk. On the other hand this logging is not
+safe because the caller can not be sure that the log was written to the disk.
+<P>
+The program using this module should use asynchronous logging for high volume logs and synchronous
+logging for low volume logging. For example a panic log that reports configuration error has to
+be written synchronously.
+<P>
+Using this module you can initialize a log specifying the file where to write the log, send logs and
+you can tell the log to shut down. When shutting down all waiting logs are written to the file and no more
+log items are accepted. When all logs are written the logging thread terminates.<HR>
+<A HREF="devguide_2.10.1.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.11.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

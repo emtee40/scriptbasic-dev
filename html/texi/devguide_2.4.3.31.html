@@ -1,0 +1,44 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.4.3.31. ex_LookupUserFunction()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_LookupUserFunction()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_LookupUserFunction()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.4.html">2.4. Syntax Analyzer</A><BR>
+<UL><a href="devguide_2.4.3.html">2.4.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.4.3.31. ex_LookupUserFunction()</H1>
+<A HREF="devguide_2.4.3.30.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.32.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function searches a user defined function and returns a pointer to the symbol table entry.
+If the second argument <font size="3"><tt>iInsert</tt></font> is true the symbol is inserted into the table and an
+undefined function is created. This is the case when a function is used before declared. If the
+argument <font size="3"><tt>iInsert</tt></font> is fales <font size="3"><tt>NULL</tt></font> is returned if the function is not yet defined.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void **ex_LookupUserFunction(peXobject pEx,
+                             int iInsert
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.4.3.30.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.32.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

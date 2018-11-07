@@ -1,0 +1,659 @@
+<HTML>
+<HEAD>
+<TITLE>ScriptBasic Online Survey</TITLE>
+</HEAD>
+<body>
+<FONT FACE="Verdana, Ariel" SIZE="2">
+<h1>ScriptBasic Online Survey</h1>
+
+"I do not want to fill in any survey! I want to <a href="http://scriptbasic.com/html/download.html">download</a>!"
+Go ahead if you are in a hurry.
+<P>
+<a href="http://scriptbasic.com/html/download.html">I have already filled this form!</a>
+<P>
+<FONT SIZE="1">
+Please devote some time to take this survey before you download the ScriptBasic
+package of your desire. Filling this form will help the developers to gain
+information on the use of ScriptBasic and to align the development directions
+with needs. (Blah blah... I want to know what you do with my stuff so I can
+develop it the way you need it.)
+<p>
+You can fill in the form with your name or anonymously.
+You may answer all the questions or only some of the questions.
+You can totally skip the survey and proceed to the
+<a href="http://scriptbasic.com/html/download.html">download</a> page.
+My only strong request is that you do not, please cannibalize the survey:
+fill in once only and with real data.
+<p>
+The data you enter including any personal data is stored on the ScriptBasic.com
+web site and on offline sites for later processing. The data will not ever be
+disclosed to any third party except anonimized or aggregated, statistical data.
+In case of any information disclose we will pay careful attention so that the
+disclosed data should not be directly or indirectly be connected to the person
+filling the form. We do not store the IP number or any other network information
+collected from the act of somebody filling the form together with the data
+entered.
+</FONT>
+
+<!--message-->
+
+<form name="SBSURVEY001" action="survey.cgi" method="POST">
+<!--
+this is just to tell the cgi to process the form instead
+of just displaying the page and also to specify which survey this is
+-->
+<input type="hidden" name="survey" value="1">
+
+<table border="0">
+
+
+
+
+
+
+
+
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="3"><B>Administrative questions</B></FONT></TD></tr>
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+Name</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+<input type="text" name="name" MAXLENGTH="20" SIZE="20" value="">
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+you may fill in the survey anonymous, but it is polite to introduce yourself
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+Please fill in this fill so that I know who the answers belong to. This is not a
+technical data, it is only some few thousand years of practice that we identify
+ourselves with names. Generally: this a polite act to introduce
+yourself when you enter a place before you start to talk.
+
+</FONT></td>
+</tr>
+
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+eMail</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+<input type="text" name="email" MAXLENGTH="20" SIZE="20" value="">
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+we need it in case we have questions
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+This field should contain your eMail address. Specifying your eMail here will
+be used in non-autmated human mailing in case your data provided in the survey
+is interesting and we want to ask you something. Specifying here the eMail
+address will not subscribe you to any mailing list (but do subscribe to the
+ScriptBasic mailing list if you have not done so), will not appear on any web
+site.
+
+</FONT></td>
+</tr>
+
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+Language</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+
+
+<input type="radio" name="language_English" value="1"><font size="2" color="BLACK">English</FONT><BR>
+
+<input type="radio" name="language_German" value="1"><font size="2" color="BLACK">German</FONT><BR>
+
+<input type="radio" name="language_Spanish" value="1"><font size="2" color="BLACK">Spanish</FONT><BR>
+
+<input type="radio" name="language_French" value="1"><font size="2" color="BLACK">French</FONT><BR>
+
+<input type="radio" name="language_Chineese" value="1"><font size="2" color="BLACK">Chineese</FONT><BR>
+
+<input type="radio" name="language_Japan" value="1"><font size="2" color="BLACK">Japan</FONT><BR>
+
+<input type="radio" name="language_Hutt" value="1"><font size="2" color="BLACK">Hutt</FONT><BR>
+
+<input type="radio" name="language_other" value="1"><font size="2" color="BLACK">other</FONT><BR>
+
+
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+you probably speak English though
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+What is your native language that is most easy for you to read documentation?
+</FONT></td>
+</tr>
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="3"><B>General questions</B></FONT></TD></tr>
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+Why do you use ScriptBasic (you should use anyway!)</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+<TEXTAREA name="why" COLS="50" ROWS="10"></TEXTAREA>
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+think of the reasons and type it here
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+This is the hardest question to answer but also this can be the most valueable
+in this survey. Why do you use ScriptBasic to sove your programming tasks
+instead of Java, PHP, Perl, Python, Rexx, C or some other language? (I do not
+mean that you should use any of those instead, and I also do not mean that you
+should not!) What do you use ScriptBasic for? What are the tasks that you solve
+using ScriptBasic?
+<P>
+If you did not use ScriptBasic up to now, then leave this field blank.
+
+</FONT></td>
+</tr>
+
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+
+Operating System
+</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+
+<table border="0" cellspacing="0">
+
+<tr><td valign="top"><input type="checkbox" name="os_Windows" value="1"></td><td><font size="2" color="BLACK">Windows</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="os_MacOS" value="1"></td><td><font size="2" color="BLACK">MacOS</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="os_Linux" value="1"></td><td><font size="2" color="BLACK">Linux</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="os_Solaris" value="1"></td><td><font size="2" color="BLACK">Solaris</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="os_Tru64" value="1"></td><td><font size="2" color="BLACK">Tru64</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="os_HP-UX" value="1"></td><td><font size="2" color="BLACK">HP-UX</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="os_AIX" value="1"></td><td><font size="2" color="BLACK">AIX</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="os_SCO" value="1"></td><td><font size="2" color="BLACK">SCO</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="os_other UNIX" value="1"></td><td><font size="2" color="BLACK">other UNIX</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="os_VMS" value="1"></td><td><font size="2" color="BLACK">VMS</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="os_something else" value="1"></td><td><font size="2" color="BLACK">something else</FONT></td></tr>
+</table>
+
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+select one or more
+
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+Please define the operating system that you run ScriptBasic on. You can select
+one or more operating systems of your choice.
+
+</FONT></td>
+</tr>
+
+
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+
+How do you install ScriptBasic
+</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+
+<table border="0" cellspacing="0">
+
+<tr><td valign="top"><input type="checkbox" name="instway_SETUP.EXE" value="1"></td><td><font size="2" color="BLACK">SETUP.EXE</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="instway_Debian package" value="1"></td><td><font size="2" color="BLACK">Debian package</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="instway_RPM" value="1"></td><td><font size="2" color="BLACK">RPM</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="instway_Windows install from ZIPped binaries" value="1"></td><td><font size="2" color="BLACK">Windows install from ZIPped binaries</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="instway_Windows compile" value="1"></td><td><font size="2" color="BLACK">Windows compile</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="instway_ Linux/UNIX compile" value="1"></td><td><font size="2" color="BLACK"> Linux/UNIX compile</FONT></td></tr>
+</table>
+
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+select one or more
+
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+Please select the way you usually install ScriptBasic when a new version comes or
+if you have not installed many ScriptBasic versions during the last 4 years
+until now select the most probable way of installation that appeals to you.
+
+</FONT></td>
+</tr>
+
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+Downloaded from</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+<TEXTAREA name="downloadsite" COLS="50" ROWS="10"></TEXTAREA>
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+where did you download ScriptBasic
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+If you downloaded ScriptBasic not from the original site, but from some other
+software repository, like tucows, then please specify the location and give
+some reasoning why you chose that source.
+
+</FONT></td>
+</tr>
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+Where did you know ScriptBasic?</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+<TEXTAREA name="seekfrom" COLS="50" ROWS="10"></TEXTAREA>
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+how did you find this software
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+Please tell us how you could find the ScriptBasic interpreter on the internet?
+Which search engine did you use, what did you seek for or who told you about it?
+
+</FONT></td>
+</tr>
+
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+
+Programming Languages
+</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+
+<table border="0" cellspacing="0">
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_BASIC" value="1"></td><td><font size="2" color="BLACK">BASIC</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_C" value="1"></td><td><font size="2" color="BLACK">C</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_C++" value="1"></td><td><font size="2" color="BLACK">C++</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_Java" value="1"></td><td><font size="2" color="BLACK">Java</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_C#" value="1"></td><td><font size="2" color="BLACK">C#</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_FORTRAN" value="1"></td><td><font size="2" color="BLACK">FORTRAN</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_PASCAL" value="1"></td><td><font size="2" color="BLACK">PASCAL</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_LIST" value="1"></td><td><font size="2" color="BLACK">LIST</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_PROLOG" value="1"></td><td><font size="2" color="BLACK">PROLOG</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_COBOL" value="1"></td><td><font size="2" color="BLACK">COBOL</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_RPG" value="1"></td><td><font size="2" color="BLACK">RPG</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_FOCAL" value="1"></td><td><font size="2" color="BLACK">FOCAL</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_Perl" value="1"></td><td><font size="2" color="BLACK">Perl</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_PHP" value="1"></td><td><font size="2" color="BLACK">PHP</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_Python" value="1"></td><td><font size="2" color="BLACK">Python</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_Rexx" value="1"></td><td><font size="2" color="BLACK">Rexx</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_Rebol" value="1"></td><td><font size="2" color="BLACK">Rebol</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_TCL" value="1"></td><td><font size="2" color="BLACK">TCL</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_JavaScript" value="1"></td><td><font size="2" color="BLACK">JavaScript</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_Assembly" value="1"></td><td><font size="2" color="BLACK">Assembly</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_ADA" value="1"></td><td><font size="2" color="BLACK">ADA</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_PL1" value="1"></td><td><font size="2" color="BLACK">PL1</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="otherprglang_other programming laguage
+" value="1"></td><td><font size="2" color="BLACK">other programming laguage
+</FONT></td></tr>
+</table>
+
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+select one or more that you can program
+
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+Please select the programming languages that you can program. BASIC should be
+one of the checked, but I never know...
+<p>
+This question helps us to understand the technical background of the usual
+ScriptBasic programmer.
+
+</FONT></td>
+</tr>
+
+
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+
+Did you embed ScriptBasic into application?</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+
+<table border="0" cellspacing="0">
+
+<tr><td valign="top"><input type="checkbox" name="didyouembed_No: I am a BASIC programmer" value="1"></td><td><font size="2" color="BLACK">No: I am a BASIC programmer</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="didyouembed_I did some experiment writing an extension module, but did not succeed" value="1"></td><td><font size="2" color="BLACK">I did some experiment writing an extension module, but did not succeed</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="didyouembed_I did some experiment writing an extension module, and it worked" value="1"></td><td><font size="2" color="BLACK">I did some experiment writing an extension module, and it worked</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="didyouembed_I did some experiment writing an internal preprocessor, but it did not work" value="1"></td><td><font size="2" color="BLACK">I did some experiment writing an internal preprocessor, but it did not work</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="didyouembed_I did some experiment writing an internal preprocessor, and it worked" value="1"></td><td><font size="2" color="BLACK">I did some experiment writing an internal preprocessor, and it worked</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="didyouembed_I embedded ScriptBasic into an application" value="1"></td><td><font size="2" color="BLACK">I embedded ScriptBasic into an application</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="didyouembed_I am interested in embedding ScriptBasic, but I did not do any experiment
+" value="1"></td><td><font size="2" color="BLACK">I am interested in embedding ScriptBasic, but I did not do any experiment
+</FONT></td></tr>
+</table>
+
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+select those that fit your use
+
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+Please select some of the statements, that fit your use of ScriptBasic regrding
+ScriptBasic embedding into another application or writing extension modules, or
+internal preprocessors.
+
+</FONT></td>
+</tr>
+
+
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+
+Documentation
+</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+
+<table border="0" cellspacing="0">
+
+<tr><td valign="top"><input type="checkbox" name="docread_Users' Guide" value="1"></td><td><font size="2" color="BLACK">Users' Guide</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docread_Developers' Guide" value="1"></td><td><font size="2" color="BLACK">Developers' Guide</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docread_Documentation Guide" value="1"></td><td><font size="2" color="BLACK">Documentation Guide</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docread_Module Documentation" value="1"></td><td><font size="2" color="BLACK">Module Documentation</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docread_Eszter SB Application Engine Documentation" value="1"></td><td><font size="2" color="BLACK">Eszter SB Application Engine Documentation</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docread_BASIC examples" value="1"></td><td><font size="2" color="BLACK">BASIC examples</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docread_C Source Code" value="1"></td><td><font size="2" color="BLACK">C Source Code</FONT></td></tr>
+</table>
+
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+select one or more that you read
+
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+Please tell us, which of the documentation you read. The term "read" may mean
+any act that helped you using the interpreter. In other ways which are the
+documentations that helped you using ScriptBasic and without which it would
+have been much more difficult to use the software,
+
+</FONT></td>
+</tr>
+
+
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+
+Documentation quality
+</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+
+<table border="0" cellspacing="0">
+
+<tr><td valign="top"><input type="checkbox" name="docquality_it is poor" value="1"></td><td><font size="2" color="BLACK">it is poor</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docquality_expectable" value="1"></td><td><font size="2" color="BLACK">expectable</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docquality_good enogh" value="1"></td><td><font size="2" color="BLACK">good enogh</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docquality_outstanding generally better than usual in GPL field" value="1"></td><td><font size="2" color="BLACK">outstanding generally better than usual in GPL field</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docquality_language could be improved" value="1"></td><td><font size="2" color="BLACK">language could be improved</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docquality_more examples and tutorial would be nice" value="1"></td><td><font size="2" color="BLACK">more examples and tutorial would be nice</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docquality_developer documentation is lacking
+" value="1"></td><td><font size="2" color="BLACK">developer documentation is lacking
+</FONT></td></tr>
+</table>
+
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+select one or more that you think fits the documentation of the software
+
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+Give some feedback on the perceived overall quality of the documentation.
+
+</FONT></td>
+</tr>
+
+
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+
+Documentation format
+</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+
+<table border="0" cellspacing="0">
+
+<tr><td valign="top"><input type="checkbox" name="docformat_Compiled HTML Microsoft help chm" value="1"></td><td><font size="2" color="BLACK">Compiled HTML Microsoft help chm</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docformat_HTML" value="1"></td><td><font size="2" color="BLACK">HTML</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docformat_PDF" value="1"></td><td><font size="2" color="BLACK">PDF</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docformat_texi source" value="1"></td><td><font size="2" color="BLACK">texi source</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docformat_dvi" value="1"></td><td><font size="2" color="BLACK">dvi</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docformat_ps" value="1"></td><td><font size="2" color="BLACK">ps</FONT></td></tr>
+
+<tr><td valign="top"><input type="checkbox" name="docformat_I print it out on physical paper
+" value="1"></td><td><font size="2" color="BLACK">I print it out on physical paper
+</FONT></td></tr>
+</table>
+
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+which documentation format do you use?
+
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+Select the boxes for the documentation format that you usually use to read
+ScriptBasic documentation
+
+</FONT></td>
+</tr>
+
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+Do you use an old version?</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+<input type="text" name="version" MAXLENGTH="20" SIZE="20" value="">
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+specify the ScriptBasic version that you use
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+If you are going to download version 2.0.0 then this is version is most probably
+1.0b30. In this case type it in or just leave the field blank. If you use some
+of the older version then please specify which version you use.
+
+</FONT></td>
+</tr>
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+Why do you use old version</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+<TEXTAREA name="whyversion" COLS="50" ROWS="10"></TEXTAREA>
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+skip it if you usually use the latest version
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+Please tell us why you use an older version instead of the newest available. It
+may help us understand your concerns preventing your upgrade and understaning may
+help us to improve the development to give you better versions of the software.
+
+</FONT></td>
+</tr>
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+Did you subscribe to the ScriptBasic mailing list?</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+<input type="radio" name="mailistyn" value="1" Checked>Yes <input type="radio" name="mailistyn" value="0">No
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+select YES or select NO
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+
+</FONT></td>
+</tr>
+
+
+
+<tr><td colspan="3" BGCOLOR="#a0a0a0"><FONT SIZE="1">&nbsp;</FONT></TD></tr>
+<tr>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0"><FONT FACE="Verdana" SIZE="2">
+Would you volunteer to translate the documentation to other languages?</FONT>
+</td>
+<td WIDTH="30%" VALIGN="TOP" BGCOLOR="#f0f0f0">
+<input type="radio" name="translateyn" value="1">Yes <input type="radio" name="translateyn" value="0" Checked>No
+<p>
+<FONT SIZE="1" COLOR="BLUE">
+select YES or select NO
+</FONT>
+</td>
+<td WIDTH="*" BGCOLOR="#f0f0f0" VALIGN="TOP"><FONT SIZE="1" COLOR="606060">
+
+</FONT></td>
+</tr>
+
+
+</table>
+<INPUT TYPE="SUBMIT" NAME="SUBMIT" VALUE="Press this button to submit survey">
+</form>
+
+</FONT>
+</body>
+</HTML>

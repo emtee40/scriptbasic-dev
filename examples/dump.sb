@@ -1,0 +1,6 @@
+open command() for input as 1
+line input # 1, L
+for i=1 to len(L)
+  print hex(asc(mid(L,i)))," "
+next
+close 1

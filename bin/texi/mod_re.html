@@ -1,0 +1,154 @@
+<HEAD>
+<TITLE>Documentation of the module re</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module re: Table of Contents">
+<META NAME="keywords" CONTENT="Documentation of the module re: Table of Contents">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<H1>Documentation of the module re</H1>
+<H3>by Peter Verhas</H3>
+<A NAME="contents"><H2>Table of Contents</H2></A>
+<UL>
+<A HREF="#1.">1.   Introduction</A><BR>
+<A HREF="#2.">2.   The module RE</A><BR>
+<A HREF="#3.">3.   Match a string against a regular expression</A><BR>
+<A HREF="#4.">4.   number of matches</A><BR>
+<A HREF="#5.">5.   Return the i-th sub string</A><BR>
+<A HREF="#6.">6.   Reset matches</A><BR>
+<A HREF="#7.">7.   Format a string with replacement sub-strings</A><BR>
+<A HREF="#8.">8.   Search and replace</A><BR>
+</UL>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="1."><H1>1. Introduction</H1></A>
+
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="2."><H1>2. The module RE</H1></A>
+
+This module implements some simple regular expression handling functions.
+They can be used to match some strings against regular expressions and to
+use matched sub strings to format replace strings. This module provides
+functions that are similar to the Perl language operators <font size="3"><tt>m//</tt></font> and <font size="3"><tt>s///</tt></font>.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="3."><H1>3. Match a string against a regular expression</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+re::match(string,regexp [, replace])
+re::m(string,regexp [, replace])
+</PRE></FONT>
+<P>
+This function is the main regular expression match function. The first argument 
+is the string that is to be matched against the regular expression. The second 
+argument is the regular expression. If the string matches the regular expression the 
+return value of the function is true, otherwise false. The regular expressions 
+may contain parentheses inside it. If it does the substrings matching the 
+regular expression part between the parentheses will be stored in a 
+regular expression dollar array.
+<P>
+The substrings can be accessed via the function <font size="3"><tt>re::dollar()</tt></font> <a href="#">dollar</A>.
+<P>
+If there is a replace string defined the return value is either false 
+if the string is not matched by the regular expression; or the replace string itself.
+The replace string may contain <font size="3"><tt>$0</tt></font>, <font size="3"><tt>$1</tt></font>, ... <font size="3"><tt>$n</tt></font> literal that will be replaced by 
+the actual substrings between the parentheses. This is the same way as Perl does.
+<P>
+<font size="3"><tt>$0</tt></font> is the substring matched by the whole regular expression.
+<P>
+For example:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import re.bas
+<P>
+print "match result=",re::match("ahlma","h(.*)","haho $0 $1 $0 q")
+print
+n = re::n()
+print "number of ()s =",n
+print
+for i=0 to n
+  print i,". "
+  print re::dollar(i)
+  print
+next i
+</PRE></FONT>
+will print
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+match result=haho hlma lma hlma q
+number of ()s =1
+0. hlma
+1. lma
+</PRE></FONT>
+Note that the short for <font size="3"><tt>re::m</tt></font> exists in case you are a Perl
+knowing programmer, because this function is similar to the 
+Perl operator <font size="3"><tt>=~ m/</tt></font>.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4."><H1>4. number of matches</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+re::n()
+</PRE></FONT>
+return the number of usable matches substrings<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="5."><H1>5. Return the i-th sub string</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+re::dollar(i)
+re::$(i)
+</PRE></FONT>
+<P>
+return the i-th matched substring <P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="6."><H1>6. Reset matches</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+re::reset()
+</PRE></FONT>
+<P>
+Delete the <a href="#">dollar</A> string array and release all memory that was allocated during the
+last match. This function is autoamtically invoked between matches.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="7."><H1>7. Format a string with replacement sub-strings</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+re::format(string)
+</PRE></FONT>
+<P>
+Use this function to format a string using the <font size="3"><tt>$1</tt></font>, <font size="3"><tt>$2</tt></font>, ... <font size="3"><tt>$n</tt></font> placeholders to be replaced by the actual strings after a successful pattern matching.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="8."><H1>8. Search and replace</H1></A>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+re::replace(string,regexp,replace)
+re::s(string,regexp,replace)
+</PRE></FONT>
+This function searches the string for matches of the regular expression and replaces the 
+actual matches with the replace string. This is the same functionality as the <font size="3"><tt>=~s/</tt></font> operator in Perl.
+<P>
+The function fills the <a href="#">dollar</A> array the same way as the function <a href="#3.">match</A>.
+<P>
+For example
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import re.bas
+<P>
+print re::s("almakbat*","a(.)","$1s")
+print
+print re::$(0)," ",re::$(1)
+print
+</PRE></FONT>
+will print
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+lsmksbts*
+at t
+</PRE></FONT>
+<P>
+As you can see in this case the value of <font size="3"><tt>re::$(0)</tt></font> is the string that was
+matched by the last replace inside the string.
+ 
+

@@ -1,0 +1,52 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Expression</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Expression">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Expression">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Expression</H1>
+<A HREF="devguide_2.4.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+The formal description of an expression syntax is:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+ tag ::= UNOP tag
+         NUMBER
+         STRING
+         '(' expression ')'
+         VARIABLE { '[' expression_list ']' }
+         FUNC '(' expression_list ')'
+         .
+<P>
+ expression_list ::= expression [ ',' expression_list ] .
+ expression_i(1) ::= tag .
+ expression_i(i) := expression_i(i-1) [ OP(i) expression_i(i) ] .
+ expression ::= expression_i(MAX_PREC) .
+</PRE></FONT>
+<P>
+where 
+<UL>
+<LI> <font size="3"><tt>OP(i) </tt></font>  is a binary operator having precdence I
+<LI> <font size="3"><tt>UNOP</tt></font> is an unary operator
+<LI> <font size="3"><tt>NUMBER</tt></font> is a number (float or integer)
+<LI> <font size="3"><tt>STRING</tt></font> is a string
+<LI> <font size="3"><tt>VARIABLE</tt></font> is a symbol that is to a local or global variable
+<LI> <font size="3"><tt>FUNC</tt></font> is a function name, which is either a built-in function or a user defined function
+<LI> <font size="3"><tt>MAX_PREC</tt></font> is the maximal precedence
+</UL>
+<P>
+The syntax analyzer is written to match an expression whenever an expression syntax definition element is to be matched according to these rules. The list of built-in function, unary operators and binary operators are defined in the module "global" variables, <font size="3"><tt>BuiltInFunctions</tt></font>, <font size="3"><tt>Unaries</tt></font>, and <font size="3"><tt>Binaries</tt></font>.<HR>
+<A HREF="devguide_2.4.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

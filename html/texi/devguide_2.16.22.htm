@@ -1,0 +1,34 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: file_mkdir</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: file_mkdir">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: file_mkdir">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>file_mkdir</H1>
+<A HREF="devguide_2.16.21.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.23.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Create a directory
+<P>
+This is the usual UNIX mkdir function. The difference is that the access code is always 0777 on UNIX
+which means that the user, group and others can read, write and execute the directory. If the permission
+needed is different from that you have to call the <font size="3"><tt>file_chmod</tt></font> function as soon as it becomes available.
+<P>
+The argument of the function is the name of the desired directory.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int file_mkdir(char *pszDirectoryName
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.16.21.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.23.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

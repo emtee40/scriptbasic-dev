@@ -1,0 +1,40 @@
+<HEAD>
+<TITLE>Using the module HASH: 5.6. Start</TITLE>
+
+<META NAME="description" CONTENT="Using the module HASH: Start">
+<META NAME="keywords" CONTENT="Using the module HASH: Start">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_hash_toc.html">[Contents]</A><BR>
+<UL><a href="mod_hash_5.html">5. Using the module</A><BR>
+</UL>
+</UL>
+<P>
+<H1>5.6. Start</H1>
+<A HREF="mod_hash_5.5.html">[&lt;&lt;&lt;]</A> <A HREF="mod_hash_5.7.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+hash::Start h
+</PRE></FONT>
+
+Start iteration setting the iteration pointer to the start of the hash list. 
+
+The hash structure implemented in this module maintains a linked list that allows the programmer to iterate over all elements of the hash in the order they were entered into the hash in both directions. To maintain iteration state there is an iteration pointer for each hash. There can only be a single iteration over a hash at a time. The iteration pointer can be set to the start, to the end of the list and can be moved one element forward and backward. The key and value pairs can also be retrieved pointed by the iteration pointer. The ordering of the elements in the hash are guaranteed to follow the time order the pairs were entered into the hash. The first element returned by the iteration pointer is the pair entered first in to the hash.
+
+This function sets the iteration pointer to the start of the list.
+<HR>
+<A HREF="mod_hash_5.5.html">[&lt;&lt;&lt;]</A> <A HREF="mod_hash_5.7.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

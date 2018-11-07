@@ -1,0 +1,47 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.2.2. reader_gets()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: reader_gets()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: reader_gets()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.2.html">2.2. Reader</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.2.2. reader_gets()</H1>
+<A HREF="devguide_2.2.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.2.3.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function reads a newline terminated line from the file. The file is
+identified by function pRo-&gt;fpGetCharacter and the pointer <font size="3"><tt>fp</tt></font>.
+<P>
+When the input buffer is too small it automatically increases the buffer. The
+terminating new line is included in the buffer. If the last line of the file is
+not terminated by newline an extra newline character is added to this last line.
+<P>
+The addition of this extra newline character can be switched off setting pRo-&gt;fForceFinalNL
+to false. Even if this variable is false the normal newline characters which are present
+in the file are included in the buffer.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int reader_gets(pReadObject pRo,
+                 void *fp
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.2.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.2.3.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

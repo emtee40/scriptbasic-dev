@@ -1,0 +1,546 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2. Interpreter Architecture</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Interpreter Architecture">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Interpreter Architecture">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>2. Interpreter Architecture</H1>
+<A HREF="devguide_1.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_2.1.html">2.1. External Preprocessor</A><BR>
+<UL>
+<A HREF="devguide_2.1.1.html">2.1.1. External preprocessor handling</A><BR>
+<A HREF="devguide_2.1.2.html">2.1.2. Execute external preprocessors</A><BR>
+</UL>
+<A HREF="devguide_2.2.html">2.2. Reader</A><BR>
+<UL>
+<A HREF="devguide_2.2.1.html">2.2.1. reader_IncreaseBuffer()</A><BR>
+<A HREF="devguide_2.2.2.html">2.2.2. reader_gets()</A><BR>
+<A HREF="devguide_2.2.3.html">2.2.3. reader_ReadLines()</A><BR>
+<A HREF="devguide_2.2.4.html">2.2.4. reader_ReadLines_r()</A><BR>
+<A HREF="devguide_2.2.5.html">2.2.5. reader_ProcessIncludeFiles()</A><BR>
+<A HREF="devguide_2.2.6.html">2.2.6. reader_LoadPreprocessors()</A><BR>
+<A HREF="devguide_2.2.7.html">2.2.7. reader_StartIteration()</A><BR>
+<A HREF="devguide_2.2.8.html">2.2.8. reader_NextLine()</A><BR>
+<A HREF="devguide_2.2.9.html">2.2.9. reader_NextCharacter()</A><BR>
+<A HREF="devguide_2.2.10.html">2.2.10. reader_FileName()</A><BR>
+<A HREF="devguide_2.2.11.html">2.2.11. reader_LineNumber()</A><BR>
+<A HREF="devguide_2.2.12.html">2.2.12. reader_InitStructure()</A><BR>
+<A HREF="devguide_2.2.13.html">2.2.13. reader_RelateFile()</A><BR>
+<A HREF="devguide_2.2.14.html">2.2.14. reader_DumpLines()</A><BR>
+</UL>
+<A HREF="devguide_2.3.html">2.3. Lexer</A><BR>
+<UL>
+<A HREF="devguide_2.3.1.html">2.3.1. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.3.1.1.html">2.3.1.1. lex_SymbolicName()</A><BR>
+<A HREF="devguide_2.3.1.2.html">2.3.1.2. lex_HandleContinuationLines()</A><BR>
+<A HREF="devguide_2.3.1.3.html">2.3.1.3. lex_RemoveSkipSymbols()</A><BR>
+<A HREF="devguide_2.3.1.4.html">2.3.1.4. lex_RemoveComments()</A><BR>
+<A HREF="devguide_2.3.1.5.html">2.3.1.5. lex_NextLexeme()</A><BR>
+<A HREF="devguide_2.3.1.6.html">2.3.1.6. lex_SavePosition()</A><BR>
+<A HREF="devguide_2.3.1.7.html">2.3.1.7. lex_RestorePosition()</A><BR>
+<A HREF="devguide_2.3.1.8.html">2.3.1.8. lex_StartIteration()</A><BR>
+<A HREF="devguide_2.3.1.9.html">2.3.1.9. lex_EOF()</A><BR>
+<A HREF="devguide_2.3.1.10.html">2.3.1.10. lex_Type()</A><BR>
+<A HREF="devguide_2.3.1.11.html">2.3.1.11. lex_Double()</A><BR>
+<A HREF="devguide_2.3.1.12.html">2.3.1.12. lex_String()</A><BR>
+<A HREF="devguide_2.3.1.13.html">2.3.1.13. lex_StrLen()</A><BR>
+<A HREF="devguide_2.3.1.14.html">2.3.1.14. lex_Long()</A><BR>
+<A HREF="devguide_2.3.1.15.html">2.3.1.15. lex_LineNumber()</A><BR>
+<A HREF="devguide_2.3.1.16.html">2.3.1.16. lex_FileName()</A><BR>
+<A HREF="devguide_2.3.1.17.html">2.3.1.17. lex_XXX()</A><BR>
+<A HREF="devguide_2.3.1.18.html">2.3.1.18. lex_Finish()</A><BR>
+<A HREF="devguide_2.3.1.19.html">2.3.1.19. lex_DumpLexemes()</A><BR>
+<A HREF="devguide_2.3.1.20.html">2.3.1.20. lex_ReadInput()</A><BR>
+<A HREF="devguide_2.3.1.21.html">2.3.1.21. lex_InitStructure()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.4.html">2.4. Syntax Analyzer</A><BR>
+<UL>
+<A HREF="devguide_2.4.1.html">2.4.1. Name Space</A><BR>
+<A HREF="devguide_2.4.2.html">2.4.2. Expression</A><BR>
+<A HREF="devguide_2.4.3.html">2.4.3. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.4.3.1.html">2.4.3.1. What is an expression in ScriptBasic</A><BR>
+<A HREF="devguide_2.4.3.2.html">2.4.3.2. ex_DumpVariables()</A><BR>
+<A HREF="devguide_2.4.3.3.html">2.4.3.3. expression_PushNameSpace()</A><BR>
+<A HREF="devguide_2.4.3.4.html">2.4.3.4. ex_CheckUndefinedLabels()</A><BR>
+<A HREF="devguide_2.4.3.5.html">2.4.3.5. ex_CleanNameSpaceStack()</A><BR>
+<A HREF="devguide_2.4.3.6.html">2.4.3.6. expression_PopNameSpace()</A><BR>
+<A HREF="devguide_2.4.3.7.html">2.4.3.7. ex_PushWaitingLabel()</A><BR>
+<A HREF="devguide_2.4.3.8.html">2.4.3.8. ex_PopWaitingLabel()</A><BR>
+<A HREF="devguide_2.4.3.9.html">2.4.3.9. _ex_PushLabel()</A><BR>
+<A HREF="devguide_2.4.3.10.html">2.4.3.10. _ex_PopLabel()</A><BR>
+<A HREF="devguide_2.4.3.11.html">2.4.3.11. _ex_CleanLabelStack()</A><BR>
+<A HREF="devguide_2.4.3.12.html">2.4.3.12. Some NOTE on SymbolXXX functions</A><BR>
+<A HREF="devguide_2.4.3.13.html">2.4.3.13. _new_SymbolLABEL()</A><BR>
+<A HREF="devguide_2.4.3.14.html">2.4.3.14. _new_SymbolVAR()</A><BR>
+<A HREF="devguide_2.4.3.15.html">2.4.3.15. _new_SymbolUF()</A><BR>
+<A HREF="devguide_2.4.3.16.html">2.4.3.16. _new_eNODE()</A><BR>
+<A HREF="devguide_2.4.3.17.html">2.4.3.17. _new_eNODE_l()</A><BR>
+<A HREF="devguide_2.4.3.18.html">2.4.3.18. ex_free()</A><BR>
+<A HREF="devguide_2.4.3.19.html">2.4.3.19. ex_init()</A><BR>
+<A HREF="devguide_2.4.3.20.html">2.4.3.20. ex_CleanNamePath()</A><BR>
+<A HREF="devguide_2.4.3.21.html">2.4.3.21. ex_ConvertName()</A><BR>
+<A HREF="devguide_2.4.3.22.html">2.4.3.22. ex_IsBFun()</A><BR>
+<A HREF="devguide_2.4.3.23.html">2.4.3.23. ex_IsUnop()</A><BR>
+<A HREF="devguide_2.4.3.24.html">2.4.3.24. ex_IsBinop()</A><BR>
+<A HREF="devguide_2.4.3.25.html">2.4.3.25. ex_LeftValueList()</A><BR>
+<A HREF="devguide_2.4.3.26.html">2.4.3.26. ex_ExpressionList()</A><BR>
+<A HREF="devguide_2.4.3.27.html">2.4.3.27. ex_Local()</A><BR>
+<A HREF="devguide_2.4.3.28.html">2.4.3.28. ex_LocalList()</A><BR>
+<A HREF="devguide_2.4.3.29.html">2.4.3.29. ex_Global()</A><BR>
+<A HREF="devguide_2.4.3.30.html">2.4.3.30. ex_GlobalList()</A><BR>
+<A HREF="devguide_2.4.3.31.html">2.4.3.31. ex_LookupUserFunction()</A><BR>
+<A HREF="devguide_2.4.3.32.html">2.4.3.32. ex_LookupGlobalVariable</A><BR>
+<A HREF="devguide_2.4.3.33.html">2.4.3.33. ex_LookupLocallyDeclaredGlobalVariable</A><BR>
+<A HREF="devguide_2.4.3.34.html">2.4.3.34. ex_LookupLocalVariable</A><BR>
+<A HREF="devguide_2.4.3.35.html">2.4.3.35. ex_Tag</A><BR>
+<A HREF="devguide_2.4.3.36.html">2.4.3.36. ex_Expression_i</A><BR>
+<A HREF="devguide_2.4.3.37.html">2.4.3.37. ex_Expression_r</A><BR>
+<A HREF="devguide_2.4.3.38.html">2.4.3.38. ex_IsSymbolValidLval(pEx)</A><BR>
+<A HREF="devguide_2.4.3.39.html">2.4.3.39. ex_LeftValue</A><BR>
+<A HREF="devguide_2.4.3.40.html">2.4.3.40. ex_PredeclareGlobalLongConst()</A><BR>
+<A HREF="devguide_2.4.3.41.html">2.4.3.41. ex_IsCommandThis</A><BR>
+<A HREF="devguide_2.4.3.42.html">2.4.3.42. ex_Command_r()</A><BR>
+<A HREF="devguide_2.4.3.43.html">2.4.3.43. ex_Command_l()</A><BR>
+<A HREF="devguide_2.4.3.44.html">2.4.3.44. ex_Pragma</A><BR>
+<A HREF="devguide_2.4.3.45.html">2.4.3.45. ex_IsCommandCALL()</A><BR>
+<A HREF="devguide_2.4.3.46.html">2.4.3.46. ex_IsCommandOPEN()</A><BR>
+<A HREF="devguide_2.4.3.47.html">2.4.3.47. ex_IsCommandSLIF()</A><BR>
+<A HREF="devguide_2.4.3.48.html">2.4.3.48. ex_IsCommandIF()</A><BR>
+<A HREF="devguide_2.4.3.49.html">2.4.3.49. ex_IsCommandLET()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.5.html">2.5. Builder</A><BR>
+<UL>
+<A HREF="devguide_2.5.1.html">2.5.1. Node Structure</A><BR>
+<A HREF="devguide_2.5.2.html">2.5.2. Binary File Format</A><BR>
+<A HREF="devguide_2.5.3.html">2.5.3. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.5.3.1.html">2.5.3.1. The structure of the string table</A><BR>
+<A HREF="devguide_2.5.3.2.html">2.5.3.2. build_AllocateStringTable()</A><BR>
+<A HREF="devguide_2.5.3.3.html">2.5.3.3. build_StringIndex()</A><BR>
+<A HREF="devguide_2.5.3.4.html">2.5.3.4. build_Build_l()</A><BR>
+<A HREF="devguide_2.5.3.5.html">2.5.3.5. build_Build_r()</A><BR>
+<A HREF="devguide_2.5.3.6.html">2.5.3.6. build_Build()</A><BR>
+<A HREF="devguide_2.5.3.7.html">2.5.3.7. build_MagicCode()</A><BR>
+<A HREF="devguide_2.5.3.8.html">2.5.3.8. build_SaveCCode()</A><BR>
+<A HREF="devguide_2.5.3.9.html">2.5.3.9. build_SaveCorePart()</A><BR>
+<A HREF="devguide_2.5.3.10.html">2.5.3.10. build_SaveCore()</A><BR>
+<A HREF="devguide_2.5.3.11.html">2.5.3.11. build_SaveCode()</A><BR>
+<A HREF="devguide_2.5.3.12.html">2.5.3.12. build_SaveECode()</A><BR>
+<A HREF="devguide_2.5.3.13.html">2.5.3.13. build_GetExeCodeOffset()</A><BR>
+<A HREF="devguide_2.5.3.14.html">2.5.3.14. build_LoadCore()</A><BR>
+<A HREF="devguide_2.5.3.15.html">2.5.3.15. build_LoadCodeWithOffset()</A><BR>
+<A HREF="devguide_2.5.3.16.html">2.5.3.16. build_LoadCode()</A><BR>
+<A HREF="devguide_2.5.3.17.html">2.5.3.17. build_IsFileBinaryFormat()</A><BR>
+<A HREF="devguide_2.5.3.18.html">2.5.3.18. build_pprint()</A><BR>
+<A HREF="devguide_2.5.3.19.html">2.5.3.19. build_CreateFTable()</A><BR>
+<A HREF="devguide_2.5.3.20.html">2.5.3.20. build_CreateVTable()</A><BR>
+<A HREF="devguide_2.5.3.21.html">2.5.3.21. build_LookupFunctionByName()</A><BR>
+<A HREF="devguide_2.5.3.22.html">2.5.3.22. build_LookupVariableByName()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.6.html">2.6. Executor</A><BR>
+<UL>
+<A HREF="devguide_2.6.1.html">2.6.1. Command parameters</A><BR>
+<A HREF="devguide_2.6.2.html">2.6.2. Instrunction parameters</A><BR>
+<A HREF="devguide_2.6.3.html">2.6.3. Finalizer function</A><BR>
+<A HREF="devguide_2.6.4.html">2.6.4. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.6.4.1.html">2.6.4.1. execute_GetCommandByName()</A><BR>
+<A HREF="devguide_2.6.4.2.html">2.6.4.2. execute_CopyCommandTable()</A><BR>
+<A HREF="devguide_2.6.4.3.html">2.6.4.3. execute_InitStructure()</A><BR>
+<A HREF="devguide_2.6.4.4.html">2.6.4.4. execute_ReInitStructure()</A><BR>
+<A HREF="devguide_2.6.4.5.html">2.6.4.5. execute_Execute_r()</A><BR>
+<A HREF="devguide_2.6.4.6.html">2.6.4.6. execute_InitExecute()</A><BR>
+<A HREF="devguide_2.6.4.7.html">2.6.4.7. execute_FinishExecute()</A><BR>
+<A HREF="devguide_2.6.4.8.html">2.6.4.8. execute_Execute()</A><BR>
+<A HREF="devguide_2.6.4.9.html">2.6.4.9. execute_ExecuteFunction()</A><BR>
+<A HREF="devguide_2.6.4.10.html">2.6.4.10. execute_Evaluate()</A><BR>
+<A HREF="devguide_2.6.4.11.html">2.6.4.11. execute_LeftValue()</A><BR>
+<A HREF="devguide_2.6.4.12.html">2.6.4.12. execute_EvaluateArray()</A><BR>
+<A HREF="devguide_2.6.4.13.html">2.6.4.13. execute_EvaluateSarray()</A><BR>
+<A HREF="devguide_2.6.4.14.html">2.6.4.14. execute_LeftValueArray()</A><BR>
+<A HREF="devguide_2.6.4.15.html">2.6.4.15. execute_LeftValueSarray()</A><BR>
+<A HREF="devguide_2.6.4.16.html">2.6.4.16. execute_Convert2String()</A><BR>
+<A HREF="devguide_2.6.4.17.html">2.6.4.17. execute_Convert2Long()</A><BR>
+<A HREF="devguide_2.6.4.18.html">2.6.4.18. execute_Convert2LongS()</A><BR>
+<A HREF="devguide_2.6.4.19.html">2.6.4.19. execute_Convert2Double()</A><BR>
+<A HREF="devguide_2.6.4.20.html">2.6.4.20. execute_Convert2DoubleS()</A><BR>
+<A HREF="devguide_2.6.4.21.html">2.6.4.21. execute_Convert2Numeric()</A><BR>
+<A HREF="devguide_2.6.4.22.html">2.6.4.22. execute_Dereference()</A><BR>
+<A HREF="devguide_2.6.4.23.html">2.6.4.23. execute_DereferenceS()</A><BR>
+<A HREF="devguide_2.6.4.24.html">2.6.4.24. execute_GetDoubleValue()</A><BR>
+<A HREF="devguide_2.6.4.25.html">2.6.4.25. execute_GetLongValue()</A><BR>
+<A HREF="devguide_2.6.4.26.html">2.6.4.26. execute_IsStringInteger()</A><BR>
+<A HREF="devguide_2.6.4.27.html">2.6.4.27. execute_IsInteger()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.7.html">2.7. Configuration File Handling</A><BR>
+<UL>
+<A HREF="devguide_2.7.1.html">2.7.1. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.7.1.1.html">2.7.1.1. cft_init()</A><BR>
+<A HREF="devguide_2.7.1.2.html">2.7.1.2. cft_GetConfigFileName()</A><BR>
+<A HREF="devguide_2.7.1.3.html">2.7.1.3. cft_start()</A><BR>
+<A HREF="devguide_2.7.1.4.html">2.7.1.4. strmyeq()</A><BR>
+<A HREF="devguide_2.7.1.5.html">2.7.1.5. cft_FindNode()</A><BR>
+<A HREF="devguide_2.7.1.6.html">2.7.1.6. cft_GetEx()</A><BR>
+<A HREF="devguide_2.7.1.7.html">2.7.1.7. cft_GetString()</A><BR>
+<A HREF="devguide_2.7.1.8.html">2.7.1.8. cft_EnumFirst()</A><BR>
+<A HREF="devguide_2.7.1.9.html">2.7.1.9. cft_EnumNext()</A><BR>
+<A HREF="devguide_2.7.1.10.html">2.7.1.10. cft_GetKey()</A><BR>
+<A HREF="devguide_2.7.1.11.html">2.7.1.11. cft_ReadConfig()</A><BR>
+<A HREF="devguide_2.7.1.12.html">2.7.1.12. cft_WriteConfig()</A><BR>
+<A HREF="devguide_2.7.1.13.html">2.7.1.13. cft_DropConfig()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.8.html">2.8. Memory Allocation</A><BR>
+<UL>
+<A HREF="devguide_2.8.1.html">2.8.1. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.8.1.1.html">2.8.1.1. Multi-thread use of this module</A><BR>
+<A HREF="devguide_2.8.1.2.html">2.8.1.2. alloc_InitSegment()</A><BR>
+<A HREF="devguide_2.8.1.3.html">2.8.1.3. alloc_GlobalUseGlobalMutex()</A><BR>
+<A HREF="devguide_2.8.1.4.html">2.8.1.4. alloc_SegmentLimit()</A><BR>
+<A HREF="devguide_2.8.1.5.html">2.8.1.5. alloc_FreeSegment()</A><BR>
+<A HREF="devguide_2.8.1.6.html">2.8.1.6. alloc_FinishSegment()</A><BR>
+<A HREF="devguide_2.8.1.7.html">2.8.1.7. alloc_Alloc()</A><BR>
+<A HREF="devguide_2.8.1.8.html">2.8.1.8. alloc_Free()</A><BR>
+<A HREF="devguide_2.8.1.9.html">2.8.1.9. alloc_Merge()</A><BR>
+<A HREF="devguide_2.8.1.10.html">2.8.1.10. alloc_MergeAndFinish()</A><BR>
+<A HREF="devguide_2.8.1.11.html">2.8.1.11. alloc_InitStat()</A><BR>
+<A HREF="devguide_2.8.1.12.html">2.8.1.12. alloc_GlobalGetStat()</A><BR>
+<A HREF="devguide_2.8.1.13.html">2.8.1.13. alloc_GetStat()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.9.html">2.9. Variable Allocation</A><BR>
+<UL>
+<A HREF="devguide_2.9.1.html">2.9.1. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.9.1.1.html">2.9.1.1. memory_InitStructure()</A><BR>
+<A HREF="devguide_2.9.1.2.html">2.9.1.2. memory_RegisterType()</A><BR>
+<A HREF="devguide_2.9.1.3.html">2.9.1.3. memory_RegisterTypes()</A><BR>
+<A HREF="devguide_2.9.1.4.html">2.9.1.4. memory_DebugDump()</A><BR>
+<A HREF="devguide_2.9.1.5.html">2.9.1.5. memory_NewVariable()</A><BR>
+<A HREF="devguide_2.9.1.6.html">2.9.1.6. memory_ReleaseVariable()</A><BR>
+<A HREF="devguide_2.9.1.7.html">2.9.1.7. memory_NewString()</A><BR>
+<A HREF="devguide_2.9.1.8.html">2.9.1.8. memory_NewCString()</A><BR>
+<A HREF="devguide_2.9.1.9.html">2.9.1.9. memory_SetRef()</A><BR>
+<A HREF="devguide_2.9.1.10.html">2.9.1.10. memory_NewRef()</A><BR>
+<A HREF="devguide_2.9.1.11.html">2.9.1.11. memory_IsUndef()</A><BR>
+<A HREF="devguide_2.9.1.12.html">2.9.1.12. memory_Type()</A><BR>
+<A HREF="devguide_2.9.1.13.html">2.9.1.13. memory_SelfOrRealUndef()</A><BR>
+<A HREF="devguide_2.9.1.14.html">2.9.1.14. memory_NewUndef()</A><BR>
+<A HREF="devguide_2.9.1.15.html">2.9.1.15. memory_ReplaceVariable()</A><BR>
+<A HREF="devguide_2.9.1.16.html">2.9.1.16. memory_NewLong()</A><BR>
+<A HREF="devguide_2.9.1.17.html">2.9.1.17. memory_NewDouble()</A><BR>
+<A HREF="devguide_2.9.1.18.html">2.9.1.18. memory_CopyArray</A><BR>
+<A HREF="devguide_2.9.1.19.html">2.9.1.19. memory_NewArray()</A><BR>
+<A HREF="devguide_2.9.1.20.html">2.9.1.20. memory_ReDimArray()</A><BR>
+<A HREF="devguide_2.9.1.21.html">2.9.1.21. memory_CheckArrayIndex()</A><BR>
+<A HREF="devguide_2.9.1.22.html">2.9.1.22. memory_Mortalize()</A><BR>
+<A HREF="devguide_2.9.1.23.html">2.9.1.23. memory_Immortalize()</A><BR>
+<A HREF="devguide_2.9.1.24.html">2.9.1.24. memory_NewMortal()</A><BR>
+<A HREF="devguide_2.9.1.25.html">2.9.1.25. memory_DupImmortal()</A><BR>
+<A HREF="devguide_2.9.1.26.html">2.9.1.26. memory_DupVar()</A><BR>
+<A HREF="devguide_2.9.1.27.html">2.9.1.27. memory_DupMortalize()</A><BR>
+<A HREF="devguide_2.9.1.28.html">2.9.1.28. memory_ReleaseMortals()</A><BR>
+<A HREF="devguide_2.9.1.29.html">2.9.1.29. memory_DebugDumpVariable()</A><BR>
+<A HREF="devguide_2.9.1.30.html">2.9.1.30. memory_DebugDumpMortals()</A><BR>
+<A HREF="devguide_2.9.1.31.html">2.9.1.31. memory_NewMortalString()</A><BR>
+<A HREF="devguide_2.9.1.32.html">2.9.1.32. memory_NewMortalCString()</A><BR>
+<A HREF="devguide_2.9.1.33.html">2.9.1.33. memory_NewMortalLong()</A><BR>
+<A HREF="devguide_2.9.1.34.html">2.9.1.34. memory_NewMortalRef()</A><BR>
+<A HREF="devguide_2.9.1.35.html">2.9.1.35. memory_NewMortalDouble()</A><BR>
+<A HREF="devguide_2.9.1.36.html">2.9.1.36. memory_NewMortalArray()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.10.html">2.10. Error Reporting</A><BR>
+<UL>
+<A HREF="devguide_2.10.1.html">2.10.1. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.10.1.1.html">2.10.1.1. report_report()</A><BR>
+</UL>
+</UL>
+<A HREF="devguide_2.11.html">2.11. The Logger Module</A><BR>
+<UL>
+<A HREF="devguide_2.11.1.html">2.11.1. log_state()</A><BR>
+<A HREF="devguide_2.11.2.html">2.11.2. log_init()</A><BR>
+<A HREF="devguide_2.11.3.html">2.11.3. log_printf()</A><BR>
+<A HREF="devguide_2.11.4.html">2.11.4. log_shutdown()</A><BR>
+</UL>
+<A HREF="devguide_2.12.html">2.12. Hook Functions</A><BR>
+<UL>
+<A HREF="devguide_2.12.1.html">2.12.1. hook_Init</A><BR>
+<A HREF="devguide_2.12.2.html">2.12.2. hook_file_access</A><BR>
+<A HREF="devguide_2.12.3.html">2.12.3. hook_fopen</A><BR>
+<A HREF="devguide_2.12.4.html">2.12.4. hook_fclose</A><BR>
+<A HREF="devguide_2.12.5.html">2.12.5. hook_size</A><BR>
+<A HREF="devguide_2.12.6.html">2.12.6. hook_time_accessed</A><BR>
+<A HREF="devguide_2.12.7.html">2.12.7. hook_time_modified</A><BR>
+<A HREF="devguide_2.12.8.html">2.12.8. hook_time_created</A><BR>
+<A HREF="devguide_2.12.9.html">2.12.9. hook_isdir</A><BR>
+<A HREF="devguide_2.12.10.html">2.12.10. hook_isreg</A><BR>
+<A HREF="devguide_2.12.11.html">2.12.11. hook_fileexists</A><BR>
+<A HREF="devguide_2.12.12.html">2.12.12. hook_truncate</A><BR>
+<A HREF="devguide_2.12.13.html">2.12.13. hook_fgetc</A><BR>
+<A HREF="devguide_2.12.14.html">2.12.14. hook_ferror</A><BR>
+<A HREF="devguide_2.12.15.html">2.12.15. hook_fread</A><BR>
+<A HREF="devguide_2.12.16.html">2.12.16. hook_setmode</A><BR>
+<A HREF="devguide_2.12.17.html">2.12.17. hook_binmode</A><BR>
+<A HREF="devguide_2.12.18.html">2.12.18. hook_textmode</A><BR>
+<A HREF="devguide_2.12.19.html">2.12.19. hook_fwrite</A><BR>
+<A HREF="devguide_2.12.20.html">2.12.20. hook_fputc</A><BR>
+<A HREF="devguide_2.12.21.html">2.12.21. hook_flock</A><BR>
+<A HREF="devguide_2.12.22.html">2.12.22. hook_lock</A><BR>
+<A HREF="devguide_2.12.23.html">2.12.23. hook_feof</A><BR>
+<A HREF="devguide_2.12.24.html">2.12.24. hook_mkdir</A><BR>
+<A HREF="devguide_2.12.25.html">2.12.25. hook_rmdir</A><BR>
+<A HREF="devguide_2.12.26.html">2.12.26. hook_remove</A><BR>
+<A HREF="devguide_2.12.27.html">2.12.27. hook_deltree</A><BR>
+<A HREF="devguide_2.12.28.html">2.12.28. hook_MakeDirectory</A><BR>
+<A HREF="devguide_2.12.29.html">2.12.29. hook_opendir</A><BR>
+<A HREF="devguide_2.12.30.html">2.12.30. hook_readdir</A><BR>
+<A HREF="devguide_2.12.31.html">2.12.31. hook_closedir</A><BR>
+<A HREF="devguide_2.12.32.html">2.12.32. hook_sleep</A><BR>
+<A HREF="devguide_2.12.33.html">2.12.33. hook_curdir</A><BR>
+<A HREF="devguide_2.12.34.html">2.12.34. hook_chdir</A><BR>
+<A HREF="devguide_2.12.35.html">2.12.35. hook_chown</A><BR>
+<A HREF="devguide_2.12.36.html">2.12.36. hook_SetCreateTime</A><BR>
+<A HREF="devguide_2.12.37.html">2.12.37. hook_SetModifyTime</A><BR>
+<A HREF="devguide_2.12.38.html">2.12.38. hook_SetAccessTime</A><BR>
+<A HREF="devguide_2.12.39.html">2.12.39. hook_gethostname</A><BR>
+<A HREF="devguide_2.12.40.html">2.12.40. hook_gethost</A><BR>
+<A HREF="devguide_2.12.41.html">2.12.41. hook_tcpconnect</A><BR>
+<A HREF="devguide_2.12.42.html">2.12.42. hook_tcpsend</A><BR>
+<A HREF="devguide_2.12.43.html">2.12.43. hook_tcprecv</A><BR>
+<A HREF="devguide_2.12.44.html">2.12.44. hook_tcpclose</A><BR>
+<A HREF="devguide_2.12.45.html">2.12.45. hook_killproc</A><BR>
+<A HREF="devguide_2.12.46.html">2.12.46. hook_getowner</A><BR>
+<A HREF="devguide_2.12.47.html">2.12.47. hook_fcrypt</A><BR>
+<A HREF="devguide_2.12.48.html">2.12.48. hook_CreateProcess</A><BR>
+<A HREF="devguide_2.12.49.html">2.12.49. hook_CreateProcessEx</A><BR>
+<A HREF="devguide_2.12.50.html">2.12.50. hook_waitpid</A><BR>
+<A HREF="devguide_2.12.51.html">2.12.51. hook_CallScribaFunction</A><BR>
+</UL>
+<A HREF="devguide_2.13.html">2.13. Handle Pointers in External Modules Support Functions</A><BR>
+<UL>
+<A HREF="devguide_2.13.1.html">2.13.1. handle_GetHandle</A><BR>
+<A HREF="devguide_2.13.2.html">2.13.2. handle_GetPointer</A><BR>
+<A HREF="devguide_2.13.3.html">2.13.3. handle_FreeHandle</A><BR>
+<A HREF="devguide_2.13.4.html">2.13.4. handle_DestroyHandleArray</A><BR>
+</UL>
+<A HREF="devguide_2.14.html">2.14. Thread Support Functions</A><BR>
+<UL>
+<A HREF="devguide_2.14.1.html">2.14.1. thread_CreateThread</A><BR>
+<A HREF="devguide_2.14.2.html">2.14.2. thread_ExitThread</A><BR>
+<A HREF="devguide_2.14.3.html">2.14.3. thread_InitMutex</A><BR>
+<A HREF="devguide_2.14.4.html">2.14.4. thread_FinishMutex</A><BR>
+<A HREF="devguide_2.14.5.html">2.14.5. thread_LockMutex</A><BR>
+<A HREF="devguide_2.14.6.html">2.14.6. thread_UnlockMutex</A><BR>
+<A HREF="devguide_2.14.7.html">2.14.7. thread_shlckstry</A><BR>
+<A HREF="devguide_2.14.8.html">2.14.8. thread_InitLock</A><BR>
+<A HREF="devguide_2.14.9.html">2.14.9. thread_FinishLock</A><BR>
+<A HREF="devguide_2.14.10.html">2.14.10. thread_LockRead</A><BR>
+<A HREF="devguide_2.14.11.html">2.14.11. thread_LockWrite</A><BR>
+<A HREF="devguide_2.14.12.html">2.14.12. thread_UnlockRead</A><BR>
+<A HREF="devguide_2.14.13.html">2.14.13. thread_UnlockWrite</A><BR>
+</UL>
+<A HREF="devguide_2.15.html">2.15. Dynamic Library Handling Support Functions</A><BR>
+<UL>
+<A HREF="devguide_2.15.1.html">2.15.1. dynlolib_LoadLibrary</A><BR>
+<A HREF="devguide_2.15.2.html">2.15.2. dynlolib_FreeLibrary</A><BR>
+<A HREF="devguide_2.15.3.html">2.15.3. dynlolib_GetFunctionByName</A><BR>
+</UL>
+<A HREF="devguide_2.16.html">2.16. Other System Dependant Functions</A><BR>
+<UL>
+<A HREF="devguide_2.16.1.html">2.16.1. file_fopen</A><BR>
+<A HREF="devguide_2.16.2.html">2.16.2. file_fclose</A><BR>
+<A HREF="devguide_2.16.3.html">2.16.3. file_size</A><BR>
+<A HREF="devguide_2.16.4.html">2.16.4. file_time_accessed</A><BR>
+<A HREF="devguide_2.16.5.html">2.16.5. file_time_modified</A><BR>
+<A HREF="devguide_2.16.6.html">2.16.6. file_time_created</A><BR>
+<A HREF="devguide_2.16.7.html">2.16.7. file_isdir</A><BR>
+<A HREF="devguide_2.16.8.html">2.16.8. file_isreg</A><BR>
+<A HREF="devguide_2.16.9.html">2.16.9. file_exists</A><BR>
+<A HREF="devguide_2.16.10.html">2.16.10. file_truncate</A><BR>
+<A HREF="devguide_2.16.11.html">2.16.11. file_fgetc</A><BR>
+<A HREF="devguide_2.16.12.html">2.16.12. file_ferror</A><BR>
+<A HREF="devguide_2.16.13.html">2.16.13. file_fread</A><BR>
+<A HREF="devguide_2.16.14.html">2.16.14. file_fwrite</A><BR>
+<A HREF="devguide_2.16.15.html">2.16.15. file_fputc</A><BR>
+<A HREF="devguide_2.16.16.html">2.16.16. file_setmode</A><BR>
+<A HREF="devguide_2.16.17.html">2.16.17. file_binmode</A><BR>
+<A HREF="devguide_2.16.18.html">2.16.18. file_textmode</A><BR>
+<A HREF="devguide_2.16.19.html">2.16.19. file_flock</A><BR>
+<A HREF="devguide_2.16.20.html">2.16.20. file_lock</A><BR>
+<A HREF="devguide_2.16.21.html">2.16.21. file_feof</A><BR>
+<A HREF="devguide_2.16.22.html">2.16.22. file_mkdir</A><BR>
+<A HREF="devguide_2.16.23.html">2.16.23. file_rmdir</A><BR>
+<A HREF="devguide_2.16.24.html">2.16.24. file_remove</A><BR>
+<A HREF="devguide_2.16.25.html">2.16.25. file_deltree</A><BR>
+<A HREF="devguide_2.16.26.html">2.16.26. file_MakeDirectory</A><BR>
+<A HREF="devguide_2.16.27.html">2.16.27. file_opendir</A><BR>
+<A HREF="devguide_2.16.28.html">2.16.28. file_readdir</A><BR>
+<A HREF="devguide_2.16.29.html">2.16.29. file_closedir</A><BR>
+<A HREF="devguide_2.16.30.html">2.16.30. file_sleep</A><BR>
+<A HREF="devguide_2.16.31.html">2.16.31. file_curdir</A><BR>
+<A HREF="devguide_2.16.32.html">2.16.32. file_chdir</A><BR>
+<A HREF="devguide_2.16.33.html">2.16.33. file_chown</A><BR>
+<A HREF="devguide_2.16.34.html">2.16.34. file_getowner</A><BR>
+<A HREF="devguide_2.16.35.html">2.16.35. file_SetCreateTime</A><BR>
+<A HREF="devguide_2.16.36.html">2.16.36. file_SetModifyTime</A><BR>
+<A HREF="devguide_2.16.37.html">2.16.37. file_SetAccessTime</A><BR>
+<A HREF="devguide_2.16.38.html">2.16.38. file_gethostname</A><BR>
+<A HREF="devguide_2.16.39.html">2.16.39. file_gethost</A><BR>
+<A HREF="devguide_2.16.40.html">2.16.40. file_tcpconnect</A><BR>
+<A HREF="devguide_2.16.41.html">2.16.41. file_tcpsend</A><BR>
+<A HREF="devguide_2.16.42.html">2.16.42. file_tcprecv</A><BR>
+<A HREF="devguide_2.16.43.html">2.16.43. file_tcpclose</A><BR>
+<A HREF="devguide_2.16.44.html">2.16.44. file_killproc</A><BR>
+<A HREF="devguide_2.16.45.html">2.16.45. file_fcrypt</A><BR>
+<A HREF="devguide_2.16.46.html">2.16.46. file_CreateProcess</A><BR>
+<A HREF="devguide_2.16.47.html">2.16.47. file_CreateProcessEx</A><BR>
+<A HREF="devguide_2.16.48.html">2.16.48. file_waitpid</A><BR>
+</UL>
+<A HREF="devguide_2.17.html">2.17. Module Management</A><BR>
+<UL>
+<A HREF="devguide_2.17.1.html">2.17.1. modu_Init</A><BR>
+<A HREF="devguide_2.17.2.html">2.17.2. modu_Preload</A><BR>
+<A HREF="devguide_2.17.3.html">2.17.3. modu_GetModuleFunctionByName</A><BR>
+<A HREF="devguide_2.17.4.html">2.17.4. modu_GetStaticFunctionByName</A><BR>
+<A HREF="devguide_2.17.5.html">2.17.5. modu_LoadModule</A><BR>
+<A HREF="devguide_2.17.6.html">2.17.6. modu_GetFunctionByName</A><BR>
+<A HREF="devguide_2.17.7.html">2.17.7. modu_UnloadAllModules</A><BR>
+<A HREF="devguide_2.17.8.html">2.17.8. modu_UnloadModule</A><BR>
+<A HREF="devguide_2.17.9.html">2.17.9. modu_ShutdownModule</A><BR>
+</UL>
+<A HREF="devguide_2.18.html">2.18. Run Time Options Handling</A><BR>
+<UL>
+<A HREF="devguide_2.18.1.html">2.18.1. options_Reset</A><BR>
+<A HREF="devguide_2.18.2.html">2.18.2. options_Set</A><BR>
+<A HREF="devguide_2.18.3.html">2.18.3. options_Get</A><BR>
+<A HREF="devguide_2.18.4.html">2.18.4. options_GetR</A><BR>
+</UL>
+<A HREF="devguide_2.19.html">2.19. Simple Pattern Matching</A><BR>
+<UL>
+<A HREF="devguide_2.19.1.html">2.19.1. match_index</A><BR>
+<A HREF="devguide_2.19.2.html">2.19.2. InitSets</A><BR>
+<A HREF="devguide_2.19.3.html">2.19.3. ModifySet</A><BR>
+<A HREF="devguide_2.19.4.html">2.19.4. match</A><BR>
+<A HREF="devguide_2.19.5.html">2.19.5. count</A><BR>
+<A HREF="devguide_2.19.6.html">2.19.6. parameter</A><BR>
+<A HREF="devguide_2.19.7.html">2.19.7. size</A><BR>
+</UL>
+<A HREF="devguide_2.20.html">2.20. Symbol Table Handling</A><BR>
+<UL>
+<A HREF="devguide_2.20.1.html">2.20.1. sym_NewSymbolTable()</A><BR>
+<A HREF="devguide_2.20.2.html">2.20.2. sym_FreeSymbolTable()</A><BR>
+<A HREF="devguide_2.20.3.html">2.20.3. sym_TraverseSymbolTable()</A><BR>
+<A HREF="devguide_2.20.4.html">2.20.4. sym_LookupSymbol()</A><BR>
+<A HREF="devguide_2.20.5.html">2.20.5. sym_DeleteSymbol()</A><BR>
+<HR>
+<P>
+
+This chapter tells you the architecture of the interpreter. It is not a must to read this chapter, and you may find that some topic is irrelevant or not needed to learn to embed or to extend ScriptBasic. However understanding the internal working order of ScriptBasic should help you understand why some of the extending or embedding interfaces work the way they actually do. So I recommend that you read on and do not skip this chapter.
+<P>
+To read this chapter and to understand the internal working of the interpreter is vital when you decide to write an internal preprocessor. Internal preprocessors interact with not only the execution system but also the reader, lexer, syntaxer and builder modules along the way one after the other as they do their unique job processing a BASIC program, thus internal preprocessor writers have to understand how these modules work.
+<P>
+ScriptBasic is not a real scripting language. This is a mix of a scripting language and compiled languages. The language is scripting in the sense that it is very easy to write small programs, there is no need for long variable and function declarations. On the other hand the language is compiled into an internal code that is executed afterwards. This is the same or similar technique, which is used in the implementations of the language Java, Perl, Python and many other languages.
+<P>
+ScriptBasic as a language is a BASIC dialect that implements most BASIC features that BASIC implementations usually do. However ScriptBasic variables are not typed, and dynamic storage, like arrays are automatically allocated and released. A ScriptBasic variable can store a string, an integer, a real value or an array. Naturally a variable can not store more than one of any of these types of values. But you need not declare a variable to be INTEGER or REAL, or STRING. A variable may store a string at a time and the next assignment command may release the original value and store a different value in the variable.
+<P>
+When a program is executed it goes through several steps. The individual steps are implemented in different modules each being coded in a separate C language source file. These modules were developed so that they provide clear interface and thus could be replaced. The lexical analyzer uses the functions provided by the reader, the syntax analyzer uses the functions provided by the lexical analyzer and so on. The modules never dig into each others private area.
+<P>
+The modules are listed here with some explanation.
+<P>
+<UL>
+<P>
+<LI>
+EXTERNAL PREPROCESSOR
+<P>
+This module executes external preprocessors. These preprocessors are standalone executable programs that read the source program and create another file that is read and processed by the ScriptBasic interpreter. If an external preprocessor is used the source file is usually not BASIC but rather some other language, usually a BASIC like language, which is extended some way and the preprocessor creates the pure ScriptBasic conformant BASIC program. The sample preprocessor supplied with ScriptBasic is the HEB (HTML Embedded BASIC) preprocessor that reads HTML embedded BASIC code and creates BASIC program. This HEB source file is a kind of HTML with embedded program fragments, which you may be familiar with in case you program PHP or Microsoft BASIC ASP pages. The HEB preprocessor itself is written in BASIC and is executed by ScriptBasic. Thus when a HEB "language" is executed by ScriptBasic it starts a separate instance of the interpreter and executes the HEB preprocessor on the source file. Of course the HEB preprocessor could be implemented in any language that can be compiled or some way executed on the target machine. Actually the very first version of the HEB preprocessor was written in Perl so when it was first tested the ScriptBasic interpreter started a Perl interpreter before reading the generated BASIC code.
+<P>
+Note that the HEB preprocessor provided in the ScriptBasic package is an example implementation and lacks many features. It can, for example, be fooled by putting a <font size="3"><tt>%&gt;</tt></font> characters into a BASIC string constant.
+<P>
+<LI>
+READER
+<P>
+This module reads the source file into the computer memory. Usually source programs are not too big compared to computer memory and thus can be read into the operational memory (RAM). ScriptBasic source code is approximately 1MB and I develop it on a station that has 386MB memory. This means that even a fairly large program can fit into the memory seamlessly. BASIC programs executed by the ScriptBasic interpreter are likely to be much smaller than that.
+<P>
+The source code is stored in memory pieces that form a linked list. Each element of the list contains one line of the source code and the information of the line for debugging and error reporting purposes. This information includes the file name that the line was read and the line number. Later when the lexer (detailed later) performs lexical analysis it will inherit this information and when there is a lexical or syntactical error the line number is reported correct.
+<P>
+The reader module also handles the <font size="3"><tt>include</tt></font> and <font size="3"><tt>import</tt></font> directives that are used to include files into the source file. (Note that <font size="3"><tt>import</tt></font> inserts the content of the file only if it was not loaded yet.)
+<P>
+The module also processes the lines that look 
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+use preprocessor
+</PRE></FONT>
+<P>
+and loads the internal preprocessor named on the line. <a href="devguide_5.html">Preprocessors</A>
+<P>
+When the module is ready the latter modules have the full source file in memory ready to be processed. The module also provides <font size="3"><tt>getc</tt></font> and <font size="3"><tt>ungetc</tt></font> like functions to get the read characters one by one. These are is used by the lexer.
+<P>
+<LI>
+LEXER
+<P>
+The lexer module uses the line stream (or the character stream if we view it from a different point of view) provided by the reader. It reads the characters and builds up a linked list. Each element of the list contains a token, like BASIC keyword, a real or integer number, symbol, string, multi-line string, or character. The list of tokens is stored in a form of linked list in the order the tokens appear in the input. Each element also contains extra information about the token that identifies the name of the file and the line number inside the file where the token originally was.
+<P>
+When the lexer is finished the list of lines is not really needed any more and the reader is ready to release the memory occupied by the source lines read into memory.
+<P>
+The lexer also provides functions that are used by the syntax analyzer to read the tokens in sequence one after the other as needed by the syntax analysis.
+<P>
+<LI>
+SYNTAXER
+<P>
+The syntaxer reads the list of tokens provided by the lexical analysis module and creates an internal structure that is already very similar to the executable internal code of ScriptBasic. The syntax analyzer finds any programming error that is not syntactically correct and when it is ready the result is a huge, cross-linked memory structure that contains the almost-executable code.
+<P>
+The syntax analyzer is responsible building up the evaluation trees of the expressions, the execution nodes, variable numbering and so on.
+<P>
+When the code refers to a variable named for example <font size="3"><tt>variable</tt></font> the syntax analyzer is responsible to allocate a slot for the variable and to convert the name to a serial number that identifies the variable whenever it is used. Beyond the syntax analyzer there are no named variables anymore (except in case of debuggers). There are global variables listed from <font size="3"><tt>1</tt></font> to <font size="3"><tt>n</tt></font> and local variables also listed by numbers. There are also no names for the functions. Each function is identified by a C pointer to the node where the function starts.
+<P>
+To ease the life of those who want to embed ScriptBasic the symbol table that list the global variables and the functions and subroutines is appended to the byte-code and there are functions in the <font size="3"><tt>scriba_*</tt></font> embedding interface that handles these symbol tables. However ScriptBasic itself does not use variable or functions/subroutine names beyond the syntax analyzer.
+<P>
+<LI>
+BUILDER
+<P>
+The builder is the module that creates the code, which is used by the execution system. Why do we have a separate builder? Isn't it the role of the syntax analyzer to build the code?
+<P>
+Yes, and no. The code that was created by the syntax analyzer could be used to execute the BASIC program, but ScriptBasic still inserts an extra transformation before executing the program. The reason for this extra step is to create a byte code that can be stored in a continuous memory area and thus can easily be saved to or loaded from disk.
+<P>
+When the syntax analyzer creates the nodes it does not know the actual number of nodes of the byte-code, nor the number of different strings, or size of the string table. While the code is created the syntax analyzer allocates memory for each new block it creates one by one. The nodes are linked together using C pointers. This means that the final memory structure is neither continuous in memory nor can be saved or loaded back to disk.
+<P>
+When the builder starts the number of the nodes just as well as the total string constant size is known. The builder allocates the memory needed for the whole code and fills in the actual code. The node size is a bit smaller than that of the syntax analyzer and they refer to each other using node serial numbers instead of pointers. This is almost as efficient as using pointers and the actual value does not depend on the location of the node in memory and this way the code can be saved to disk and loaded again for execution.
+<P>
+<LI>
+EXECUTOR
+<P>
+The executor kills the code. Oh no! I am just kidding.
+<P>
+It actually executes the code. It gets the code that was generated by the module builder and executes the nodes one by one and finally exits.
+<P>
+</UL>
+<P>
+The following sections detail these modules and also some other modules that help these modules to perform their actual tasks.
+<HR>
+<A HREF="devguide_1.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

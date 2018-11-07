@@ -1,0 +1,72 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: PreprocessorLexInit</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: PreprocessorLexInit">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: PreprocessorLexInit">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>PreprocessorLexInit</H1>
+<A HREF="devguide_5.3.6.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.8.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This entry point is used when the lexer object was allocated and initialized. The pointer <font size="3"><tt>p</tt></font> points to the <font size="3"><tt>LexObject</tt></font>.
+<P>
+The preprocessor at this point may alter the <font size="3"><tt>LexObject</tt></font> parameters. Here is a copy of the function <font size="3"><tt>lex_InitStructure</tt></font> from ScriptBasic v1.0build26. (other versions may slightly differ).
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void lex_InitStructure(pLexObject pLex
+  ){
+/*noverbatim
+CUT*/
+  pLex-&gt;pfGetCharacter = NULL;
+  pLex-&gt;pfFileName = _MyFileName;
+  pLex-&gt;pfLineNumber = _MyLineNumber;
+  pLex-&gt;SSC = "QWERTZUIOPASDFGHJKLYXCVBNMqwertzuiopasdfghjklyxcvbnm_:$";
+  pLex-&gt;SCC = "QWERTZUIOPASDFGHJKLYXCVBNMqwertzuiopasdfghjklyxcvbnm_1234567890:$";
+  pLex-&gt;SFC = "QWERTZUIOPASDFGHJKLYXCVBNMqwertzuiopasdfghjklyxcvbnm_1234567890$";
+  pLex-&gt;SStC = "\"";
+  pLex-&gt;ESCS = "\\n\nt\tr\r\"\"\'\'";
+  pLex-&gt;fFlag = LEX_PROCESS_STRING_NUMBER       |
+                LEX_PROCESS_STRING_OCTAL_NUMBER |
+                LEX_PROCESS_STRING_HEX_NUMBER   |
+                0;
+  pLex-&gt;SKIP = " \t\r"; /* spaces to skip 
+                           \r is included to ease compilation of DOS edited 
+                           binary transfered files to run on UNIX */
+  pLex-&gt;pNASymbols = NULL;
+  pLex-&gt;pASymbols  = NULL;
+  pLex-&gt;pCSymbols  = NULL;
+  pLex-&gt;cbNASymbolLength = 0; /* it is to be calculated */
+<P>
+  pLex-&gt;buffer = lexALLOC(BUFFERINCREASE*sizeof(char));
+<P>
+  if( pLex-&gt;buffer )
+    pLex-&gt;cbBuffer = BUFFERINCREASE;
+  else
+    pLex-&gt;cbBuffer = 0;
+<P>
+  CALL_PREPROCESSOR(PreprocessorLexInit,pLex);
+  }
+</PRE></FONT>
+<P>
+(Note <font size="3"><tt>CALL_PREPROCESSOR</tt></font> is a macro that call the preprocessor with appropriate arguments.)
+<P>
+The preprocessor may decide for example to alter the string <font size="3"><tt>SSC</tt></font> that contains all characters that may start a symbol, or <font size="3"><tt>SCC</tt></font> that contains all characters that can part a symbol or <font size="3"><tt>SFC</tt></font> that contains all characters that can be the final character of a symbol. This way for example a preprocessor may set these strings that allows Hungarian programmers to use ISO-Latin-2 accented letters in their variables. (However those characters are going to be case sensitive.)
+<P>
+The preprocessor may also set the pointers that point to the tables that contains the alphanumeric symbols (<font size="3"><tt>pASymbols</tt></font>), non-alpha symbols (<font size="3"><tt>pNASymbols</tt></font>) and the table used for some ScriptBasic internal debugging purpose (<font size="3"><tt>pCSymbols</tt></font>).
+<P>
+The preprocessor may also release and reallocate a smaller or larger <font size="3"><tt>buffer</tt></font> if wishes. (I personally see no reason.)
+<P>
+The function has to return zero or the error code and should set the parameter <font size="3"><tt>*pCmd</tt></font> to <font size="3"><tt>PreprocessorContinue</tt></font>, <font size="3"><tt>PreprocessorDone</tt></font>, or <font size="3"><tt>PreprocessorUnload</tt></font>.<HR>
+<A HREF="devguide_5.3.6.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.8.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

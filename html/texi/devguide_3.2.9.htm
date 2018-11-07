@@ -1,0 +1,30 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Run External Preprocessors</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Run External Preprocessors">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Run External Preprocessors">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Run External Preprocessors</H1>
+<A HREF="devguide_3.2.8.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.10.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+If the cache file is not usable then the source text has to be loaded and compiled. Before that the external preprocessors has to do their jobs if there is any. To do this the function <a href="devguide_3.3.47.htm">scriba_RunExternalPreprocessor()</A> is called.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+    iError=scriba_RunExternalPreprocessor(pProgram,pszEPreproc);
+</PRE></FONT>
+<P>
+It is not a must for an application to call this function. Some application may require the user to write their program in pure BASIC and not to use any preprocessor.<HR>
+<A HREF="devguide_3.2.8.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.10.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

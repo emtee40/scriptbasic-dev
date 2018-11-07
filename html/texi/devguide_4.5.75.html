@@ -1,0 +1,42 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 4.5.75. besUNLOADALLMODULES</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besUNLOADALLMODULES">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besUNLOADALLMODULES">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_4.html">4. Extension Modules</A><BR>
+<UL><a href="devguide_4.5.html">4.5. Module Support Functions</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>4.5.75. besUNLOADALLMODULES</H1>
+<A HREF="devguide_4.5.74.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.76.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This macro calls the function <a href="devguide_2.17.7.html">modu_UnloadAllModules</A>. This will unload all modules that are
+not active. Because this macro is called by an extension that is a module itself the calling module
+will not be unloaded.
+<P>
+A module is active if there is a function called in the module and the module did not return from the
+function call yet. Typically there can be only one active module at a time unless some
+modules call each other in tricky ways through the ScriptBasic module calling functions. Therefore
+calling this macro practically unloads all modules but the very one using this macro.
+<P>
+See also <a href="devguide_4.5.76.html">besUNLOADMODULE</A>.<HR>
+<A HREF="devguide_4.5.74.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.76.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

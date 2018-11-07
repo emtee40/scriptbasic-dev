@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_LookupFunctionByName()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_LookupFunctionByName()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_LookupFunctionByName()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_LookupFunctionByName()</H1>
+<A HREF="devguide_3.3.60.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.62.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function should be used to get the entry point of a function
+knowing the name of the function. The entry point should not be treated as a
+numerical value rather as a handle and to pass it to functions like
+<a href="devguide_3.3.60.htm">scriba_CallArgEx()</A>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+long scriba_LookupFunctionByName(pSbProgram pProgram,
+                                 char *pszFunctionName
+  )@{
+</PRE></FONT>
+The return value of the function is the entry node index of the function named or
+zero if the function is not present in the program.<HR>
+<A HREF="devguide_3.3.60.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.62.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

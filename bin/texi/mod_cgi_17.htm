@@ -1,0 +1,34 @@
+<HEAD>
+<TITLE>Documentation of the module cgi: cgi::RequestMethod</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module cgi: cgi::RequestMethod">
+<META NAME="keywords" CONTENT="Documentation of the module cgi: cgi::RequestMethod">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>cgi::RequestMethod</H1>
+<A HREF="mod_cgi_16.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_18.htm">[&gt;&gt;&gt;]</A>
+<P>
+This is the HTTP method the request uses. This can be <font size="3"><tt>"GET"</tt></font>, <font size="3"><tt>"HEAD"</tt></font> or <font size="3"><tt>"POST"</tt></font>. There are other methods that 
+web servers may support but there is no clear definition how these may interact with CGI programs.
+<P>
+Note that most CGI programs are not prepared to handle HEAD requests. Therefore this method is NOT allowed by default.
+The allowed methods are <font size="3"><tt>GET</tt></font>, <font size="3"><tt>POST</tt></font> and the special type of <font size="3"><tt>POST</tt></font> that uploads one or more files. If
+your program is prepared to handle <font size="3"><tt>HEAD</tt></font> requests then you can explicitely allow this method
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+option cgi$Method cgi::Get or cgi::Upload or cgi::Head
+</PRE></FONT>
+<P>
+setting the appropriate value of the run-time option <font size="3"><tt>cgi$Method</tt></font>.<HR>
+<A HREF="mod_cgi_16.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_18.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

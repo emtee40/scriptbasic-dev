@@ -1,0 +1,55 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: PreprocessorExeStart</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: PreprocessorExeStart">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: PreprocessorExeStart">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>PreprocessorExeStart</H1>
+<A HREF="devguide_5.3.23.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.25.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This entry point is used from the function <font size="3"><tt>scriba_Run</tt></font> implemented in the file `<font size="3"><tt>scriba.c</tt></font>' before the execution of the basic program starts.
+<P>
+The argument <font size="3"><tt>p</tt></font> points to the execution context of the basic program.
+<P>
+
+<P>
+By this time most of the preprocessors should have asked the basic interpreter to unload. Only preprocessors implementing debugger, profiler or other development support functions may remain in memory and active.
+<P>
+
+At this very point debugger or other development support preprocessors may and should access the execution hook functions, like the sample debugger preprocessor does:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  case PreprocessorExeStart:
+<P>
+    { pExecuteObject pEo = p;
+      pDebuggerObject pDO = pEXT-&gt;pPointer;
+      pEo-&gt;pHookers-&gt;hook_pointer = pEXT;
+      pDO-&gt;CallStackDepth = 0;
+      pDO-&gt;DbgStack = NULL;
+      pDO-&gt;StackTop = NULL;
+      pEo-&gt;pHookers-&gt;HOOK_ExecBefore = MyExecBefore;
+      pEo-&gt;pHookers-&gt;HOOK_ExecAfter = MyExecAfter;
+      pEo-&gt;pHookers-&gt;HOOK_ExecCall = MyExecCall;
+      pEo-&gt;pHookers-&gt;HOOK_ExecReturn = MyExecReturn;
+      *pCmd = PreprocessorContinue;
+      return 0;
+      }
+</PRE></FONT>
+<P>
+(Note that this is an example only and not the actual code. The actual code performs other tasks as well.)
+<P>
+The function has to return zero or the error code and should set the parameter <font size="3"><tt>*pCmd</tt></font> to <font size="3"><tt>PreprocessorContinue</tt></font>, <font size="3"><tt>PreprocessorDone</tt></font>, or <font size="3"><tt>PreprocessorUnload</tt></font>.<HR>
+<A HREF="devguide_5.3.23.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.25.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

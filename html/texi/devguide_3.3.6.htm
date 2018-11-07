@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_NewSbLong()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_NewSbLong()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_NewSbLong()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_NewSbLong()</H1>
+<A HREF="devguide_3.3.5.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.7.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function allocates and returns a pointer pointing to a structure of
+type <font size="3"><tt>SbData</tt></font> holding a <font size="3"><tt>long</tt></font> value. If the allocation failed the return
+value is <font size="3"><tt>NULL</tt></font>. If the memory allocation was successful the allocated
+structure will have the type <font size="3"><tt>SBT_LONG</tt></font> and will hold the initial value
+specified by the argument <font size="3"><tt>lInitValue</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pSbData scriba_NewSbLong(pSbProgram pProgram,
+                         long lInitValue
+  )@{
+</PRE></FONT>
+See also <a href="devguide_3.3.6.htm">scriba_NewSbLong()</A>, <a href="devguide_3.3.7.htm">scriba_NewSbDouble()</A>, <a href="devguide_3.3.8.htm">scriba_NewSbUndef()</A>, <a href="devguide_3.3.9.htm">scriba_NewSbString()</A>,
+<a href="devguide_3.3.10.htm">scriba_NewSbBytes()</A>, <a href="devguide_3.3.11.htm">scriba_DestroySbData()</A>.<HR>
+<A HREF="devguide_3.3.5.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.7.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

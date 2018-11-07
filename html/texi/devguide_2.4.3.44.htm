@@ -1,0 +1,44 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: ex_Pragma</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_Pragma">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_Pragma">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ex_Pragma</H1>
+<A HREF="devguide_2.4.3.43.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.45.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function implements the compiler directive "declare option".
+<P>
+When the compiler finds a "declare option" directive it calls this function.
+The first argument is the compiler class pointer. The second argument points
+to a constant string containing the option.
+<P>
+The function implements the internal settings of the compiler options reflecting
+the programmer needs expressed by the option. For example DeclareVars will
+require all variables declared to be either global or local.
+<P>
+If the programmer specified an option, which is not implemented the error reporting
+function is called.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int ex_Pragma(peXobject pEx,
+              char *pszPragma
+  )@{
+</PRE></FONT>
+<P>
+The function returns <font size="3"><tt>0</tt></font> when the option was processed, and <font size="3"><tt>1</tt></font> when not implemented
+option was supplied as argument.<HR>
+<A HREF="devguide_2.4.3.43.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.45.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

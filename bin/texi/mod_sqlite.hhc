@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="t2h.pl texi to html converter">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Introduction">
+<param name="Local" value="mod_sqlite_1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Open/Create an sqlite3 database file">
+<param name="Local" value="mod_sqlite_2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Close an sqlite3 database file">
+<param name="Local" value="mod_sqlite_3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Execute an SQL statement/command">
+<param name="Local" value="mod_sqlite_4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Pass a Query to an sqlite3 database file">
+<param name="Local" value="mod_sqlite_5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Retrieve the next Row from a database file">
+<param name="Local" value="mod_sqlite_6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Retrieve the value at position y in database row">
+<param name="Local" value="mod_sqlite_7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Retrieve number of columns in table">
+<param name="Local" value="mod_sqlite_8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Retrieve column name at pos i in table">
+<param name="Local" value="mod_sqlite_9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Finalize an sqlite3 database file">
+<param name="Local" value="mod_sqlite_10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Retrieve sqlite3 version string">
+<param name="Local" value="mod_sqlite_11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Returns status code for sqlite function call">
+<param name="Local" value="mod_sqlite_12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Returns text that describes the error">
+<param name="Local" value="mod_sqlite_13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Returns Hash containing row contents in Key/Value pair">
+<param name="Local" value="mod_sqlite_14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Returns Array containing row contents">
+<param name="Local" value="mod_sqlite_15.htm">
+</OBJECT>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,95 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.19.3. ModifySet</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ModifySet">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ModifySet">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.19.html">2.19. Simple Pattern Matching</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.19.3. ModifySet</H1>
+<A HREF="devguide_2.19.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.19.4.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c Modify a joker set
+<P>
+This function can be used to modify a joker set. The first argument <font size="3"><tt>pMS</tt></font> points to the
+joker set collection. The second argument <font size="3"><tt>JokerCharacter</tt></font> specifies the joker character
+for which the set has to be modified.
+<P>
+The argument <font size="3"><tt>nChars</tt></font> and <font size="3"><tt>pch</tt></font> give the characters that are to be modified in the set.
+<font size="3"><tt>nChars</tt></font> is the number of characters in the character array pointed by <font size="3"><tt>pch</tt></font>.
+<P>
+The last argument <font size="3"><tt>fAction</tt></font> specifies what to do. The following constants can be used in
+logical OR.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+TO_HEADER:
+<P>
+#define MATCH_ADDC 0x0001 //add characters to the set
+#define MATCH_REMC 0x0002 //remove characters from the set
+#define MATCH_INVC 0x0004 //invert the character
+#define MATCH_SNOJ 0x0008 //set becomes no-joker
+#define MATCH_SSIJ 0x0010 //set becomes single joker
+#define MATCH_SMUJ 0x0020 //set becomes multiple joker
+#define MATCH_NULS 0x0040 //nullify the set
+#define MATCH_FULS 0x0080 //fullify the set
+<P>
+*/
+</PRE></FONT>
+<P>
+The function first checks if it has to modify the state of the joker character. If
+any of the bits <font size="3"><tt>MATCH_SNOJ</tt></font>, <font size="3"><tt>MATCH_SSIJ</tt></font> or <font size="3"><tt>MATCH_SMUJ</tt></font> is set in the field
+<font size="3"><tt>fAction</tt></font> the type of the set is modified.
+<P>
+If more than one bit of these is set then result is undefined. Current implementation
+checks these bits in a specific order, but later versions may change.
+<P>
+If the bit <font size="3"><tt>MATCH_NULS</tt></font> is set all the characters are removed from the set. If
+the bit <font size="3"><tt>MATCH_FULS</tt></font> is set all characters are put into the set.
+<P>
+If more than one bit of these is set then result is undefined. Current implementation
+checks these bits in a specific order, but later versions may change.
+<P>
+<font size="3"><tt>MATCH_NULS</tt></font> or <font size="3"><tt>MATCH_FULS</tt></font> can be used in a single call to initialize the set before
+adding or removing the specific characters.
+<P>
+The bits <font size="3"><tt>MATCH_ADDC</tt></font>, <font size="3"><tt>MATCH_REMC</tt></font> and <font size="3"><tt>MATCH_INVC</tt></font> can be used to add characters to the set,
+remove characters from the set or to invert character membership. The characters are taken
+from the character array pointed by the function argument <font size="3"><tt>pch</tt></font>.
+<P>
+If more than one bit of these is set then result is undefined. Current implementation
+checks these bits in a specific order, but later versions may change.
+<P>
+If none of these bits is set the value of the pointer <font size="3"><tt>pch</tt></font> is ignored.
+<P>
+It is no problem if a character is already in the set and is added or if it is not member of the set
+and is removed. Although it has no practical importance the array pointed by <font size="3"><tt>pch</tt></font> may contain a
+character many times.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void match_ModifySet(pMatchSets pMS,
+                     char JokerCharacter,
+                     int nChars,
+                     unsigned char *pch,
+                     int fAction
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.19.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.19.4.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

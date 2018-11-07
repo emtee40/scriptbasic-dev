@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="t2h.pl texi to html converter">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Introduction">
+<param name="Local" value="mod_mxml_1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Load an XML file and read into memory">
+<param name="Local" value="mod_mxml_2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get the next node of a document node">
+<param name="Local" value="mod_mxml_3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get the next Child node of a document node">
+<param name="Local" value="mod_mxml_4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get the value of a document node">
+<param name="Local" value="mod_mxml_5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get the a property value of a document node">
+<param name="Local" value="mod_mxml_6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get a handle to a specified node">
+<param name="Local" value="mod_mxml_7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Save to an XML file">
+<param name="Local" value="mod_mxml_8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Create a new XML document in memory">
+<param name="Local" value="mod_mxml_9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Releases/Destroys an XML tree in memory">
+<param name="Local" value="mod_mxml_10.htm">
+</OBJECT>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

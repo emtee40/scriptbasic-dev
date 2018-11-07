@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_LoadSourceProgram()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_LoadSourceProgram()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_LoadSourceProgram()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_LoadSourceProgram()</H1>
+<A HREF="devguide_3.3.50.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.52.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Call this function to load a BASIC program from its source format after
+optionally checking that there is no available cache file and after
+executing all required preprocessors. This function calls
+<a href="devguide_3.3.39.htm">scriba_ReadSource()</A>, <a href="devguide_3.3.40.htm">scriba_DoLexicalAnalysis()</A>, <a href="devguide_3.3.41.htm">scriba_DoSyntaxAnalysis()</A>, <a href="devguide_3.3.42.htm">scriba_BuildCode()</A>,
+and also releases the memory that was needed only for code building
+calling <a href="devguide_3.3.12.htm">scriba_PurgeReaderMemory()</A>, <a href="devguide_3.3.13.htm">scriba_PurgeLexerMemory()</A>, <a href="devguide_3.3.14.htm">scriba_PurgeSyntaxerMemory()</A>.
+<P>
+After the successful completion of this program the BASIC program is in
+the memory in the ready-to-run state.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_LoadSourceProgram(pSbProgram pProgram
+  )@{
+</PRE></FONT>
+Before calling this function the function <a href="devguide_3.3.18.htm">scriba_SetFileName()</A> should have been called specifying the
+file name.
+<P>
+The return value is zero (<font size="3"><tt>SCRIBA_ERROR_SUCCESS</tt></font>) or the error code returned by the
+underlying layer that has detected the error.<HR>
+<A HREF="devguide_3.3.50.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.52.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: ex_LookupGlobalVariable</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_LookupGlobalVariable">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_LookupGlobalVariable">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ex_LookupGlobalVariable</H1>
+<A HREF="devguide_2.4.3.31.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.33.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function searches the global variable symbol table to find the global variable
+with the name stored in @code@{pEx-&gt;Buffer}. If the variable was not declared then this function
+inserts the variable into the symbol table if the argument <font size="3"><tt>iInsert</tt></font> is true,
+but nothing more: the symbol table entry remains <font size="3"><tt>NULL</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void **ex_LookupGlobalVariable(peXobject pEx,
+                               int iInsert
+  )@{
+</PRE></FONT>
+The function returns pointer to the pointer stored in the symbol table associated with the global
+variable.<HR>
+<A HREF="devguide_2.4.3.31.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.33.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

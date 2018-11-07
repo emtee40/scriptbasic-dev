@@ -1,0 +1,48 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_Run()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_Run()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_Run()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_Run()</H1>
+<A HREF="devguide_3.3.52.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.54.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Call this function to execute a program. Note that you can call this function
+many times. Repetitive execution of the same program will execute the
+ScriptBasic code again and again with the global variables keeping their values.
+<P>
+If you want to reset the global variables you have to call <a href="devguide_3.3.55.htm">scriba_ResetVariables()</A>.
+<P>
+There is no way to keep the value of the local variables.
+<P>
+The argument <font size="3"><tt>pszCommandLineArgument</tt></font> is the command part that is passed to the
+BASIC program.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_Run(pSbProgram pProgram,
+               char *pszCommandLineArgument
+  )@{
+</PRE></FONT>
+The return value is zero in case of success or the error code returned by the underlying
+execution layers.
+<P>
+Note that you can not call BASIC subroutines or functions without initializations that
+<font size="3"><tt>scriba_Run</tt></font> performs. You also can not access global variables. Therefore you either have
+to call <font size="3"><tt>scriba_Run</tt></font> or its brother <a href="devguide_3.3.54.htm">scriba_NoRun()</A> that performs the initializations without execution.
+<P>
+You also have to call <a href="devguide_3.3.54.htm">scriba_NoRun()</A> if you want to execute a program with some global variables
+having preset values that you want to set from the embedding C program. In that case you
+have to call <a href="devguide_3.3.54.htm">scriba_NoRun()</A> then one or more times <a href="devguide_3.3.65.htm">scriba_SetVariable()</A> and finally <font size="3"><tt>Run</tt></font>.<HR>
+<A HREF="devguide_3.3.52.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.54.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

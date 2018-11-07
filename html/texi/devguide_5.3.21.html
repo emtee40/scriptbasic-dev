@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 5.3.21. PreprocessorExStartLocal</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: PreprocessorExStartLocal">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: PreprocessorExStartLocal">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_5.html">5. Preprocessors</A><BR>
+<UL><a href="devguide_5.3.html">5.3. Preprocessor Entry Points</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>5.3.21. PreprocessorExStartLocal</H1>
+<A HREF="devguide_5.3.20.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.22.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This entry point is used when the syntax analyzer starts a new local scope. This is when a function or a sub starts.
+<P>
+The argument <font size="3"><tt>p</tt></font> points to the actual <font size="3"><tt>peXobject</tt></font> syntax analysis object structure.
+The function has to return zero or the error code and should set the parameter <font size="3"><tt>*pCmd</tt></font> to <font size="3"><tt>PreprocessorContinue</tt></font>, <font size="3"><tt>PreprocessorDone</tt></font>, or <font size="3"><tt>PreprocessorUnload</tt></font>.<HR>
+<A HREF="devguide_5.3.20.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.22.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

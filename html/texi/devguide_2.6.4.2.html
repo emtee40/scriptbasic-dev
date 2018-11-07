@@ -1,0 +1,56 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.6.4.2. execute_CopyCommandTable()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: execute_CopyCommandTable()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: execute_CopyCommandTable()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.6.html">2.6. Executor</A><BR>
+<UL><a href="devguide_2.6.4.html">2.6.4. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.6.4.2. execute_CopyCommandTable()</H1>
+<A HREF="devguide_2.6.4.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.3.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+The command table is a huge table containing pointers to functions. For example
+the <font size="3"><tt>CMD_LET</tt></font>-th element of the table points to the function <font size="3"><tt>COMMAND_LET</tt></font>
+implementing the assignment command.
+<P>
+This table is usually treated as constant and is not moduified during run time.
+In case a module wants to reimplement a command it should alter this table.
+However the table is shared all concurrently running interpreter threads in
+a multi-thread variation of ScriptBasic.
+<P>
+To avoid altering the command table of an independent interpreter threadthe module
+wanting altering the command table should call this function. This function allocates
+memory for a new copy of the command table and copies the original constant
+value to this new place. After the copy is done the <font size="3"><tt>ExecuteObject</tt></font> will point to
+the copied command table and the extension is free to alter the table.
+<P>
+In case the function is called more than once for the same interpreter thread
+only the first time is effective. Later the function returns without creating superfluous
+copies of the command table.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int execute_CopyCommandTable(pExecuteObject pEo
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.6.4.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.3.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

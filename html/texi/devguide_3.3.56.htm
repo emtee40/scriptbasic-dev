@@ -1,0 +1,40 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_Call()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_Call()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_Call()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_Call()</H1>
+<A HREF="devguide_3.3.55.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.57.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function can be used to call a function or subroutine. This function does not
+get any arguments and does not provide any return value.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_Call(pSbProgram pProgram,
+                unsigned long lEntryNode
+  )@{
+</PRE></FONT>
+The return value is zero or the error code returned by the interpreter.
+<P>
+<B>Note on how to get the Entry Node value:</B>
+<P>
+The argument <font size="3"><tt>lEntryNode</tt></font> should be the node index of the subroutine or function that
+we want to execute. This can be retrieved using the function <a href="devguide_3.3.61.htm">scriba_LookupFunctionByName()</A> if the
+name of the function or subroutine is know. Another method is that the BASIC program
+stored this value in some global variables. BASIC programs can access this information
+calling the BASIC function <font size="3"><tt>Address( f() )</tt></font>.<HR>
+<A HREF="devguide_3.3.55.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.57.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

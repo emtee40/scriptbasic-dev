@@ -1,0 +1,50 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.4.3.47. ex_IsCommandSLIF()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_IsCommandSLIF()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_IsCommandSLIF()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.4.html">2.4. Syntax Analyzer</A><BR>
+<UL><a href="devguide_2.4.3.html">2.4.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.4.3.47. ex_IsCommandSLIF()</H1>
+<A HREF="devguide_2.4.3.46.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.48.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+If syntax analysis gets to calling this function the command is surely
+not single line if, because the command SLIF is recognised by <font size="3"><tt>IsCommandIF</tt></font>.
+<P>
+The syntax of the command IF is presented in the syntax table before
+SLIF and therefore if the syntax analyser gets here it can not be
+SLIF.
+<P>
+The original function <font size="3"><tt>IsCommandThis</tt></font> could also do failing automatically,
+but it is simpler just to fail after the function call, so this function
+is just a bit of speedup.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+peNODE ex_IsCommandSLIF(peXobject pEx,
+                        pLineSyntax p,
+                        int *piFailure
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.4.3.46.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.48.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

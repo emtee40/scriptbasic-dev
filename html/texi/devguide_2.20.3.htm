@@ -1,0 +1,42 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: sym_TraverseSymbolTable()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: sym_TraverseSymbolTable()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: sym_TraverseSymbolTable()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>sym_TraverseSymbolTable()</H1>
+<A HREF="devguide_2.20.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.20.4.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function can be used to traverse through all the symbols stored
+in a symbol table. The function starts to go through the symbols and
+for each symbol calls the function <font size="3"><tt>call_back_function</tt></font>.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void sym_TraverseSymbolTable(
+  SymbolTable table,
+  void (*call_back_function)(char *SymbolName, void *SymbolValue, void *f),
+  void *f
+  )@{
+</PRE></FONT>
+The first argument is the symbol table to traverse. The second argument is the
+function to be called for each symbol. This function gets three arguments. The
+first is a pointer to the symbol string. The second is the pointer to the symbol
+arguments. The third argument is a general pointer which is passed to the
+function <font size="3"><tt>sym_TraverseSymbolTable</tt></font>.
+<P>
+Note that the call back function gets the pointer to the symbol arguments and
+not the pointer to the pointer to the symbol arguments, and therefore call back
+function can not change the actual symbol value pointer.<HR>
+<A HREF="devguide_2.20.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.20.4.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

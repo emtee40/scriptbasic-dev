@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: memory_NewMortalRef()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_NewMortalRef()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_NewMortalRef()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>memory_NewMortalRef()</H1>
+<A HREF="devguide_2.9.1.33.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.35.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function was never used. It was presented in the code to allow external modules to
+create mortal reference variables. However later I found that the variable structure design does
+not allow mortal reference variables and thus this function is nonsense.
+<P>
+Not to change the module interface defintion the function still exists but returns NULL, like if
+memory were exhausted.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pFixSizeMemoryObject memory_NewMortalRef(pMemoryObject pMo,
+                                         pMortalList pMortal
+  )@{
+</PRE></FONT>
+If the parameter <font size="3"><tt>pMortal</tt></font> is <font size="3"><tt>NULL</tt></font> the generated variable is not mortal.<HR>
+<A HREF="devguide_2.9.1.33.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.35.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

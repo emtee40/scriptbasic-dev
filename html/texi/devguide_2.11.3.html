@@ -1,0 +1,42 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.11.3. log_printf()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: log_printf()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: log_printf()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.11.html">2.11. The Logger Module</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.11.3. log_printf()</H1>
+<A HREF="devguide_2.11.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.11.4.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function can be used to send a formatted log to the log file. The
+function creates the formatted string and then puts it onto the log queue.
+The log is actually sent to the log file by the asynchronous logger thread.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int log_printf(ptLogger pLOG,
+               char *pszFormat,
+               ...
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.11.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.11.4.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

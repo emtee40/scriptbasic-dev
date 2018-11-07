@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_SaveCacheFile()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_SaveCacheFile()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_SaveCacheFile()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_SaveCacheFile()</H1>
+<A HREF="devguide_3.3.45.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.47.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Call this function to generate a cache file after
+a successful program compilation.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_SaveCacheFile(pSbProgram pProgram
+  )@{
+</PRE></FONT>
+The function returns zero (<font size="3"><tt>SCRIBA_ERROR_SUCCESS</tt></font>) if there was no error.
+This does not mean that the cache file was saved. If there is no cache
+directory configured doing nothing is success.
+<P>
+Returning any positive error code means that ScriptBasic tried to write a
+cache file but it could not.<HR>
+<A HREF="devguide_3.3.45.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.47.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

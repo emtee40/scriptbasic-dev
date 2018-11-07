@@ -1,0 +1,40 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: besHandleDestroyHandleArray(X)</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besHandleDestroyHandleArray(X)">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besHandleDestroyHandleArray(X)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>besHandleDestroyHandleArray(X)</H1>
+<A HREF="devguide_4.5.182.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.184.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This macro calls <a href="devguide_2.13.4.htm">handle_DestroyHandleArray</A>
+<P>
+
+Use this macro to declare and process the arguments of a besFUNCTION. The
+macro should be placed right after the variable declaration and before
+any other code, because it declares the variable <font size="3"><tt>iError</tt></font>.
+<P>
+The macro calls the function <a href="devguide_4.5.269.htm">basext_GetArgsF</A> and returns with error in case
+some error has happened during the parsing of the arguments.
+<P>
+Example:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+besARGUMENTS("llzz")
+&amp;my_first_long , &amp;my_second_long, &amp;my_string1 , &amp;my_string2
+besARGEND
+</PRE></FONT><HR>
+<A HREF="devguide_4.5.182.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.184.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

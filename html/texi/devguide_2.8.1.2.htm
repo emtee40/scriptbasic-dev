@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: alloc_InitSegment()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: alloc_InitSegment()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: alloc_InitSegment()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>alloc_InitSegment()</H1>
+<A HREF="devguide_2.8.1.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.3.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Call this function to get a new segment. You should specify the functions that the segement should use to
+get memory from the operating system, and the function the segment should use to release the memory to the
+operating system. These functions should be like <font size="3"><tt>malloc</tt></font> and <font size="3"><tt>free</tt></font>.
+<P>
+If the second argument is <font size="3"><tt>NULL</tt></font> then the function will treat the first argument as an already
+allocated and initialized memory segment and the memory allocation and freeing functions will be
+inherited from that segment.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void *alloc_InitSegment(void * (*maf)(size_t), /* a 'malloc' and a 'free' like functions */
+                        void   (*mrf)(void *)
+  )@{
+</PRE></FONT>
+<P>
+The return value is a <font size="3"><tt>void*</tt></font> pointer which identifies the segment and should be passed to the other functions
+as segment argument.
+<P>
+The first argument is the <font size="3"><tt>malloc</tt></font> like function and the second if the <font size="3"><tt>free</tt></font> like function.<HR>
+<A HREF="devguide_2.8.1.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,193 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Lexer</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Lexer">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Lexer">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Lexer</H1>
+<A HREF="devguide_2.2.14.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+The module lexer is implemented in the C source file `<font size="3"><tt>lexer.c</tt></font>' This is a module that converts the read characters to a list of tokens. The lexer recognizes the basic lexical elements, like numbers, strings or keywords. It starts to read the characters provided by the reader and group it p into lexical elements. For example whenever the lexical analyzer sees a <font size="3"><tt>"</tt></font> character it starts to process a string until it finds the closing <font size="3"><tt>"</tt></font>. When it does the module creates a new token, links it to the end of the list and goes on.
+<P>
+To do this the lexical analyzer has to know what is a keyword, string or number.
+<P>
+Because general purpose, table driven lexical analyzers are usually rather slow ScriptBasic uses a proprietary lexical analyzer that is partially table driven, but not so general purpose as one created using the program LEX.
+<P>
+There are some rules that are coded into the C code of the lexical analyzer, while other are defined in tables. Even the rules coded into the C program are usually parameterized in the module object.
+<P>
+Lets see the module object definition from the file `<font size="3"><tt>lexer.c</tt></font>' (Note that the C <font size="3"><tt>.h</tt></font> header files are extracted from the <font size="3"><tt>.c</tt></font> files thus there is no need to double maintain function prototypes.)
+<P>
+Note however that this is actually a copy of the actual definition from the file `<font size="3"><tt>lexer.c</tt></font>' and it may have been changed since I wrote this manual. So the lexer object by the time I wrote this manual was:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+typedef struct _LexObject {
+  int (*pfGetCharacter)(void *);
+  char * (*pfFileName)(void *);
+  long (*pfLineNumber)(void *);
+  void *pvInput;
+  void *(*memory_allocating_function)(size_t, void *);
+  void (*memory_releasing_function)(void *, void *);
+  void *pMemorySegment;
+<P>
+  char *SSC;
+  char *SCC;
+<P>
+  char *SFC;
+  char *SStC;
+  char *SKIP;
+<P>
+  char *ESCS;
+  long fFlag;
+<P>
+  pReportFunction report;
+  void *reportptr;
+  int iErrorCounter;
+  unsigned long fErrorFlags;
+<P>
+  char *buffer;
+  long cbBuffer;
+<P>
+  pLexNASymbol pNASymbols;
+  int cbNASymbolLength;
+<P>
+  pLexNASymbol pASymbols;
+<P>
+  pLexNASymbol pCSymbols; 
+  pLexeme pLexResult;
+  pLexeme pLexCurrentLexeme;
+  struct _PreprocObject *pPREP;
+  }LexObject, *pLexObject;
+</PRE></FONT>
+<P>
+This <font size="3"><tt>struct</tt></font> contains the global variables of the lexer module. In the first "section" of the structure you can see the variables that may already sound familiar from the module reader. These parameterize the memory allocation and the input source for the module. The input functions are usually set so that the characters come from the module reader, but there is no principal objection to use other character source for the purpose.
+<P>
+The variable <font size="3"><tt>pvInput</tt></font> is not altered by the module. It is only passed to the input functions. The function pointer name <font size="3"><tt>pfGetCharacter</tt></font> speaks for itself. It is like <font size="3"><tt>getc</tt></font> returns the next character. However when this function pointer is set to point to the function <font size="3"><tt>reader_NextCharacter</tt></font> the input is already preprocessed a bit. Namely the <font size="3"><tt>include</tt></font> and <font size="3"><tt>import</tt></font> directives were processed.
+<P>
+This imposes some interesting feature that you may recognize now if you read the reader module and this module definition carefully. <font size="3"><tt>include</tt></font> and <font size="3"><tt>import</tt></font> works inside multi-line strings. (OK I did not talk about multi-line strings so far so do not feel ashamed if you did not realize this.)
+<P>
+The function pointers <font size="3"><tt>pfFileName</tt></font> and <font size="3"><tt>pfLineNumber</tt></font> should point to functions that return the file name and the line number of the last read character. This is something that a <font size="3"><tt>getc</tt></font> will not provide, but the reader functions do. This will allow the lexical analyzer to store the file name and the line number for each token.
+<P>
+The next group of variables seems to be frightening and unreadable at first, but here is this book to explain them. These variables define what is a string, a symbol, what has to be treated as unimportant space and so on. Usually symbols start with alpha character and are continued with alphanumeric characters in most programming languages. But what is an alpha character? Is <font size="3"><tt>_</tt></font> one or is <font size="3"><tt>$</tt></font> a valid alphanumeric character. Well, for the lexer module if any of these characters appear in the variable <font size="3"><tt>SSC</tt></font> then the answer is yes. The name stands for <I>Symbol Start Characters</I>. But lets go through all these variables one by one.
+<P>
+<UL>
+<P>
+<LI> <font size="3"><tt>char *SSC;</tt></font>
+<P>
+This <I>Symbol Start Character</I> variable contains all the characters that may be used to start a symbol. This symbol can be a variable or a symbol that appears for itself in the code like in the command <font size="3"><tt>SET FILE</tt></font>. (See the users guide.)
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+QWERTZUIOPASDFGHJKLYXCVBNMqwertzuiopasdfghjklyxcvbnm_:$
+</PRE></FONT>
+<P>
+<LI> <font size="3"><tt>char *SCC;</tt></font>
+<P>
+This <I>Symbol Continuation Character</I> variable contains all the characters that may be used inside a symbol after the opening first character. The default value for this variable is
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+QWERTZUIOPASDFGHJKLYXCVBNMqwertzuiopasdfghjklyxcvbnm_1234567890:$
+</PRE></FONT>
+<P>
+<LI> <font size="3"><tt>char *SFC;</tt></font>
+<P>
+This <I>Symbol Finishing Character</I> variable contains all the characters that may be used as the last character inside a symbol. The default value for this variable is
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+QWERTZUIOPASDFGHJKLYXCVBNMqwertzuiopasdfghjklyxcvbnm_1234567890$
+</PRE></FONT>
+<P>
+which works fine for ScriptBasic. Note that this prohibits ScriptBasic variables to finish with colon.
+<P>
+<LI> <font size="3"><tt>char *SStC;</tt></font>
+<P>
+This <I>Start String Character</I> variable contains the characters that may start a string. The ScriptBasic value contains only the <font size="3"><tt>"</tt></font> character thus ScriptBasic strings can only start and end with the <font size="3"><tt>"</tt></font> character. However some other languages may use different string starting and finishing characters.
+<P>
+If there are more than one characters in this string then a string opened using a character should be closed using the same character. This is hard coded into the C program of the lexer.
+<P>
+The lexer also recognizes single-line strings and multi-line strings. A single-line string starts with a single <font size="3"><tt>"</tt></font> (or whatever characters are allowed in the <font size="3"><tt>SStC</tt></font> field) and finish with a single <font size="3"><tt>"</tt></font>. There can not be new-line character in a single-line string and any <font size="3"><tt>"</tt></font> character in the string should be quoted using the <font size="3"><tt>\</tt></font> character. The <font size="3"><tt>\</tt></font> character is not hard-coded it is configured in the field <font size="3"><tt>ESCS</tt></font>, as you will see later.
+<P>
+A multi-line string starts with <font size="3"><tt>"""</tt></font> characters that is three <font size="3"><tt>"</tt></font> characters and finishes the same way. Multi-line string may span several lines. This notation of multi-line string was inherited from the language Python. (At least I did not see it anywhere else.)
+<P>
+<LI> <font size="3"><tt>char *SKIP;</tt></font>
+<P>
+This <I>Skip</I> variable contains all characters that are to be skipped. This is the space, tab and the carriage-return character in case of ScriptBasic.
+<P>
+Skipping these characters does not mean that these characters are not taken into account. They serve a very important role: they stop tokens, thus no space can appear inside the name of a variable for example. However there is no token generated from these characters.
+<P>
+Note that the carriage-return character included in this string allows ScriptBasic to compile any DOS edited and binary transferred files under UNIX. However the operating system may have problem with the terminating carriage-return on the very first line.
+<P>
+<LI> <font size="3"><tt>char *ESCS;</tt></font>
+<P>
+This <I>Escape String</I> variable list all those characters that can be escaped in a string. The line that initializes this variable in <font size="3"><tt>lex_InitStructure</tt></font>:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pLex-&gt;ESCS = "\\n\nt\tr\r\"\"\'\'";
+</PRE></FONT>
+<P>
+The first character of the <font size="3"><tt>ESCS</tt></font> string is the character used to escape other characters. This is the <font size="3"><tt>\</tt></font> character for ScriptBasic. The latter characters list the original character on the odd positions and the replacement characters on the following even position. For example the second character of this string is <font size="3"><tt>n</tt></font> and the replacement character is a new-line character, thus <font size="3"><tt>\n</tt></font> will be new-line in any sinle- or multi-line string in a BASIC program.
+<P>
+<LI> <font size="3"><tt>long fFlag;</tt></font>
+<P>
+This variable is a bit field that controls how numbers are treated in strings. The lines that initialize this variable are
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  pLex-&gt;fFlag = LEX_PROCESS_STRING_NUMBER       |
+                LEX_PROCESS_STRING_OCTAL_NUMBER |
+                LEX_PROCESS_STRING_HEX_NUMBER   |
+                0;
+</PRE></FONT>
+<P>
+The constants defined also in `<font size="3"><tt>lexer.c</tt></font>' tell the lexical analyzer that an escape character in a string followed by numeric characters should be converted to characters of the code. This the string <font size="3"><tt>"a\10a"</tt></font> will contains two <font size="3"><tt>a</tt></font> character separated by a new line. When the first character following the escape character is <font size="3"><tt>0</tt></font> the numbers are treated as octal numbers. If this character is <font size="3"><tt>x</tt></font> (lower case only and not <font size="3"><tt>X</tt></font>) the number is treated as hexadecimal. The escaped number is as long as there are numbers following each other without space. If the number is hexadecimal the letters <font size="3"><tt>a-f</tt></font> and <font size="3"><tt>A-F</tt></font> are also treated as digits.
+<P>
+</UL>
+<P>
+The default values for these variables are set in the function <font size="3"><tt>lex_InitStructure</tt></font>. Interestingly these default values are perfectly ok for ScriptBasic.
+<P>
+The field <font size="3"><tt>pNASymbols</tt></font> points to an array that contains the non-alpha symbols list. Each element of this array contains a string that is the textual representation of the symbol and a code, which is the token code of the symbol. For example the table <font size="3"><tt>NASYMBOLS</tt></font> in file `<font size="3"><tt>syntax.c</tt></font>' is:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+<P>
+LexNASymbol NASYMBOLS[] = {
+{ "@\\" , CMD_EXTOPQN } ,
+{ "@`" , CMD_EXTOPQO } ,
+{ "@'" , CMD_EXTOPQP } ,
+{ "@" , CMD_EXTOPQQ } ,
+<P>
+...
+<P>
+{ "@" , CMD_EXTOPQ } ,
+{ "^" , CMD_POWER } ,
+{ "*" , CMD_MULT } ,
+{ NULL, 0 }
+  };
+</PRE></FONT>
+<P>
+When the lexical analyzer finds something that is not a string, number or alphanumeric symbol it tries to read forward and recognize any of the non-alpha tokens listed in this table. It is extremely important that the symbols are ordered in this table so that the longer symbols come first thus a symbol <font size="3"><tt>abc</tt></font> is not presented before <font size="3"><tt>abcd</tt></font>. Otherwise <font size="3"><tt>abcd</tt></font> will never be found!
+<P>
+The variable <font size="3"><tt>cbNASymbolLength</tt></font> is nothing to care about. This is used internally and is calculated automatically by the lexical analyzer.
+<P>
+The variable <font size="3"><tt>pASymbols</tt></font> is similar to the variable <font size="3"><tt>pNASymbols</tt></font> pointing to a same kind of table. This variable however should point to an array that contains the alphanumeric symbols. You can find the array <font size="3"><tt>ASYMBOLS</tt></font> in file `<font size="3"><tt>syntax.c</tt></font>' that is pointed by this variable for ScriptBasic.
+<P>
+The order of the words in this array is not important except that more frequent words being listed earlier result faster compilation.
+<P>
+The field <font size="3"><tt>pCSymbols</tt></font> points to an array that is used only for debugging purposes. I mean debugging ScriptBasic code itself and not debugging BASIC programs.
+<P>
+The rest of the variables are used by the functions that iterate through the list of tokens when the syntax analyzer reads the token list or to report errors during lexical analysis. Error reporting is detailed in a separate section.
+<P>
+The tables that list the lexical elements are not maintained "by hand". The source for ScriptBasic syntax is maintained in the file `<font size="3"><tt>syntax.def</tt></font>' and the program `<font size="3"><tt>syntaxer.pl</tt></font>' creates the C syntax file `<font size="3"><tt>syntax.c</tt></font>' from the syntax definition.
+<P>
+The program `<font size="3"><tt>syntaxer.pl</tt></font>' is so complex that after two years I wrote it I had hard time to understand it and I rather treat it as a holly code: blessed and untouchable. (Ok: see: that code is quite compound, but if there was any bug found in that I could understand what I did in a few hours. Anyway, the brain created that code once belonged to me.)<HR>
+<A HREF="devguide_2.2.14.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

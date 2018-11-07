@@ -1,0 +1,64 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.5.3.20. build_CreateVTable()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: build_CreateVTable()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: build_CreateVTable()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.5.html">2.5. Builder</A><BR>
+<UL><a href="devguide_2.5.3.html">2.5.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.5.3.20. build_CreateVTable()</H1>
+<A HREF="devguide_2.5.3.19.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.21.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+When the binary code of the BASIC program is saved to disk the symbol table of the user
+defined functions and the symbol table of global variables is also saved. This may be needed
+by some applications that embed ScriptBasic and want to call specific function or alter global variables
+of a given name from the embedding C code. To do this they need the serial number of the global variable
+or the entry point of the function. Therefore ScriptBasic v1.0b20 and later can save these two tables into
+the binary code.
+<P>
+The format of the tables is simple optimized for space and for simplicity of generation. They are stored
+first in a memory chunk and then written to disk just as a series of bytes.
+<P>
+The format is
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+long      serial number of variable or entry point of the function
+zchar     zero character terminated symbol
+</PRE></FONT>
+<P>
+This is easy to save and to load. Searching for it is a bit slow. Embedding applications usually
+have to search for the values only once, store it in their local variable and use the value.
+<P>
+The function <a href="devguide_2.5.3.19.html">build_CreateFTable()</A> converts the symbol table of user defined function
+collected by symbolic analysis into a single memory chunk.
+<P>
+The same way <font size="3"><tt>CreateVTable</tt></font> converts the symbol table of global variables
+collected by symbolic analysis into a single memory chunk.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int build_CreateVTable(pBuildObject pBuild
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.5.3.19.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.3.21.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

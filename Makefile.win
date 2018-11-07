@@ -1,0 +1,213 @@
+
+
+
+all: bin\exe\scriba.exe bin\exe\sbhttpd.exe bin\lib\libscriba.lib bin\lib\libscriba.dll
+
+
+bin\lib\libscriba.lib :  bin\obj\basext.obj bin\obj\builder.obj bin\obj\buildnum.obj bin\obj\confpile.obj bin\obj\conftree.obj bin\obj\dynlolib.obj bin\obj\epreproc.obj bin\obj\errcodes.obj bin\obj\execute.obj bin\obj\expression.obj bin\obj\filesys.obj bin\obj\getopt.obj bin\obj\hndlptr.obj bin\obj\hookers.obj bin\obj\httpd.obj bin\obj\ipreproc.obj bin\obj\lexer.obj bin\obj\logger.obj bin\obj\lsp.obj bin\obj\match.obj bin\obj\memory.obj bin\obj\modumana.obj bin\obj\myalloc.obj bin\obj\mygmtime.obj bin\obj\options.obj  bin\obj\reader.obj bin\obj\report.obj bin\obj\scriba.obj bin\obj\sym.obj bin\obj\syntax.obj bin\obj\thread.obj bin\obj\uniqfnam.obj bin\obj\md5.obj bin\obj\environ.obj bin\obj\external.obj bin\obj\extops.obj bin\obj\file.obj bin\obj\function.obj bin\obj\goto.obj bin\obj\if.obj bin\obj\let.obj bin\obj\mathfunc.obj bin\obj\mathops.obj bin\obj\print.obj bin\obj\string.obj bin\obj\time.obj bin\obj\while.obj bin\obj\stndlone.obj
+	lib /nologo /OUT:bin\lib\libscriba.lib  bin\obj\basext.obj bin\obj\builder.obj bin\obj\buildnum.obj bin\obj\confpile.obj bin\obj\conftree.obj bin\obj\dynlolib.obj bin\obj\epreproc.obj bin\obj\errcodes.obj bin\obj\execute.obj bin\obj\expression.obj bin\obj\filesys.obj bin\obj\getopt.obj bin\obj\hndlptr.obj bin\obj\hookers.obj bin\obj\httpd.obj bin\obj\ipreproc.obj bin\obj\lexer.obj bin\obj\logger.obj bin\obj\lsp.obj bin\obj\match.obj bin\obj\memory.obj bin\obj\modumana.obj bin\obj\myalloc.obj bin\obj\mygmtime.obj bin\obj\options.obj  bin\obj\reader.obj bin\obj\report.obj bin\obj\scriba.obj bin\obj\sym.obj bin\obj\syntax.obj bin\obj\thread.obj bin\obj\uniqfnam.obj bin\obj\md5.obj bin\obj\environ.obj bin\obj\external.obj bin\obj\extops.obj bin\obj\file.obj bin\obj\function.obj bin\obj\goto.obj bin\obj\if.obj bin\obj\let.obj bin\obj\mathfunc.obj bin\obj\mathops.obj bin\obj\print.obj bin\obj\string.obj bin\obj\time.obj bin\obj\while.obj bin\obj\stndlone.obj
+
+
+bin\lib\libscriba.dll :  bin\obj\basext.obj bin\obj\builder.obj bin\obj\buildnum.obj bin\obj\confpile.obj bin\obj\conftree.obj bin\obj\dynlolib.obj bin\obj\epreproc.obj bin\obj\errcodes.obj bin\obj\execute.obj bin\obj\expression.obj bin\obj\filesys.obj bin\obj\getopt.obj bin\obj\hndlptr.obj bin\obj\hookers.obj bin\obj\httpd.obj bin\obj\ipreproc.obj bin\obj\lexer.obj bin\obj\logger.obj bin\obj\lsp.obj bin\obj\match.obj bin\obj\memory.obj bin\obj\modumana.obj bin\obj\myalloc.obj bin\obj\mygmtime.obj bin\obj\options.obj  bin\obj\reader.obj bin\obj\report.obj bin\obj\scriba.obj bin\obj\sym.obj bin\obj\syntax.obj bin\obj\thread.obj bin\obj\uniqfnam.obj bin\obj\md5.obj bin\obj\environ.obj bin\obj\external.obj bin\obj\extops.obj bin\obj\file.obj bin\obj\function.obj bin\obj\goto.obj bin\obj\if.obj bin\obj\let.obj bin\obj\mathfunc.obj bin\obj\mathops.obj bin\obj\print.obj bin\obj\string.obj bin\obj\time.obj bin\obj\while.obj bin\obj\stndlone.obj bin\obj\lmt_none.obj
+	cl /LD /nologo /Febin\lib\libscriba.dll  bin\obj\basext.obj bin\obj\builder.obj bin\obj\buildnum.obj bin\obj\confpile.obj bin\obj\conftree.obj bin\obj\dynlolib.obj bin\obj\epreproc.obj bin\obj\errcodes.obj bin\obj\execute.obj bin\obj\expression.obj bin\obj\filesys.obj bin\obj\getopt.obj bin\obj\hndlptr.obj bin\obj\hookers.obj bin\obj\httpd.obj bin\obj\ipreproc.obj bin\obj\lexer.obj bin\obj\logger.obj bin\obj\lsp.obj bin\obj\match.obj bin\obj\memory.obj bin\obj\modumana.obj bin\obj\myalloc.obj bin\obj\mygmtime.obj bin\obj\options.obj  bin\obj\reader.obj bin\obj\report.obj bin\obj\scriba.obj bin\obj\sym.obj bin\obj\syntax.obj bin\obj\thread.obj bin\obj\uniqfnam.obj bin\obj\md5.obj bin\obj\environ.obj bin\obj\external.obj bin\obj\extops.obj bin\obj\file.obj bin\obj\function.obj bin\obj\goto.obj bin\obj\if.obj bin\obj\let.obj bin\obj\mathfunc.obj bin\obj\mathops.obj bin\obj\print.obj bin\obj\string.obj bin\obj\time.obj bin\obj\while.obj bin\obj\lmt_none.obj ws2_32.lib advapi32.lib
+
+
+bin\lib\lscriba.lib :  bin\obj\basext.obj bin\obj\builder.obj bin\obj\buildnum.obj bin\obj\confpile.obj bin\obj\conftree.obj bin\obj\dynlolib.obj bin\obj\epreproc.obj bin\obj\errcodes.obj bin\obj\execute.obj bin\obj\expression.obj bin\obj\filesys.obj bin\obj\getopt.obj bin\obj\hndlptr.obj bin\obj\hookers.obj bin\obj\httpd.obj bin\obj\ipreproc.obj bin\obj\lexer.obj bin\obj\logger.obj bin\obj\lsp.obj bin\obj\match.obj bin\obj\memory.obj bin\obj\modumana.obj bin\obj\myalloc.obj bin\obj\mygmtime.obj bin\obj\options.obj  bin\obj\reader.obj bin\obj\report.obj bin\obj\scriba.obj bin\obj\sym.obj bin\obj\syntax.obj bin\obj\thread.obj bin\obj\uniqfnam.obj bin\obj\md5.obj bin\obj\environ.obj bin\obj\external.obj bin\obj\extops.obj bin\obj\file.obj bin\obj\function.obj bin\obj\goto.obj bin\obj\if.obj bin\obj\let.obj bin\obj\mathfunc.obj bin\obj\mathops.obj bin\obj\print.obj bin\obj\string.obj bin\obj\time.obj bin\obj\while.obj
+	lib /nologo /OUT:bin\lib\lscriba.lib  bin\obj\basext.obj bin\obj\builder.obj bin\obj\buildnum.obj bin\obj\confpile.obj bin\obj\conftree.obj bin\obj\dynlolib.obj bin\obj\epreproc.obj bin\obj\errcodes.obj bin\obj\execute.obj bin\obj\expression.obj bin\obj\filesys.obj bin\obj\getopt.obj bin\obj\hndlptr.obj bin\obj\hookers.obj bin\obj\httpd.obj bin\obj\ipreproc.obj bin\obj\lexer.obj bin\obj\logger.obj bin\obj\lsp.obj bin\obj\match.obj bin\obj\memory.obj bin\obj\modumana.obj bin\obj\myalloc.obj bin\obj\mygmtime.obj bin\obj\options.obj  bin\obj\reader.obj bin\obj\report.obj bin\obj\scriba.obj bin\obj\sym.obj bin\obj\syntax.obj bin\obj\thread.obj bin\obj\uniqfnam.obj bin\obj\md5.obj bin\obj\environ.obj bin\obj\external.obj bin\obj\extops.obj bin\obj\file.obj bin\obj\function.obj bin\obj\goto.obj bin\obj\if.obj bin\obj\let.obj bin\obj\mathfunc.obj bin\obj\mathops.obj bin\obj\print.obj bin\obj\string.obj bin\obj\time.obj bin\obj\while.obj
+
+
+
+bin\obj\confpile.obj : confpile.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\confpile.obj confpile.c
+
+bin\obj\ipreproc.obj : ipreproc.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\ipreproc.obj ipreproc.c
+
+bin\obj\lsp.obj : lsp.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\lsp.obj lsp.c
+
+bin\obj\scriba.obj : scriba.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\scriba.obj scriba.c
+
+bin\obj\buildnum.obj : buildnum.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\buildnum.obj buildnum.c
+
+bin\obj\builder.obj : builder.c filesys.h report.h lexer.h sym.h expression.h myalloc.h builder.h errcodes.h buildnum.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\builder.obj builder.c
+
+bin\obj\conftree.obj : conftree.c conftree.h errcodes.h filesys.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\conftree.obj conftree.c
+
+bin\obj\dynlolib.obj : dynlolib.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\dynlolib.obj dynlolib.c
+
+bin\obj\execute.obj : execute.c sym.h errcodes.h report.h lexer.h expression.h builder.h memory.h syntax.h execute.h myalloc.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\execute.obj execute.c
+
+bin\obj\expression.obj : expression.c errcodes.h report.h lexer.h sym.h expression.h myalloc.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\expression.obj expression.c
+
+bin\obj\filesys.obj : filesys.c errcodes.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\filesys.obj filesys.c
+
+bin\obj\httpd.obj : httpd.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\httpd.obj httpd.c
+
+bin\obj\getopt.obj : getopt.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\getopt.obj getopt.c
+
+bin\obj\lexer.obj : lexer.c errcodes.h report.h lexer.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\lexer.obj lexer.c
+
+bin\obj\match.obj : match.c errcodes.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\match.obj match.c
+
+bin\obj\logger.obj : logger.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\logger.obj logger.c
+
+bin\obj\mygmtime.obj : mygmtime.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\mygmtime.obj mygmtime.c
+
+bin\obj\thread.obj : thread.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\thread.obj thread.c
+
+bin\obj\hndlptr.obj : hndlptr.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\hndlptr.obj hndlptr.c
+
+bin\obj\memory.obj : memory.c errcodes.h myalloc.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\memory.obj memory.c
+
+bin\obj\modumana.obj : modumana.c basext.h sym.h errcodes.h report.h lexer.h expression.h builder.h memory.h syntax.h execute.h myalloc.h dynlolib.h modumana.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\modumana.obj modumana.c
+
+bin\obj\hookers.obj : hookers.c basext.h sym.h errcodes.h report.h lexer.h expression.h builder.h memory.h syntax.h execute.h myalloc.h dynlolib.h hookers.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\hookers.obj hookers.c
+
+bin\obj\myalloc.obj : myalloc.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\myalloc.obj myalloc.c
+
+bin\obj\epreproc.obj : epreproc.c myalloc.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\epreproc.obj epreproc.c
+
+bin\obj\options.obj : options.c sym.h errcodes.h report.h lexer.h expression.h builder.h memory.h syntax.h execute.h myalloc.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\options.obj options.c
+
+bin\obj\stndlone.obj : stndlone.c getopt.h scriba.h basext.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\stndlone.obj stndlone.c
+
+bin\obj\reader.obj : reader.c filesys.h report.h errcodes.h conftree.h reader.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\reader.obj reader.c
+
+bin\obj\report.obj : report.c errcodes.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\report.obj report.c
+
+bin\obj\sym.obj : sym.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\sym.obj sym.c
+
+bin\obj\basext.obj : basext.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\basext.obj basext.c
+
+bin\obj\uniqfnam.obj : uniqfnam.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\uniqfnam.obj uniqfnam.c
+
+bin\obj\errcodes.obj : errcodes.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\errcodes.obj errcodes.c
+
+bin\obj\syntax.obj : syntax.c report.h lexer.h sym.h expression.h syntax.h
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\syntax.obj syntax.c
+
+bin\obj\md5.obj : md5.c 
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\md5.obj md5.c
+
+
+
+
+bin\obj\extops.obj : commands/extops.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\extops.obj commands/extops.c
+
+bin\obj\environ.obj : commands/environ.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\environ.obj commands/environ.c
+
+bin\obj\external.obj : commands/external.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\external.obj commands/external.c
+
+bin\obj\file.obj : commands/file.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\file.obj commands/file.c
+
+bin\obj\function.obj : commands/function.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\function.obj commands/function.c
+
+bin\obj\goto.obj : commands/goto.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\goto.obj commands/goto.c
+
+bin\obj\if.obj : commands/if.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\if.obj commands/if.c
+
+bin\obj\let.obj : commands/let.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\let.obj commands/let.c
+
+bin\obj\mathfunc.obj : commands/mathfunc.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\mathfunc.obj commands/mathfunc.c
+
+bin\obj\mathops.obj : commands/mathops.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\mathops.obj commands/mathops.c
+
+bin\obj\print.obj : commands/print.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\print.obj commands/print.c
+
+bin\obj\string.obj : commands/string.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\string.obj commands/string.c
+
+bin\obj\time.obj : commands/time.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\time.obj commands/time.c
+
+bin\obj\while.obj : commands/while.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\while.obj commands/while.c
+
+
+
+
+
+
+
+
+bin\exe\scriba.exe : bin\lib\lscriba.lib bin\var\standard\scribacmd.obj bin\obj\lmt_none.obj
+	cl /Ox  /DWIN32 /MT /nologo /W0 /Febin\exe\scriba.exe bin\var\standard\scribacmd.obj bin\obj\lmt_none.obj bin\lib\lscriba.lib ws2_32.lib advapi32.lib
+	bin\exe\scriba -v
+
+bin\var\standard\scribacmd.obj : variations\standard\scribacmd.c
+	IF NOT EXIST "bin\var\standard" mkdir "bin\var\standard"
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\var\standard\scribacmd.obj variations\standard\scribacmd.c
+
+bin\obj\lmt_none.obj : lmt_none.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\lmt_none.obj lmt_none.c
+
+
+
+
+bin\exe\sbhttpd.exe : bin\lib\lscriba.lib bin\var\httpd\websrv.obj bin\var\httpd\service.obj bin\obj\lmt_none.obj
+	cl /Ox  /DWIN32 /MT /nologo /W0 /Febin\exe\sbhttpd.exe bin\var\httpd\websrv.obj bin\var\httpd\service.obj bin\obj\lmt_none.obj bin\lib\lscriba.lib ws2_32.lib advapi32.lib
+
+
+bin\var\httpd\websrv.obj : variations\httpd\websrv.c
+	IF NOT EXIST "bin\var\httpd" mkdir "bin\var\httpd"
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\var\httpd\websrv.obj variations\httpd\websrv.c
+
+
+
+bin\var\httpd\service.obj : variations\httpd\service.c
+	IF NOT EXIST "bin\var\httpd" mkdir "bin\var\httpd"
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\var\httpd\service.obj variations\httpd\service.c
+
+
+bin\obj\lmt_httpd.obj : lmt_httpd.c
+	cl /Ox  /DWIN32 /MT /nologo /W0 /c /Fobin\obj\lmt_httpd.obj lmt_httpd.c
+
+
+clean :  
+	@del /s /q bin\exe\*
+	@del /s /q bin\include\*
+	@del /s /q bin\lib\*
+	@del /s /q bin\make\*
+	@del /s /q bin\obj\*
+	@del /s /q bin\var\*

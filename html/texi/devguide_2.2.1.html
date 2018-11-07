@@ -1,0 +1,47 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.2.1. reader_IncreaseBuffer()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: reader_IncreaseBuffer()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: reader_IncreaseBuffer()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.2.html">2.2. Reader</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.2.1. reader_IncreaseBuffer()</H1>
+<A HREF="devguide_2.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.2.2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+When the reader encounters a line which is longer than the currently allocated
+input buffer it calls this function to increase the size of the input buffer. The
+input buffer is linearly increased by <font size="3"><tt>BUFFER_INCREMENT</tt></font> size (defined in the header
+section of <font size="3"><tt>reader.c</tt></font>
+<P>
+When a new buffer is allocated the bytes from the old buffer are copied to the new and
+the old buffer is released. It is vital that the buffer is always referenced via the
+pRo-&gt;buffer pointer because resizing buffer does change the location of the buffer.
+<P>
+If the memory allocation fails the function return <font size="3"><tt>READER_ERROR_MEMORY_LOW</tt></font> error.
+Otherwise it returns zero.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int reader_IncreaseBuffer(pReadObject pRo
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.2.2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

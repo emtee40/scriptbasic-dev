@@ -1,0 +1,50 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: execute_GetLongValue()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: execute_GetLongValue()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: execute_GetLongValue()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>execute_GetLongValue()</H1>
+<A HREF="devguide_2.6.4.24.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.26.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this function whenever you want to access the <B>value</B> of a variable as a <font size="3"><tt>long</tt></font>.
+Formerly ScriptBasic in such situation converted the variable to long calling
+<a href="devguide_2.6.4.17.htm">execute_Convert2Long()</A> and then used the macro <font size="3"><tt>LONGVALUE</tt></font>. This method is faster
+because this does not create a new mortal variable but returns directly the
+long value.
+<P>
+The macro <font size="3"><tt>GETLONGVALUE</tt></font> can be used to call this function with the default
+execution environment variable <font size="3"><tt>pEo</tt></font>
+<P>
+Note however that the macro <font size="3"><tt>GETLONGVALUE</tt></font> and <font size="3"><tt>LONGVALUE</tt></font> are not 
+interchangeable. <font size="3"><tt>GETLONGVALUE</tt></font> is returnig a <font size="3"><tt>long</tt></font> while 
+<font size="3"><tt>LONGVALUE</tt></font> is a left value available to store a <font size="3"><tt>long</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+long execute_GetLongValue(pExecuteObject pEo,
+                          pFixSizeMemoryObject pVar
+  )@{
+</PRE></FONT>
+<P>
+Please also note that the result of converting a string variable to LONG and then
+accessing its longvalue may not result the same number as calling this function.
+The reason is that conversion of a string to a LONG variable is done in two steps.
+First it converts the string to a <font size="3"><tt>double</tt></font> and then it rounds the <font size="3"><tt>double</tt></font> value
+to <font size="3"><tt>long</tt></font>. On the other hand this function converts a string diretly to <font size="3"><tt>long</tt></font>.
+<P>
+For example the string <font size="3"><tt>"3.7"</tt></font> becomes 4 when converted to long and 3 when getting the
+value as a long.<HR>
+<A HREF="devguide_2.6.4.24.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.26.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

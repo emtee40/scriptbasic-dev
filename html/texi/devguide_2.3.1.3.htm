@@ -1,0 +1,45 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: lex_RemoveSkipSymbols()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: lex_RemoveSkipSymbols()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: lex_RemoveSkipSymbols()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>lex_RemoveSkipSymbols()</H1>
+<A HREF="devguide_2.3.1.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.4.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function is called from <a href="devguide_htm">lex_DoLexicalAnalysis()</A> to remove the lexical elements
+from the list of tokens that were denoted by the preprocessors to be deleted.
+<P>
+Some lexical elements are used to give information to some of the preprocessors. These
+tokens should be deleted, because later processing can not deal with them and confuses syntax
+analysis.
+<P>
+In those cases the preprocessor should set the type of the token to be L<font size="3"><tt>LEX_T_SKIP</tt></font> or
+<font size="3"><tt>LEX_T_SKIP_SYMBOL</tt></font>. The type <font size="3"><tt>LEX_T_SKIP</tt></font> should be used in case the token is handled due to
+<font size="3"><tt>ProcessLexSymbol</tt></font> preprocessor command and <font size="3"><tt>LEX_T_SKIP</tt></font> otherwise.
+<P>
+When the type is set <font size="3"><tt>LEX_T_SKIP_SYMBOL</tt></font> the lexical analyzer knows to release the string holding
+the symbol. If the type is <font size="3"><tt>LEX_T_SKIP</tt></font> only the token record is released.
+<P>
+If the symbol string is not released due to erroneously setting the type to <font size="3"><tt>LEX_T_SKIP</tt></font> instead
+<font size="3"><tt>LEX_T_SKIP_SYMBOL</tt></font> the memory will not be released until the interpreter finishes pre execution
+steps. So usually if you do not know how to set the type to skip a token <font size="3"><tt>LEX_T_SKIP</tt></font> is safe.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void lex_RemoveSkipSymbols(pLexObject pLex
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.3.1.2.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.4.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,176 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.4. Syntax Analyzer</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Syntax Analyzer">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Syntax Analyzer">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+</UL>
+</UL>
+<P>
+<H1>2.4. Syntax Analyzer</H1>
+<A HREF="devguide_2.3.1.21.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_2.4.1.html">2.4.1. Name Space</A><BR>
+<A HREF="devguide_2.4.2.html">2.4.2. Expression</A><BR>
+<A HREF="devguide_2.4.3.html">2.4.3. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.4.3.1.html">2.4.3.1. What is an expression in ScriptBasic</A><BR>
+<A HREF="devguide_2.4.3.2.html">2.4.3.2. ex_DumpVariables()</A><BR>
+<A HREF="devguide_2.4.3.3.html">2.4.3.3. expression_PushNameSpace()</A><BR>
+<A HREF="devguide_2.4.3.4.html">2.4.3.4. ex_CheckUndefinedLabels()</A><BR>
+<A HREF="devguide_2.4.3.5.html">2.4.3.5. ex_CleanNameSpaceStack()</A><BR>
+<A HREF="devguide_2.4.3.6.html">2.4.3.6. expression_PopNameSpace()</A><BR>
+<A HREF="devguide_2.4.3.7.html">2.4.3.7. ex_PushWaitingLabel()</A><BR>
+<A HREF="devguide_2.4.3.8.html">2.4.3.8. ex_PopWaitingLabel()</A><BR>
+<A HREF="devguide_2.4.3.9.html">2.4.3.9. _ex_PushLabel()</A><BR>
+<A HREF="devguide_2.4.3.10.html">2.4.3.10. _ex_PopLabel()</A><BR>
+<A HREF="devguide_2.4.3.11.html">2.4.3.11. _ex_CleanLabelStack()</A><BR>
+<A HREF="devguide_2.4.3.12.html">2.4.3.12. Some NOTE on SymbolXXX functions</A><BR>
+<A HREF="devguide_2.4.3.13.html">2.4.3.13. _new_SymbolLABEL()</A><BR>
+<A HREF="devguide_2.4.3.14.html">2.4.3.14. _new_SymbolVAR()</A><BR>
+<A HREF="devguide_2.4.3.15.html">2.4.3.15. _new_SymbolUF()</A><BR>
+<A HREF="devguide_2.4.3.16.html">2.4.3.16. _new_eNODE()</A><BR>
+<A HREF="devguide_2.4.3.17.html">2.4.3.17. _new_eNODE_l()</A><BR>
+<A HREF="devguide_2.4.3.18.html">2.4.3.18. ex_free()</A><BR>
+<A HREF="devguide_2.4.3.19.html">2.4.3.19. ex_init()</A><BR>
+<A HREF="devguide_2.4.3.20.html">2.4.3.20. ex_CleanNamePath()</A><BR>
+<A HREF="devguide_2.4.3.21.html">2.4.3.21. ex_ConvertName()</A><BR>
+<A HREF="devguide_2.4.3.22.html">2.4.3.22. ex_IsBFun()</A><BR>
+<A HREF="devguide_2.4.3.23.html">2.4.3.23. ex_IsUnop()</A><BR>
+<A HREF="devguide_2.4.3.24.html">2.4.3.24. ex_IsBinop()</A><BR>
+<A HREF="devguide_2.4.3.25.html">2.4.3.25. ex_LeftValueList()</A><BR>
+<A HREF="devguide_2.4.3.26.html">2.4.3.26. ex_ExpressionList()</A><BR>
+<A HREF="devguide_2.4.3.27.html">2.4.3.27. ex_Local()</A><BR>
+<A HREF="devguide_2.4.3.28.html">2.4.3.28. ex_LocalList()</A><BR>
+<A HREF="devguide_2.4.3.29.html">2.4.3.29. ex_Global()</A><BR>
+<A HREF="devguide_2.4.3.30.html">2.4.3.30. ex_GlobalList()</A><BR>
+<A HREF="devguide_2.4.3.31.html">2.4.3.31. ex_LookupUserFunction()</A><BR>
+<A HREF="devguide_2.4.3.32.html">2.4.3.32. ex_LookupGlobalVariable</A><BR>
+<A HREF="devguide_2.4.3.33.html">2.4.3.33. ex_LookupLocallyDeclaredGlobalVariable</A><BR>
+<A HREF="devguide_2.4.3.34.html">2.4.3.34. ex_LookupLocalVariable</A><BR>
+<A HREF="devguide_2.4.3.35.html">2.4.3.35. ex_Tag</A><BR>
+<A HREF="devguide_2.4.3.36.html">2.4.3.36. ex_Expression_i</A><BR>
+<A HREF="devguide_2.4.3.37.html">2.4.3.37. ex_Expression_r</A><BR>
+<A HREF="devguide_2.4.3.38.html">2.4.3.38. ex_IsSymbolValidLval(pEx)</A><BR>
+<A HREF="devguide_2.4.3.39.html">2.4.3.39. ex_LeftValue</A><BR>
+<A HREF="devguide_2.4.3.40.html">2.4.3.40. ex_PredeclareGlobalLongConst()</A><BR>
+<A HREF="devguide_2.4.3.41.html">2.4.3.41. ex_IsCommandThis</A><BR>
+<A HREF="devguide_2.4.3.42.html">2.4.3.42. ex_Command_r()</A><BR>
+<A HREF="devguide_2.4.3.43.html">2.4.3.43. ex_Command_l()</A><BR>
+<A HREF="devguide_2.4.3.44.html">2.4.3.44. ex_Pragma</A><BR>
+<A HREF="devguide_2.4.3.45.html">2.4.3.45. ex_IsCommandCALL()</A><BR>
+<A HREF="devguide_2.4.3.46.html">2.4.3.46. ex_IsCommandOPEN()</A><BR>
+<A HREF="devguide_2.4.3.47.html">2.4.3.47. ex_IsCommandSLIF()</A><BR>
+<A HREF="devguide_2.4.3.48.html">2.4.3.48. ex_IsCommandIF()</A><BR>
+<A HREF="devguide_2.4.3.49.html">2.4.3.49. ex_IsCommandLET()</A><BR>
+<HR>
+<P>
+
+The syntax analyzer is a module that reads the token stream delivered by the lexer module and builds a memory data structure containing the syntactically analyzed and built program. The syntax analyzer is contained in the source file `<font size="3"><tt>expression.c</tt></font>' The name of this module come from the fact that the most important and most complex task of syntax analysis is the analysis of the expressions.
+<P>
+For the syntax analyzer the program is a series of commands. A command is a series of symbols. There is nothing like command blocks, or one command embedding another command. Therefore the syntax definition is quite simple and yet still powerful enough to define a BASIC like language.
+<P>
+Because syntax analysis is quite a complex task and the syntax analyzer built for ScriptBasic is quite a complex one I recommend that you first read the tutorial from the ScriptBasic web site that talks about the syntax analysis. This is a series of slides together with real audio voice explaining the structure of the syntax analyzer of ScriptBasic.
+<P>
+The syntax analyzer should be configured using a structure containing the configuration parameters and the “global variables” for the syntactical analyzer. This structure contains the pointer to the array containing the syntax definition. Each element of the array defines command syntax. Command syntax is the list of the symbols that construct the command. When the syntactical analyzer tries to analyze a line it tries the array elements until it finds one matching the line. When checking a line against a syntax definition the syntactical analyzer takes the lexical elements on the line and checks that they match the next symbol in the syntax definition. A symbol can be as simple as a reserved word, like <font size="3"><tt>if</tt></font> <font size="3"><tt>else</tt></font>, <font size="3"><tt>endif</tt></font>. Such a syntax element is matched by the specific keyword. On the other hand a symbol on the syntax definition can be as complex as an expression, which is matched by a whole expression.
+<P>
+The syntax analyzer has some built in assumption about the language, but the actual syntax is defined in tables. This way it is possible to analyze different languages using different tables in the same program even in the same process in separate threads.
+<P>
+When the syntax analyzer reads the syntax definition of a line and matches the tokens from the lexer against the syntax element it may do several things:
+<P>
+<UL>
+<LI> recognizes that the syntax element matches the coming token and goes on
+<LI> recognizes that the syntax element matches the coming token(s) and creates one or more new nodes in memory that hold the values associated with the tokens
+<LI> recognizes the syntax element, does not match it against any token, and does some side effect
+</UL>
+<P>
+The first is the case when the syntax element is a constant symbol. For example it is a command keyword. In this case there is nothing to do with the keyword except that the syntax analyzer has to recognize that this is the statement identified by the keyword. The actual code will be generated later when non-constant syntactical elements are found.
+<P>
+When the syntax analyzer sees that the next syntax element is some variable, non-constant syntax element it matches the coming tokens and creates the nodes that hold the actual value for the tokens. For example when the syntax element is <font size="3"><tt>string</tt></font> the syntax analyzer checks that the coming token is a string and creates a node that holds the string. The most important example is the syntax element <font size="3"><tt>expression</tt></font>. In this case the syntax analyzer checks that the coming tokens form an expression and not only "consumes" these tokens, but creates several nodes that hold the structure of the expression.
+<P>
+We can distinguish between constant and variable symbolic definition elements.
+<P>
+<UL>
+<LI>
+A constant symbolic element is matched by a constant symbol. A constant symbolic element is a reserved keyword, or a special character that should appear at a certain position on the line.
+<LI>
+A variable symbolic element on the other hand is matched by several different actual values. The simplest example of a variable symbolic element is a number. A number in the syntax definition tells the analyzer that a number should appear at the position on the line. However it does not specify the value of the number. Any number can appear and is valid at the position. When a variable symbolic element is matched the actual value, which was presented on the line and matched the symbolic definition element is stored in the memory structure that the analyzer builds.
+</UL>
+<P>
+There are some special symbols that are always matched whenever they are checked by the syntax analyzer. They do not consume any lexical element from the line, and generate values in the memory structure that the analyzer builds.
+<P>
+The symbolic definition elements are:
+<P>
+<UL>
+<LI>
+<P>
+<font size="3"><tt>expression</tt></font> This element matches an expression. When this syntax definition element should be matched the syntactical analyzer tries to work up an expression starting from the actual position in the lexical unit stream.
+<LI>
+<font size="3"><tt>expression_list</tt></font> This element matches a list of expressions separated by comma characters.
+<LI>
+<font size="3"><tt>string</tt></font> This element is matched by a single string. Whenever you think to use this syntax definition element consider using expression instead. This element matches only a single string and not an expression resulting string value.
+<LI>
+<font size="3"><tt>integer</tt></font> This element is matched by an integer number. Whenever you think to use this syntax definition element consider using expression instead. This element matches only a single string and not an expression resulting integer value.
+<LI>
+<font size="3"><tt>float</tt></font> This element is matched by an integer or float number. Whenever you think to use this syntax definition element consider using expression instead. This element matches only a single string and not an expression resulting integer or float value. Implementing a command that requires this symbolic element should accept integer values at the same location because this value matches any float or integer value. Any integer value passed on a float syntax location is converted to float during compile time. (Note that the C code does not use the C type float. All float numbers are stored and handled using the C type double.)
+<LI>
+<font size="3"><tt>symbol</tt></font> This element accepts a symbol. Before using this syntax definition element you should be familiar with the other elements that may accept a symbol for a certain role. You should use this element when wanting to deal with the actual name of the symbol during run time. Note however that there are other elements that you should consider before using this syntax definition element.
+<LI>
+<font size="3"><tt>absolute_symbol</tt></font> This element accepts a symbol similar to the syntax definition element symbol. The difference is that symbol accepts a relative symbol which is treated as belonging to the current name space unless explicit name space was defined. Absolute symbol is taken without any modification.
+<LI>
+<font size="3"><tt>name_space</tt></font> This syntax definition element is matched by an absolute symbol and sets the current name space.
+<LI>
+<P>
+
+<font size="3"><tt>end_name_space</tt></font> this syntax definition element does not consume any lexical elements, but closes a name space and the surrounding name space is used afterwards.
+<LI>
+<font size="3"><tt>lval</tt></font> This element can be matched by a left value. That is some variable reference to which value can be assigned.
+<LI>
+<font size="3"><tt>lval_list</tt></font> This element can be matched by a list of left values. A list is several left values separated by commas.
+<LI>
+<font size="3"><tt>local_start</tt></font> This syntax definition element is always matched, and does not consume any lexical element from the list. When this syntax definition element is reached by the syntax analyzer it starts a new local scope. Such a point is usually the start of a function or procedure.
+<LI>
+<font size="3"><tt>local_end</tt></font> This syntax definition element is the pair of local start. This syntax definition element is always matched, and does not consume any lexical element from the list. When this syntax definition element is reached by the syntax analyzer it finishes the local scope. Such a point is usually the end of a function or procedure. Note that local scopes can not be nested.
+<LI>
+<font size="3"><tt>local</tt></font> This syntax definition element is matched by a symbol, which is treated as a local variable. The symbol is modified according to name space. The syntax definition element is not matched whenever it is tried to be used outside of local scope.
+<LI>
+<font size="3"><tt>local_list</tt></font> This symbol definition element is matched by a comma separated list of local.
+<LI>
+<font size="3"><tt>function</tt></font> This symbol definition element is matched by a symbol, which is treated as a function name. Note that the local scope does not automatically start when such a syntax definition element is matched.
+<LI>
+<font size="3"><tt>thisfn</tt></font> This symbol definition element is matched within a local scope by the name of the actual function or procedure. This is usually used to describe the assignment that assigns a return value to the function name.
+<LI>
+<font size="3"><tt>label</tt></font> This symbol definition matches a label, which is usually used after “goto” like instructions.
+<LI>
+<font size="3"><tt>label_def</tt></font> This symbol definition is matched by a symbol. This symbol is going to be treated as a label. All labels are global.
+<LI>
+<font size="3"><tt>go_back</tt></font>
+<LI>
+<font size="3"><tt>go_forward</tt></font>
+<LI>
+<font size="3"><tt>come_back</tt></font>
+<LI>
+<font size="3"><tt>come_forward</tt></font> These symbol definition elements should be used to define block and looping structures. Whenever an instruction like for/next or if/then/else is used it has to define where to continue execution based on the condition. The symbol definition elements go-forward and come-back place the current instruction location on a compile time stack. The symbol definition elements go-back and come-forward take the last element from the same stack. They also check that the location was placed on the stack by a matching construct, assuring that no out of order nesting structures appear, like <font size="3"><tt>if/for/endif/next</tt></font>.
+</UL>
+Note that you can find other syntax definition elements in the file syntax.def. However these are converted to a character value by the Perl script tool syntaxer.pl These pseudo syntax definition elements are:
+<UL>
+<LI>
+<font size="3"><tt>nl</tt></font> end of line ('\n' character)
+<LI>
+<font size="3"><tt>tab</tt></font> tab character ('\t' character)
+</UL><HR>
+<A HREF="devguide_2.3.1.21.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: besFUNCTION(X)</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besFUNCTION(X)">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besFUNCTION(X)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>besFUNCTION(X)</H1>
+<A HREF="devguide_4.5.187.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.189.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this macro to start an extension module interface function. The macro argument <font size="3"><tt>X</tt></font>
+is the name of the function as it is used in the BASIC statement
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+declare sub ::Function alias "X" lib "module"
+</PRE></FONT>
+<P>
+This macro handles all system dependant function decoration declarations and
+declares the argument variables. Altough it is possible to name the argument
+variables in a different way it is strongly recommended that the programmer
+writing external module uses this macro and thus uses the argument names, because
+the <font size="3"><tt>besXXX</tt></font> macros rely on these variable names.<HR>
+<A HREF="devguide_4.5.187.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.189.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

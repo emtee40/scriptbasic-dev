@@ -1,0 +1,31 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Builder</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Builder">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Builder">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Builder</H1>
+<A HREF="devguide_2.4.3.49.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+The module is implemented in the file `<font size="3"><tt>builder.c</tt></font>'.
+<P>
+The rule of the builder is to compile the code created by the syntax analyzer into a continuous memory area. This compilation phase has two advantages. First of all it results a compact code which can easily saved into external file and can also be loaded making recompilation unnecessary before each execution. The second advantage is that the resulting code is smaller and saves memory.
+<P>
+When the syntax analyzer starts its work the final size of the code is not known. Therefore the syntax analyzer starts to build up a memory structure using pointers, linked lists allocating memory step by step as the code grows. Each command, expression element is stored in an internal structure, which is called a node. For example a node containing the operation "plus" contains the node type, which says it is an operator "plus" and contains two pointers to the two operands. The operands are also nodes. If the operand is a number the node contains the value of the number and the node type telling that it is a <font size="3"><tt>long</tt></font> or <font size="3"><tt>double</tt></font> number. If the operand is a variable the node type tells that the node is a variable and the node contains the serial number of the variable. If the operand needs further evaluation then the node is probably an operation having arguments pointed by pointers.
+<P>
+
+The structure that the builder creates is same as that of the syntax analyzer but it is allocated in a single memory chunk and instead of pointers it uses indices to refer a node from another. These indices are numbered from 1 and not from zero. This is because the index zero is used for <font size="3"><tt>NULL</tt></font> pointer if you know what I mean.<HR>
+<A HREF="devguide_2.4.3.49.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.5.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

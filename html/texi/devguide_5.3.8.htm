@@ -1,0 +1,45 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: PreprocessorLexDone</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: PreprocessorLexDone">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: PreprocessorLexDone">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>PreprocessorLexDone</H1>
+<A HREF="devguide_5.3.7.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.9.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This entry point is used when the lexer has finished the lexical analysis and the list of tokens is already in the memory. The pointer <font size="3"><tt>p</tt></font> points to the <font size="3"><tt>LexObject</tt></font>.
+<P>
+At this point the preprocessor may alter the tokenized form of the BASIC program. The list of tokens still contains the comment lines (also tokenized although it may make no sense), and the continuation lines are still being split containing the <font size="3"><tt>_</tt></font> character and the new-line token.
+<P>
+The preprocessor may gain information from comments in case the some comments provide information for the preprocessor.
+<P>
+If the preprocessor uses some special symbols that drive the preprocessor processing but should be removed from the token list the preprocessor at this point may unlink the token from the list or just set the <font size="3"><tt>type</tt></font> of the token to <font size="3"><tt>LEX_T_SKIP</tt></font> or <font size="3"><tt>LEX_T_SKIP_SYMBOL</tt></font>.
+<P>
+
+If you do not or do not want to understand the difference between the two possibilities described soon then the rule of thumb is to use <font size="3"><tt>LEX_T_SKIP</tt></font> and you are safe.
+<P>
+The type <font size="3"><tt>LEX_T_SKIP</tt></font> should be used in case the token is handled due to <font size="3"><tt>ProcessLexSymbol</tt></font> preprocessor command and <font size="3"><tt>LEX_T_SKIP</tt></font> otherwise.
+<P>
+When the type is set <font size="3"><tt>LEX_T_SKIP_SYMBOL</tt></font> the lexical analyzer knows to release the string holding the symbol. If the type is <font size="3"><tt>LEX_T_SKIP</tt></font> only the token record is released.
+<P>
+If the symbol string is not released due to erroneously setting the type to <font size="3"><tt>LEX_T_SKIP</tt></font> instead <font size="3"><tt>LEX_T_SKIP_SYMBOL</tt></font> the memory will not be released until the interpreter finishes pre execution steps. So usually if you do not know how to set the type to skip a token <font size="3"><tt>LEX_T_SKIP</tt></font> is safe.
+<P>
+When processing comments the preprocessor should either use only the comments starting with the keyword <font size="3"><tt>rem</tt></font> or should carefully detect the comments starting with <font size="3"><tt>'</tt></font>.
+<P>
+For more information how to do it you really have to look at the function <font size="3"><tt>lex_RemoveComments</tt></font> in the file `<font size="3"><tt>lexer.c</tt></font>'.
+<P>
+The function has to return zero or the error code and should set the parameter <font size="3"><tt>*pCmd</tt></font> to <font size="3"><tt>PreprocessorContinue</tt></font>, <font size="3"><tt>PreprocessorDone</tt></font>, or <font size="3"><tt>PreprocessorUnload</tt></font>.<HR>
+<A HREF="devguide_5.3.7.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.9.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

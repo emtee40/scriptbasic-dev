@@ -1,0 +1,59 @@
+REM This program manages the ScriptBasic configuration during setup
+REM This is written in ScriptBasic and the SETUP.EXE starts it
+REM at the end of the installation
+
+InstallDirectory = command()
+
+if Mid(InstallDirectory,len(InstallDirectory),1) = "\\" then InstallDirectory = Mid(InstallDirectory,1,len(InstallDirectory)-1)
+
+print "opening ",InstallDirectory & "\\bin\\config.tmpl\n"
+open InstallDirectory & "\\bin\\config.tmpl" for input as 1
+print "Config template length is ",flen,"\n"
+flen = LOF(1)
+ConfigurationText = INPUT(flen,1)
+close 1
+
+print "Install directory is ",InstallDirectory,"\n"
+
+RootDir = Replace(InstallDirectory,"\\","\\\\")
+
+ConfigurationText = Replace(ConfigurationText,"ROOTDIR",RootDir & "\\\\")
+
+open InstallDirectory & "\\scriba.conf.txt" for output as 1
+print#1,ConfigurationText
+close#1
+
+on error goto ConfigurationCompilationTimeOut
+print "Executing:\n",InstallDirectory & "\\bin\\scriba -k " & InstallDirectory & "\\scriba.conf.txt"
+ExitCode = execute(InstallDirectory & "\\bin\\scriba -k " & InstallDirectory & "\\scriba.conf.txt",30,pid_v)
+print
+print
+print "The exit code is ",ExitCode,"\n"
+on error goto null
+goto ConfigurationCompilationDone
+
+ConfigurationCompilationTimeOut:
+print "The configuration compilation timed out.\n"
+print "The error message is: ",ERROR$(),"\n"
+ExitCode = kill(pid_v)
+
+ConfigurationCompilationDone:
+ON ERROR GOTO NULL
+
+ReadmeFile = InstallDirectory & "\\readme.txt" 
+open ReadmeFile for input as 1
+binmode 1
+ReadmeLength = LOF(1)
+ReadmeContent = INPUT(ReadmeLength,1)
+close#1
+
+ReadmeContent = Replace(ReadmeContent,"INSTALLDIRECTORY",InstallDirectory)
+
+open ReadmeFile for output as 1
+print#1,ReadmeContent
+close#1
+
+' start sbhttpd to install the service
+on error resume next
+i = execute(InstallDirectory & "\\bin\\sbhttpd -install" , 20, pid)
+

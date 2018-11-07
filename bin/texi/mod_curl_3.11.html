@@ -1,0 +1,42 @@
+<HEAD>
+<TITLE>Documentation of the module curl: 3.11. INTEXT string</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: INTEXT string">
+<META NAME="keywords" CONTENT="Documentation of the module curl: INTEXT string">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_curl_toc.html">[Contents]</A><BR>
+<UL><a href="mod_curl_3.html">3. curl::option</A><BR>
+</UL>
+</UL>
+<P>
+<H1>3.11. INTEXT string</H1>
+<A HREF="mod_curl_3.10.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.12.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"INTEXT","""This is the content of the file
+that we will upload.
+"""
+</PRE></FONT>
+<P>
+Use this option to set the content of the file for any kind of upload. This option can be used to upload 
+small files via HTTP or FTP, which are generated on-the-fly by the BASIC program, and there is no need to
+store the files locally.
+<P>
+You cannot use the options <font size="3"><tt>INTEXT</tt></font> and <font size="3"><tt>INFILE</tt></font> at the same time for the same connection. If you use both
+the latter specified will be used.<HR>
+<A HREF="mod_curl_3.10.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.12.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

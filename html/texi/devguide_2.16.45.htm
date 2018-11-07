@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: file_fcrypt</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: file_fcrypt">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: file_fcrypt">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>file_fcrypt</H1>
+<A HREF="devguide_2.16.44.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.46.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Calculate encrypted password
+<P>
+This function implements the password encryption algorithm
+using the DES function. The first argument is the clear text
+password, the second argument is the two character salt value.
+This need not be zero terminated. The third argument should
+point to a 13 characters char array to get the encoded
+password. <font size="3"><tt>buff[13]</tt></font> will contain the terminating zchar upon return.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+char *file_fcrypt(char *buf, char *salt, char *buff
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.16.44.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.46.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

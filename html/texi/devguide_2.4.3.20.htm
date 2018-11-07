@@ -1,0 +1,54 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: ex_CleanNamePath()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_CleanNamePath()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_CleanNamePath()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ex_CleanNamePath()</H1>
+<A HREF="devguide_2.4.3.19.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.21.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function created a normalized name space name from a non normalized. This is a simple
+string operation.
+<P>
+Think of name space as directories and variables as files. A simple variable name is in the
+current name space. If there is a 'path' before the variable or function name the path has to be
+used. This path can either be relative or absolute.
+<P>
+File system:
+<P>
+<font size="3"><tt> ../ </tt></font> is used to denote the parent directory in file systems.
+<P>
+Name space:
+<P>
+<font size="3"><tt> _::</tt></font> is used to denote the parent name space.
+<P>
+File system:
+<P>
+<font size="3"><tt> mydir/../yourdir</tt></font> is the same as <font size="3"><tt>yourdir</tt></font>
+<P>
+Name space:
+<P>
+<font size="3"><tt> myns::_::yourns</tt></font> is the same as <font size="3"><tt>yourns</tt></font>
+<P>
+This function removes the unneccesary downs and ups from the name space and creates the
+result in the same buffer as the original. This can always be done as the result is always 
+shorter. (Well, not longer.)
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void ex_CleanNamePath(char *s
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.4.3.19.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.21.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

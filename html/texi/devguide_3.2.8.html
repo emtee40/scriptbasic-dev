@@ -1,0 +1,42 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.2.8. Using the Cache</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Using the Cache">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Using the Cache">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.2.html">3.2. Sample Embedding</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.2.8. Using the Cache</H1>
+<A HREF="devguide_3.2.7.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.9.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+ScriptBasic is powerful being able to store the compiled version of BASIC programs in binary format in file. The next piece of code checks if there is already a compiled version of the BASIC program in the configured cache directory calling the function <a href="devguide_3.3.45.html">scriba_UseCacheFile()</A>
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  if( scriba_UseCacheFile(pProgram) == SCRIBA_ERROR_SUCCESS ){
+    if( (iError = scriba_LoadBinaryProgram(pProgram)) != 0 ){
+      ERREXIT;
+      }
+</PRE></FONT>
+<P>
+The function <a href="devguide_3.3.36.html">scriba_LoadBinaryProgram()</A> loads the binary program.<HR>
+<A HREF="devguide_3.2.7.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.9.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

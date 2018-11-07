@@ -1,0 +1,39 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Hook Functions</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Hook Functions">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Hook Functions">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Hook Functions</H1>
+<A HREF="devguide_2.11.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.12.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<P>
+This file contains the hook functions that are called by the commands whenever
+a command wants to access the operating system functions. The hook functions
+implemented here are transparent, they call the operating system. However these hook
+functions are called via the HookFunctions function pointer table and external modules
+may alter this table supplying their own hook functions.
+<P>
+There are some hook functions, which do not exist by default. In this case the hook functions table
+points to <font size="3"><tt>NULL</tt></font>. These functions, if defined are called by ScriptBasic at certain points of execution.
+For example the function <font size="3"><tt>HOOK_ExecBefore</tt></font> is called each time before executing a command in case
+an external module defines the function altering the hook function table.
+<P>
+The hook functions have the same arguments as the original function preceeded by the
+pointer to the execution object <font size="3"><tt>pExecuteObject pEo</tt></font>. For example the function <font size="3"><tt>fopen</tt></font> has two arguments
+to <font size="3"><tt>char *</tt></font>, and therefore HOOK_fopen has three. The first should point to <font size="3"><tt>pEo</tt></font> and the second and third should
+point to <HR>
+<A HREF="devguide_2.11.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.12.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

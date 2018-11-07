@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Name Space</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Name Space">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Name Space">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Name Space</H1>
+<A HREF="devguide_2.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.2.htm">[&gt;&gt;&gt;]</A>
+<P>
+The scriba syntax analyzer implements a simple name space handling. A variable, label or function name always belongs to a name space. The default name space is <font size="3"><tt>main</tt></font>. When the syntax analyzer processes a non-absolute symbol it converts the name to contain the name space. A variable named <font size="3"><tt>var</tt></font> in the name space <font size="3"><tt>main</tt></font> has the name <font size="3"><tt>main::var</tt></font>. The syntax analyzer automatically converts the name to contain the name space, therefore <font size="3"><tt>main::var</tt></font> and <font size="3"><tt>var</tt></font> are equivalent when used in the name space <font size="3"><tt>main</tt></font>.
+<P>
+When a variable contains double colon it is treated as an absolute name, and no name space is prepended to it. If you are in the name space module and use the variable name <font size="3"><tt>main::var</tt></font> it will NOT be converted to <font size="3"><tt>module::main::var</tt></font>. The reason is that it already contains the characters <font size="3"><tt>::</tt></font> and therefore scriba assumes that it already contains the name space.
+<P>
+If you are in the name space module and want to refer to the variable <font size="3"><tt>module::main::var</tt></font> you can use the names <font size="3"><tt>module::main::var</tt></font> or <font size="3"><tt>::main::var</tt></font>. The first format contains all nested name spaces to the variable. The second version tells the syntax analyzer that the variable is relative, altough it contains double colon. This is because it starts with double colons.
+<P>
+If you are in name space <font size="3"><tt>module::submodul</tt></font> and want to refer to the variable <font size="3"><tt>module::var</tt></font> you can either write <font size="3"><tt>module::var</tt></font> or<font size="3"><tt> _::var</tt></font>. The first format contains all nested name spaces to the variable. The second version tells the syntax analyzer that the variable is relative and the base module is the embedding module of the current one.
+<P>
+If you are familiar with the UNIX or DOS/Windows directory notation you can find similarities of file names and name space in scriba. In file names double dot means the parent directory. In scriba underscore character means the parent name space. You can use the <font size="3"><tt>_</tt></font> character not only in front of a name, but also within <font size="3"><tt>::</tt></font> characters. For example
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+Main::module::var
+Main::module::submodule::_::var
+Main::_::Main::module::var
+</PRE></FONT>
+<P>
+are equivalent.
+<P>
+Name spaces help to separate variables and to develop scripts cooperatively, but does not prohibit one name space to access variables or symbols of other name spaces.<HR>
+<A HREF="devguide_2.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.2.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

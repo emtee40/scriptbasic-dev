@@ -1,0 +1,40 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: ex_LookupLocallyDeclaredGlobalVariable</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_LookupLocallyDeclaredGlobalVariable">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_LookupLocallyDeclaredGlobalVariable">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ex_LookupLocallyDeclaredGlobalVariable</H1>
+<A HREF="devguide_2.4.3.32.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.34.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function searches the global variable symbol table to find the global variable
+with the name stored in @code@{pEx-&gt;Buffer}. If the variable was not declared then this function
+return <font size="3"><tt>NULL</tt></font>. Othervise it returns a pointer to a <font size="3"><tt>void *</tt></font> pointer, which is 
+<font size="3"><tt>NULL</tt></font>.
+<P>
+Note that this table is allocated when the program starts a <font size="3"><tt>sub</tt></font> or <font size="3"><tt>function</tt></font> (aka. when
+we go local) and is used to register, which variables did the program declare
+as global variables inside the subroutine. There is no any value associated with the symbols
+in this table, as the symbols are also inserted into the global symbol table which serves
+the purpose.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void **ex_LookupLocallyDeclaredGlobalVariable(peXobject pEx
+  )@{
+</PRE></FONT>
+The function returns pointer to the pointer stored in the symbol table associated with the global
+variable or <font size="3"><tt>NULL</tt></font>.<HR>
+<A HREF="devguide_2.4.3.32.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.34.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

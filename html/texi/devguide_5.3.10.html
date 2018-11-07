@@ -1,0 +1,47 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 5.3.10. PreprocessorLexASymbol</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: PreprocessorLexASymbol">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: PreprocessorLexASymbol">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_5.html">5. Preprocessors</A><BR>
+<UL><a href="devguide_5.3.html">5.3. Preprocessor Entry Points</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>5.3.10. PreprocessorLexASymbol</H1>
+<A HREF="devguide_5.3.9.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.11.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This entry point is used when the lexer has found an alpha symbol. Alpha symbols are the keywords that are predefined in ScriptBasic.
+ 
+When this entry point is called the pointer <font size="3"><tt>p</tt></font> points to a pointer that point to a pointer pointing to the last processed lexeme. This seems to be quite complex and uselessly complex to pass such a pointer at the firstglance. However it is not.
+<P>
+When the lexer builds the list of the lexemes reading the characters it creates a linked list of structures of type <font size="3"><tt>Lexeme</tt></font>. The lexer object field <font size="3"><tt>pLexResult</tt></font> points to the first element of this list. The lexer code uses a local variable named <font size="3"><tt>plexLastLexeme</tt></font> that first points to this pointer, and later it always points to the forward link pointer of the last element of the list.
+<P>
+When the preprocessor is called using this entry point this variable passed in the argument <font size="3"><tt>p</tt></font> "by value". Through this pointer you can 
+<P>
+<UL>
+<LI> alter the last token fields
+<LI> unhook the last token and optionally hook something else on it or even
+<LI> unhook any number of elements from the list that were already hooked and set the last forward link pointer as you wish
+</UL>
+<P>
+The function has to return zero or the error code and should set the parameter <font size="3"><tt>*pCmd</tt></font> to <font size="3"><tt>PreprocessorContinue</tt></font>, <font size="3"><tt>PreprocessorDone</tt></font>, or <font size="3"><tt>PreprocessorUnload</tt></font>.<HR>
+<A HREF="devguide_5.3.9.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.11.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

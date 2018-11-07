@@ -1,0 +1,31 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Symbol Table Handling</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Symbol Table Handling">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Symbol Table Handling">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Symbol Table Handling</H1>
+<A HREF="devguide_2.19.7.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.20.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+The functions in this module implement a general purpose symbol table handling.
+<P>
+Generally a symbol table is a binding functionality that associates symbols with
+attributes. Symbols in this implementation is a zero terminated string, and the 
+attribute is a <font size="3"><tt>void *</tt></font> pointer. This is a general approach that can be used to store and retrieve any kind of symbols.
+<P>
+The symbol table handling functions usually always return a <font size="3"><tt>void **</tt></font> that can be modified to point to the actual structure storing the attributes of the symbol.
+<P>
+The internal structure of a symbol table is a hash table of <font size="3"><tt>PRIME</tt></font> elements (211). Each hash stores a binary table sorting the symbols.<HR>
+<A HREF="devguide_2.19.7.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.20.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

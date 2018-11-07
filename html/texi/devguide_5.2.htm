@@ -1,0 +1,78 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Skeleton of a Preprocessor</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Skeleton of a Preprocessor">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Skeleton of a Preprocessor">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Skeleton of a Preprocessor</H1>
+<A HREF="devguide_5.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+An internal preprocessor implemented as a <font size="3"><tt>.dll</tt></font> or <font size="3"><tt>.so</tt></font> file has to export a single function named <font size="3"><tt>preproc</tt></font>. The declaration of this function should look like this:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int DLL_EXPORT preproc(pPrepext pEXT,
+                       long *pCmd,
+                       void *p);
+</PRE></FONT>
+<P>
+The first argument of the function is the preprocessor pointer. This pointer points to a structure. For each preprocessor loaded there is a separate structure of this type. This structure hold information on the preprocessor and there is some storage pointer in the structure that the preprocessor can access.
+<P>
+The definition of the structure is:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+typedef struct _Prepext {
+  long lVersion;
+  void *pPointer;
+  void *pMemorySegment;
+  struct _SupportTable *pST;
+  } Prepext, *pPrepext;
+</PRE></FONT>
+<P>
+The field <font size="3"><tt>lVersion</tt></font> is the version of the interface that ScriptBasic wants to use when communicating with the preprocessor. If this version is not the same as the interface version that the preprocessor was compiled for then the preprocessor has to ask ScriptBasic not to use it and may return an error code or zero indicating that no error has happened. This may be useful in some cases when the preprocessor is optional and in case the preprocessor can not be loaded the program still may function. Read on how the preprocessor has to do this.
+<P>
+The field <font size="3"><tt>pPointer</tt></font> is initialized to <font size="3"><tt>NULL</tt></font> and is never changed by ScriptBasic. This is a pointer that can be used by the preprocessor to access its own thread local variables.
+<P>
+The field <font size="3"><tt>pMemorySegment</tt></font> is initialized to point to a memory segment that can be used via the memory allocation routines of ScriptBasic. These routines, however need not be linked to the DLL, because they are already in the process loaded as part of the executable and can be reached via the function support table.
+<P>
+This support table is pointed by the field <font size="3"><tt>pST</tt></font> and is the same type of <font size="3"><tt>struct</tt></font> as the support table available for the extension modules. Although this support table is the same type of <font size="3"><tt>struct</tt></font> it is not the same <font size="3"><tt>struct</tt></font>. The fields pointing to the different functions are eventually pointing to the same function, but when the program starts to execute a new support table is allocated and initialized. Thus there is no reason for the preprocessor to alter this table, because altering the table will have no effect on the execution of the program. Also the preprocessor if decides to stay in memory while the program is executed (for example a debugger), may rely on this support table even if a module altering the run-time support table is used.
+<P>
+In case there are more than one internal preprocessors used they will share the same support table. This way a preprocessor altering the preprocessor support table may alter the behavior of another internal preprocessor. However doing that need deep and detailed information of both ScriptBasic code and the other preprocessor and may result code that closely depends on the different versions of the different programs that work together.
+<P>
+The next argument to the function <font size="3"><tt>pCmd</tt></font> is an input and output variable. When the function is called by ScriptBasic it contains the command that the preprocessor is expected to perform. In other words this value defines the reason why the preprocessor was loaded. There are numerous points when ScriptBasic calls the preprocessor and at each point it sets this variable differently.
+<P>
+When the function returns it is supposed to set the variable <font size="3"><tt>*pCmd</tt></font> to one of the following values:
+<P>
+<UL>
+<P>
+<LI>
+  <font size="3"><tt>PreprocessorContinue</tt></font>
+<P>
+Returning this value means that the preprocessor has done what it was supposed to do and the program should go on.
+<P>
+<LI>
+  <font size="3"><tt>PreprocessorDone</tt></font>
+<P>
+Returning this value means that the preprocessor has done what it was supposed to do and ScriptBasic should not, and indeed will not call any other preprocessors loaded for the actual "command".
+<P>
+<LI>
+  <font size="3"><tt>PreprocessorUnload</tt></font>
+<P>
+Returning this value means that the preprocessor has done all tasks it had to do and ScriptBasic should close the preprocessor, release all memory that the preprocessor has allocated using the call-back function <font size="3"><tt>alloc_Alloc</tt></font> and should unload the dynamic load library.
+<P>
+</UL>
+<P>
+The preprocessors function <font size="3"><tt>preproc</tt></font> may at any call return an <font size="3"><tt>int</tt></font> value. This value will be used by the interpreter as error code. This code is zero in case there was no error. This value has to be returned to ensure that the interpreter goes on. The error code <font size="3"><tt>1</tt></font> is used at any code in ScriptBasic to signal memory allocation problems. The symbolic constant <font size="3"><tt>COMMAND_ERROR_PREPROCESSOR_ABORT</tt></font> can be used to tell the interpreter to stop. For example the sample debugger preprocessor uses this error code when the user gives the command <font size="3"><tt>q</tt></font> to quit debugging.<HR>
+<A HREF="devguide_5.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

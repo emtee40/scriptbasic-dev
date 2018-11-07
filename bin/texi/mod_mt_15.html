@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE>Documentation of the module mt: 15. mt::LockRead "variablename"</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module mt: mt::LockRead "variablename"">
+<META NAME="keywords" CONTENT="Documentation of the module mt: mt::LockRead "variablename"">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_mt_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>15. mt::LockRead "variablename"</H1>
+<A HREF="mod_mt_14.html">[&lt;&lt;&lt;]</A> <A HREF="mod_mt_16.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Lock mt variable for read protection. Several concurrent programs can read lock a variable,
+but so long as long there are read locks no program can write lock a variable.
+<P>
+The function will wait until it can lock the variable. A variable can not be read locked if
+the variable is write locked or there is a write lock waiting for the variable.<HR>
+<A HREF="mod_mt_14.html">[&lt;&lt;&lt;]</A> <A HREF="mod_mt_16.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

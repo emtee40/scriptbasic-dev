@@ -1,0 +1,73 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.8. Memory Allocation</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Memory Allocation">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Memory Allocation">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+</UL>
+</UL>
+<P>
+<H1>2.8. Memory Allocation</H1>
+<A HREF="devguide_2.7.1.13.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_2.8.1.html">2.8.1. Functions implemented in this module</A><BR>
+<UL>
+<A HREF="devguide_2.8.1.1.html">2.8.1.1. Multi-thread use of this module</A><BR>
+<A HREF="devguide_2.8.1.2.html">2.8.1.2. alloc_InitSegment()</A><BR>
+<A HREF="devguide_2.8.1.3.html">2.8.1.3. alloc_GlobalUseGlobalMutex()</A><BR>
+<A HREF="devguide_2.8.1.4.html">2.8.1.4. alloc_SegmentLimit()</A><BR>
+<A HREF="devguide_2.8.1.5.html">2.8.1.5. alloc_FreeSegment()</A><BR>
+<A HREF="devguide_2.8.1.6.html">2.8.1.6. alloc_FinishSegment()</A><BR>
+<A HREF="devguide_2.8.1.7.html">2.8.1.7. alloc_Alloc()</A><BR>
+<A HREF="devguide_2.8.1.8.html">2.8.1.8. alloc_Free()</A><BR>
+<A HREF="devguide_2.8.1.9.html">2.8.1.9. alloc_Merge()</A><BR>
+<A HREF="devguide_2.8.1.10.html">2.8.1.10. alloc_MergeAndFinish()</A><BR>
+<A HREF="devguide_2.8.1.11.html">2.8.1.11. alloc_InitStat()</A><BR>
+<A HREF="devguide_2.8.1.12.html">2.8.1.12. alloc_GlobalGetStat()</A><BR>
+<A HREF="devguide_2.8.1.13.html">2.8.1.13. alloc_GetStat()</A><BR>
+<HR>
+<P>
+This module is a general purpose memory allocation module, which can be used in any project
+that needs heavy and sophisticated memory allocation. Originally the module was developed for
+the ScriptBasic project. Later we used it for Index.hu Rt AdEgine project and multi-thread
+features were introduced.
+<P>
+The major problem with memory allocation is that memory should be released. Old programs depend
+on the operating system to release the memory when the process exists and do not release the memory
+before program termination. Such programs are extremely difficult to port to multi-thread operation.
+In multi thread operation a thread my exit, but the memory still belongs to the process that goes on.
+<P>
+This module provides a bit of abstraction that helps the programmer to release the memory. The abstraction is
+the following:
+<P>
+A piece of memory is always allocated from a segment. A segment is logical entity and you should not think of
+a segment in this content as a continuous memory area. I could also say that: whenever a piece of 
+memory is allocated it is assigned to a segment. When a piece of memory is released it is removed from the segment.
+A segment is an administrative entity that keep track of the memory pieces that were allocated and assigned to the
+segment.
+<P>
+To explain segment to the fines details: segments are implemented as linked lists. Each element of the list contains
+the allocated memory piece as well as a pointer to the next and previous list members.
+<P>
+Whenever the programmer starts a sophisticated task that allocates several memory pieces it has to create a new segment
+and allocate the memory from that segment. When the memory is to be release the programmer can just say: release all the
+memory from the segment. This way he or she does not need keep track of the allocated memory structures, and walk through
+the memory pointers of his or her program which are designed to the program function instead of releasing the memory.
+<P>
+The overhead is the space allocated by two pointers for each memory piece and the size of the three pointers for
+each segment.<HR>
+<A HREF="devguide_2.7.1.13.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.8.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

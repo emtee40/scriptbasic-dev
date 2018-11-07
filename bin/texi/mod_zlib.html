@@ -1,0 +1,69 @@
+<HEAD>
+<TITLE>Documentation of the module zlib</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module zlib: Table of Contents">
+<META NAME="keywords" CONTENT="Documentation of the module zlib: Table of Contents">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<H1>Documentation of the module zlib</H1>
+<H3>by Peter Verhas</H3>
+<A NAME="contents"><H2>Table of Contents</H2></A>
+<UL>
+<A HREF="#1.">1.   Introduction</A><BR>
+<A HREF="#2.">2.   Zlib functions</A><BR>
+<A HREF="#3.">3.   Compress a string</A><BR>
+<A HREF="#4.">4.   Uncompress a string</A><BR>
+<A HREF="#5.">5.   Compress a file</A><BR>
+<A HREF="#6.">6.   Uncompress a file</A><BR>
+</UL>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="1."><H1>1. Introduction</H1></A>
+
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="2."><H1>2. Zlib functions</H1></A>
+
+To use these function the program has to import the file <font size="3"><tt>zlib.bas</tt></font>
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import zlib.bas
+</PRE></FONT>
+--------------------------------------
+<P>
+The functions in this module are:<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="3."><H1>3. Compress a string</H1></A>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+CompressedString = zlib::Compress(UncompressedString)
+</PRE></FONT>
+This function implements a simple compression interface.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4."><H1>4. Uncompress a string</H1></A>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+UncompressedString = zlib::UnCompress(CompressedString)
+</PRE></FONT>
+This function implements a simple uncompression interface.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="5."><H1>5. Compress a file</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+zlib::gzip input_file [,output_file]
+</PRE></FONT>
+This command compresses a file.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="6."><H1>6. Uncompress a file</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+zlib::gunzip input_file [,output_file]
+</PRE></FONT>
+This command uncompresses a file.
+ 
+

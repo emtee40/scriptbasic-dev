@@ -1,0 +1,44 @@
+HOW TO COMPILE THIS MODULE UNDER WINDOWS USING VISUAL C++
+
+To compile this module you should have the zlibs.lib library installed in the
+development environment. To achieve that download the ZLIB source code. Unfortunately
+there is no official binary distribution of zlib. On the other hand it is 
+very easy to compile the library frm source code.
+
+The download of the library can be from the page:
+
+                           http://www.gzip.org/zlib/
+
+The version of zlib last time, when I wrote (February 16, 2005) this note
+was 1.2.1 November 17, 2005. Thus zlib is quite stable and changes rarely.
+This note may, however not be appropriate for other versions of the library.
+
+Extract the source into a directory (C:\ZLIB)
+
+Open a command prompt and CD into C:\ZLIB. Edit the file C:\ZLIB\WIN32\MAKEFILE.MSC
+
+Edit the compiler options from
+
+CFLAGS  = -nologo -MD -O2 $(LOC)
+
+to
+
+CFLAGS  = -nologo -MT -O2 $(LOC)
+
+This is needed because all ScriptBasic modules are linked with the multi-thread C
+run-time. Save the file and type:
+
+nmake -f WIN32\MAKEFILE.MSC
+
+After the library was compiled copy the header files (*.h) to the Visual C++ compiler
+include directory and the library zlibs.lib to the Visual C++ compiler library directory.
+
+copy *.h "D:\Program Files\Microsoft Visual Studio .NET\Vc7\include"
+copy zlibs.lib "D:\Program Files\Microsoft Visual Studio .NET\Vc7\lib"
+
+After this you can compile this module using the ScriptBasic development command
+
+setup --module=zlib
+
+Peter Verhas
+February 16, 2005

@@ -1,0 +1,47 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.4.3.43. ex_Command_l()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_Command_l()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_Command_l()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.4.html">2.4. Syntax Analyzer</A><BR>
+<UL><a href="devguide_2.4.3.html">2.4.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.4.3.43. ex_Command_l()</H1>
+<A HREF="devguide_2.4.3.42.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.44.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function goes over the source lines and performs the syntax analysis. This 
+function calls the function <a href="devguide_2.4.3.42.html">ex_Command_r()</A>. When that function returns it
+allocated the list nodes that chain up the individual lines. It also defines
+the labels that are waiting to be defined.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int ex_Command_l(peXobject pEx,
+                  peNODE_l *Result
+  )@{
+</PRE></FONT>
+When all the lines are done this function cleans the name space stack,
+check for undefined labels that remained undefined still the end 
+of the source file.<HR>
+<A HREF="devguide_2.4.3.42.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.44.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

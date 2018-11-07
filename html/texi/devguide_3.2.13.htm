@@ -1,0 +1,32 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Destroying the Program Object</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Destroying the Program Object">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Destroying the Program Object">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Destroying the Program Object</H1>
+<A HREF="devguide_3.2.12.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Although the program is executed and has finished still there is something extremely important that the application has to do: clean-up.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  scriba_destroy(pProgram);
+<P>
+
+</PRE></FONT>
+<P>
+The call to <a href="devguide_3.3.2.htm">scriba_destroy</A> releases all resources (memory) that were allocated to execute the BASIC program. Calling this function is not mandatory in a single process application that executes only one interpreter and exits from the process. In that case not calling this function the operating system is going to release the resources. However this is a bad practice.<HR>
+<A HREF="devguide_3.2.12.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

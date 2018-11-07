@@ -1,0 +1,91 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.1.2. Execute external preprocessors</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Execute external preprocessors">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Execute external preprocessors">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.1.html">2.1. External Preprocessor</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.1.2. Execute external preprocessors</H1>
+<A HREF="devguide_2.1.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function executes the external preprocessors that are
+needed to be executed either by the command line options or
+driven by the extensions.
+<P>
+The command line option preprocessors are executed as listed
+in the character array <font size="3"><tt>ppszArgPreprocessor</tt></font>. These preprocessors
+are checked to be run first.
+<P>
+If there is no preprocessors defined on the command line then the
+preprocessors defined in the config file for the extensions are
+executed. The input file name is also modified by the code.
+The input file name is modified so that it will contain the source
+code file name after the preprocessing.
+<P>
+The return value of the function is the error code. This is <font size="3"><tt>PREPROC_ERROR_SUCCESS</tt></font>
+if the preprocessing was successful. This value is zero. If the return
+value is positive this is one of the error codes defined in the file <font size="3"><tt>errcodes.def</tt></font>
+prefixed by <font size="3"><tt>PREPROC_</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int epreproc(ptConfigTree pCONF,
+             char *pszInputFileName,
+             char **pszOutputFileName,
+             char **ppszArgPreprocessor,
+             void *(*thismalloc)(unsigned int),
+             void (*thisfree)(void *)
+  )@{
+</PRE></FONT>
+<P>
+The first argument <font size="3"><tt>pCONF</tt></font> is the configuration data pointer which is passed to the
+configuration handling routines.
+<P>
+The second argument <font size="3"><tt>pszInputFileName</tt></font> is the pointer to the pointer to the input file name.
+<P>
+The third argument is an output variable. This will point to the output file name upon success
+or to NULL. If this variable is NULL then an error has occured or the file needed no preprocessing.
+The two cases can be separated based on the return value of the function. If the file needed
+preprocessing and the preprocessing was successfully executed then this variable will point
+to a ZCHAR string allocated via the function <font size="3"><tt>thismalloc</tt></font>. This is the responsibility of the
+caller to deallocate this memory space after use calling the function pointed by <font size="3"><tt>thisfree</tt></font>.
+<P>
+The fourth argument <font size="3"><tt>ppszArgPreprocessor</tt></font> is an array of preprocessors to be used
+on the input file. This array contains pointers that point to ZCHAR strings.
+The ZCHAR strings contain the symbolic names of the external preprocessors that
+are defined in the configuration file. The configuration file defines
+the actual executable for the preprocessor and the temporary directory where the
+preprocessed file is stored. The final element of this pointer array should be <font size="3"><tt>NULL</tt></font>.
+If the pointer <font size="3"><tt>ppszArgPreprocessor</tt></font> is <font size="3"><tt>NULL</tt></font> or the pointer array pointed by this
+contains only the terminating <font size="3"><tt>NULL</tt></font> pointer then the extensions of the file name are
+used to determine what preprocessors are to be applied. Preprocessors are applied from
+left to right order of the file extensions.
+<P>
+The arguments <font size="3"><tt>thismalloc</tt></font> and <font size="3"><tt>thisfree</tt></font> should point to <font size="3"><tt>malloc</tt></font> and <font size="3"><tt>free</tt></font> or to
+a similar functioning function pair. These functions will be used via the <font size="3"><tt>myalloc.c</tt></font> module
+and also to allocate the new <font size="3"><tt>pszOutputFileName</tt></font> string in case of success. This means that the
+caller should use the function pointed by <font size="3"><tt>thisfree</tt></font> to release the string pointed by
+<font size="3"><tt>pszOutputFileName</tt></font> after the function has returned.
+<P>
+ <HR>
+<A HREF="devguide_2.1.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

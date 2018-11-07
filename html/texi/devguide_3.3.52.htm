@@ -1,0 +1,52 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_LoadProgramString()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_LoadProgramString()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_LoadProgramString()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_LoadProgramString()</H1>
+<A HREF="devguide_3.3.51.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.53.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this function to convert a string containing a BASIC program
+that is already in memory to ready-to-run binary format. This function
+is same as <a href="devguide_3.3.51.htm">scriba_LoadSourceProgram()</A> except that this function reads the source
+code from a string instead of a file.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_LoadProgramString(pSbProgram pProgram,
+                             char *pszSourceCode,
+                             unsigned long cbSourceCode
+  )@{
+</PRE></FONT>
+The argument <font size="3"><tt>pProgram</tt></font> is the program object. The argument <font size="3"><tt>pszSourceCode</tt></font>
+is the BASIC program itself in text format. Because the source code may
+contain ZCHAR just for any chance the caller has to provide the number of
+characters in the buffer via the argument <font size="3"><tt>cbSourceCode</tt></font>. In case the
+source program is zero terminated the caller can simply say
+<font size="3"><tt>strlen(pszSourceCode)</tt></font> to give this argument.
+<P>
+Before calling this function the function <a href="devguide_3.3.18.htm">scriba_SetFileName()</A> may be called. Altough
+the source code is read from memory and thus there is no source file the
+BASIC program may use the command <font size="3"><tt>include</tt></font> or <font size="3"><tt>import</tt></font> that includes
+another source file after reading the code. If the program does so the reader
+functions need to know the actual file name of the source code to find
+the file to be included. To help this process the caller using this function
+may set the file name calling <a href="devguide_3.3.18.htm">scriba_SetFileName()</A>. However that file is never used
+and need not even exist. It is used only to calculate the path of included files
+that are specified using relative path.
+<P>
+The return value is zero (<font size="3"><tt>SCRIBA_ERROR_SUCCESS</tt></font>) or the error code returned by the
+underlying layer that has detected the error.<HR>
+<A HREF="devguide_3.3.51.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.53.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: besSET_RETURN_STRING(X)</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besSET_RETURN_STRING(X)">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besSET_RETURN_STRING(X)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>besSET_RETURN_STRING(X)</H1>
+<A HREF="devguide_4.5.213.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.215.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this program to return a string value. The argument of the macro should be a zero terminated
+string. 
+<P>
+The macro allocates the return string, copies the content of the string to the allocated space.
+This macro does NOT return from the function that uses it. It allows the function to execute
+some extra code before returning from the function, for example to release the string
+variable passed as argument to this macro.
+<P>
+If the return value can not be allocated the macro returns with COMMAND_ERROR_MEMORY_LOW.
+<P>
+If the argument is <font size="3"><tt>NULL</tt></font> the macro will set the return value to be <font size="3"><tt>NULL</tt></font> (BASIC value <font size="3"><tt>undef</tt></font>).
+<P>
+The macro evaluates its argument twice.<HR>
+<A HREF="devguide_4.5.213.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.215.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

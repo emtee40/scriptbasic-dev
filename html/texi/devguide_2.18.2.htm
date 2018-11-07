@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: options_Set</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: options_Set">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: options_Set">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>options_Set</H1>
+<A HREF="devguide_2.18.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.18.3.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Set option data
+<P>
+This function sets a long value for an option. If the option
+did not exist before in the symbol table it is inserted. If the
+symbol table was empty (aka <font size="3"><tt>OptionsTable</tt></font> pointed <font size="3"><tt>NULL</tt></font>) the
+symbol table is also created.
+<P>
+If the symbol already existed with some <font size="3"><tt>long</tt></font> value then the new value
+is stored in the already allocated place and thus the caller
+may store the pointer to the long returned by <a href="devguide_htm">GetR</A> and access 
+possibly updated data without searching the table again and again.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int options_Set(pExecuteObject pEo,
+                char *name,
+                long value
+  )@{
+</PRE></FONT>
+The function returns zero if the option was set or <font size="3"><tt>1</tt></font> if there was a memory failure.<HR>
+<A HREF="devguide_2.18.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.18.3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

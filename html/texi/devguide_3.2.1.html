@@ -1,0 +1,49 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.2.1. Include Header Files</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Include Header Files">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Include Header Files">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.2.html">3.2. Sample Embedding</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.2.1. Include Header Files</H1>
+<A HREF="devguide_3.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<P>
+The main program of the standalone variation is implemented in the file `<font size="3"><tt>scribacmd.c</tt></font>'. If you look at the start of this program you can see that it start including the file `<font size="3"><tt>scriba.h</tt></font>'. This file contains all definitions that are needed by the C compiler to compile the code calling the <font size="3"><tt>scriba_</tt></font> API functions.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
+<P>
+#include "../../getopt.h"
+#include "../../scriba.h"
+<P>
+#include "../../basext.h"
+</PRE></FONT>
+<P>
+In case you miss the file `<font size="3"><tt>scriba.h</tt></font>' then you should generate it using the program `<font size="3"><tt>headerer.pl</tt></font>' or `<font size="3"><tt>headerer.bas</tt></font>' which are also part of the distribution. C header files in ScriptBasic are not maintained by themselves. The text is rather maintained inside the C code, and is extracted using one of these scripts. (They do the same task.) The reason for this is to eliminate the double maintenance of function prototypes in the C and in the header file.
+<P>
+The file `<font size="3"><tt>basext.h</tt></font>' is also <font size="3"><tt>#include</tt></font>d by the main program. This is not usually needed by other main programs. The standalone version needs it for the sole reason to be able to print out on the usage screen the extension module interface version that the actual interpreter support. This version is defined in the macro <font size="3"><tt>INTERFACE_VERSION</tt></font>. Other than that there is no reason or need to include any other file than `<font size="3"><tt>scriba.h</tt></font>'.<HR>
+<A HREF="devguide_3.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

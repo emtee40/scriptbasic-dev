@@ -1,0 +1,49 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.2.2. Function main(), Variable Declarations</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Function main(), Variable Declarations">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Function main(), Variable Declarations">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.2.html">3.2. Sample Embedding</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.2.2. Function main(), Variable Declarations</H1>
+<A HREF="devguide_3.2.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.3.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<P>
+After some macro definitions that I do not list here the start of the function <font size="3"><tt>main</tt></font> comes:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+main(int argc, char *argv[], char *env[]){
+<P>
+. . . .  variable declarations . . . . . 
+<P>
+
+  pSbProgram pProgram;
+<P>
+
+. . . .  variable declarations . . . . . 
+<P>
+</PRE></FONT>
+<P>
+This piece of code defines the local variables. The variable <font size="3"><tt>pProgram</tt></font> will hold the pointer to the program object or simply saying <font size="3"><tt>pProgram</tt></font> is the program object variable. The other variables are not described here, their names and the code where they are used should make their usage and purpose clear.<HR>
+<A HREF="devguide_3.2.1.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.2.3.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

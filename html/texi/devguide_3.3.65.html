@@ -1,0 +1,84 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.3.65. scriba_SetVariable()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_SetVariable()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_SetVariable()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.3.65. scriba_SetVariable()</H1>
+<A HREF="devguide_3.3.64.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.66.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function sets the value of a global BASIC variable. You can call this function after
+executing the program before it is reexecuted or after successfull call to <a href="devguide_3.3.54.html">scriba_NoRun()</A>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_SetVariable(pSbProgram pProgram,
+                       long lSerial,
+                       int type,
+                       long lSetValue,
+                       double dSetValue,
+                       char *pszSetValue,
+                       unsigned long size
+  )@{
+</PRE></FONT>
+The argument <font size="3"><tt>lSerial</tt></font> should be the serial number of the global variable
+as returned by <a href="devguide_3.3.62.html">scriba_LookupVariableByName()</A>.
+<P>
+The argument <font size="3"><tt>type</tt></font> should be one of the followings:
+<P>
+<UL>
+<LI> <font size="3"><tt>SBT_UNDEF</tt></font>
+<LI> <font size="3"><tt>SBT_DOUBLE</tt></font>
+<LI> <font size="3"><tt>SBT_LONG</tt></font>
+<LI> <font size="3"><tt>SBT_STRING</tt></font>
+<LI> <font size="3"><tt>SBT_ZCHAR</tt></font>
+@end itemize
+<P>
+The function uses one of the arguments <font size="3"><tt>lSetValue</tt></font>, <font size="3"><tt>dSetValue</tt></font> or <font size="3"><tt>pszSetValue</tt></font> and
+the other two are ignored based on the value of the argument <font size="3"><tt>type</tt></font>.
+<P>
+If the value of the argument <font size="3"><tt>type</tt></font> is <font size="3"><tt>SBT_UNDEF</tt></font> all initialization arguments are ignored and the
+global variable will get the value <font size="3"><tt>undef</tt></font>.
+<P>
+If the value of the argument <font size="3"><tt>type</tt></font> is <font size="3"><tt>SBT_DOUBLE</tt></font> the argument <font size="3"><tt>dSetValue</tt></font> will be used and the global
+variable will be double holding the value.
+<P>
+If the value of the argument <font size="3"><tt>type</tt></font> is <font size="3"><tt>SBT_LONG</tt></font> the argument <font size="3"><tt>lSetValue</tt></font> will be used and the global
+variable will be long holding the value.
+<P>
+If the value of the argument <font size="3"><tt>type</tt></font> is <font size="3"><tt>SBT_STRING</tt></font> the argument <font size="3"><tt>pszSetValue</tt></font> 
+will be used and the global variable will be long holding the value. The length of the string
+should in this case be specified by the variable <font size="3"><tt>size</tt></font>.
+<P>
+If the value of the argument <font size="3"><tt>type</tt></font> is <font size="3"><tt>SBT_ZCHAR</tt></font> the argument <font size="3"><tt>pszSetValue</tt></font> 
+will be used and the global variable will be long holding the value. The length of the string
+is automatically calculated and the value passed in the variable <font size="3"><tt>size</tt></font> is ignored. In this case the
+string <font size="3"><tt>pszSetValue</tt></font> should be zero character terminated.
+<P>
+The funtion returns <font size="3"><tt>SCRIBA_ERROR_SUCCESS</tt></font> on success,
+<P>
+<font size="3"><tt>SCRIBA_ERROR_MEMORY_LOW</tt></font> if the data cannot be created or
+<P>
+<font size="3"><tt>SCRIBA_ERROR_FAIL</tt></font> if the parameter <font size="3"><tt>lSerial</tt></font> is invalid. <HR>
+<A HREF="devguide_3.3.64.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.66.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

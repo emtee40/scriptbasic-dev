@@ -1,0 +1,87 @@
+module unicode
+
+declare option DeclareVars
+
+' ---------------------------------------------
+REM some fundamental constants
+
+UNI_REPLACEMENT_CHAR = 0x0000FFFD
+UNI_MAX_BMP          = 0x0000FFFF
+UNI_MAX_UTF16        = 0x0010FFFF
+UNI_MAX_UTF32        = 0x7FFFFFFF
+UNI_MAX_LEGAL_UTF32  = 0x0010FFFF
+
+
+' ---------------------------------------------
+REM error codes returned by the functions
+
+REM conversion successful
+conversionOK    = 0
+REM partial character in source, but hit end
+sourceExhausted = 1
+REM insuff. room in target for conversion
+targetExhausted = 2
+REM source sequence is illegal/malformed
+sourceIllegal   = 3
+
+
+
+' ---------------------------------------------
+REM conversion type contants
+strictConversion  = 0
+lenientConversion = 1
+
+REM used for shifting by 10 bits */
+halfShift = 2#10000000000
+
+halfBase = 0x0010000
+halfMask = 0x3FF
+
+UNI_SUR_HIGH_START  = 0xD800
+UNI_SUR_HIGH_END    = 0xDBFF
+UNI_SUR_LOW_START   = 0xDC00
+UNI_SUR_LOW_END     = 0xDFFF
+
+function ConvertUTF32toUTF16 (source, flags)
+  local result
+  result = conversionOK
+  local target
+  target = ""
+  while len(source) > 0
+  local ch
+
+  ' fetch the next four bytes from the source
+  unpack source by "U4" to ch
+  source = mid(source,4)
+
+  ' target is a character <= 0xFFFF
+  if ch <= UNI_MAX_BMP then
+    ' UTF-16 surrogate values are illegal in UTF-32; 0xffff or 0xfffe are both reserved values */
+    if ch >= UNI_SUR_HIGH_START and ch <= UNI_SUR_LOW_END then
+      if flags == strictConversion then
+        result = sourceIllegal;
+        exit function
+      else
+       target = target & pack("U2",UNI_REPLACEMENT_CHAR)
+      endif
+    else
+      target = target & pack("U2",ch)
+    end if
+  elsif ch > UNI_MAX_LEGAL_UTF32 then
+    if flags == strictConversion then
+      result = sourceIllegal;
+      exit function
+    else
+     target = target & pack("U2",UNI_REPLACEMENT_CHAR)
+    endif
+  else
+   ' target is a character in range 0xFFFF - 0x10FFFF
+   ch -= halfBase
+   target = target & pack("U2", ((ch * halfShift) + UNI_SUR_HIGH_START) )
+   target = target & pack("U2", ((ch and halfMask) + UNI_SUR_LOW_START) )
+  wend
+  ConvertUTF32toUTF16 = target
+end function
+
+
+end module

@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_SetProcessSbObject()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_SetProcessSbObject()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_SetProcessSbObject()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_SetProcessSbObject()</H1>
+<A HREF="devguide_3.3.25.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.27.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this program in multi-thread environment to tell the actual interpreter
+which object is the process level pseudo object that 
+<P>
+<UL>
+<LI> holds the shared (among interpreter thread objects) configuration 
+information (see <a href="devguide_3.3.22.htm">scriba_InheritConfiguration()</A>)
+<LI> holds the process level module interface (see <a href="devguide_3.3.24.htm">scriba_InheritModuleInterface()</A>)
+<LI> holds the list of loaded modules that are not unloaded by the thread loaded the module
+@end itemize
+<P>
+If the embeddingprogram calls this function there is no need to call <a href="devguide_3.3.22.htm">scriba_InheritConfiguration()</A>
+and <a href="devguide_3.3.24.htm">scriba_InheritModuleInterface()</A>. This function call does all those tasks and also other things.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_SetProcessSbObject(pSbProgram pProgram,
+                              pSbProgram pProcessObject
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_3.3.25.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.27.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

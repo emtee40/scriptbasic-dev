@@ -1,0 +1,36 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: ex_Expression_i</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_Expression_i">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_Expression_i">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ex_Expression_i</H1>
+<A HREF="devguide_2.4.3.35.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.37.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function is called to analyze a sub-expression that has no lower precedence operators
+than <font size="3"><tt>i</tt></font> (unless enclosed in parentheses inside the sub expression).
+<P>
+If the argument variable <font size="3"><tt>i</tt></font> is <font size="3"><tt>1</tt></font> then this function simply calls <a href="devguide_2.4.3.35.htm">ex_Tag</A>. Otherwise it
+calls itself recursively twice with optionally compiling the operator between the 
+two subexpressions.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+peNODE ex_Expression_i(peXobject pEx,
+                       int i
+  )@{
+</PRE></FONT>
+The function returns pointer to the new node.<HR>
+<A HREF="devguide_2.4.3.35.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.37.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

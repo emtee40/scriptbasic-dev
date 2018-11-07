@@ -1,0 +1,46 @@
+<HEAD>
+<TITLE>Documentation of the module cgi: 8. cgi::SaveFile("param","filename")</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module cgi: cgi::SaveFile("param","filename")">
+<META NAME="keywords" CONTENT="Documentation of the module cgi: cgi::SaveFile("param","filename")">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_cgi_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>8. cgi::SaveFile("param","filename")</H1>
+<A HREF="mod_cgi_7.html">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_9.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+This function can be used to save an uploaded file into a file on disk. The first argument is the name of 
+the CGI parameter. The second argument is the desired file name. This file will be created and the content
+of the uploaded data is written into it. If the file already existed it is going to be deleted.
+<P>
+Note that the first argument is the name of the CGI parameter and not the name of the file. This is the 
+string that appears in the tag name in the input field of type file. In the following example the argument 
+should be <font size="3"><tt>"FILE-UPLOAD-NAME"</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+&lt;FORM METHOD="POST" ACTION="echo.bas" ENCTYPE="multipart/form-data"&gt;
+&lt;INPUT TYPE="FILE" VALUE="FILE-UPLOAD-VALUE" NAME="FILE-UPLOAD-NAME"&gt;
+&lt;INPUT TYPE="SUBMIT" NAME="SUBMIT-BUTTON" VALUE="UPLOAD FILE"&gt;
+&lt;/FORM&gt;
+</PRE></FONT>
+<P>
+Files are uploaded in binary format. This means that applications accepting text file uploads should take 
+care of the conversion. The current version of the CGI module does not support the conversion process. 
+<P>
+The CGI parameter names are case sensitive according to the CGI standard.<HR>
+<A HREF="mod_cgi_7.html">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_9.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

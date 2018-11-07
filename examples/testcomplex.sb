@@ -1,0 +1,15 @@
+import complex.bas
+
+A = COMPLEX::NumberRI(3,4)
+print COMPLEX::pprint(A)
+print
+print COMPLEX::Abs(A)
+print
+A = COMPLEX::NumberAA(1,PI)
+print COMPLEX::pprint(A)
+print
+print COMPLEX::Abs(A)
+print
+print COMPLEX::Angle(A)
+print
+

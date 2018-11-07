@@ -1,0 +1,40 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: handle_GetPointer</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: handle_GetPointer">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: handle_GetPointer">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>handle_GetPointer</H1>
+<A HREF="devguide_2.13.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.13.3.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c GetPointer
+<P>
+This function is the opposite of <a href="devguide_htm">GetHandle</A>. If a pointer was
+stored in the handle array this function can be used to retrieve the
+pointer knowing the handle.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void *handle_GetPointer(void **pHandle,
+                        unsigned long handle
+  )@{
+</PRE></FONT>
+<UL>
+<LI> The first argument <font size="3"><tt>pHandle</tt></font> is the pointer to the handle array.
+=ite, The second argument <font size="3"><tt>handle</tt></font> is the handle of the pointer.
+@end itemize
+<P>
+If there was not pointer registered with that handle the return value of the
+function is <font size="3"><tt>NULL</tt></font>.<HR>
+<A HREF="devguide_2.13.1.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.13.3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

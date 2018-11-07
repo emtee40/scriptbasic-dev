@@ -1,0 +1,43 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.17.8. modu_UnloadModule</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: modu_UnloadModule">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: modu_UnloadModule">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.17.html">2.17. Module Management</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.17.8. modu_UnloadModule</H1>
+<A HREF="devguide_2.17.7.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.17.9.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+@c Unload the named module
+<P>
+This function unloads the named module. Note that this function is not
+called unless some extension module calls it to unload another module.
+<P>
+Currently there is no support for a module to unload itself.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int modu_UnloadModule(pExecuteObject pEo,
+                      char *pszLibraryFile
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.17.7.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.17.9.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

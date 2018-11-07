@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: besUNLOADALLMODULES</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: besUNLOADALLMODULES">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: besUNLOADALLMODULES">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>besUNLOADALLMODULES</H1>
+<A HREF="devguide_4.5.74.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.76.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This macro calls the function <a href="devguide_2.17.7.htm">modu_UnloadAllModules</A>. This will unload all modules that are
+not active. Because this macro is called by an extension that is a module itself the calling module
+will not be unloaded.
+<P>
+A module is active if there is a function called in the module and the module did not return from the
+function call yet. Typically there can be only one active module at a time unless some
+modules call each other in tricky ways through the ScriptBasic module calling functions. Therefore
+calling this macro practically unloads all modules but the very one using this macro.
+<P>
+See also <a href="devguide_4.5.76.htm">besUNLOADMODULE</A>.<HR>
+<A HREF="devguide_4.5.74.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.76.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

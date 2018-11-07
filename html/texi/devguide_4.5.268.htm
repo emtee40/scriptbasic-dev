@@ -1,0 +1,34 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: INITLOCK</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: INITLOCK">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: INITLOCK">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>INITLOCK</H1>
+<A HREF="devguide_4.5.267.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.269.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Whent he process first time loads an extension and the extension wants to decide whether
+to unload it or keep in memory it needs a counter and a mutex to access the counter
+to declare the counter the extension should use the macro SUPPORT_MULTITHREAD and
+to initialize it it should use the macro INIT_MULTITHREAD
+<P>
+Note that the call-back functions to handle the mutexes OS independant are not available
+by the time when the OS calls DllMain on NT or _init on UNIX, thus the code should call
+system dependant functions directly
+<P>
+IsThisTheVeryFirstThreadCallingTheModule &lt;- name of the function
+ <HR>
+<A HREF="devguide_4.5.267.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_4.5.269.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

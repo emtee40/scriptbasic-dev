@@ -1,0 +1,33 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: memory_Mortalize()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: memory_Mortalize()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: memory_Mortalize()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>memory_Mortalize()</H1>
+<A HREF="devguide_2.9.1.21.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.23.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function should be used when a variable is to be put in a mortal list.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void memory_Mortalize(pFixSizeMemoryObject p,
+                      pMortalList pMortal
+  )@{
+</PRE></FONT>
+Note that care should be taken to be sure that the variable is NOT on a mortal
+list. If the variable is already on a mortal list calling this function will
+break the original list and therefore may loose the variables that follow this one.<HR>
+<A HREF="devguide_2.9.1.21.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.9.1.23.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

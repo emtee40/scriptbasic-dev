@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: file_curdir</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: file_curdir">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: file_curdir">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>file_curdir</H1>
+<A HREF="devguide_2.16.30.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.32.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Get the current working directory
+<P>
+The first argument should point to a buffer having space for at least
+<font size="3"><tt>cbBuffer</tt></font> characters. The function will copy the name of the current
+directory into this buffer. 
+<P>
+Return value is zero on success. If the current directory can not be
+retrieved or the buffer is too short the return value is -1.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int file_curdir(char *Buffer,
+                unsigned long cbBuffer
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.16.30.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.16.32.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

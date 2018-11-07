@@ -1,0 +1,44 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.3.21. scriba_GetConfigFileName()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_GetConfigFileName()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_GetConfigFileName()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.3.21. scriba_GetConfigFileName()</H1>
+<A HREF="devguide_3.3.20.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.22.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function tells whet the configuration file is. There is no need to call this function to read the configuration file.
+This is needed only when the main program want to manipulate the configuration file in some way. For example the command
+line version of ScriptBasic uses this function when the option <font size="3"><tt>-k</tt></font> is used to compile a configuration file.
+<P>
+The first argument has to be a valid ScriptBasic program object. The second argument should point to a valid <font size="3"><tt>char *</tt></font> pointer that
+will get the pointer value to the configuration file name after the function returns.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_GetConfigFileName(pSbProgram pProgram,
+                             char **ppszFileName
+  )@{
+</PRE></FONT>
+The function returns zero if no error happens, or the error code.<HR>
+<A HREF="devguide_3.3.20.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.22.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

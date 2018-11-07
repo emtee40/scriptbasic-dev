@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: thread_LockMutex</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: thread_LockMutex">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: thread_LockMutex">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>thread_LockMutex</H1>
+<A HREF="devguide_2.14.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.14.6.htm">[&gt;&gt;&gt;]</A>
+<P>
+@c Lock a mutex object
+<P>
+Calling this function locks the mutex pointed by the argument. If the mutex is currently locked the
+calling thread will wait until the mutex becomes available.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void thread_LockMutex(PMUTEX pMutex
+  )@{
+</PRE></FONT>
+Arguments:
+<UL>
+<LI> <font size="3"><tt>pMutex</tt></font> should point to an initialized mutex variable of the type <font size="3"><tt>MUTEX</tt></font>
+@end itemize<HR>
+<A HREF="devguide_2.14.4.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.14.6.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

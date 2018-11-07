@@ -1,0 +1,58 @@
+<HEAD>
+<TITLE>Using the module HASH: 5.4. Exists</TITLE>
+
+<META NAME="description" CONTENT="Using the module HASH: Exists">
+<META NAME="keywords" CONTENT="Using the module HASH: Exists">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_hash_toc.html">[Contents]</A><BR>
+<UL><a href="mod_hash_5.html">5. Using the module</A><BR>
+</UL>
+</UL>
+<P>
+<H1>5.4. Exists</H1>
+<A HREF="mod_hash_5.3.html">[&lt;&lt;&lt;]</A> <A HREF="mod_hash_5.5.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+hash::Exists(h,key)
+hash::Exists(h)
+</PRE></FONT>
+
+This function should be used to get the information if a given key exists in the hash. This is different than checking the value assigned to the key comparing against <font size="3"><tt>undef</tt></font>, because the key may exist and have an assigned value of <font size="3"><tt>undef</tt></font>. The function returns true if the key exists in the hash and returns false if the function does not exist in the hash.
+
+If the function is used with a single argument representing the handle to the hash the function checks that the iteration pointer is pointing to an existing key. This feature should be used to check the end of an iteration.
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import hash.bas
+
+h = hash::New()
+
+for i=1 to 10
+hash::SetValue h,"q"&amp;i,i
+next i
+
+hash::Start h
+while hash::Exists(h)
+  print hash::ThisKey(h)," ",hash::ThisValue(h)
+  print
+  hash::Next h
+wend
+
+hash::Release h
+@end examoke
+<HR>
+<A HREF="mod_hash_5.3.html">[&lt;&lt;&lt;]</A> <A HREF="mod_hash_5.5.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

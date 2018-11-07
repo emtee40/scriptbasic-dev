@@ -1,0 +1,34 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: Preprocessors</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Preprocessors">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Preprocessors">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Preprocessors</H1>
+<A HREF="devguide_4.5.269.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.1.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+ScriptBasic is capable handling two kind of preprocessors. One is external preprocessors, the other one is internal preprocessor. The names <I>external</I> and the <I>internal</I> distinguish between the execution type of these preprocessors. External preprocessors are executed in a separate process. Internal preprocessors run in the interpreter thread.
+<P>
+Because of this external preprocessors are standalone command line tools, which may be written for any application and not specifically for ScriptBasic. You can edit the ScriptBasic configuration file so that you can use the C preprocessor, <font size="3"><tt>m4</tt></font> or <font size="3"><tt>jamal</tt></font> as a preprocessor. It is fairly easy to write an external preprocessor compared to internal preprocessors. External preprocessor reads a file and creates an output file. It need not know anything about the internal structures of ScriptBasic. Then only thing a ScriptBasic external preprocessor writer has to know is what it wants to do and how to read and write files.
+<P>
+Internal preprocessors are implemented in dynamic link libraries, work closely together with ScriptBasic and can not be started standalone. Internal preprocessors are written specifically for ScriptBasic and can and should access many of ScriptBasic internal structures.
+<P>
+From this you can see that external preprocessors are much easier to write, while internal preprocessors have much more possibilities. An internal preprocessor can never started as external and vice versa.
+<P>
+Before starting to write a preprocessor you have to carefully check what you want to gain and decide if you want to write an external preprocessor or an internal.
+<P>
+Because external preprocessors are just standalone programs and there is even a sample preprocessor HEB written in BASIC this chapter talks about the internal preprocessor capabilities. <a href="devguide_2.1.htm">External Preprocessor</A><HR>
+<A HREF="devguide_4.5.269.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.1.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

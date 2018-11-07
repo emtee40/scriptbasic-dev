@@ -1,0 +1,55 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.4.3.9. _ex_PushLabel()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: _ex_PushLabel()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: _ex_PushLabel()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.4.html">2.4. Syntax Analyzer</A><BR>
+<UL><a href="devguide_2.4.3.html">2.4.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.4.3.9. _ex_PushLabel()</H1>
+<A HREF="devguide_2.4.3.8.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.10.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function is used to push an unnamed label on the compile time stack.
+For more detailed defintion of the unnamed labels and this stack see the
+documentation of the function <a href="devguide_html">ex_PopLabel()</A>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int _ex_PushLabel(peXobject pEx,
+                  pSymbolLABEL pLbl,
+                  long Type,
+                  void *pMemorySegment
+  )@{
+</PRE></FONT>
+<P>
+The argument <font size="3"><tt>Type</tt></font> is used to define the type of the unnamed label. This is usually defined
+in the table created by the program <font size="3"><tt>syntaxer.pl</tt></font>
+<P>
+=bold
+Do NOT get confused! This stack is NOT the same as the waiting label stack. That is usually for named
+labels.
+=nobold
+<P>
+However the non-named labels are also pushed on that stack before they get value.<HR>
+<A HREF="devguide_2.4.3.8.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.10.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

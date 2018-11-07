@@ -1,0 +1,1672 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\input texinfo @c -*-texinfo-*-
+@c %**start of header
+@setfilename auxfiles
+@settitle ScriptBasic development auxilliarry files
+@setchapternewpage odd
+@c %**end of header
+@ifinfo
+@end ifinfo
+
+@titlepage
+@title ScriptBasic development auxilliarry files
+@author Peter Verhas
+
+@page
+@vskip 0pt plus 1filll
+
+@end titlepage
+@summarycontents
+@contents
+
+@menu
+@end menu
+
+@chapter Introduction
+
+This documentation describes some of the auxiliary files that were created and are used in the ScriptBasic project. These are UNIX shell scripts, Windows NT command files, Perl programs that ease the maintenance of the developers and automate such tasks as creating a new build.
+
+It is not the intention of the creator of this document to have anyone to read this documentation throughly and to learn its content. This is rather a reference book that helps to understand, which file implements which tool and how to invoke them.
+
+But I do not try to prevent you to read it in case you want.
+
+@chapter Directory Structure
+
+
+ScriptBasic is usually developed on a Windows 2000 Professional workstation. Linux is used to test the portability. Files are uploaded via SMB and @code{GNU} command line tools are used to build the binaries.
+
+The source of ScriptBasic on the development station is  @file{\MyProjects\sb\source}.
+
+The actual location of the source code root should not affect the building of the source.
+
+The directory structure of the source under this directory is the following:
+
+@example
+--- ScriptBasic core C source files,
+    def files, command files,
+    shell scripts, Perl scripts
+
+commands   --- all C source files that implement ScriptBasic commands
+deb        --- Debian package files
+deb/scriba     --- temporary directory that is filled by the script mkdeb.sh when
+                   creating a Debian package
+deb/DEBIAN     --- Debian package script files (source, these are copied into deb/scriba
+                   when building the package)
+examples   --- example BASIC program files
+extensions --- module extension files
+extensions/berkeley_db --- Berkeley DB module
+extensions/cgi         --- CGI module
+extensions/cio         --- Console Input Output module only for Windows NT
+extensions/gd          --- GD module to generate PNG graphics
+extensions/hash        --- hash module
+extensions/japi        --- Interface module to the graphics features of the Java AWT
+extensions/md5         --- md5 module
+extensions/mt          --- Multi-thread support module with session, locks and global variables
+extensions/mysql       --- MySQL interface
+extensions/noprint     --- Example module that switches off printing
+extensions/nt          --- Special Windows NT module
+extensions/re          --- Regular Expression module
+extensions/tools       --- Tools module
+extensions/trial       --- Example module mainly for test purposes
+extensions/ux          --- Special UNIX module
+extensions/zlib        --- zlib compression module
+filesdoc   --- auxilliary source file documentations
+gif        --- banner.gif file
+html       --- web page HTML source using the jamal preprocessor and ssplit.pl
+html/texi              --- texi.jam documentation source files. Should be processed with
+                           jamal.pl first to get texi
+include    --- BASIC include files for the modules
+preproc    --- a sample preprocessor. Note that preprocessor is experimental and will change in future.
+test       --- test programs
+tools      --- tool programs
+variations --- different variations of ScriptBasic
+variations/apacmodu   --- Apache module version of ScriptBasic. This variation was never developed and
+                          this thread of the development is stopped. Instead the httpd variation should
+                          be used together with the Apache web server.
+variations/httpd      --- Standalone web server variation.
+variations/standalone --- Standalone version that allows BASIC compile to C and link together with the
+                          runtime environment.
+variations/standard   --- The standard command line variation.
+variations/win32dll   --- Win32dll version that allows embedding of the program into WIN32 applications.
+                          This thread of the development was stopped and is not supported anymore. There
+                          are plans to support similar variations.
+variations/winisapi   --- Variation that executes web programs as ISAPI application. This version is not
+                          supported any more. Laster it may revitalized.
+@end example
+
+@chapter BASIC programs
+
+In this chapter I list the BASIC programs that are used as utility programs. Note that the BASIC samples are documented in a separate document.
+
+@section heber.bas
+
+This BASIC program is an external preprocessor for ScriptBasic. This demonstrates how simple to write an external preprocessor, as it can even be done in BASIC itself.
+
+This small program converts HTML Embedded BASIC (heb) into pure BASIC. HEB is something like PHP or Microsoft ASP BASIC, where the BASIC code is put between HTML code. This small preprocessor converts the heb file taking all HTML that is outside of the BASIC code and putting it into @code{print} statements, and all BASIC code that is inside HTML code putting outside.
+
+This is a sample implementation and has significant shortages. In case the BASIC program inside some string has @code{<%} or @code{>%} (which is not likely though possible) the preprocessor crates false code.
+
+The souce code of the file @file{heber.bas} is:
+@example
+while  len(InputText) > 0
+  StringPosition = InStr(InputText,"<%")
+  if not IsDefined(StringPosition) then goto Finished
+  AppendString = MidSAVEALLDOUBLESOBAKA$(InputText,1,StringPosition-1)
+  InputText = MidSAVEALLDOUBLESOBAKA$(InputText,StringPosition+2)
+  if len(AppendString) > 0 Then
+    AppendString = Replace(AppendString,"\\","\\\\")
+    AppendString = Replace(AppendString,"\"","\\\"")
+    OutputText = OutputText & "print \"\"\"" & AppendString & "\"\"\"\n"
+  end if
+  StringPosition = InStr(InputText,"%>")
+  if not IsDefined(StringPosition) then error(1)
+  AppendString = MidSAVEALLDOUBLESOBAKA$(InputText,1,StringPosition-1)
+  InputText = MidSAVEALLDOUBLESOBAKA$(InputText,StringPosition+2)
+  if len(AppendString) > 0 then
+    if MidSAVEALLDOUBLESOBAKA$(AppendString,1,1) = "=" then
+      AppendString = "print " & MidSAVEALLDOUBLESOBAKA$(AppendString,2)
+    end if
+    OutputText = OutputText & AppendString & "\n"
+  end if
+wend
+if len(InputText) > 0 then
+  InputText = Replace(InputText,"\"","\\\"")
+  OutputText = OutputText & "print \"\"\"" & InputText & "\"\"\"\n"
+end if
+
+@end example
+
+
+@section newbuild.bas Start a new build
+
+Whenever the development of a new build is started this program has to be executed. This will increase the build number stored in the file T<build.txt> and also creates the file @file{buildnum.c}
+
+The souce code of the file @file{newbuild.bas} is:
+@example
+on error goto FileOpenError
+BuildNumber = Command()
+if len(BuildNumber) > 0 then
+  BuildNumber += 0
+  goto BuildCalculated
+endif
+BuildCalculated:
+fn = 0
+FileToOpen = "build.txt"
+Doing = "write"
+open FileToOpen for output as fn
+print#fn,BuildNumber
+fn = 0
+FileToOpen = "buildnum.h"
+open FileToOpen for output as fn
+This file was automatically created by newbuild.bas
+Each time a new build is to be released this program
+is ran and it increments the build number.
+"""
+close fn
+#ifndef SCRIPTBASIC_BUILD
+#define SCRIPTBASIC_BUILD """,BuildNumber,"""
+#endif
+*/
+"""
+fn = 0
+FileToOpen = "pack.cmd"
+Doing = "read"
+s = t::LoadString(FileToOpen)
+If re::m( s,"(.*)SET BUILD=([0-9]+)(.*)") then
+  s = re::SAVEALLDOUBLESOBAKA$(1) & "SET BUILD=" & BuildNumber & re::SAVEALLDOUBLESOBAKA$(3)
+  Doing = "write"
+  t::SaveString FileToOpen,s
+Else
+  print "\npack.cmd does not contain build version\n"
+Endif
+stop
+
+@end example
+
+
+@section cbbfc.bas Convert Basic Binary Format Command
+
+This program reads a ScriptBasic binary format file
+and replaces the leading interpreter specification
+by the one specified by the user.
+
+For example a program was developed on a machine having
+scriba in the directory /usr/bin. The first line of the
+bbf file is then @code{#!/usr/bin/scriba}
+To run this bbf file without having the original source file
+on a machine having scriba on @code{/usr/local/bin} this first line
+has to be replaced. This is not a simple task, because
+the bbf file is binary.
+
+The souce code of the file @file{cbbfc.bas} is:
+@example
+cmdlin = command()
+on error goto usage
+if left(FileSAVEALLDOUBLESOBAKA$,1) = "#" then
+  i = 1
+  while i < len(FileSAVEALLDOUBLESOBAKA$) and mid(FileSAVEALLDOUBLESOBAKA$,i,1) <> "\n"
+    i = i+1
+  wend
+  if mid(FileSAVEALLDOUBLESOBAKA$,i,1) = "\n" then
+    FileSAVEALLDOUBLESOBAKA$ = "#!" & Interpreter & mid(FileSAVEALLDOUBLESOBAKA$,i,len(FileSAVEALLDOUBLESOBAKA$))
+  end if
+  open FileName for output as 1
+  binmode 1
+  print#1,FileSAVEALLDOUBLESOBAKA$
+  close 1
+end if
+stop
+usage:
+print """Usage:
+
+@end example
+
+
+@chapter Batch (.CMD) files
+
+These command files can be used to maintain the source files under Windows NT.
+
+@section mkdoc.cmd
+Create the on-line documentation
+
+This batch file creates the on-line documentations
+
+The souce code of the file @file{mkdoc.cmd} is:
+@example
+
+@end example
+
+
+@section mkcdoc.cmd
+
+Create the command reference
+
+This batch file creates the @file{command.html} file that contains the user reference
+documentation of the BASIC commands. The source of the documentation is maintained
+on the C source files that are in the directory @file{commands}. This way the reference
+documentation of a BASIC command is maintained together with the actual C code
+implementing the command.
+
+The souce code of the file @file{mkcdoc.cmd} is:
+@example
+
+@end example
+
+
+@section install.cmd
+
+This command file copies all the generated and documentation files into the root
+directory @file{\ScriptBasic} that belong to the final installation set under Win32.
+
+The souce code of the file @file{install.cmd} is:
+@example
+IF EXIST bin\vc7\exe\scriba.exe GOTO VC7INSTALL
+IF EXIST bin\bcc\exe\scriba.exe GOTO BCCINSTALL
+GOTO ENDLABEL
+:BCCINSTALL
+IF "%1" == "" GOTO BCCIPRD
+bin\bcc\exe\scriba install.sb %1 bcc
+GOTO ENDLABEL
+:BCCIPRD
+bin\bcc\exe\scriba install.sb T:\ScriptBasic bcc
+GOTO ENDLABEL
+
+@end example
+
+
+@section makerrs.cmd
+
+This command file creates the files @file{errcodes.c} and @file{errcodes.h} file from the file
+T<errors.def>. The file T<errors.def> contains the error messages in an easy to maintain and
+easy to read format. This bacth file using the Perl script @file{generrh.pl} creates
+the C source files for the error codes.
+
+The souce code of the file @file{makerrs.cmd} is:
+@example
+
+@end example
+
+
+@section mkweb.cmd
+
+This command file compiles the ScriptBasic web content. It has to be executed from the source root directory.
+
+The souce code of the file @file{mkweb.cmd} is:
+@example
+
+@end example
+
+
+@section mksyntax.cmd
+
+This command file runs the Perl script @file{syntaxer.pl} to create the @file{syntax.c} file
+from the file @file{syntax.def}
+
+The syntax definition of the BASIC language is defined in an easy to maintain text
+file named @file{syntax.def} and a Perl script @file{syntaxer.pl} creates the human-unreadable
+C source file from it that contains all the tables that drive the syntax analyzer.
+
+The souce code of the file @file{mksyntax.cmd} is:
+@example
+
+@end example
+
+
+@section precompile.cmd
+
+This command file performs all the tasks that are needed before the C compilation of ScriptBasic
+can start. This is
+
+@itemize
+@item creating the syntax tables from the text T<syntax.def> syntax definition
+@item creating the error codes and T<#define>s
+@item creating the header files from the C source files.
+@end itemize
+
+The souce code of the file @file{precompile.cmd} is:
+@example
+
+@end example
+
+
+@section pack.cmd
+
+This command file compiles all the ScriptBasic package for the Windows NT platform, copies
+the resulting files to the @file{\ScriptBasic} directory and creates the distribution
+ZIP files.
+
+Before releasing a new release this batch file has to be edited to alter the
+@code{%BUILD%} variable for the actual build.
+
+The souce code of the file @file{pack.cmd	} is:
+@example
+
+@end example
+
+@section mksamples.cms
+
+This command file converts a @code{.texi.jam} file in the directory @file{./html/texi} using @file{jamal.pl} to @code{.texi} files and then converts it using the Perl script @xref{t2h.pl} to html files into the directory @file{../html/texi}. The command also starts TeX to convert the texi file to dvi, ps and pdf as well as the Microsoft hhc help compiler to result compiled html file (chm).
+
+Running Jamal may result several @code{.bas} files in the temporary directory. This command file puts them into a @code{tgz} archive and copies to the directory @file{html/texi}.
+
+The command file deletes all auxiliary files when done.
+
+The script has to be executed from the source directory and should get a single argument that is the name of the documentation file without any extension. For example
+
+@example
+call mkth samplebas
+@end example
+
+This command is similar to @xref{mkth.com} except that this file also cares the resulting BASIC sample files.
+
+@section mkth.cmd
+
+This command file converts a @code{.texi.jam} files in the directory @file{./html/texi} using @file{jamal.pl} to @code{.texi} files and then converts it using the Perl script @xref{t2h.pl} to html files into the directory @file{../html/texi}. The command also starts TeX to convert the texi file to dvi, ps and pdf as well as the Microsoft hhc help compiler to result compiled html file (chm). The command file deletes all auxiliary files when done.
+
+The script has to be executed from the source directory and should get a single argument that is the name of the documentation file without any extension. For example
+
+@example
+call mkth auxfiles
+@end example
+
+will convert the file @file{auxfiles.texi.jam} (the source file for this text) to @file{auxfiles_toc.html} and @file{auxfiles_xxx.html} files in the appropriate html directory.
+
+The command file @xref{mkath.cmd} calls this command file for each @code{.texi.jam} file.
+
+The souce code of the file @file{mkth.cmd} is:
+@example
+perl ..\..\..\jamal.pl ..\%1.texi.jam %1.texi
+perl ..\..\..\t2h.pl %1.texi %1
+mkdir ..\..\..\..\html\texi\
+gzip %1.rtf
+copy %1.rtf.gz ..\..\..\..\html\texi\
+hhc %1.hhp
+copy %1.chm ..\..\..\..\html\texi\
+rm -rf ..\..\..\..\html\texi\%1
+mkdir ..\..\..\..\html\texi\%1
+copy *.html ..\..\..\..\html\texi\%1\
+cd ..
+rm -rf tmp
+cd ..\..
+GOTO ENDLABEL
+:ENDLABEL
+
+@end example
+
+
+@section mkthl.cmd
+
+This command file should be used the same way as @xref{mkth.cmd}. This command file performs only minimal compilation, running only @file{jamal.pl} and @file{t2h.pl} on the documentation file, but does not run TeX or dviXX or Microsoft help compiler.
+
+This command file is to be used instead of @xref{mkth.cmd} when editing the documentation and there is a need for a fast proof reading, but you do not need all versions of the document.
+
+@section mkath.cmd
+
+This is a simple command script that calls @xref{mkth.cmd} for each @code{.texi.jam} file that
+is in the @file{./html/texi} directory.
+
+The souce code of the file @file{mkath.cmd} is:
+@example
+
+@end example
+
+
+@chapter C source files
+
+The C source files are documented in a separate document in more detail that the scope of this
+document.
+
+@chapter Configuration files
+
+Configuration files in the source package hold default values that are shipped with the
+program. Each "setuper" has to edit the configuration file according to the
+local needs and recompile it using @file{cftc.exe} or @file{cftc} (UNIX).
+
+There are two configuration files currently in the source:
+
+@itemize
+@item @file{scriba.conf.lsp} configuration source file in LSP format for WIN32 setup
+@item @file{scriba.conf.unix.lsp} configuration source file in LSP format for UNIX (Debian Linux setup)
+@end itemize
+
+@chapter Definition files
+
+This chapter lists the definition files. These files are used to have a maintainable format instead of complex C syntax. The definition files have simple syntax and are converted into C source file.
+
+@section errors.def
+
+This file contains the error constant definitions. This file is converted to C source file using the Perl script @file{generrh.pl}
+
+The source code of the file is not included in
+this documentation because the file itself is too long for the purpose.
+
+@section syntax.def
+
+This file contains the syntax definition of the language ScriptBasic. This syntax definition is converted to C source file containing syntax definition tables using the Perl script
+@file{syntaxer.pl}.
+
+The souce code of the file @file{syntax.def} is:
+@example
+%FILE syntax
+#%HFILE syntax.h
+#%CFILE syntax.c
+%COMMANDS
+EMPTY: nl noexec
+LOCAL: 'local' local_list nl noexec
+PRAGMA: 'declare' 'option' pragma nl noexec
+OPTION: 'option' absolute_symbol expression
+# Compare
+! sbCaseSensitive   0x00000000
+! sbCaseInsensitive 0x00000001
+! sbMathErrDiv          0x00000001
+! sbMathErrUndef        0x00000002
+! sbMathErrUndefCompare 0x00000004
+CUNDEF:       'undef' lval_list nl
+CBYVAL:       'byval' lval_list nl
+# the different looping statements that are common in BASIC
+# the ordering of the defintion *IS* important
+WHILE:     'while' expression  go_forward(WHILE) come_back(WHILE) nl
+WEND:      'wend' go_back(WHILE) come_forward(WHILE) nl
+DOWHILE:   'do' 'while' expression go_forward(DO) come_back(DO) nl
+DOUNTIL:   'do' 'until' expression go_forward(DO) come_back(DO) nl
+LOOPWHILE: 'loop' 'while' expression go_back(LOOP) come_forward(LOOP) nl
+LOOPUNTIL: 'loop' 'until' expression go_back(LOOP) come_forward(LOOP) nl
+UNTIL:     'until' expression go_back(REPEAT) come_forward(REPEAT) nl
+LOOP:      'loop' go_back(DO) come_forward(DO) nl
+REPEAT:    'repeat' go_forward(REPEAT) come_back(REPEAT) nl
+DO:        'do' go_forward(LOOP) come_back(LOOP) nl
+# we allow a symbol after the next, but it does not help to recongnise nexting errors
+NEXTI:    'next' symbol go_back(FOR) come_forward(FOR) nl
+NEXT:    'next' go_back(FOR) come_forward(FOR) nl
+OPENDIR: 'open' 'directory' expression 'pattern' expression 'option' expression 'as' expression nl
+# predefined global constants
+! sbCollectDirectories   0xFFFFFFFE
+! sbCollectDots          0xFFFFFFFD
+! sbCollectRecursively   0xFFFFFFFB
+! sbCollectFullPath      0xFFFFFDFF
+! sbCollectFiles         0xFFFFFFFF
+! sbSortBySize           0xFFFFFFF7
+! sbSortByCreateTime     0xFFFFFFEF
+! sbSortByAccessTime     0xFFFFFFDF
+! sbSortByModifyTime     0xFFFFFFBF
+! sbSortByName           0xFFFFFF7F
+! sbSortByPath           0xFFFFFEFF
+! sbSortAscending        0xFFFFFBFF
+! sbSortDescending       0xFFFFFFFF
+! sbSortByNone           0xFFFFFFFF
+# file operations
+OPEN/OPEN:   'open' expression 'for' absolute_symbol 'as' expression 'len' '=' expression nl
+CLOSE:  'close' '#' expression nl
+CLOSE:  'close' expression nl
+SEEK:   'seek' '#' expression ',' expression nl
+SEEK:   'seek' expression ',' expression nl
+REWIND: 'rewind' '#' expression nl
+REWIND: 'rewind' expression nl
+RESET:  'reset' nl
+LINPUTF: 'line' 'input' '#' expression ',' lval nl
+LINPUT: 'line' 'input' lval nl
+TRUNCATEF: 'truncate' '#' expression ',' expression nl
+RLOCK: 'lock' 'region' '#' expression 'from' expression 'to' expression 'for' absolute_symbol nl
+RLOCK: 'lock' 'region'  expression 'from' expression 'to' expression 'for' absolute_symbol nl
+FLOCK: 'lock' '#' expression ',' absolute_symbol nl
+FLOCK: 'lock' expression ',' absolute_symbol nl
+MKDIR: 'mkdir' expression nl
+DELETEF: 'deltree' expression nl
+DELETE: 'delete' expression nl
+FCOPY: 'filecopy' expression ',' expression nl
+NAME: 'name' expression ',' expression nl
+CHDIR: 'chdir' expression nl
+SETFILE: 'set' 'file' expression absolute_symbol '=' expression nl
+BINMO: 'binmode' 'output' nl
+BINMI: 'binmode' 'input' nl
+TXTMO: 'textmode' 'output' nl
+TXTMI: 'textmode' 'input' nl
+BINMF: 'binmode' '#' expression nl
+BINMF: 'binmode' expression nl
+TXTMF: 'textmode' '#' expression nl
+TXTMF: 'textmode' expression nl
+SLEEP: 'sleep' expression nl
+PAUSE: 'pause' expression nl
+# list of unary operators
+%UNARIES
+PLUS:  +
+MINUS: -
+NOT: not
+BYVAL: byval
+EXTOPAC: +^
+EXTOPAD: +<
+EXTOPAE: +>
+EXTOPAF: +?
+EXTOPAG: +=
+EXTOPAH: +*
+EXTOPAI: +/
+EXTOPAJ: +%
+EXTOPAK: +!
+EXTOPAL: +#
+EXTOPAM: +&
+EXTOPAN: +\
+EXTOPAO: +`
+EXTOPAP: +'
+EXTOPAQ: +SAVEALLDOUBLESOBAKA
+EXTOPBC: -^
+EXTOPBD: -<
+EXTOPBE: ->
+EXTOPBF: -?
+EXTOPBG: -=
+EXTOPBH: -*
+EXTOPBI: -/
+EXTOPBJ: -%
+EXTOPBK: -!
+EXTOPBL: -#
+EXTOPBM: -&
+EXTOPBN: -\
+EXTOPBO: -`
+EXTOPBP: -'
+EXTOPBQ: -SAVEALLDOUBLESOBAKA
+EXTOPCC: ^^
+EXTOPCD: ^<
+EXTOPCE: ^>
+EXTOPCF: ^?
+EXTOPCG: ^=
+EXTOPCH: ^*
+EXTOPCI: ^/
+EXTOPCJ: ^%
+EXTOPCK: ^!
+EXTOPCL: ^#
+EXTOPCM: ^&
+EXTOPCN: ^\
+EXTOPCO: ^`
+EXTOPCP: ^'
+EXTOPCQ: ^SAVEALLDOUBLESOBAKA
+EXTOPDC: <^
+EXTOPDD: <<
+EXTOPDF: <?
+EXTOPDH: <*
+EXTOPDI: </
+EXTOPDJ: <%
+EXTOPDK: <!
+EXTOPDL: <#
+EXTOPDM: <&
+EXTOPDN: <\
+EXTOPDO: <`
+EXTOPDP: <'
+EXTOPDQ: <SAVEALLDOUBLESOBAKA
+EXTOPEC: >^
+EXTOPED: ><
+EXTOPEE: >>
+EXTOPEF: >?
+EXTOPEH: >*
+EXTOPEI: >/
+EXTOPEJ: >%
+EXTOPEK: >!
+EXTOPEL: >#
+EXTOPEM: >&
+EXTOPEN: >\
+EXTOPEO: >`
+EXTOPEP: >'
+EXTOPEQ: >SAVEALLDOUBLESOBAKA
+EXTOPFC: ?^
+EXTOPFD: ?<
+EXTOPFE: ?>
+EXTOPFF: ??
+EXTOPFG: ?=
+EXTOPFH: ?*
+EXTOPFI: ?/
+EXTOPFJ: ?%
+EXTOPFK: ?!
+EXTOPFL: ?#
+EXTOPFM: ?&
+EXTOPFN: ?\
+EXTOPFO: ?`
+EXTOPFP: ?'
+EXTOPFQ: ?SAVEALLDOUBLESOBAKA
+EXTOPGC: =^
+EXTOPGD: =<
+EXTOPGE: =>
+EXTOPGF: =?
+EXTOPGG: ==
+EXTOPGH: =*
+EXTOPGI: =/
+EXTOPGJ: =%
+EXTOPGK: =!
+EXTOPGL: =#
+EXTOPGM: =&
+EXTOPGN: =\
+EXTOPGO: =`
+EXTOPGP: ='
+EXTOPGQ: =SAVEALLDOUBLESOBAKA
+EXTOPHC: *^
+EXTOPHD: *<
+EXTOPHE: *>
+EXTOPHF: *?
+EXTOPHG: *=
+EXTOPHH: **
+EXTOPHI: */
+EXTOPHJ: *%
+EXTOPHK: *!
+EXTOPHL: *#
+EXTOPHM: *&
+EXTOPHN: *\
+EXTOPHO: *`
+EXTOPHP: *'
+EXTOPHQ: *SAVEALLDOUBLESOBAKA
+EXTOPIC: /^
+EXTOPID: /<
+EXTOPIE: />
+EXTOPIF: /?
+EXTOPIG: /=
+EXTOPIH: /*
+EXTOPII: //
+EXTOPIJ: /%
+EXTOPIK: /!
+EXTOPIL: /#
+EXTOPIM: /&
+EXTOPIN: /\
+EXTOPIO: /`
+EXTOPIP: /'
+EXTOPIQ: /SAVEALLDOUBLESOBAKA
+EXTOPJC: %^
+EXTOPJD: %<
+EXTOPJE: %>
+EXTOPJF: %?
+EXTOPJG: %=
+EXTOPJH: %*
+EXTOPJI: %/
+EXTOPJJ: %%
+EXTOPJK: %!
+EXTOPJL: %#
+EXTOPJM: %&
+EXTOPJN: %\
+EXTOPJO: %`
+EXTOPJP: %'
+EXTOPJQ: %SAVEALLDOUBLESOBAKA
+EXTOPKC: !^
+EXTOPKD: !<
+EXTOPKE: !>
+EXTOPKF: !?
+EXTOPKG: !=
+EXTOPKH: !*
+EXTOPKI: !/
+EXTOPKJ: !%
+EXTOPKK: !!
+EXTOPKL: !#
+EXTOPKM: !&
+EXTOPKN: !\
+EXTOPKO: !`
+EXTOPKP: !'
+EXTOPKQ: !SAVEALLDOUBLESOBAKA
+EXTOPLC: #^
+EXTOPLD: #<
+EXTOPLE: #>
+EXTOPLF: #?
+EXTOPLG: #=
+EXTOPLH: #*
+EXTOPLI: #/
+EXTOPLJ: #%
+EXTOPLK: #!
+EXTOPLL: ##
+EXTOPLM: #&
+EXTOPLN: #\
+EXTOPLO: #`
+EXTOPLP: #'
+EXTOPLQ: #SAVEALLDOUBLESOBAKA
+EXTOPMC: &^
+EXTOPMD: &<
+EXTOPME: &>
+EXTOPMF: &?
+EXTOPMG: &=
+EXTOPMH: &*
+EXTOPMI: &/
+EXTOPMJ: &%
+EXTOPMK: &!
+EXTOPML: &#
+EXTOPMM: &&
+EXTOPMN: &\
+EXTOPMO: &`
+EXTOPMP: &'
+EXTOPMQ: &SAVEALLDOUBLESOBAKA
+EXTOPNC: \^
+EXTOPND: \<
+EXTOPNE: \>
+EXTOPNF: \?
+EXTOPNG: \=
+EXTOPNH: \*
+EXTOPNI: \/
+EXTOPNJ: \%
+EXTOPNK: \!
+EXTOPNL: \#
+EXTOPNM: \&
+EXTOPNN: \\
+EXTOPNO: \`
+EXTOPNP: \'
+EXTOPNQ: \SAVEALLDOUBLESOBAKA
+EXTOPOC: `^
+EXTOPOD: `<
+EXTOPOE: `>
+EXTOPOF: `?
+EXTOPOG: `=
+EXTOPOH: `*
+EXTOPOI: `/
+EXTOPOJ: `%
+EXTOPOK: `!
+EXTOPOL: `#
+EXTOPOM: `&
+EXTOPON: `\
+EXTOPOO: ``
+EXTOPOP: `'
+EXTOPOQ: `SAVEALLDOUBLESOBAKA
+EXTOPPC: '^
+EXTOPPD: '<
+EXTOPPE: '>
+EXTOPPF: '?
+EXTOPPG: '=
+EXTOPPH: '*
+EXTOPPI: '/
+EXTOPPJ: '%
+EXTOPPK: '!
+EXTOPPL: '#
+EXTOPPM: '&
+EXTOPPN: '\
+EXTOPPO: '`
+EXTOPPP: ''
+EXTOPPQ: 'SAVEALLDOUBLESOBAKA
+EXTOPQC: SAVEALLDOUBLESOBAKA^
+EXTOPQD: SAVEALLDOUBLESOBAKA<
+EXTOPQE: SAVEALLDOUBLESOBAKA>
+EXTOPQF: SAVEALLDOUBLESOBAKA?
+EXTOPQG: SAVEALLDOUBLESOBAKA=
+EXTOPQH: SAVEALLDOUBLESOBAKA*
+EXTOPQI: SAVEALLDOUBLESOBAKA/
+EXTOPQJ: SAVEALLDOUBLESOBAKA%
+EXTOPQK: SAVEALLDOUBLESOBAKA!
+EXTOPQL: SAVEALLDOUBLESOBAKA#
+EXTOPQM: SAVEALLDOUBLESOBAKA&
+EXTOPQN: SAVEALLDOUBLESOBAKA\
+EXTOPQO: SAVEALLDOUBLESOBAKA`
+EXTOPQP: SAVEALLDOUBLESOBAKA'
+EXTOPQQ: SAVEALLDOUBLESOBAKASAVEALLDOUBLESOBAKA
+EXTOPF: ?
+EXTOPK: !
+EXTOPL: #
+EXTOPO: `
+EXTOPQ: SAVEALLDOUBLESOBAKA
+%PRECEDENCE
+%PRECEDENCE
+MULT: *
+DIV: /
+IDIV: \
+MOD: %
+%PRECEDENCE
+CONCATENATE: &
+%PRECEDENCE
+EQ: =
+LT: <
+LE: <=
+GT: >
+GE: >=
+NE: <>
+%PRECEDENCE
+OR: or
+XOR: xor
+# built-in functions: name, min args, max args
+%FUNCTIONS
+SIN: sin 1 1
+ASIN: asin 1 1
+COS: cos 1 1
+ACOS: acos 1 1
+SGN: sgn 1 1
+ODD: odd 1 1
+GCD: gcd 2 100000
+LCM: lcm 2 100000
+EVEN: even 1 1
+SQR: sqr 1 1
+RND: rnd 0 0
+ABS: abs 1 1
+VAL: val 1 1
+PI: pi 0 0
+MAXINT: maxint 0 0
+MININT: minint 0 0
+TRUE: true 0 0
+FALSE: false 0 0
+FIX: fix 1 1
+INT: int 1 1
+INT: cint 1 1
+FRAC: frac 1 1
+CVD: cvd 1 1
+CVI: cvi 1 1
+CVL: cvl 1 1
+CVS: cvs 1 1
+MKD: mkd 1 1
+MKD: mkdSAVEALLDOUBLESOBAKA$ 1 1
+MKI: mki 1 1
+MKI: mkiSAVEALLDOUBLESOBAKA$ 1 1
+MKS: mks 1 1
+MKS: mksSAVEALLDOUBLESOBAKA$ 1 1
+MKL: mkl 1 1
+MKL: mklSAVEALLDOUBLESOBAKA$ 1 1
+UNDEF: undef 0 0
+ROUND: round 1 2
+LOG: log 1 1
+LOG10: log10 1 1
+POW: pow 1 1
+EXP: exp 1 1
+LEN: len 1 1
+ASC: asc 1 1
+LBOUND: lbound 1 1
+UBOUND: ubound 1 1
+ACOSECANT: acosecant 1 1
+ACTAN: actan 1 1
+ASECANT: asecant 1 1
+ATAN: atan 1 1
+ATN: atn 1 1
+COSECANT: cosecant 1 1
+COTAN: cotan 1 1
+COTAN2: cotan2 2 2
+HCOS: hcos 1 1
+HCOSECANT: hcosecant 1 1
+HCTAN: hctan 1 1
+HSECANT: hsecant 1 1
+HSIN: hsin 1 1
+HTAN: htan 1 1
+SECANT: secant 1 1
+TAN: tan 1 1
+TAN2: tan2 2 2
+BIN: bin 1 1
+OPTIONF: option 1 1
+LOC: loc 1 1
+LOF: lof 1 1
+FILELEN: filelen 1 1
+FREEFILE: freefile 0 1
+INPUTFUN: input 1 2
+EOFFUN: eof 1 1
+EODFUN: eod 1 1
+FTACCESS: fileaccesstime 1 1
+FTMODIFY: filemodifytime 1 1
+FTCREATED: filecreatetime 1 1
+FOWNER: fileowner 1 1
+ISDIR: isdirectory 1 1
+ISREG: isfile 1 1
+FILEXISTS: fileexists 1 1
+NEXTFILE: nextfile 1 1
+ENVIRON: environ 1 1
+ENVIRON: environSAVEALLDOUBLESOBAKA$ 1 1
+CURDIR: curdir 0 0
+COMMANDF: command 0 0
+ADDRESSF: address 1 1
+KILL: kill 1 1
+ICALLFUN: icall 1 2000000
+FCRYPT: crypt 2 2
+CREATEPROCESS: system 1 1
+CREATEPROCESSEX: execute 3 3
+WAITPID: waitpid 2 2
+FORK: fork 0 0
+
+@end example
+
+
+@section source.ziplist
+
+List of files and extensions to include into the source distribution
+of ScriptBasic WIN32 distribution.
+
+The souce code of the file @file{source.ziplist} is:
+@example
+
+@end example
+
+
+@section source.exziplist
+
+List of files and extensions to exclude from the source distribution
+of ScriptBasic WIN32 distribution.
+
+The souce code of the file @file{source.exziplist} is:
+@example
+
+@end example
+
+
+
+@chapter Perl files
+
+The Perl program used to automate the code maintenance are listed in this chapter.
+
+@section ssplit.pl
+
+This file splits the file @file{html/source.txt} into several Jamal files. This file is called from @xref{mkweb.pl}
+
+The souce code of the file @file{ssplit.pl} is:
+@example
+if( SAVEALLDOUBLESOBAKA$#ARGV == 0 && SAVEALLDOUBLESOBAKA$ARGV[0] eq '-h' )@{
+  print <<END__HELP;
+Source Splitter SAVEALLDOUBLESOBAKA$version
+Usage:
+This program splits a text file. The primary
+purpose of this tool was to maintain many small HTML files as a one
+somewhat larger jamal source, compile it using jamal and then split
+to small html files. The source file should contain lines
+to start a new file. The default directory is .
+            http://www.isys.hu/c/verhas/progs/perl/ssplit
+END__HELP
+  exit;
+  @}
+open(F,SAVEALLDOUBLESOBAKA$file) or die "Can not open SAVEALLDOUBLESOBAKA$file\n";
+while( <F> )@{
+  if( /^\s*%\s*dir\s+(.*?)\s*SAVEALLDOUBLESOBAKA$/ )@{
+    SAVEALLDOUBLESOBAKA$subdir = SAVEALLDOUBLESOBAKA$1;
+    next;
+    @}
+sub save_buffer @{
+  my SAVEALLDOUBLESOBAKA$file = shift;
+  if( open(OUT,"<SAVEALLDOUBLESOBAKA$file") )@{
+    my SAVEALLDOUBLESOBAKA$os = SAVEALLDOUBLESOBAKA$/; undef SAVEALLDOUBLESOBAKA$/;
+    my SAVEALLDOUBLESOBAKA$sbuffer = <OUT>;
+    SAVEALLDOUBLESOBAKA$/ = SAVEALLDOUBLESOBAKA$os;
+    close OUT;
+    return if SAVEALLDOUBLESOBAKA$buffer eq SAVEALLDOUBLESOBAKA$sbuffer;
+    @}
+  &make_dir(SAVEALLDOUBLESOBAKA$file);
+  open(OUT,">SAVEALLDOUBLESOBAKA$file") or die "Can not output SAVEALLDOUBLESOBAKA$file";
+  print OUT SAVEALLDOUBLESOBAKA$buffer;
+  close OUT;
+  @}
+  SAVEALLDOUBLESOBAKA$root = '';
+  for( SAVEALLDOUBLESOBAKAdlist )@{
+    SAVEALLDOUBLESOBAKA$root .= '/' if SAVEALLDOUBLESOBAKA$root;
+    SAVEALLDOUBLESOBAKA$root .= SAVEALLDOUBLESOBAKA$_; # take the next subdirectory
+    mkdir SAVEALLDOUBLESOBAKA$root, 0777 unless -d SAVEALLDOUBLESOBAKA$root
+    @}
+  @}
+
+@end example
+
+
+@section mkweb.pl
+
+This Perl script is invoked by @xref{mkweb.cmd} and it executes several Jamal processes for the web jamal files.
+
+The souce code of the file @file{mkweb.pl} is:
+@example
+
+@end example
+
+
+@section convert.pl
+
+This small utility opens all files in the current directory and below recursively and converts the files to contain UNIX line-feeds. This is needed when the files are copied from a DOS development station to UNIX via SMB.
+
+The souce code of the file @file{convert.pl} is:
+@example
+#
+# convert.pl
+# This small utility opens all files in the current directory and below recirsively and
+# converts the files to contain UNIX line-feeds. This is needed when the files are
+# copied from a DOS development station to to UNIX via SMB.
+#
+# The conversion does not harm files that are already UNIX LF.
+#
+%BADS = [];
+  if(  SAVEALLDOUBLESOBAKA$fn !~ /\./ )@{
+    #if there is no extension in the file name at all
+    return 0 if SAVEALLDOUBLESOBAKA$fn =~ /^MakefileSAVEALLDOUBLESOBAKA$/;
+    open(F,SAVEALLDOUBLESOBAKA$fn) or die "cannot open \nSAVEALLDOUBLESOBAKA$fn\n for reading to decide file type";
+    my SAVEALLDOUBLESOBAKA$l = <F>;
+    close F;
+    chomp SAVEALLDOUBLESOBAKA$l;
+    if( SAVEALLDOUBLESOBAKA$l =~ /^\#\!\s*\// )@{
+      return 0;
+      @}
+    return 1;
+    @}
+opendir(D,'.');
+SAVEALLDOUBLESOBAKAf = readdir(D);
+closedir(D);
+SAVEALLDOUBLESOBAKADirsLeft = ();
+SAVEALLDOUBLESOBAKA$qdir = '';
+while(1)@{
+  SAVEALLDOUBLESOBAKA$qdir = SAVEALLDOUBLESOBAKA$qdir . '/' if SAVEALLDOUBLESOBAKA$qdir;
+  for( SAVEALLDOUBLESOBAKAf )@{
+    if( -d "SAVEALLDOUBLESOBAKA$qdirSAVEALLDOUBLESOBAKA$_" )@{
+      push SAVEALLDOUBLESOBAKADirsLeft , "SAVEALLDOUBLESOBAKA$qdirSAVEALLDOUBLESOBAKA$_" unless SAVEALLDOUBLESOBAKA$_ eq '.' || SAVEALLDOUBLESOBAKA$_ eq '..';
+      @}else@{
+      push SAVEALLDOUBLESOBAKAfilist , "SAVEALLDOUBLESOBAKA$qdirSAVEALLDOUBLESOBAKA$_";
+      @}
+    @}
+  last if SAVEALLDOUBLESOBAKA$#DirsLeft == -1;
+  SAVEALLDOUBLESOBAKA$qdir = pop SAVEALLDOUBLESOBAKADirsLeft;
+  opendir(D,"SAVEALLDOUBLESOBAKA$qdir");
+  SAVEALLDOUBLESOBAKAf = readdir(D);
+  closedir(D);
+  @}
+for SAVEALLDOUBLESOBAKA$i ( SAVEALLDOUBLESOBAKAfilist )@{
+  if( ! isbinary(SAVEALLDOUBLESOBAKA$i) )@{
+    # get the file time (mtime)
+    my (SAVEALLDOUBLESOBAKA$dev,SAVEALLDOUBLESOBAKA$ino,SAVEALLDOUBLESOBAKA$mode,SAVEALLDOUBLESOBAKA$nlink,SAVEALLDOUBLESOBAKA$uid,SAVEALLDOUBLESOBAKA$gid,SAVEALLDOUBLESOBAKA$rdev,SAVEALLDOUBLESOBAKA$size,SAVEALLDOUBLESOBAKA$atime,SAVEALLDOUBLESOBAKA$mtime,SAVEALLDOUBLESOBAKA$ctime,SAVEALLDOUBLESOBAKA$blksize,SAVEALLDOUBLESOBAKA$blocks) = stat(SAVEALLDOUBLESOBAKA$i);
+    open(F,SAVEALLDOUBLESOBAKA$i) or die "cannot read SAVEALLDOUBLESOBAKA$i for converting\n";
+    SAVEALLDOUBLESOBAKA$ofile = '';
+    SAVEALLDOUBLESOBAKA$file = '';
+    while( <F> )@{
+      SAVEALLDOUBLESOBAKA$ofile .= SAVEALLDOUBLESOBAKA$_;
+      while( /\rSAVEALLDOUBLESOBAKA$/ || /\nSAVEALLDOUBLESOBAKA$/ )@{chop;@}
+      SAVEALLDOUBLESOBAKA$file .= "SAVEALLDOUBLESOBAKA$_\n";
+      @}
+    if( SAVEALLDOUBLESOBAKA$ofile ne SAVEALLDOUBLESOBAKA$file )@{
+      open(F,">SAVEALLDOUBLESOBAKA$i") or die "cannot write the file SAVEALLDOUBLESOBAKA$i for converting\n";
+      print F SAVEALLDOUBLESOBAKA$file;
+      close F;
+      utime SAVEALLDOUBLESOBAKA$atime,SAVEALLDOUBLESOBAKA$mtime,SAVEALLDOUBLESOBAKA$i;
+      chmod 0400,SAVEALLDOUBLESOBAKA$i;
+      @}
+    @}
+  @}
+my (SAVEALLDOUBLESOBAKA$dev,SAVEALLDOUBLESOBAKA$ino,SAVEALLDOUBLESOBAKA$mode,SAVEALLDOUBLESOBAKA$nlink,SAVEALLDOUBLESOBAKA$uid,SAVEALLDOUBLESOBAKA$gid,SAVEALLDOUBLESOBAKA$rdev,SAVEALLDOUBLESOBAKA$size,SAVEALLDOUBLESOBAKA$atime,SAVEALLDOUBLESOBAKA$mtime,SAVEALLDOUBLESOBAKA$ctime,SAVEALLDOUBLESOBAKA$blksize,SAVEALLDOUBLESOBAKA$blocks) = stat('../convert.pl');
+utime SAVEALLDOUBLESOBAKA$atime,SAVEALLDOUBLESOBAKA$mtime,'convert.pl';
+chmod 0500,'setup';
+exit 0;
+
+@end example
+
+
+@section esd2html.pl
+
+Create on-line documentation based on SDD files. This program was NOT developed for ScriptBasic. This is a general purpose source documentation package that was developed first for the Perl language but turned out to be useful for other languages like C.
+
+This tool is not going to be used anymore for the documentation of ScriptBasic. However you can still find the old definition files in the source tree and some source code may still contain old esd formatted documentation.
+
+The source code of the file is not included in
+this documentation because the file itself is too long for the purpose.
+
+@section generrh.pl
+
+This script reads the files @file{errors.def}, @file{build.txt} and creates the files @file{errcodes.c} and @file{include/error.bas}
+
+The file @file{errors.def} contains the used error symbols in an easy to maintain text format.
+
+
+The souce code of the file @file{generrh.pl} is:
+@example
+open(OUT,">errcodes.c") or die "Can not output errcodes.c";
+open(BAS,">include/error.bas") or die "Can nor output include/error.bas";
+print BAS <<BASEND;
+' This file was automatically generated by the program generrh.pl
+' using the error code definition file errors.def from the
+' ScriptBasic distribution
+'
+' This file is part of the ScriptBasic distribution and is
+' specific to the actual build it was shipped. Do not use
+' this file for any version or build of the ScriptBasic
+' interpreter other than the one this file was shipped.
+'
+' THIS FILE IS FOR V1.0 BUILD SAVEALLDOUBLESOBAKA$BUILD
+'
+Global Const sbErrorOK = 0
+Global Const sbErrorMemory = 1
+print OUT <<END;
+/* 
+FILE: errcodes.c
+HEADER: errcodes.h
+TO_HEADER:
+SAVEALLDOUBLESOBAKA$module = '';
+SAVEALLDOUBLESOBAKA$CurrentErrorCode = 2;
+SAVEALLDOUBLESOBAKA$LastErrorCode = 0;
+SAVEALLDOUBLESOBAKA$TextHashes = @{@};
+SAVEALLDOUBLESOBAKA$ErrorType = 0; # 0 is compile type, 1 is run time error
+  next if /^\s*\#/;
+  if( /\%CT\s*SAVEALLDOUBLESOBAKA$/ )@{
+    SAVEALLDOUBLESOBAKA$ErrorType = 0;
+    next;
+    @}
+  @}
+close F;
+print OUT "typedef struct @{ char *language; char **array; @} tErrorMessageArray;\n";
+print OUT "extern tErrorMessageArray ErrorMessageArray[];\n";
+print OUT "*/\n";
+while( (SAVEALLDOUBLESOBAKA$language,SAVEALLDOUBLESOBAKA$array) = each %@{SAVEALLDOUBLESOBAKA$TextHashes@} )@{
+  SAVEALLDOUBLESOBAKA$TextHashes->@{SAVEALLDOUBLESOBAKA$language@}->[0] = "SUCCESS";
+  print OUT "char *SAVEALLDOUBLESOBAKA$@{language@}_error_messages[] =@{\n";
+  for( SAVEALLDOUBLESOBAKA$i = 0 ; SAVEALLDOUBLESOBAKA$i < SAVEALLDOUBLESOBAKA$CurrentErrorCode ; SAVEALLDOUBLESOBAKA$i++ )@{
+    print OUT '"',SAVEALLDOUBLESOBAKA$TextHashes->@{SAVEALLDOUBLESOBAKA$language@}->[SAVEALLDOUBLESOBAKA$i],'"',",\n";
+    @}
+  print OUT "NULL\n@};\n";
+  @}
+
+@end example
+
+
+@section headerer.pl
+
+This Perl script reads the C source files one-by-one that are given on the command line and extracts the header information from the C file and creates the @file{.h} files.
+
+Note that in case the C file was not changed and thus the new header file is the same as the old one the program does not touch the header file and this way it does not force and @code{make} utility to recompile the source useless.
+
+The souce code of the file @file{headerer.pl} is:
+@example
+START_HERE:
+SAVEALLDOUBLESOBAKA$file = shift;
+exit unless defined SAVEALLDOUBLESOBAKA$file;
+SAVEALLDOUBLESOBAKA$header_file_name   = '';
+SAVEALLDOUBLESOBAKA$header_file_opened = 0;
+SAVEALLDOUBLESOBAKA$header_file        = undef;
+SAVEALLDOUBLESOBAKA$podon = 0;
+while( defined( SAVEALLDOUBLESOBAKA$_ = <F>) )@{
+  chomp;
+  if( /^\s*HEADER\s*:\s*(\S+)/ )@{
+    SAVEALLDOUBLESOBAKA$header_file_name = SAVEALLDOUBLESOBAKA$1;
+    next;
+    @}
+  if( /^\s*TO_HEADER\s*:/ )@{
+    &open_header_file;
+    SAVEALLDOUBLESOBAKA$podon = 0;               # no =POD is on by default
+    while( <F> )@{
+      chomp;
+      if( m@{^\s*=POD\s*SAVEALLDOUBLESOBAKA$@} )@{ # start POD
+        SAVEALLDOUBLESOBAKA$podon = 1;
+        next;
+        @}
+      if( m@{^\s*=CUT\s*SAVEALLDOUBLESOBAKA$@} )@{ # finish POD
+        SAVEALLDOUBLESOBAKA$podon = 0;
+        next;
+        @}
+      last if m@{^\s*\*/\s*SAVEALLDOUBLESOBAKA$@}; # finish copiing when the */ is reached
+      if( m@{^(.*?)//(.*)@} )@{   # chop off // comments
+        SAVEALLDOUBLESOBAKA$_ = SAVEALLDOUBLESOBAKA$1;
+        @}
+      s/\\\s*SAVEALLDOUBLESOBAKA$/\\/;           # delete trailing space after \
+      SAVEALLDOUBLESOBAKA$header_content .= "SAVEALLDOUBLESOBAKA$_\n" unless SAVEALLDOUBLESOBAKA$podon;
+      @}
+    next;
+    @}
+  if( m@{^\s*\.function\s+(\w+)\s*SAVEALLDOUBLESOBAKA$@} )@{
+    SAVEALLDOUBLESOBAKA$basic_function_name = SAVEALLDOUBLESOBAKA$1;
+    next;
+    @}
+  if( m@{^\s*besCOMMAND\((\w+)\)\s*SAVEALLDOUBLESOBAKA$@} )@{
+    SAVEALLDOUBLESOBAKA$module_function_name = SAVEALLDOUBLESOBAKA$1;
+    &open_bas_file;
+    push SAVEALLDOUBLESOBAKAbas_coms , [ "SAVEALLDOUBLESOBAKA$basic_function_name" , "SAVEALLDOUBLESOBAKA$module_function_name" ];
+    next;
+    @}
+SAVEALLDOUBLESOBAKA$header_content .= <<END;
+#ifdef __cplusplus
+@}
+#endif
+#endif
+END
+SAVEALLDOUBLESOBAKA$max_bas_function_name_len = 0;
+SAVEALLDOUBLESOBAKA$max_c_function_name_len   = 0;
+for SAVEALLDOUBLESOBAKA$sub ( SAVEALLDOUBLESOBAKAbas_coms )@{
+  SAVEALLDOUBLESOBAKA$max_bas_function_name_len = length( SAVEALLDOUBLESOBAKA$sub->[0] ) if length( SAVEALLDOUBLESOBAKA$sub->[0] ) > SAVEALLDOUBLESOBAKA$max_bas_function_name_len;
+  SAVEALLDOUBLESOBAKA$max_c_function_name_len   = length( SAVEALLDOUBLESOBAKA$sub->[1] ) if length( SAVEALLDOUBLESOBAKA$sub->[1] ) > SAVEALLDOUBLESOBAKA$max_c_function_name_len;
+  @}
+for SAVEALLDOUBLESOBAKA$sub ( SAVEALLDOUBLESOBAKAbas_subs )@{
+  #                 declare command xxx
+  SAVEALLDOUBLESOBAKA$bas_declares .= "declare sub     ::" .
+                         SAVEALLDOUBLESOBAKA$sub->[0] .       ' ' x (SAVEALLDOUBLESOBAKA$max_bas_function_name_len - length(SAVEALLDOUBLESOBAKA$sub->[0])) .
+                   " alias " .
+                   '"' . SAVEALLDOUBLESOBAKA$sub->[1] . '"' . ' ' x (SAVEALLDOUBLESOBAKA$max_c_function_name_len   - length(SAVEALLDOUBLESOBAKA$sub->[1])) .
+                   " lib \"SAVEALLDOUBLESOBAKA$module_name\"\n";
+  @}
+for SAVEALLDOUBLESOBAKA$sub ( SAVEALLDOUBLESOBAKAbas_coms )@{
+  SAVEALLDOUBLESOBAKA$bas_declares .= "declare command ::" .
+                         SAVEALLDOUBLESOBAKA$sub->[0] .       ' ' x (SAVEALLDOUBLESOBAKA$max_bas_function_name_len - length(SAVEALLDOUBLESOBAKA$sub->[0])) .
+                   " alias " .
+                   '"' . SAVEALLDOUBLESOBAKA$sub->[1] . '"' . ' ' x (SAVEALLDOUBLESOBAKA$max_c_function_name_len   - length(SAVEALLDOUBLESOBAKA$sub->[1])) .
+                   " lib \"SAVEALLDOUBLESOBAKA$module_name\"\n";
+  @}
+SAVEALLDOUBLESOBAKA$bas_content .= "\nend module\n";
+if( SAVEALLDOUBLESOBAKA$bas_file_opened )@{
+  if( open(H,"<SAVEALLDOUBLESOBAKA$open_bas_file_name") )@{
+    # check if the file is identical
+    my SAVEALLDOUBLESOBAKA$oldsep = SAVEALLDOUBLESOBAKA$/; undef SAVEALLDOUBLESOBAKA$/;
+    SAVEALLDOUBLESOBAKA$q = <H>;
+    close H;
+    SAVEALLDOUBLESOBAKA$/ = SAVEALLDOUBLESOBAKA$oldsep;
+    @}
+  if( SAVEALLDOUBLESOBAKA$q ne SAVEALLDOUBLESOBAKA$bas_content && SAVEALLDOUBLESOBAKA$open_bas_file_name )@{
+    open(H,">SAVEALLDOUBLESOBAKA$open_bas_file_name") or die "Can not open bas file SAVEALLDOUBLESOBAKA$open_bas_file_name";
+    print H SAVEALLDOUBLESOBAKA$bas_content;
+    close H;
+    @}
+  @}
+sub open_header_file @{
+  SAVEALLDOUBLESOBAKA$header_file_opened = 1;
+  # modify the header name so that it is created in the same directory as the source
+  my SAVEALLDOUBLESOBAKA$dir = SAVEALLDOUBLESOBAKA$file;
+  SAVEALLDOUBLESOBAKA$dir =~ s/\\/\//g; # leaning toothpicks effect :-) (convert \ to / for Win32 users)
+  if( SAVEALLDOUBLESOBAKA$dir =~ s/\/[^\/]+SAVEALLDOUBLESOBAKA$// )@{
+    SAVEALLDOUBLESOBAKA$open_header_file_name = "SAVEALLDOUBLESOBAKA$dir/SAVEALLDOUBLESOBAKA$header_file_name";
+    @}else@{
+    SAVEALLDOUBLESOBAKA$open_header_file_name = SAVEALLDOUBLESOBAKA$header_file_name;
+    @}
+  SAVEALLDOUBLESOBAKA$header_symbol = uc SAVEALLDOUBLESOBAKA$header_file_name;
+  SAVEALLDOUBLESOBAKA$header_symbol =~ s@{^.*/@}@{@};
+  SAVEALLDOUBLESOBAKA$header_symbol = '__'.SAVEALLDOUBLESOBAKA$header_symbol.'__';
+  SAVEALLDOUBLESOBAKA$header_symbol =~ s/\./_/g;
+  SAVEALLDOUBLESOBAKA$header_content .= <<END;
+/*
+SAVEALLDOUBLESOBAKA$header_file_name
+*/
+#ifndef SAVEALLDOUBLESOBAKA$header_symbol
+#define SAVEALLDOUBLESOBAKA$header_symbol 1
+#ifdef  __cplusplus
+extern "C" @{
+#endif
+END
+  @}
+  return if SAVEALLDOUBLESOBAKA$bas_file_opened;
+  return if ! SAVEALLDOUBLESOBAKA$bas_file_name ;
+  SAVEALLDOUBLESOBAKA$bas_content .= <<END;
+' """
+FILE: SAVEALLDOUBLESOBAKA$bas_file_name
+This file was generated by headerer.pl from the file SAVEALLDOUBLESOBAKA$input_file_name
+Do not edit this file, rather edit the file SAVEALLDOUBLESOBAKA$input_file_name and use
+headerer.pl to regenerate this file.
+"""
+END
+  @}
+
+@end example
+
+
+@section heber.pl
+
+Html Embedded Basic sample preprocessor.
+
+The souce code of the file @file{heber.pl} is:
+@example
+# we want to read the whole file into memory
+SAVEALLDOUBLESOBAKA$/ = undef;
+# open the file or exit 0 telling ScriptBasic that it has failed
+open(F,"<SAVEALLDOUBLESOBAKA$inputfile") or exit(0);
+SAVEALLDOUBLESOBAKA$input = <F>;
+close F;
+SAVEALLDOUBLESOBAKA$output = '';
+if( length(SAVEALLDOUBLESOBAKA$input) > 0 )@{
+  SAVEALLDOUBLESOBAKA$input =~ s/\"/\\\"/g;
+  SAVEALLDOUBLESOBAKA$output .= 'print """' . SAVEALLDOUBLESOBAKA$input . '"""' . "\n";
+  @}
+# open the output file or exit 0 telling ScriptBasic that it has failed
+open(F,">SAVEALLDOUBLESOBAKA$outputfile") or exit(0);
+print F SAVEALLDOUBLESOBAKA$output;
+close F;
+exit(0);
+
+@end example
+
+
+@section mkcdoc.pl
+
+Extract the BASIC command reference documentation from the C source files that are in the
+C source file in the directory @file{commands}
+
+The souce code of the file @file{mkcdoc.pl} is:
+@example
+my %SECTION;
+my %COMMAND;
+my %TITLE; # the title line of the command
+my %SUBTITLE; # the subtitle of the command
+my %DISPLAY; # the display of the command in the TOC
+my SAVEALLDOUBLESOBAKAfiles;
+my SAVEALLDOUBLESOBAKA$SourceFile;
+for SAVEALLDOUBLESOBAKA$SourceFile ( SAVEALLDOUBLESOBAKAfiles )@{
+  &ProcessFile( SAVEALLDOUBLESOBAKA$SourceFile );
+  @}
+&CreateOutput;
+&CreateTexiOutput;
+exit;
+  return unless open(F,"commands/SAVEALLDOUBLESOBAKA$file");
+  while( defined(SAVEALLDOUBLESOBAKA$line = <F>) )@{
+    if( SAVEALLDOUBLESOBAKA$line =~ /^\/\*\*(.*)\s*SAVEALLDOUBLESOBAKA$/ )@{
+      if( defined(SAVEALLDOUBLESOBAKA$ActualCommand) )@{
+        warn "The command SAVEALLDOUBLESOBAKA$ActualCommand was not closed. Closing implicitly.";
+        SAVEALLDOUBLESOBAKA$ActualCommand = undef;
+        @}
+      SAVEALLDOUBLESOBAKA$ActualCommand = SAVEALLDOUBLESOBAKA$1;
+      next;
+      @}
+    if( SAVEALLDOUBLESOBAKA$line =~ /^\*\// )@{
+      SAVEALLDOUBLESOBAKA$ActualCommand = undef;
+      next;
+      @}
+    if( SAVEALLDOUBLESOBAKA$line =~ /^=section\s+(.*)/ )@{
+      my SAVEALLDOUBLESOBAKAsections = split /\s+/ , SAVEALLDOUBLESOBAKA$1;
+      for SAVEALLDOUBLESOBAKA$section ( SAVEALLDOUBLESOBAKAsections )@{
+        push SAVEALLDOUBLESOBAKA@{SAVEALLDOUBLESOBAKA$SECTION@{SAVEALLDOUBLESOBAKA$section@}@},SAVEALLDOUBLESOBAKA$ActualCommand;
+        @}
+      next;
+      @}
+    if( SAVEALLDOUBLESOBAKA$line =~ /^=title\s+(.*)/ )@{
+      if( defined(SAVEALLDOUBLESOBAKA$TITLE@{SAVEALLDOUBLESOBAKA$ActualCommand@}) )@{
+        my SAVEALLDOUBLESOBAKA$err;
+        SAVEALLDOUBLESOBAKA$err = "Title is double defined for SAVEALLDOUBLESOBAKA$ActualCommand\n" .
+               "   " . SAVEALLDOUBLESOBAKA$TITLE@{SAVEALLDOUBLESOBAKA$ActualCommand@} . "\n" .
+               "   " . SAVEALLDOUBLESOBAKA$1 . "\n" ;
+        warn SAVEALLDOUBLESOBAKA$err;
+        @}
+      SAVEALLDOUBLESOBAKA$TITLE@{SAVEALLDOUBLESOBAKA$ActualCommand@} = SAVEALLDOUBLESOBAKA$1;
+      next;
+      @}
+    if( SAVEALLDOUBLESOBAKA$line =~ /^=subtitle\s+(.*)/ )@{
+      if( defined(SAVEALLDOUBLESOBAKA$SUBTITLE@{SAVEALLDOUBLESOBAKA$ActualCommand@}) )@{
+        warn "Subtitle is double defined for SAVEALLDOUBLESOBAKA$ActualCommand";
+        @}
+      SAVEALLDOUBLESOBAKA$SUBTITLE@{SAVEALLDOUBLESOBAKA$ActualCommand@} = SAVEALLDOUBLESOBAKA$1;
+      next;
+      @}
+    if( SAVEALLDOUBLESOBAKA$line =~ /^=display\s+(.*)/ )@{
+      if( defined(SAVEALLDOUBLESOBAKA$DISPLAY@{SAVEALLDOUBLESOBAKA$ActualCommand@}) )@{
+        warn "Title is double defined for SAVEALLDOUBLESOBAKA$ActualCommand";
+        @}
+      SAVEALLDOUBLESOBAKA$DISPLAY@{SAVEALLDOUBLESOBAKA$ActualCommand@} = SAVEALLDOUBLESOBAKA$1;
+      next;
+      @}
+sub CreateOutput @{
+  my SAVEALLDOUBLESOBAKA$command;
+  my SAVEALLDOUBLESOBAKA$lines;
+  my SAVEALLDOUBLESOBAKAcommands;
+  my SAVEALLDOUBLESOBAKA$section;
+  my SAVEALLDOUBLESOBAKAsections;
+  mkdir "../html";
+  open(F,">../html/commands.html") or die "Can not open output file.";
+  print F <<END;
+<HTML>
+<HEAD>
+<TITLE></TITLE>
+</HEAD>
+<BODY>
+<H1>ScriptBasic commands and functions reference</H1>
+  for SAVEALLDOUBLESOBAKA$section ( SAVEALLDOUBLESOBAKAsections )@{
+    print F "<a href=\"#section_SAVEALLDOUBLESOBAKA$section\">SAVEALLDOUBLESOBAKA$section</A>\n";
+    @}
+  for SAVEALLDOUBLESOBAKA$command ( SAVEALLDOUBLESOBAKAcommands )@{
+    my SAVEALLDOUBLESOBAKA$display;
+    SAVEALLDOUBLESOBAKA$display = SAVEALLDOUBLESOBAKA$command;
+    SAVEALLDOUBLESOBAKA$display = SAVEALLDOUBLESOBAKA$DISPLAY@{SAVEALLDOUBLESOBAKA$command@} if defined SAVEALLDOUBLESOBAKA$DISPLAY@{SAVEALLDOUBLESOBAKA$command@};
+    print F "<a href=\"#command_SAVEALLDOUBLESOBAKA$command\">SAVEALLDOUBLESOBAKA$display</A>\n";
+    @}
+  for SAVEALLDOUBLESOBAKA$section ( SAVEALLDOUBLESOBAKAsections )@{
+    print F "<H3><a name=\"section_SAVEALLDOUBLESOBAKA$section\">SAVEALLDOUBLESOBAKA$section</A></H3>\n";
+	print F "<FONT SIZE=\"1\">\n";
+    my SAVEALLDOUBLESOBAKAscommands = sort SAVEALLDOUBLESOBAKA@{SAVEALLDOUBLESOBAKA$SECTION@{SAVEALLDOUBLESOBAKA$section@}@};
+    my SAVEALLDOUBLESOBAKA$scommand;
+    for SAVEALLDOUBLESOBAKA$scommand (SAVEALLDOUBLESOBAKAscommands)@{
+      my SAVEALLDOUBLESOBAKA$display;
+      SAVEALLDOUBLESOBAKA$display = SAVEALLDOUBLESOBAKA$scommand;
+      SAVEALLDOUBLESOBAKA$display = SAVEALLDOUBLESOBAKA$DISPLAY@{SAVEALLDOUBLESOBAKA$scommand@} if defined SAVEALLDOUBLESOBAKA$DISPLAY@{SAVEALLDOUBLESOBAKA$scommand@};
+      print F "<a href=\"#command_SAVEALLDOUBLESOBAKA$scommand\">SAVEALLDOUBLESOBAKA$display</A>\n";
+      @}
+    print F "</FONT\>\n";
+    @}
+  for SAVEALLDOUBLESOBAKA$command ( SAVEALLDOUBLESOBAKAcommands )@{
+    my SAVEALLDOUBLESOBAKA$title = SAVEALLDOUBLESOBAKA$command;
+    my SAVEALLDOUBLESOBAKA$line;
+    my SAVEALLDOUBLESOBAKA$verbatim = 0;
+    my SAVEALLDOUBLESOBAKA$subtitle;
+    my SAVEALLDOUBLESOBAKA$FH;
+    #
+    # print lines that start a command
+    #
+      if( SAVEALLDOUBLESOBAKA$line =~ /^\s*=itemize\s*SAVEALLDOUBLESOBAKA$/ )@{
+  	if( SAVEALLDOUBLESOBAKA$FH )@{
+          print DF "<UL>\n";
+  	  @}else@{
+          print F "<UL>\n";
+  	  @}
+        next;
+        @}
+      if( SAVEALLDOUBLESOBAKA$line =~ /^\s*=noitemize\s*SAVEALLDOUBLESOBAKA$/ )@{
+  	if( SAVEALLDOUBLESOBAKA$FH )@{
+          print DF "</UL>\n";
+  	  @}else@{
+          print F "</UL>\n";
+  	  @}
+        next;
+        @}
+      my SAVEALLDOUBLESOBAKA$l_line = SAVEALLDOUBLESOBAKA$line;
+      while( SAVEALLDOUBLESOBAKA$l_line =~ /R\<(\w+?)\>/ )@{
+        my SAVEALLDOUBLESOBAKA$d = SAVEALLDOUBLESOBAKA$1;
+        SAVEALLDOUBLESOBAKA$d = SAVEALLDOUBLESOBAKA$DISPLAY@{SAVEALLDOUBLESOBAKA$d@} if defined SAVEALLDOUBLESOBAKA$DISPLAY@{SAVEALLDOUBLESOBAKA$d@};
+        SAVEALLDOUBLESOBAKA$l_line =~ s/R\<(\w+?)\>/\001a href=\"#command_SAVEALLDOUBLESOBAKA$1\">SAVEALLDOUBLESOBAKA$d\001\/a>/;
+        @}
+      SAVEALLDOUBLESOBAKA$l_line =~ s/T\<(.+?)\>/\001tt>SAVEALLDOUBLESOBAKA$1\001\/tt>/g;
+      SAVEALLDOUBLESOBAKA$l_line =~ s/B\<(.+?)\>/\001B>SAVEALLDOUBLESOBAKA$1\001\/B>/g;
+      SAVEALLDOUBLESOBAKA$l_line =~ s/I\<(.+?)\>/\001I>SAVEALLDOUBLESOBAKA$1\001\/I>/g;
+      SAVEALLDOUBLESOBAKA$l_line =~ tr@{\001@}@{<@};
+      if( SAVEALLDOUBLESOBAKA$FH )@{
+        print DF SAVEALLDOUBLESOBAKA$l_line;
+      @}else@{
+        print F SAVEALLDOUBLESOBAKA$l_line;
+        @}
+      @}
+    #
+    # print lines that close a command
+    #
+    print F "</BLOCKQUOTE>\n";
+    if( SAVEALLDOUBLESOBAKA$FH )@{
+	  print DF <<END;
+<P><a href="../commands.html#command_SAVEALLDOUBLESOBAKA$command">BACK</a>
+</BODY>
+</HTML>
+END
+	  close DF; # if it was opened
+	  @}
+    @}
+#################################################
+  SAVEALLDOUBLESOBAKAcommands = sort keys %COMMAND;
+  SAVEALLDOUBLESOBAKAsections = sort keys %SECTION;
+  print F "\SAVEALLDOUBLESOBAKAchapter Command reference\n";
+    SAVEALLDOUBLESOBAKA$title = SAVEALLDOUBLESOBAKA$TITLE@{SAVEALLDOUBLESOBAKA$command@} if defined SAVEALLDOUBLESOBAKA$TITLE@{SAVEALLDOUBLESOBAKA$command@};
+    SAVEALLDOUBLESOBAKA$subtitle = undef;
+    SAVEALLDOUBLESOBAKA$subtitle = SAVEALLDOUBLESOBAKA$SUBTITLE@{SAVEALLDOUBLESOBAKA$command@} if defined SAVEALLDOUBLESOBAKA$SUBTITLE@{SAVEALLDOUBLESOBAKA$command@};
+    print F "\n\SAVEALLDOUBLESOBAKAsection SAVEALLDOUBLESOBAKA$title\n\n";
+    print F "\SAVEALLDOUBLESOBAKAb@{SAVEALLDOUBLESOBAKA$subtitle@}\n" if defined SAVEALLDOUBLESOBAKA$subtitle;
+    for SAVEALLDOUBLESOBAKA$line ( SAVEALLDOUBLESOBAKA@{SAVEALLDOUBLESOBAKA$COMMAND@{SAVEALLDOUBLESOBAKA$command@}@} )@{
+      if( SAVEALLDOUBLESOBAKA$line =~ /^\s*=details\s*SAVEALLDOUBLESOBAKA$/ )@{
+        print F "\SAVEALLDOUBLESOBAKAsubsection SAVEALLDOUBLESOBAKA$command Details\n";
+        next;
+        @}
+      if( SAVEALLDOUBLESOBAKA$line =~ /^\s*=verbatim\s*SAVEALLDOUBLESOBAKA$/ )@{
+        SAVEALLDOUBLESOBAKA$verbatim++;
+        print F "\SAVEALLDOUBLESOBAKAexample\n";
+        next;
+        @}
+      if( SAVEALLDOUBLESOBAKA$line =~ /^\s*=noverbatim\s*SAVEALLDOUBLESOBAKA$/ )@{
+        SAVEALLDOUBLESOBAKA$verbatim--;
+        print F "\SAVEALLDOUBLESOBAKAend example\n";
+        next;
+        @}
+      if( SAVEALLDOUBLESOBAKA$verbatim )@{
+        print F SAVEALLDOUBLESOBAKA$line;
+        next;
+        @}
+      if( SAVEALLDOUBLESOBAKA$line =~ /^\s*SAVEALLDOUBLESOBAKA$/ )@{
+        print F "\n\n";
+        next;
+        @}
+      SAVEALLDOUBLESOBAKA$l_line =~ s/\SAVEALLDOUBLESOBAKA/\SAVEALLDOUBLESOBAKA\SAVEALLDOUBLESOBAKA/g;
+      SAVEALLDOUBLESOBAKA$l_line =~ s/\SAVEALLDOUBLESOBAKA$/\SAVEALLDOUBLESOBAKA\SAVEALLDOUBLESOBAKA$/g;
+      SAVEALLDOUBLESOBAKA$l_line =~ s/\@{/\SAVEALLDOUBLESOBAKA\@{/g;
+      SAVEALLDOUBLESOBAKA$l_line =~ s/\@}/\SAVEALLDOUBLESOBAKA\@}/g;
+      SAVEALLDOUBLESOBAKA$l_line =~ s[<a href=".*?">(.*?)</a>][\SAVEALLDOUBLESOBAKAxref@{SAVEALLDOUBLESOBAKA$1@}]gi;
+      SAVEALLDOUBLESOBAKA$l_line =~ s/R\<(.+?)\>/\SAVEALLDOUBLESOBAKAxref\@{SAVEALLDOUBLESOBAKA$1\@}/g;
+      SAVEALLDOUBLESOBAKA$l_line =~ s/T\<(.+?)\>/\SAVEALLDOUBLESOBAKAcode\@{SAVEALLDOUBLESOBAKA$1\@}/g;
+      SAVEALLDOUBLESOBAKA$l_line =~ s/B\<(.+?)\>/\SAVEALLDOUBLESOBAKAb\@{SAVEALLDOUBLESOBAKA$1\@}>/g;
+      SAVEALLDOUBLESOBAKA$l_line =~ s/I\<(.+?)\>/\SAVEALLDOUBLESOBAKAemph\@{SAVEALLDOUBLESOBAKA$1\@}>/g;
+      print F SAVEALLDOUBLESOBAKA$l_line;
+      @}
+    @}
+
+@end example
+
+
+@section syntaxer.pl
+
+Read the file @file{syntax.def} and create the file @file{syntax.c} converting the syntax definition
+from an easy to read and maintain format to C source file.
+
+The source code of the file is not included in
+this documentation because the file itself is too long for the purpose.
+
+@section preparedeb.pl
+
+This Perl script alters the @file{deb/DEBIAN/control} file so that it contains the actual
+build version.
+
+The souce code of the file @file{preparedeb.pl} is:
+@example
+open(F,"deb/DEBIAN/control") or die;
+undef SAVEALLDOUBLESOBAKA$/;
+SAVEALLDOUBLESOBAKA$control_file = <F>;
+close F;
+open(F,"build.txt") or die;
+SAVEALLDOUBLESOBAKA$build = <F>;
+close F;
+SAVEALLDOUBLESOBAKA$build = SAVEALLDOUBLESOBAKA$build +0;
+SAVEALLDOUBLESOBAKA$control_file =~ s/(Version\:\s+\d+\.\d+\.)\d+(\-\d+)/SAVEALLDOUBLESOBAKA$1SAVEALLDOUBLESOBAKA$buildSAVEALLDOUBLESOBAKA$2/;
+open(F,">deb/DEBIAN/control") or die;
+print F SAVEALLDOUBLESOBAKA$control_file;
+close F;
+
+@end example
+
+
+@section lmt_make.pl
+
+This perl script reads a file named @file{lmt_XXX.def} and creates the file @file{lmt_XXX.c}
+to help the linking of the external modules into ScriptBasic static.
+
+The souce code of the file @file{lmt_make.pl} is:
+@example
+#
+# Use this program to automatically create the C table that lists the modules that are going to be
+# linked statically to ScriptBasic. Do not edit the created C file, rather maintain one or more
+# linkedmodules.def file and create one or more linkedmodules.c file
+#
+exit 0 unless defined(SAVEALLDOUBLESOBAKA$InputFile = shift);
+SAVEALLDOUBLESOBAKA$OutputFile = SAVEALLDOUBLESOBAKA$InputFile;
+This file was automatically created by the program lmt_make.pl
+Rather edit the file SAVEALLDOUBLESOBAKA$InputFile that is the source 
+END
+unless( open(F,SAVEALLDOUBLESOBAKA$InputFile) )@{
+  print "Cannot open SAVEALLDOUBLESOBAKA$InputFile\n";
+  exit 1;
+  @}
+SAVEALLDOUBLESOBAKA$OUTL .= "MODLIST StaticallyLinkedModules[] =@{\n";
+for SAVEALLDOUBLESOBAKA$module (SAVEALLDOUBLESOBAKAModuleList )@{
+  SAVEALLDOUBLESOBAKA$OUTL .= "  @{\"SAVEALLDOUBLESOBAKA$module\" , (void *)" . uc(SAVEALLDOUBLESOBAKA$module) . "_SLFST @},\n"
+  @}
+SAVEALLDOUBLESOBAKA$OutputFile =~ s@{defSAVEALLDOUBLESOBAKA$@}@{c@};
+open(OUT,">SAVEALLDOUBLESOBAKA$OutputFile") or die "Cannot open output file SAVEALLDOUBLESOBAKA$OutputFile";
+print OUT SAVEALLDOUBLESOBAKA$OUTL;
+close OUT;
+
+@end example
+
+
+@section t2h.pl
+
+A special purpose texi-to-html converter used to document ScriptBasic.
+
+The source code of the file is not included in
+this documentation because the file itself is too long for the purpose.
+
+@section jamal.pl
+
+The jamal preprocessor.
+
+The source code of the file is not included in
+this documentation because the file itself is too long for the purpose.
+
+@chapter UNIX Shell scripts
+
+This chapter lists the UNIX shell scripts that are used to automate the code maintenance under the UNIX version of ScriptBasic.
+
+@section install.sh
+
+This script copies the compiled files to the installation directory and sets the
+various permissions. You have to be root to run this script. This is used by 
+@file{Makefile}
+
+The souce code of the file @file{install.sh} is:
+@example
+
+@end example
+
+
+@section convert.sh
+
+Converts @file{convert.pl} to the UNIX CR/LF convention and then runs it to convert all the
+files. You have to execute this script after you have uploaded to source files froma Win32
+workstation to a UNIX machine and have all the files with the wrong CR/LF line termination.
+
+The souce code of the file @file{convert.sh} is:
+@example
+
+@end example
+
+
+@section uncr
+
+A simple Perl script that converts @code{stdin} to @code{stdout} CR/LF to UNIX LF. This file
+is a one liner thus there is no CR/LF issue when this file is
+transferred.
+
+Actually @xref{convert.sh} converts @file{convert.pl} using this Perl script and then
+@file{convert.pl} converts the uploaded files safely.
+
+The souce code of the file @file{uncr} is:
+@example
+
+@end example
+
+
+@section mkdeb.sh
+
+This shell script (used by @file{Makefile}) cleans the directory @file{deb} and then copies all
+neccessary files, sets permissions and starts @code{dpkg} to create a Debian package of
+ScriptBasic.
+
+The souce code of the file @file{mkdeb.sh} is:
+@example
+
+@end example
+
+
+@section Makefile
+
+Well, the Debian Linux Makefile to create ScriptBasic binaries.
+
+Use, like:
+
+@itemize
+
+@item
+@code{make all} to create all the binaries
+
+@item
+@code{make deb} to create Debian package.
+
+@end itemize
+
+The souce code of the file @file{Makefile} is:
+@example
+install : all install.sh
+	./install.sh
+all : *.c
+	./setup
+
+@end example
+

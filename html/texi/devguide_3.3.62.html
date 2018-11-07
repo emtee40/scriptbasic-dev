@@ -1,0 +1,50 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 3.3.62. scriba_LookupVariableByName()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_LookupVariableByName()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_LookupVariableByName()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_3.html">3. Embedding the Interpreter</A><BR>
+<UL><a href="devguide_3.3.html">3.3. ScriptBasic C API</A><BR>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>3.3.62. scriba_LookupVariableByName()</H1>
+<A HREF="devguide_3.3.61.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.63.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function can be used to get the serial number of a global variable
+knowing the name of the variable.
+<P>
+Note that all variables belong to a name space. Therefore if you want to
+retrieve the global variable <font size="3"><tt>foo</tt></font> you have to name it <font size="3"><tt>main::foo</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+long scriba_LookupVariableByName(pSbProgram pProgram,
+                                 char *pszVariableName
+  )@{
+</PRE></FONT>
+The return value is the serial number of the global avriable or zero if
+there is no variable with that name.
+<P>
+Note that the second argument, the name of the global variable, is not
+going under the usual name space manipulation. You have to specify the
+variable name together with the name space. For example the variable <font size="3"><tt>a</tt></font> will
+not be found, but the variable <font size="3"><tt>main::a</tt></font> will be.<HR>
+<A HREF="devguide_3.3.61.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.63.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

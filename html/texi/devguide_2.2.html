@@ -1,0 +1,133 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.2. Reader</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Reader">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Reader">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+</UL>
+</UL>
+<P>
+<H1>2.2. Reader</H1>
+<A HREF="devguide_2.1.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.2.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_2.2.1.html">2.2.1. reader_IncreaseBuffer()</A><BR>
+<A HREF="devguide_2.2.2.html">2.2.2. reader_gets()</A><BR>
+<A HREF="devguide_2.2.3.html">2.2.3. reader_ReadLines()</A><BR>
+<A HREF="devguide_2.2.4.html">2.2.4. reader_ReadLines_r()</A><BR>
+<A HREF="devguide_2.2.5.html">2.2.5. reader_ProcessIncludeFiles()</A><BR>
+<A HREF="devguide_2.2.6.html">2.2.6. reader_LoadPreprocessors()</A><BR>
+<A HREF="devguide_2.2.7.html">2.2.7. reader_StartIteration()</A><BR>
+<A HREF="devguide_2.2.8.html">2.2.8. reader_NextLine()</A><BR>
+<A HREF="devguide_2.2.9.html">2.2.9. reader_NextCharacter()</A><BR>
+<A HREF="devguide_2.2.10.html">2.2.10. reader_FileName()</A><BR>
+<A HREF="devguide_2.2.11.html">2.2.11. reader_LineNumber()</A><BR>
+<A HREF="devguide_2.2.12.html">2.2.12. reader_InitStructure()</A><BR>
+<A HREF="devguide_2.2.13.html">2.2.13. reader_RelateFile()</A><BR>
+<A HREF="devguide_2.2.14.html">2.2.14. reader_DumpLines()</A><BR>
+<HR>
+<P>
+
+The module reader is implemented in the C source file `<font size="3"><tt>reader.c</tt></font>' This is a very simple module it just reads the lines from the source code files and stores the actual text in memory using linked lists. There is not too much possibility to configure this module except that the memory handling functions and the file opening, closing and reading functions are used via function pointers that can be altered by the caller.
+<P>
+Like any other module in ScriptBasic the reader module uses a module object. This is like a class definition except that the interpreter is coded in C and thus there is nothing like VTABLE or inheritance. Otherwise the code is object oriented. Here we list the actual definition of the reader object. Note however that this is actually a copy of the actual definition from the file `<font size="3"><tt>reader.c</tt></font>' and it may have been changed since I wrote this manual. So the reader object by the time I wrote this manual was:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+#define BUFFER_INITIAL_SIZE 1024
+#define BUFFER_INCREMENT 1024
+ typedef struct _ReadObject {
+  void * (*fpOpenFile)(char *, void *);
+  int (*fpGetCharacter)(void *, void *);
+  void (*fpCloseFile)(void *, void *);
+  void *pFileHandleClass;
+<P>
+  void *(*memory_allocating_function)(size_t, void *);
+  void (*memory_releasing_function)(void *, void *);
+  void *pMemorySegment;
+<P>
+  ptConfigTree pConfig;
+<P>
+  char *Buffer;
+  long dwBuffer;
+  long cBuffer;
+<P>
+  pSourceLine Result;
+  pSourceLine CurrentLine;
+  long NextCharacterPosition;
+  char fForceFinalNL;
+<P>
+  pReportFunction report;
+  void *reportptr;
+  int iErrorCounter;
+  unsigned long fErrorFlags;
+<P>
+  pImportedFileList pImportList;
+<P>
+  char *FirstUNIXline;
+  struct _PreprocObject *pPREP;
+  } ReadObject, *pReadObject ;
+</PRE></FONT>
+<P>
+The pointers <font size="3"><tt>fpOpenFile</tt></font>, <font size="3"><tt>fpGetCharacter</tt></font> and <font size="3"><tt>fpCloseFile</tt></font> point to functions that are used to open the input file. The pointer <font size="3"><tt>pFileHandleClass</tt></font> set by the higher code using the module reader is passed to these functions without caring its meaning. This is not used by the standard file input/output functions that are used by the command line version of the program, but can be useful for program environment when the source file is stored in some other forms and not in a file. An example of such use can be seen in the function <font size="3"><tt>scriba_LoadProgramString</tt></font> implemented in the file `<font size="3"><tt>scriba.c</tt></font>'.
+<P>
+The linked list of source lines is stored in the structure named <font size="3"><tt>SourceLine</tt></font> The definition of this structure is
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+typedef struct _SourceLine {
+  char *line;
+  long lLineNumber;
+  long LineLength;
+  char *szFileName;
+  struct _SourceLine *next;
+  } SourceLine, *pSourceLine;
+</PRE></FONT>
+<P>
+You can see that each source line is pointed by the field <font size="3"><tt>line</tt></font> and the length of the line is also stored. The reason for this extra field is that the line itself may contain zero character although this is rare for a program source file to contain zero character inside.
+<P>
+Before the file is read the function <font size="3"><tt>reader_InitStructure</tt></font> should be called. This is usual for the ScriptBasic modules. This function initializes the reader object to the usual values that actually ScriptBasic needs.
+<P>
+The reader provides function <font size="3"><tt>reader_ReadLines</tt></font> that actually reads the lines and also processes all lines that contain an <font size="3"><tt>include</tt></font> or <font size="3"><tt>import</tt></font> directive to include a line.
+<P>
+The reader has some extra functions that are specific to ScriptBasic or generally saying are specific to program source reading.
+<P>
+Source programs under UNIX usually start with a line
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+#! /usr/bin/scriba
+</PRE></FONT>
+<P>
+that tells the operating system how to start the code. 
+<P>
+((((Some very old and totally outdated version of some UNIX systems check the first four characters to look for <font size="3"><tt>#! /</tt></font>. There is a space between the <font size="3"><tt>!</tt></font> and the <font size="3"><tt>/</tt></font>. So if you want to be look a real code geek put this extra space before the executable path. To be honest I have never encountered this issue since 1987 when I met my first UNIX at TU Delft, Hollandia. OK that's for the story, get back to the reader!))) Always close the parentheses you open!)
+<P>
+The reader recognizes this line if this is the very first line of the program and unlinks it from the list. Instead you can reach this line via the reader object variable <font size="3"><tt>FirstUNIXline</tt></font>. This is specific to program source reading and not general file reading. But the reader module is a program source reader or more specific: a BASIC, even ScriptBasic program source reader, though it was coded to be as general as possible.
+<P>
+Another specific issue is the new line at the end of the last line. Lines are usually terminated by new-line. This line terminating character is included in the string at the end of each element of the linked list the reader creates. However when the last line is terminated by the pure EOF some syntax analyzers may fail (ScriptBasic syntax analyzer is also an example, but the reader is kind to care about this). For the reason if the variable <font size="3"><tt>fForceFinalNL</tt></font> is set to be TRUE this line gets the extra new-line when read.
+<P>
+
+<P>
+
+This module contains the functions that read a source file.
+<P>
+Script basic has several passes
+until it can start to execute the code. The very first pass is to read the source lines from
+the files. The routines in this module perform this task and build up a linked list that contains
+the ascii values of the lines.
+<P>
+The input functions are parametrized, and the caller should support. If you have different
+system dependent file reading functions, or if you have the input file in some format in memory or
+in any other data holding space you can support these routines with character fetch functions.<HR>
+<A HREF="devguide_2.1.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.2.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,7 @@
+{CSIDL_PROGRAMS,BASIC_NAME"\\ScriptBasic.LNK", "demo.sb","Link to ScriptBasic.sb", BASIC_ICON,FALSE,"EXAMPLES\\"},
+{CSIDL_PROGRAMS,BASIC_NAME"\\Examples\\Place 8 queens on a chess table.LNK", "cioqueens.sb","Link to Place 8 queens on a chess table.sb", BASIC_ICON,FALSE,"EXAMPLES\\"},
+{CSIDL_PROGRAMS,BASIC_NAME"\\Examples\\Console Colors.LNK", "color.sb","Link to Console Colors.sb", BASIC_ICON,FALSE,"EXAMPLES\\"},
+{CSIDL_PROGRAMS,BASIC_NAME"\\Examples\\Demo executing program interactively.LNK", "compconf.sb","Link to Demo executing program interactively.sb", BASIC_ICON,FALSE,"EXAMPLES\\"},
+{CSIDL_PROGRAMS,BASIC_NAME"\\Examples\\Demo executing program interactively.LNK", "demo.sb","Link to Demo executing program interactively.sb", BASIC_ICON,FALSE,"EXAMPLES\\"},
+{CSIDL_PROGRAMS,BASIC_NAME"\\Examples\\Hello World.LNK", "hello.sb","Link to Hello World.sb", BASIC_ICON,FALSE,"EXAMPLES\\"},
+{CSIDL_PROGRAMS,BASIC_NAME"\\Examples\\kill a process.LNK", "kill.sb","Link to kill a process.sb", BASIC_ICON,FALSE,"EXAMPLES\\"},

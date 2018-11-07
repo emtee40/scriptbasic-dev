@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: lex_SavePosition()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: lex_SavePosition()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: lex_SavePosition()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>lex_SavePosition()</H1>
+<A HREF="devguide_2.3.1.5.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.7.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Use this function to save the current position of the iteration. This is neccessary during
+syntactical analysis to return to a certain position when syntactical analysis fails and
+the program has to go back and try a different command syntax.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void lex_SavePosition(pLexObject pLex,
+                      pLexeme *ppPosition
+  )@{
+</PRE></FONT>
+<P>
+The second argument is a <font size="3"><tt>pLexeme *</tt></font> type variable that holds the position and should be passed
+as argument to the function <a href="devguide_2.3.1.7.htm">lex_RestorePosition()</A>.<HR>
+<A HREF="devguide_2.3.1.5.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.3.1.7.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

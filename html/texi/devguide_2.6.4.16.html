@@ -1,0 +1,45 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.6.4.16. execute_Convert2String()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: execute_Convert2String()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: execute_Convert2String()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.6.html">2.6. Executor</A><BR>
+<UL><a href="devguide_2.6.4.html">2.6.4. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.6.4.16. execute_Convert2String()</H1>
+<A HREF="devguide_2.6.4.15.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.17.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This functionconverts a variable to string. When the variable is already a string then it returns the pointer to the
+variable. When the variable is long or double <font size="3"><tt>sprintf</tt></font> is used to convert the number to string.
+<P>
+When the conversion from number to string is done the result is always a newly allocated mortal. In other words
+this conversion routine is safe, not modifying the argument memory object.
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pFixSizeMemoryObject execute_Convert2String(pExecuteObject pEo,
+                                          pFixSizeMemoryObject pVar,
+                                          pMortalList pMyMortal
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.6.4.15.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.6.4.17.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,71 @@
+<HEAD>
+<TITLE>Documentation of the module mt: 3. What are session and variables</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module mt: What are session and variables">
+<META NAME="keywords" CONTENT="Documentation of the module mt: What are session and variables">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_mt_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>3. What are session and variables</H1>
+<A HREF="mod_mt_2.html">[&lt;&lt;&lt;]</A> <A HREF="mod_mt_4.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+=abstract
+Some description on what is a session and what are session and MT variables.
+=end
+<P>
+Formally a session is the series of consecutive execution of ScriptBasic scripts
+that belong to the same calculation. Typically this is the series of web script
+executions that serve the same client.
+<P>
+When a client meets the web server the first time the program creates a new session and
+when the user goes on with the web application the same session information is used. The
+session ID is usually sent to the client in HTTP cookie and when the browser sends
+the cookie back the server application remembers that this client is the same as the one
+before. What the application really remembers is that state of the transaction the user
+performed in the session. The tipical example is the consumer basket in an eShop. The user
+behind the browser puts several things into the basket while shopping and the application
+has to remember what is in the basket.
+<P>
+Conventional CGI applications usually store the session information in plain text files
+or in database. That is usually a slow solution unless you need to store these information
+for a longer period. But session state is usually not stored for long time. 
+<P>
+When a browser first comes to the site a new session is created calling <a href="mod_mt_html">NewSessionId</A>. Later
+when the user gets to the next page the session id is sent from the browser and the application
+checks that the session really exists calling <a href="mod_mt_html">CheckSessionId</A> and if it exists it tells the
+MT extension module calling <a href="mod_mt_html">SetSessionID</A> that the actual session served by the currently 
+running interpreter thread is this.
+<P>
+To store a value that belongs to that session the application can call <a href="mod_mt_html">SetSessionVariable</A> and
+to retrieve the value call <a href="mod_mt_html">GetSessionVariable</A>. Session variables are kept in memory and can
+be reached extremely fast. They are available until the session is deleted calling <a href="mod_mt_html">DeleteSession</A>.
+<P>
+There can be not two interpreter threads running concurrently accessing the same session data.
+Each session has its own variable set and in case a session has a variable named "BASKET" this
+has nothing to do with the other sessions variable of the same name.
+<P>
+MT variables on the other hand are shared by all sessions. An MT variable has a name, and in case
+a session modifies the MT variable named "BASKET" the other session looking at the MT variable "BASKET"
+will see the changed value. MT variables are global among the sessions.
+<P>
+When accessing an MT variable the variable can not be accesses by other interpreter threads. Thus
+there is no chance that an MT variable gets up messed. What is more a program may decide to lock an
+MT variable preventing other programs to alter it or even to read its value until the variable
+is unlocked. For this the program should call <a href="mod_mt_html">LockWrite</A>, <a href="mod_mt_html">LockRead</A> and to unlock <a href="mod_mt_html">UnlockWrite</A>,
+<a href="mod_mt_html">UnlockRead</A><HR>
+<A HREF="mod_mt_2.html">[&lt;&lt;&lt;]</A> <A HREF="mod_mt_4.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

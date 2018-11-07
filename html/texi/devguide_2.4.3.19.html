@@ -1,0 +1,48 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 2.4.3.19. ex_init()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_init()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_init()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_2.html">2. Interpreter Architecture</A><BR>
+<UL><a href="devguide_2.4.html">2.4. Syntax Analyzer</A><BR>
+<UL><a href="devguide_2.4.3.html">2.4.3. Functions implemented in this module</A><BR>
+</UL>
+</UL>
+</UL>
+</UL>
+<P>
+<H1>2.4.3.19. ex_init()</H1>
+<A HREF="devguide_2.4.3.18.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.20.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function should be called before starting syntactical analysis. This
+function 
+<UL>
+<LI> positions the lexeme pointer to the first lexeme,
+<LI> initializes the memory segments needed for structured memory allocation, 
+<LI> created the symbol tables
+<LI> initializes 'class' variables
+<LI> initializes the name space to be <font size="3"><tt>main::</tt></font>
+@end itemize
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int ex_init(peXobject pEx
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.4.3.18.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.20.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

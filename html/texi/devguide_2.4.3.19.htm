@@ -1,0 +1,37 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: ex_init()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: ex_init()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: ex_init()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ex_init()</H1>
+<A HREF="devguide_2.4.3.18.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.20.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function should be called before starting syntactical analysis. This
+function 
+<UL>
+<LI> positions the lexeme pointer to the first lexeme,
+<LI> initializes the memory segments needed for structured memory allocation, 
+<LI> created the symbol tables
+<LI> initializes 'class' variables
+<LI> initializes the name space to be <font size="3"><tt>main::</tt></font>
+@end itemize
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int ex_init(peXobject pEx
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_2.4.3.18.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_2.4.3.20.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

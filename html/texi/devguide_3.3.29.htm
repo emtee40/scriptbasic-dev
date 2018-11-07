@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_SetReportFunction()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_SetReportFunction()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_SetReportFunction()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_SetReportFunction()</H1>
+<A HREF="devguide_3.3.28.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.30.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function should be used to set the report function for a program. The report function
+is used to send info, warning, error, fatal and internal error messages to the user.
+<P>
+In case you want to implement a specific report function see the sample implementation in the
+file <font size="3"><tt>report.c</tt></font>. The documentation of the function <font size="3"><tt>report_report</tt></font> describes not only the details
+of the sample implementation but also the implementation requests for other reporting functions.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+void scriba_SetReportFunction(pSbProgram pProgram,
+                              void *fpReportFunction
+  )@{
+</PRE></FONT><HR>
+<A HREF="devguide_3.3.28.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.30.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

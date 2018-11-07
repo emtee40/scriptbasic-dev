@@ -1,0 +1,124 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\input texinfo @c -*-texinfo-*-
+@c %**start of header
+@setfilename source
+@settitle ScriptBasic Source Files
+@setchapternewpage odd
+@c %**end of header
+@ifinfo
+@end ifinfo
+
+@titlepage
+@title ScriptBasic Source Files
+@author Peter Verhas
+
+@page
+@vskip 0pt plus 1filll
+
+@end titlepage
+@summarycontents
+@contents
+
+@menu
+@end menu
+
+@chapter Introduction
+
+This file contains the source code documentation. Most of this information is also compiled into
+the developers guide or into other documentation.
+
+
+@section scriba.c
+ 
+
+@section basext.c
+ 
+
+@section memory.c
+ 
+
+@section epreproc.c
+ 
+
+@section ipreproc.c
+ 
+
+@section command.c
+ 
+
+@section lexer.c
+ 
+
+@section expression.c
+ 
+
+@section builder.c
+ 
+
+@section reader.c
+ 
+
+@section myalloc.c
+ 
+
+@section match.c
+ 
+
+@section sym.c
+ 
+
+@section execute.c
+ 
+
+@section dynlolib.c
+ 
+
+@section conftree.c
+ 
+
+@section filesys.c
+ 
+
+@section modumana.c
+ 
+
+@section hookers.c
+ 
+
+@section options.c
+ 
+
+@section report.c
+ 
+
+@section logger.c
+ 
+
+@section thread.c
+ 
+
+@section hndlptr.c
+ 
+
+@section httpd.c
+ 
+
+

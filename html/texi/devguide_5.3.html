@@ -1,0 +1,66 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: 5.3. Preprocessor Entry Points</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: Preprocessor Entry Points">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: Preprocessor Entry Points">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="devguide_toc.html">[Contents]</A><BR>
+<UL><a href="devguide_5.html">5. Preprocessors</A><BR>
+</UL>
+</UL>
+<P>
+<H1>5.3. Preprocessor Entry Points</H1>
+<A HREF="devguide_5.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<A HREF="devguide_5.3.1.html">5.3.1. PreprocessorLoad</A><BR>
+<A HREF="devguide_5.3.2.html">5.3.2. PreprocessorReadStart</A><BR>
+<A HREF="devguide_5.3.3.html">5.3.3. PreprocessorReadDone0</A><BR>
+<A HREF="devguide_5.3.4.html">5.3.4. PreprocessorReadDone1</A><BR>
+<A HREF="devguide_5.3.5.html">5.3.5. PreprocessorReadDone2</A><BR>
+<A HREF="devguide_5.3.6.html">5.3.6. PreprocessorReadDone3</A><BR>
+<A HREF="devguide_5.3.7.html">5.3.7. PreprocessorLexInit</A><BR>
+<A HREF="devguide_5.3.8.html">5.3.8. PreprocessorLexDone</A><BR>
+<A HREF="devguide_5.3.9.html">5.3.9. PreprocessorLexNASymbol</A><BR>
+<A HREF="devguide_5.3.10.html">5.3.10. PreprocessorLexASymbol</A><BR>
+<A HREF="devguide_5.3.11.html">5.3.11. PreprocessorLexSymbol</A><BR>
+<A HREF="devguide_5.3.12.html">5.3.12. PreprocessorLexString</A><BR>
+<A HREF="devguide_5.3.13.html">5.3.13. PreprocessorLexMString</A><BR>
+<A HREF="devguide_5.3.14.html">5.3.14. PreprocessorLexInteger</A><BR>
+<A HREF="devguide_5.3.15.html">5.3.15. PreprocessorLexReal</A><BR>
+<A HREF="devguide_5.3.16.html">5.3.16. PreprocessorLexCharacter</A><BR>
+<A HREF="devguide_5.3.17.html">5.3.17. PreprocessorExStart</A><BR>
+<A HREF="devguide_5.3.18.html">5.3.18. PreprocessorExStartLine</A><BR>
+<A HREF="devguide_5.3.19.html">5.3.19. PreprocessorExEnd</A><BR>
+<A HREF="devguide_5.3.20.html">5.3.20. PreprocessorExFinish</A><BR>
+<A HREF="devguide_5.3.21.html">5.3.21. PreprocessorExStartLocal</A><BR>
+<A HREF="devguide_5.3.22.html">5.3.22. PreprocessorExEndLocal</A><BR>
+<A HREF="devguide_5.3.23.html">5.3.23. PreprocessorExLineNode</A><BR>
+<A HREF="devguide_5.3.24.html">5.3.24. PreprocessorExeStart</A><BR>
+<A HREF="devguide_5.3.25.html">5.3.25. PreprocessorExeFinish</A><BR>
+<A HREF="devguide_5.3.26.html">5.3.26. PreprocessorExeNoRun</A><BR>
+<HR>
+<P>
+
+<P>
+Lets recall the prototype of the preprocessor function, which has to be implemented in each preprocessor:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int DLL_EXPORT preproc(pPrepext pEXT,
+                       long *pCmd,
+                       void *p);
+</PRE></FONT>
+<P>
+This function has to be implemented in each internal preprocessor and is called when the preprocessor is loaded or when some the processing of the source program has reached a certain point. To inform the function about this point the argument <font size="3"><tt>pCmd</tt></font> is used. This argument points to a <font size="3"><tt>long</tt></font> that holds the a constant identifying the reason why the preprocessor function was called. The following subsections list these identifiers.<HR>
+<A HREF="devguide_5.2.html">[&lt;&lt;&lt;]</A> <A HREF="devguide_5.3.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

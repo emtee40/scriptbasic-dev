@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>ScriptBasic Developers Manual: scriba_SetFileName()</TITLE>
+
+<META NAME="description" CONTENT="ScriptBasic Developers Manual: scriba_SetFileName()">
+<META NAME="keywords" CONTENT="ScriptBasic Developers Manual: scriba_SetFileName()">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>scriba_SetFileName()</H1>
+<A HREF="devguide_3.3.17.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.19.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Call this function to set the file name where the source informaton is.
+This file name is used by the functions <a href="devguide_3.3.36.htm">scriba_LoadBinaryProgram()</A> and
+<a href="devguide_3.3.51.htm">scriba_LoadSourceProgram</A> as well as error reporting functions to display
+the location of the error.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+int scriba_SetFileName(pSbProgram pProgram,
+                       char *pszFileName
+  )@{
+</PRE></FONT>
+The argument <font size="3"><tt>pszFileName</tt></font> should be zchar terminated
+string holding the file name.<HR>
+<A HREF="devguide_3.3.17.htm">[&lt;&lt;&lt;]</A> <A HREF="devguide_3.3.19.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

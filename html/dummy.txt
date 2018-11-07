@@ -1,0 +1,24 @@
+<%BUGREPORT~
+<%@comment Bu report id=%>\
+2001/09/23-v1.0b26-br01~
+<%@comment Affected versions=%>\
+v1.0b26 ~
+<%@comment Severity%>\
+
+~
+<%@comment Bug Description%>\
+
+~
+<%@comment Bug reason, what causes the bug%>\
+
+~
+<%@comment solution%>
+
+~
+<%@comment workaround%>\
+
+~
+<%@comment acknowledgement%>
+N/A
+%>
+

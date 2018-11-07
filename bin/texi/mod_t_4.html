@@ -1,0 +1,46 @@
+<HEAD>
+<TITLE>Documentation of the module t: 4. s = t::ArrayToXML(Array)</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module t: s = t::ArrayToXML(Array)">
+<META NAME="keywords" CONTENT="Documentation of the module t: s = t::ArrayToXML(Array)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_t_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>4. s = t::ArrayToXML(Array)</H1>
+<A HREF="mod_t_3.html">[&lt;&lt;&lt;]</A> <A HREF="mod_t_5.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Call this function to convert an array to a string containing the XML
+representation of the array. This string can be saved to a file or stored in
+memory and the function <a href="mod_t_html">XMLToArray</A> can convert it back to array.
+Note that arrays and associative arrays are not different in ScriptBasic.
+<P>
+Note that the include file <font size="3"><tt>t.bas</tt></font> also defines the <font size="3"><tt>Array2XML</tt></font> name to
+the same function.
+<P>
+Also note that though the name of the function is <font size="3"><tt>ArrayToXML</tt></font> you can convert
+any variable to binary string using this function. However this is most useful
+when the argumentum is an array.
+<P>
+The generated XML is not really for human reading. It is without any new
+line characters. Because the strings can be binary they are also encoded with
+all new line characters to hexa encoded XML character <font size="3"><tt>0A</tt></font>. If you want to
+prettyprint the output you have to format it. The purpose of this function is
+to provide a simple XML conversion routine to generate a format that can
+be processed by other applications.<HR>
+<A HREF="mod_t_3.html">[&lt;&lt;&lt;]</A> <A HREF="mod_t_5.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>
