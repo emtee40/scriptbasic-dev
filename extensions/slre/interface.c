@@ -43,7 +43,7 @@ INCLUDE HERE THE LOCAL HEADER FILES THAT ARE NEEDED TO COMPILE THIS MODULE
 */
 #include <stdio.h>
 #include <stdlib.h>
-#include <strings.h>
+#include <string.h>
 #include "../../basext.h"
 #include "slre.h"
 
@@ -74,6 +74,8 @@ typedef struct _ModuleObject {
 
 int ar_match_count;
 const char *matches[100];
+
+#define reset_matches memset(&matches,0, sizeof(matches[0]))
 /*
 *TODO*
 ALTER THE VERSION NEGOTIATION CODE IF YOU NEED
@@ -186,6 +188,7 @@ besFUNCTION(match)
 
   // Reset sub match count
   ar_match_count = 0;
+  reset_matches;
   ret = slre_match(regexp,buf,strlen(buf),cap,num_caps,flags);
 
   if (ret) {
@@ -246,6 +249,24 @@ besFUNCTION(dollar)
   besSET_RETURN_STRING(matches[count]);
 
 besEND
+
+/**
+=section reset
+=H resets the match arrary
+
+=verbatim
+re::reset()
+=noverbatim
+
+resets the match arrary
+*/
+besFUNCTION(reset)
+  for( int x=0; x < ar_match_count; x++){
+    if (strlen(matches[x])) {
+      free(matches[x]);
+    }
+  }
+besEND
 /*
 *TODO*
 INSERT HERE THE NAME OF THE FUNCTION AND THE FUNCTION INTO THE
@@ -262,6 +283,6 @@ SLFST SLRE_SLFST[] ={
 { "emsgmodu"  , emsgmodu },
 { "match"     , match    },
 { "m"         , match    },
-{ "n"         , nmatch   },
+{ "reset"     , reset    },
 { NULL , NULL }
   };
