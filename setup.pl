@@ -2372,52 +2372,20 @@ WHEN YOU ARE FINISHED YOU CAN
   This is the interface.c file for the ScriptBasic module $module
 ----------------------------------------------------------------------------
 
-Remove the two characters // from following line if this module is supposed to
-be compiled under Windows. If there is a need for some library to successfully
+Remove the two characters // from following line(s) if this module is supposed to
+be compiled under specific OS's. If there is a need for some library to successfully
 compile the module under Windows specify the names of the libraries on the line
 as it is listed for the linker application. This is usually something like
 
-libname1.lib libname2.lib ... libnameX.lib
+WINDOWS: libname1.lib libname2.lib ... libnameX.lib
+LINUX/MACOS: -lm -ldl
 
 If there are no libraries, but still the module is to be compiled under Windows
 do remove the // characters so that the program setup.pl will know that the
 module is meant for Windows.
+
 //NTLIBS:
-----------------------------------------------------------------------------
-
-Remove the two characters // from following line if this module is supposed to
-be compiled under UNIX. If there is a need for some library to successfully
-compile the module under UNIX specify the names of the libraries on the line
-as it is listed for the linker application. This is usually something like
-
--lm -ldl -la
-
-If there are no libraries, but still the module is to be compiled under UNIX
-do remove the // characters so that the program setup.pl will know that the
-module is meant for UNIX.
-
 //UXLIBS:
-----------------------------------------------------------------------------
-
-Remove the two characters // from following line if this module is supposed to
-be compiled under MacOS. If there is a need for some library to successfully
-compile the module under MacOS specify the names of the libraries on the line
-as it is listed for the linker application.
-If there are no libraries, but still the module is to be compiled under MacOS
-do remove the // characters so that the program setup.pl will know that the
-module is meant for MacOS.
-
-//MCLIBS:
-----------------------------------------------------------------------------
-
-Remove the two characters // from following line if this module is supposed to
-be compiled under Darwin. If there is a need for some library to successfully
-compile the module under Darwin specify the names of the libraries on the line
-as it is listed for the linker application.
-If there are no libraries, but still the module is to be compiled under Darwin
-do remove the // characters so that the program setup.pl will know that the
-module is meant for Darwin.
-
 //DWLIBS:
 
 */
@@ -2444,6 +2412,8 @@ INCLUDE HERE THE UNIX SPECIFIC HEADER FILES THAT ARE NEEDED TO COMPILE THIS MODU
 INCLUDE HERE THE LOCAL HEADER FILES THAT ARE NEEDED TO COMPILE THIS MODULE
 */
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "../../basext.h"
 
 /*
@@ -2543,28 +2513,22 @@ can understand how he/she can use it
 */
 besFUNCTION(functionname)
   pModuleObject p;
-  VARIABLE Argument;
+  int r,s;
 
   p = (pModuleObject)besMODULEPOINTER;
 
-  Argument = besARGUMENT(1);
-  besDEREFERENCE(Argument);
+  besARGUMENTS("i[s]")
+    &r
+  besARGEND
 
-  /* if argument is undef then return undef */
-  if( Argument == NULL ){
-    besRETURNVALUE = NULL;
-    return COMMAND_ERROR_SUCCESS;
-    }
-
-  return COMMAND_ERROR_SUCCESS;
+  besRETURN_LONG(r);
 besEND
 
 /*
 *TODO*
 INSERT HERE THE NAME OF THE FUNCTION AND THE FUNCTION INTO THE
 TABLE. THIS TABLE IS USED TO FIND THE FUNCTIONS WHEN THE MODULE
-INTERFACE FILE IS COMPILED TO BE LINKED STATIC INTO A VARIATION
-OF THE INTERPRETER.
+INTERFACE FILE IS COMPILED.
 */
 
 SLFST $MODULE_SLFST[] ={
