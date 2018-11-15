@@ -5,4 +5,13 @@ extensions/*/*.bas
 extensions/*/*.sb
 extensions/*/makefile
 extensions/*/not*.txt
+compile
+configure.jim
+modinst.sh
+modmake.sh
+setup.log
+syntax.c
+syntax.h
+syntax.def
+
 
