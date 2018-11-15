@@ -1,0 +1,8 @@
+bin/
+extensions/*/*.jam
+extensions/*/*.jim
+extensions/*/*.bas
+extensions/*/*.sb
+extensions/*/makefile
+extensions/*/not*.txt
+
