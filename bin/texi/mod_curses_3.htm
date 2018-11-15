@@ -1,0 +1,96 @@
+<HEAD>
+<TITLE>Documentation of the module curses: Installation</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curses: Installation">
+<META NAME="keywords" CONTENT="Documentation of the module curses: Installation">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Installation</H1>
+<A HREF="mod_curses_2.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curses_4.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+The distribution contains the C language source file and the ScriptBasic
+include file. The C source must be compiled with the following command:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+cc -shared -o libcurses.so curses.c -lcurses
+</PRE></FONT>
+<P>
+The curses library and its include files (for Debian users: libncurses5 and
+libncurses5-dev packages) must be installed.
+<P>
+Move the library to your ScriptBasic library directory and the include file
+to the ScriptBasic include file directory (or redefine include and library
+directories in basic.conf).
+<P>
+I hope that this module will be included in the ScriptBasic distribution
+RSN.
+<P>
+
+My original plan was to port the CIO library to Unices, but most of its
+functions could not be adapted and curses supports a much wider range
+of screen operations than CIO, so this extension became a curses interface.
+<P>
+This means that curses routines are not compatible with CIO, although
+it should be very easy to make a subset of CIO routines available under
+Unices.
+<P>
+sbkbhit is the equivalent of getch(0, 0).
+Console title modification is (of course) not supported, but something
+could be done with xterm's title modification escape sequences.
+<P>
+NoBreak is not supported. ScriptBasic programs should be terminated with
+Ctrl-C (SIGINT).
+<P>
+SizeX and SizeY are the equivalent of getmaxx and getmaxy.
+<P>
+Color support is VERY different in curses.
+<P>
+Cls is the direct equivalent of erase.
+<P>
+Naturally, the ncurses console cannot be resized like the SetWindow command
+does it under Windows.
+<P>
+
+<P>
+The only non-straightforward thing about the curses library is its
+color support.
+<P>
+Every character on the screen has an associated color pair number. A
+color pair consists of a background and a foreground color. There are a
+a very finite number of available color pairs, which can be found out
+using the maxcolors function.
+<P>
+If you want to print a character in a specified color, you initialize
+a color pair to that color, and then make that the active color pair
+using setcolor.
+<P>
+You cannot cheat (i.e. print more colors on the screen than the
+number of available color pairs) by printing a character and then
+changing its color pair's definition, because if a color pair is
+changed, its occurrences on the screen are repainted using the new
+color. This is quirk in curses (I think for the sake of being
+compatible with some kind of old terminals).
+<P>
+
+<P>
+This is VERY straightforward. Windows can be created and deleted using
+newwin and delwin. Sub-window support is there in ncurses, but I chose
+not to support that because the documentation of ncurses says that it
+is still buggy.
+<P>
+Console handling low level routines for Unix ncurses environment.
+<P>
+This module implements interface routines to the ncurses library.<HR>
+<A HREF="mod_curses_2.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curses_4.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

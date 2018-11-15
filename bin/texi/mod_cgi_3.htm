@@ -1,0 +1,37 @@
+<HEAD>
+<TITLE>Documentation of the module cgi: Acknowledgements</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module cgi: Acknowledgements">
+<META NAME="keywords" CONTENT="Documentation of the module cgi: Acknowledgements">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Acknowledgements</H1>
+<A HREF="mod_cgi_2.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_4.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+The core code of the CGI handling routines was not written just looking at the RFC. I have learned a lot 
+from other works. The most important to mention is the CGI.pm Perl module written by Lincoln D. Stein 
+(http://www-genome.wi.mit.edu/ftp/pub/software/WWW/cgi_docs.html) Another work was named 
+cgi-lib.c created by eekim@eekim.com. This piece of code gave me the last push to finish looking for 
+readily available free library to interface with ScriptBasic and write instead a new one.
+<P>
+The ISAPI interface was developed using the Microsoft Developer Network CD documentation and I really 
+learned a lot while testing the different uses of the function ReadClient until I could figure out that the 
+official Microsoft documentation is wrong.
+<P>
+It says: "If more than lpdwSize bytes are immediately available to be read, ReadClient will block until some amount 
+of data has been returned, and will return with less than the requested amount of data." In fact it has to be "If less 
+than lpdwSize bytes are immediately available to be read, ReadClient will block until some amount of data has been 
+returned, and will return with possibly less than the requested amount of data."<HR>
+<A HREF="mod_cgi_2.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_4.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

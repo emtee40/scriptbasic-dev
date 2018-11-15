@@ -1,0 +1,44 @@
+<HEAD>
+<TITLE>Documentation of the module odbc: RealConnect</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module odbc: RealConnect">
+<META NAME="keywords" CONTENT="Documentation of the module odbc: RealConnect">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>RealConnect</H1>
+<A HREF="mod_odbc_8.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_odbc_10.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+DB = ODBC::RealConnect(DSN,User,Password)
+</PRE></FONT>
+<P>
+Use this fucntion to connect to an ODBC data source. The arguments are the <font size="3"><tt>DSN</tt></font> data source name as
+configured in the ODBC connection manager, the <font size="3"><tt>User</tt></font> user name, and the <font size="3"><tt>Password</tt></font> password.
+<P>
+The return value is the database handle to be used in consecutive calls to <a href="mod_odbc_7.htm">Query</A>, <a href="mod_odbc_3.htm">FetchArray</A>,
+<a href="mod_odbc_4.htm">FetchHash</A> and <a href="mod_odbc_8.htm">Close</A>. Note that this handle is a handle that ScriptBasic uses internally and is
+not the handle returned by the underlying ODBC functions. ScriptBasic, for security reasons keeps track of
+the handles using handle tables and return small integer numbers to the BASIC program to be used as reference.
+<P>
+You should not use any of these handles to perform any calculation other than passing them to the other
+functions to identify connections. You can, however freely copy these numbers from variable to the other,
+passing to fucntions and so on as they are simply small integer numbers.
+<P>
+If the connection can not be established for some reason the function raises a module specific error.
+<P>
+See also <a href="mod_odbc_10.htm">Connect</A>, <a href="mod_odbc_6.htm">Error</A>.
+<P>
+The function calls the underlying ODBC function <font size="3"><tt>SQLAllocHandle</tt></font> and <font size="3"><tt>SQLConnect</tt></font>.<HR>
+<A HREF="mod_odbc_8.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_odbc_10.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

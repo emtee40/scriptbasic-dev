@@ -1,0 +1,42 @@
+<HEAD>
+<TITLE>Documentation of the module curl: 2. curl::init</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: curl::init">
+<META NAME="keywords" CONTENT="Documentation of the module curl: curl::init">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_curl_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>2. curl::init</H1>
+<A HREF="mod_curl_1.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Call this function before any other curl action. This function will return a handle
+to the curl session. This handle should be used as first argument to any further curl calls.
+<P>
+
+Usage:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+CURL = curl::init()
+</PRE></FONT>
+<P>
+The handle that the function returns is a small integer. However the program should not alter this value in any
+way. The good practice is to store the value in a variable and use it as it is without caring about the real
+value or type of the content.
+<P>
+If the initialization of the connection can not be performed <font size="3"><tt>MEMORY_LOW</tt></font> error occurs.<HR>
+<A HREF="mod_curl_1.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

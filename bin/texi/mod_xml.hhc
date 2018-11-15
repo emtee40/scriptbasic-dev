@@ -1,0 +1,95 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="t2h.pl texi to html converter">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Introduction">
+<param name="Local" value="mod_xml_1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Parse an XML file and read into memory">
+<param name="Local" value="mod_xml_2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Create a new empty document">
+<param name="Local" value="mod_xml_3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Release a document from memory">
+<param name="Local" value="mod_xml_4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get the children on a document node">
+<param name="Local" value="mod_xml_5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Set the children on a document node">
+<param name="Local" value="mod_xml_6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get the next node of a document node">
+<param name="Local" value="mod_xml_7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Set the next on a document node">
+<param name="Local" value="mod_xml_8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get the prev node of a document node">
+<param name="Local" value="mod_xml_9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Set the next on a document node">
+<param name="Local" value="mod_xml_10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get the Parent node of a document node">
+<param name="Local" value="mod_xml_11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Set the next on a document node">
+<param name="Local" value="mod_xml_12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="set the property of a node">
+<param name="Local" value="mod_xml_13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="get the property of a node">
+<param name="Local" value="mod_xml_14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Create a new name space defintion">
+<param name="Local" value="mod_xml_15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Release a name space definition">
+<param name="Local" value="mod_xml_16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Create a new child under a node">
+<param name="Local" value="mod_xml_17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Create a new text child under a node">
+<param name="Local" value="mod_xml_18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Create a new document node">
+<param name="Local" value="mod_xml_19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Convert a document to XML text">
+<param name="Local" value="mod_xml_20.htm">
+</OBJECT>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

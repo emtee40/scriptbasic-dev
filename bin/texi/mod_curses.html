@@ -1,0 +1,413 @@
+<HEAD>
+<TITLE>Documentation of the module curses</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curses: Table of Contents">
+<META NAME="keywords" CONTENT="Documentation of the module curses: Table of Contents">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<H1>Documentation of the module curses</H1>
+<H3>by Peter Verhas</H3>
+<A NAME="contents"><H2>Table of Contents</H2></A>
+<UL>
+<A HREF="#1.">1.   Introduction</A><BR>
+<A HREF="#2.">2.   the module CURSES</A><BR>
+<A HREF="#3.">3.   Installation</A><BR>
+<A HREF="#4.">4.   Set current window</A><BR>
+<A HREF="#5.">5.   Beep.</A><BR>
+<A HREF="#6.">6.   Create a new window</A><BR>
+<A HREF="#7.">7.   Delete a window</A><BR>
+<A HREF="#8.">8.   Set automatic refresh</A><BR>
+<A HREF="#9.">9.   Beep.</A><BR>
+<A HREF="#10.">10.   Flash the screen</A><BR>
+<A HREF="#11.">11.   Erase the screen</A><BR>
+<A HREF="#12.">12.   Refresh the screen</A><BR>
+<A HREF="#13.">13.   Move the cursor</A><BR>
+<A HREF="#14.">14.   Get X position of cursor</A><BR>
+<A HREF="#15.">15.   Get Y position of cursor</A><BR>
+<A HREF="#16.">16.   Get width of current window</A><BR>
+<A HREF="#17.">17.   Get height of current window</A><BR>
+<A HREF="#18.">18.   Print a string</A><BR>
+<A HREF="#19.">19.   Insert a string </A><BR>
+<A HREF="#20.">20.   Insert or delete lines</A><BR>
+<A HREF="#21.">21.   Delete character</A><BR>
+<A HREF="#22.">22.   Get a string from the current window</A><BR>
+<A HREF="#23.">23.   Turn on the specified character attributes</A><BR>
+<A HREF="#24.">24.   Turn off the specified character attributes</A><BR>
+<A HREF="#25.">25.   Set current character attributes.</A><BR>
+<A HREF="#26.">26.   Change attributes on screen</A><BR>
+<A HREF="#27.">27.   Return number of available color pairs</A><BR>
+<A HREF="#28.">28.   Initialize color pair</A><BR>
+<A HREF="#29.">29.   Set current color</A><BR>
+<A HREF="#30.">30.   Set background color and attributes</A><BR>
+<A HREF="#31.">31.   Get character</A><BR>
+<A HREF="#32.">32.   Get string</A><BR>
+<A HREF="#33.">33.   Return name of a key</A><BR>
+</UL>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="1."><H1>1. Introduction</H1></A>
+
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="2."><H1>2. the module CURSES</H1></A>
+This module implements a ScriptBasic-curses interface (something like CIO
+for Unix) that makes direct cursor control and screen drawing possible on
+Unix systems.
+<P>
+Author: Berki Lukacs Tamas <P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="3."><H1>3. Installation</H1></A>
+
+The distribution contains the C language source file and the ScriptBasic
+include file. The C source must be compiled with the following command:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+cc -shared -o libcurses.so curses.c -lcurses
+</PRE></FONT>
+<P>
+The curses library and its include files (for Debian users: libncurses5 and
+libncurses5-dev packages) must be installed.
+<P>
+Move the library to your ScriptBasic library directory and the include file
+to the ScriptBasic include file directory (or redefine include and library
+directories in basic.conf).
+<P>
+I hope that this module will be included in the ScriptBasic distribution
+RSN.
+<P>
+
+My original plan was to port the CIO library to Unices, but most of its
+functions could not be adapted and curses supports a much wider range
+of screen operations than CIO, so this extension became a curses interface.
+<P>
+This means that curses routines are not compatible with CIO, although
+it should be very easy to make a subset of CIO routines available under
+Unices.
+<P>
+sbkbhit is the equivalent of getch(0, 0).
+Console title modification is (of course) not supported, but something
+could be done with xterm's title modification escape sequences.
+<P>
+NoBreak is not supported. ScriptBasic programs should be terminated with
+Ctrl-C (SIGINT).
+<P>
+SizeX and SizeY are the equivalent of getmaxx and getmaxy.
+<P>
+Color support is VERY different in curses.
+<P>
+Cls is the direct equivalent of erase.
+<P>
+Naturally, the ncurses console cannot be resized like the SetWindow command
+does it under Windows.
+<P>
+
+<P>
+The only non-straightforward thing about the curses library is its
+color support.
+<P>
+Every character on the screen has an associated color pair number. A
+color pair consists of a background and a foreground color. There are a
+a very finite number of available color pairs, which can be found out
+using the maxcolors function.
+<P>
+If you want to print a character in a specified color, you initialize
+a color pair to that color, and then make that the active color pair
+using setcolor.
+<P>
+You cannot cheat (i.e. print more colors on the screen than the
+number of available color pairs) by printing a character and then
+changing its color pair's definition, because if a color pair is
+changed, its occurrences on the screen are repainted using the new
+color. This is quirk in curses (I think for the sake of being
+compatible with some kind of old terminals).
+<P>
+
+<P>
+This is VERY straightforward. Windows can be created and deleted using
+newwin and delwin. Sub-window support is there in ncurses, but I chose
+not to support that because the documentation of ncurses says that it
+is still buggy.
+<P>
+Console handling low level routines for Unix ncurses environment.
+<P>
+This module implements interface routines to the ncurses library.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4."><H1>4. Set current window</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+setwin(WindowHandle)
+</PRE></FONT>
+<P>
+Set current window to the specified one. Returns 0 in case of error, returns
+-1 otherwise. The handle of stdscr (full-screen default window) is 1.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="5."><H1>5. Beep.</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+border
+</PRE></FONT>
+<P>
+Sound the bell of the terminal.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="6."><H1>6. Create a new window</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+WindowHandle = newwin(X, Y, Width, Height)
+</PRE></FONT>
+<P>
+Creates a new window with specified dimensions and returns its handle.
+Returns 0 in case of error.
+Window handles are small integers starting from 1. <P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="7."><H1>7. Delete a window</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+delwin(WindowHandle)
+</PRE></FONT>
+<P>
+Delete the specified window. Return 0 in case of error.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="8."><H1>8. Set automatic refresh</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+autorefresh(1)
+</PRE></FONT>
+<P>
+Set automatic refresh flag. If it is true, a screen refresh occurs every
+time a curses function is called that can possibly modify the contents
+of the screen.
+<P>
+Even if autorefresh is inactive, there are some functions (mainly the
+keyboard input functinos) that refresh the screen automatically. This
+is a limitation of the curses library.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="9."><H1>9. Beep.</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+beep
+</PRE></FONT>
+<P>
+Sound the bell of the terminal.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="10."><H1>10. Flash the screen</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+flash
+</PRE></FONT>
+<P>
+Flash the screen (cause a visible bell). If the terminal does not support
+visible bell, the audible bell is sounded.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="11."><H1>11. Erase the screen</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+erase
+</PRE></FONT>
+<P>
+Copy blanks to every character position on the screen, thus erasing it.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="12."><H1>12. Refresh the screen</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+refresh
+</PRE></FONT>
+<P>
+Refresh the screen.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="13."><H1>13. Move the cursor</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+move(X, Y)
+</PRE></FONT>
+<P>
+Move the cursor to the specified coordinates. The coordinates are 0-based.
+Return 0 on error, -1 otherwise.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="14."><H1>14. Get X position of cursor</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+XCoord = getx()
+</PRE></FONT>
+<P>
+Get the X coordinate of cursor position.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="15."><H1>15. Get Y position of cursor</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+YCoord = gety()
+</PRE></FONT>
+<P>
+Get the Y coordinate of cursor position.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="16."><H1>16. Get width of current window</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+XSize = getsizex()
+</PRE></FONT>
+<P>
+Returns the width of current window.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="17."><H1>17. Get height of current window</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+YSize = getsizey()
+</PRE></FONT>
+<P>
+Returns the height of current window.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="18."><H1>18. Print a string</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+addstr("Hello, World!")
+</PRE></FONT>
+<P>
+Print the specified string in the current window.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="19."><H1>19. Insert a string </H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+insstr "Hello, World!"
+</PRE></FONT>
+<P>
+Insert the specified string under the cursor. Control characters
+(tab, backspace, newline) are handled appropriately. It possible
+that characters at the end of line are lost.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="20."><H1>20. Insert or delete lines</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+insdelln(10)
+</PRE></FONT>
+<P>
+If the argument is positive, insert the appropriate number of lines above
+the current line. If the argument is negative, delete the appropriate number
+of lines starting from the one containing the cursor.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="21."><H1>21. Delete character</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+</PRE></FONT>
+<P>
+Delete the character under the cursor.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="22."><H1>22. Get a string from the current window</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+Content = instr(10)
+</PRE></FONT>
+<P>
+These routines return  a  string  of  characters  in  str,
+extracted  starting  at the current cursor position in the
+named window.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="23."><H1>23. Turn on the specified character attributes</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+attron(ABold or AReverse)
+</PRE></FONT>
+<P>
+Turn on the specified attributes for the current window. The argument should
+be a bit mask constructed from the A* constants.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="24."><H1>24. Turn off the specified character attributes</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+attroff(ABold or AReverse)
+</PRE></FONT>
+<P>
+Turn off the specified attributes for the current window. The argument should
+be a bit mask constructed from the A* constants.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="25."><H1>25. Set current character attributes.</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+attrset(ABold or AReverse)
+</PRE></FONT>
+<P>
+Set current character attributes to the specified value. The argument should
+be a bit mask constructed from the A* constants. <P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="26."><H1>26. Change attributes on screen</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+chgat(5, 1, ABold)
+</PRE></FONT>
+<P>
+Change the attributes of the characters on the screen and their color. In
+the examples, the next five characters from the cursor will be changed
+to the first color pair and bold face.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="27."><H1>27. Return number of available color pairs</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+Colors = maxcolors()
+</PRE></FONT>
+<P>
+Returns the number available color pairs on this system.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="28."><H1>28. Initialize color pair</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+initpair(Color, Foreground, Background)
+</PRE></FONT>
+<P>
+Set a color pair (foreground and background).
+Returns 0 on error and -1 otherwise.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="29."><H1>29. Set current color</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+setcolor(ColorPair)
+</PRE></FONT>
+<P>
+Set current color to the specified color pair. Returns 0 on error and
+-1 otherwise.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="30."><H1>30. Set background color and attributes</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+setbackground(ColorPair, Attributes, Update)
+</PRE></FONT>
+<P>
+Set background color and attributes for the current window. The attribute
+is logically OR'ed with all non-blank characters that are written on the
+window. If Update is true, change all characters on the screen to the
+new background.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="31."><H1>31. Get character</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+Char = getch(Echo, Delay)
+</PRE></FONT>
+<P>
+Waits for a keypress and returns its curses key code. If Echo is true,
+echo the character on the screen. If Delay is false, return -1 if
+there is no available keystroke (and do not wait for one). Both
+arguments are optional.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="32."><H1>32. Get string</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+Str = getstr(Length)
+</PRE></FONT>
+<P>
+Get string input from user. Length specifies the maximum possible length
+for the string. Line-editing characters are handled appropriately.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="33."><H1>33. Return name of a key</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+Name = keyname(Key)
+</PRE></FONT>
+<P>
+Return the name of a keystroke (probably returned by getch) as a string.
+<P>
+ 
+

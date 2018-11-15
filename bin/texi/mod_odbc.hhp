@@ -1,0 +1,24 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=mod_odbc.chm
+Contents file=mod_odbc.hhc
+Default topic=mod_odbc_title.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=mod_odbc.hhk
+Language=0x409 English (United States)
+Title=Documentation of the module odbc
+
+[FILES]
+mod_odbc_title.htm
+mod_odbc_1.htm
+mod_odbc_2.htm
+mod_odbc_3.htm
+mod_odbc_4.htm
+mod_odbc_5.htm
+mod_odbc_6.htm
+mod_odbc_7.htm
+mod_odbc_8.htm
+mod_odbc_9.htm
+mod_odbc_10.htm
+[INFOTYPES]

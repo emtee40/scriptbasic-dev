@@ -1,0 +1,88 @@
+<HEAD>
+<TITLE>Documentation of the module cgi: 36. Template handling</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module cgi: Template handling">
+<META NAME="keywords" CONTENT="Documentation of the module cgi: Template handling">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_cgi_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>36. Template handling</H1>
+<A HREF="mod_cgi_35.html">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_37.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+CGI programs should output HTML text. Embedding this text into the code is a bad practice. In our
+practice we usually use HTML templates that the program reads, modifies, inserts values and outputs. The 
+CGI module support the usage of such templates.
+<P>
+A template is an HTML text with parameters. The parameters are placed in HTML comments, therefore 
+you can easily edit these templates with the HTML editor you like. Each comment may contain a symbol 
+name. The program should specify the actual value for the symbol and the module reads the template 
+with the actual values replacing the comments. For example the template:
+<P>
+This is a template text with a
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+&lt;!--alma--&gt;
+</PRE></FONT>
+symbol.
+<P>
+will be presented as
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+This is a template text with a defined symbol.
+</PRE></FONT>
+assuming that the actual value of the symbol alma is the string "defined". If the value of the symbol is 
+not defined by the program the comment is replaced by an empty string.
+<P>
+To handle symbols, and templates there are several functions in ScriptBasic. You can define a symbol 
+calling the function cgi::SymbolName. To define the symbol alma you have to write:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+cgi::SymbolName "alma" , "defined"
+</PRE></FONT>
+<P>
+You can also tell the module that the actual string of the symbol can be found in a file, saying:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+cgi::SymbolFile "symbol","file name"
+</PRE></FONT>
+<P>
+To get the template file already with resolved symbol values you should say:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+HtmlTemplate$ = cgi::GetHtmlTemplate("filename")
+</PRE></FONT>
+<P>
+or if you want to hard wire the template text into the code:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+HtmlTemplate$ = cgi::ResolveHtml("template text to be resolved")
+</PRE></FONT>
+<P>
+When you are finished sending a resolved template to the client you may want to define other symbols, 
+but before doing that it is safe to undefine the symbols used by the previous template. You can do that 
+calling the function
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+cgi::ResetSymbols
+</PRE></FONT>
+<P>
+Calling this function also releases the space occupied by the symbols and their values.
+For more information see the sample code.
+<P>
+Note that modern approach to this issue is to generate XML format output from the program and use XSLT
+transformation to create the desired XHTML output.<HR>
+<A HREF="mod_cgi_35.html">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_37.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

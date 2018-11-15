@@ -1,0 +1,42 @@
+<HEAD>
+<TITLE>Documentation of the module curl: 3.54. TIMEVALUE integer</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: TIMEVALUE integer">
+<META NAME="keywords" CONTENT="Documentation of the module curl: TIMEVALUE integer">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_curl_toc.html">[Contents]</A><BR>
+<UL><a href="mod_curl_3.html">3. curl::option</A><BR>
+</UL>
+</UL>
+<P>
+<H1>3.54. TIMEVALUE integer</H1>
+<A HREF="mod_curl_3.53.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.55.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CURL,"TIMECONDITION","IFMODSINCE"
+curl::option CurlHandle,"TIMEVALUE",curl::getdate("2 days ago")
+</PRE></FONT>
+<P>
+Pass an integer as parameter. This should be the time in seconds since 1 jan 1970,
+and the time will be used as specified in the option <font size="3"><tt>TIMECONDITION</tt></font> or if that
+isn't used, it will be <font size="3"><tt>IFMODSINCE</tt></font> by default. (In other words curl will fetch the
+page only if that is newer than the specified time.)
+<P>
+To conveniently get such time-stamp values as accepted by this function as argument you
+can use the ScriptBasic function <font size="3"><tt>TIMEVALUE</tt></font>.<HR>
+<A HREF="mod_curl_3.53.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.55.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

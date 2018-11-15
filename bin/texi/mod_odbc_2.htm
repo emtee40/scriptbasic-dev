@@ -1,0 +1,34 @@
+<HEAD>
+<TITLE>Documentation of the module odbc: Error Codes</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module odbc: Error Codes">
+<META NAME="keywords" CONTENT="Documentation of the module odbc: Error Codes">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Error Codes</H1>
+<A HREF="mod_odbc_1.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_odbc_3.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+The module raises error in case when there is some problem with the underlying
+database handling. The error codes the module may raise:
+<P>
+<UL>
+<LI> 0x00081001 there is no such connection name
+<LI> 0x00081002 there is some problem with the connection name. This is an error in the configuration file.
+<LI> 0x00081003 the connection was refused by the database.
+<LI> 0x00081004 query execution error.
+<LI> 0x00081005 the program tries to call <a href="mod_odbc_3.htm">FetchArray</A> or <a href="mod_odbc_4.htm">Fetchhash</A> without a preceeding query execution.
+<LI> 0x00081006 the second argument of a fetch does not evaluate to left value.
+</UL><HR>
+<A HREF="mod_odbc_1.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_odbc_3.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

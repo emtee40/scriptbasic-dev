@@ -1,0 +1,32 @@
+<HEAD>
+<TITLE>Documentation of the module curl: FILETIME flag</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: FILETIME flag">
+<META NAME="keywords" CONTENT="Documentation of the module curl: FILETIME flag">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>FILETIME flag</H1>
+<A HREF="mod_curl_3.43.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.45.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"FILETIME"
+</PRE></FONT>
+<P>
+Pass a long. If it is a non-zero value, libcurl will attempt to get the
+modification date of the remote document in this operation. This requires that
+the remote server sends the time or replies to a time querying command. The
+curl_easy_getinfo() function with the CURLINFO_FILETIME argument can be used
+after a transfer to extract the received time (if any). (Added in 7.5)<HR>
+<A HREF="mod_curl_3.43.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.45.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

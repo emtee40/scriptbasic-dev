@@ -1,0 +1,45 @@
+<HEAD>
+<TITLE>Using the module MySQL: Configuration</TITLE>
+
+<META NAME="description" CONTENT="Using the module MySQL: Configuration">
+<META NAME="keywords" CONTENT="Using the module MySQL: Configuration">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Configuration</H1>
+<A HREF="mod_mysql_2.0.2.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_mysql_4.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+The module is not configurable currently. However there are plans introducing configuration options and you can also define connections in the configuration file.
+
+The section of the configuration file important for the MySQL module is under the key <font size="3"><tt>mysql</tt></font>. For example:
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mysql (
+  connections (
+    test (        ; the name of the connection
+	  host "127.0.0.1" ; the host for the connection
+	  db "test"   ; database for the connection
+	  user "root" ; user for the connection
+	  password "" ; password for the connection
+	  port 0      ; the port to use
+	  socket ""  ; the name of the socket or ""
+	  flag 0      ; the client flag
+	  )
+    )
+  )
+</PRE></FONT>
+
+This fragment of the configuration file defines a connection that ScriptBasic programs may use. The parameters of the connections are defined in the configuration file and the BASIC program should only refer to it without knowing the actual host, user, password or other parameters. These are matters of configuration. It is also advisable not to include such sensitive information like a password into the BASIC scripts. What is more: later versions of the module loaded by multithreaded version of the interpreter may keep such configured connections alive and reuse them resulting faster database handling.
+<HR>
+<A HREF="mod_mysql_2.0.2.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_mysql_4.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

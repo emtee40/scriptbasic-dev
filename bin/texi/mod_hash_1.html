@@ -1,0 +1,53 @@
+<HEAD>
+<TITLE>Using the module HASH: 1. Introduction</TITLE>
+
+<META NAME="description" CONTENT="Using the module HASH: Introduction">
+<META NAME="keywords" CONTENT="Using the module HASH: Introduction">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_hash_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>1. Introduction</H1>
+[&lt;&lt;&lt;] <A HREF="mod_hash_2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+
+This document describes how to install and use the module HASH for ScriptBasic.
+
+There are separate documents that describe the language (Users’ Guide), the major architecture of the source code (Source Guide).
+
+This document describes the version 1.0 of the module.
+A hash is a set of key value pairs. Each value appearing in a hash is assigned to a key when entered into the hash and can be retrieved knowing the key. The hash module implements a fast and effective hash handling. Hashes of the module are stored in memory. The memory is allocated when the hash is created, when new key/value pairs are entered into the hash and is released when a key or the hash is destroyed.
+
+The hash implemented in this module is a complex data structure. You can do the following operations using the hash:
+
+<UL>
+<LI> Create a hash.
+<LI> Delete a hash entirely also releasing all memory allocated to store keys and values.
+<LI> Add a new key/value pair to the hash.
+<LI> Get a value for a given key.
+<LI> Delete a key/value pair from the hash based on the key.
+<LI> Iterate forward and backward on the values in a loop in the order the pairs were inserted.
+</UL>
+
+The key and the value can be anything that ScriptBasic allows except arrays. A key can be a string, integer value, real value or even <font size="3"><tt>undef</tt></font>. The same is true for the value part of the pairs.
+
+The module implements functions that are easy to use for the novice programmer, and other functions that require more knowledge to use, but deliver higher performance eliminating possible repeated searches in the hash table.
+
+The internal data structure used by the module is a hash table of 211 elements each element storing the values in a binary tree. To iterate over the elements the table also maintains a double linked list.
+<HR>
+[&lt;&lt;&lt;] <A HREF="mod_hash_2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,510 @@
+<HEAD>
+<TITLE>Using the module MySQL</TITLE>
+
+<META NAME="description" CONTENT="Using the module MySQL: Table of Contents">
+<META NAME="keywords" CONTENT="Using the module MySQL: Table of Contents">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<H1>Using the module MySQL</H1>
+<H3>by Peter Verhas</H3>
+<A NAME="contents"><H2>Table of Contents</H2></A>
+<UL>
+<A HREF="#1.">1.   Introduction</A><BR>
+<A HREF="#2.">2.   Installing the module</A><BR>
+<UL>
+<A HREF="#2.0.1.">2.0.1.   While compiling the compiler complains</A><BR>
+<A HREF="#2.0.2.">2.0.2.   Module can not be loaded</A><BR>
+</UL>
+</UL>
+<A HREF="#3.">3.   Configuration</A><BR>
+<A HREF="#4.">4.   Using the module</A><BR>
+<UL>
+<A HREF="#4.1.">4.1.   RealConnect</A><BR>
+<A HREF="#4.2.">4.2.   Connect</A><BR>
+<A HREF="#4.3.">4.3.   Close</A><BR>
+<A HREF="#4.4.">4.4.   Query</A><BR>
+<A HREF="#4.5.">4.5.   FetchArray</A><BR>
+<A HREF="#4.6.">4.6.   FetchHash</A><BR>
+<A HREF="#4.7.">4.7.   AffectedRows</A><BR>
+<A HREF="#4.8.">4.8.   ChangeUser</A><BR>
+<A HREF="#4.9.">4.9.   CharacterSetName</A><BR>
+<A HREF="#4.10.">4.10.   DataSeek</A><BR>
+<A HREF="#4.11.">4.11.   ErrorMessage</A><BR>
+<A HREF="#4.12.">4.12.   GetClientInfo</A><BR>
+<A HREF="#4.13.">4.13.   GetHostInfo</A><BR>
+<A HREF="#4.14.">4.14.   GetProtoInfo</A><BR>
+<A HREF="#4.15.">4.15.   GetServerInfo</A><BR>
+<A HREF="#4.16.">4.16.   Info</A><BR>
+<A HREF="#4.17.">4.17.   InsertId</A><BR>
+<A HREF="#4.18.">4.18.   Kill</A><BR>
+<A HREF="#4.19.">4.19.   Ping</A><BR>
+<A HREF="#4.20.">4.20.   EscapeString</A><BR>
+<A HREF="#4.21.">4.21.   SelectDatabase</A><BR>
+<A HREF="#4.22.">4.22.   Shutdown</A><BR>
+<A HREF="#4.23.">4.23.   Stat</A><BR>
+<A HREF="#4.24.">4.24.   ThreadId</A><BR>
+</UL>
+<A HREF="#5.">5.   Sample code</A><BR>
+<A HREF="#6.">6.   Future development, aims</A><BR>
+</UL>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="1."><H1>1. Introduction</H1></A>
+
+
+This document describes how to install and use the module MySQL.
+
+There are separate documents that describe the language (Users’ Guide), the major architecture of the source code (Source Guide).
+
+This document describes the version 1.0 of the module.
+
+Document version: 4.0
+
+The module MySQL allows ScriptBasic programmers to connect to MySQL database and to execute SQL commands. The module allow access to almost all the functionality that the MySQL native C interface provides. You can connect to a database, execute SQL command, disconnect, but also execute administration commands like <font size="3"><tt>mysql::kill</tt></font> that kills a query thread on the server in case you have privilege.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="2."><H1>2. Installing the module</H1></A>
+
+The module comes in source form or as compiled binary. Binary is usually available for the Win32 platforms only. The compilation of the source code is simple. Compile the source files to a .dll or to .so shared library. To do so you will find an install.sh command file in the UNIX distribution of ScriptBasic in the directory extensions/mysql. To execute this command file you have to have root privileges and have to type:
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+sh install.sh
+</PRE></FONT>
+
+The compiled module contains a dynamically load binary file and a basic include file named mysql.bas. The include file mysql.bas should be placed in a module include directory file configured in the configuration file. The configuration file usually named scriba.conf should include a line
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+include /etc/scriba/include/
+</PRE></FONT>
+
+defining the include files location for the modules and other generally used include files. The actual directory can be different.
+
+The binary part of the module should be placed in another directory specified in the configuration file, like
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+module /usr/scriba/modules/
+</PRE></FONT>
+
+There can be more than one include and module statement in the configuration file. In that case the interpreter searches the directories in the order they are specified until the include file or the module is found.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="2.0.1."><H3>2.0.1. While compiling the compiler complains</H3></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mysqlinterf.c:10: mysql.h: No such file or directory
+</PRE></FONT>
+
+Be sure that you have a MySQL client installed on your UNIX. Check that the file `<font size="3"><tt>mysql.h</tt></font>' is in the directory `<font size="3"><tt>/usr/include</tt></font>' or in a directory that is specified using the –I option of the compiler. A sample `<font size="3"><tt>install.sh</tt></font>' file is the following:
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+cc -c -I/usr/include/mysql -o mysqlinterf.o mysqlinterf.c
+ld -shared -o mysql.so mysqlinterf.o -lc -lmysqlclient
+mv *.so /etc/scriba/modules
+</PRE></FONT>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="2.0.2."><H3>2.0.2. Module can not be loaded</H3></A>
+
+You have an old MySQL installed. ScriptBasic MySQL interface was tested using MySQL v3.23. Older versions do not support <font size="3"><tt>mysql_real_escape_string</tt></font>, <font size="3"><tt>mysql_change_user</tt></font> and <font size="3"><tt>mysql_character_set_name</tt></font> functions. To be able to compile the interface for this older version edit the <font size="3"><tt>mysqlinterf.c</tt></font> file and search the line:
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+#define VERSION323 1
+</PRE></FONT>
+
+and change it to
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+#define VERSION323 0
+</PRE></FONT>
+
+This will switch off the use of these functions, however be sure that your BASIC program does not use the functions <font size="3"><tt>mysql::ChangeUser</tt></font>, <font size="3"><tt>mysql::EscapeString</tt></font> and <font size="3"><tt>mysql::CharacterSetName</tt></font>.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="3."><H1>3. Configuration</H1></A>
+
+The module is not configurable currently. However there are plans introducing configuration options and you can also define connections in the configuration file.
+
+The section of the configuration file important for the MySQL module is under the key <font size="3"><tt>mysql</tt></font>. For example:
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mysql (
+  connections (
+    test (        ; the name of the connection
+	  host "127.0.0.1" ; the host for the connection
+	  db "test"   ; database for the connection
+	  user "root" ; user for the connection
+	  password "" ; password for the connection
+	  port 0      ; the port to use
+	  socket ""  ; the name of the socket or ""
+	  flag 0      ; the client flag
+	  )
+    )
+  )
+</PRE></FONT>
+
+This fragment of the configuration file defines a connection that ScriptBasic programs may use. The parameters of the connections are defined in the configuration file and the BASIC program should only refer to it without knowing the actual host, user, password or other parameters. These are matters of configuration. It is also advisable not to include such sensitive information like a password into the BASIC scripts. What is more: later versions of the module loaded by multithreaded version of the interpreter may keep such configured connections alive and reuse them resulting faster database handling.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4."><H1>4. Using the module</H1></A>
+
+To use the module the basic program should include the file mysql.bas. To do this the program should contain the line
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+include mysql.bas
+</PRE></FONT>
+
+somewhere at the start of the code. Note that there are no double quote characters before and after the file name. This tells the interpreter that the include file is located in a module include directory. This include file contains all the declarations that are needed to use the MySQL functions.
+
+The program using the module should call the functions declared in the include file. The binary library file is loaded when the first function call is executed. 
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.1."><H2>4.1. RealConnect</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+dbh =
+ mysql::RealConnect(host,user,password,database [,port] [,unixsocketname] [,clientflag])
+</PRE></FONT>
+
+Connect to a database using the real connection parameters. 
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.2."><H2>4.2. Connect</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+dbh = mysql::Connect(connection)
+</PRE></FONT>
+
+Connect to a database using a named connection. The connection parameters should be configured in the ScriptBasic configuration file.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.3."><H2>4.3. Close</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mysql::Close dbh
+</PRE></FONT>
+
+Close an opened connection. There is no need to call this function, all database connections are automatically closed when the interpreter finishes executing the BASIC script. However it is polite to close a database connection as soon as possible.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.4."><H2>4.4. Query</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mysql::query dbh,query_string
+</PRE></FONT>
+
+Execute a query.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.5."><H2>4.5. FetchArray</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+Mysql::FetchArray dbh,arr
+</PRE></FONT>
+
+Get a row from a result set after a query. The row will be placed in the variable <font size="3"><tt>arr</tt></font> as an array each element containing the value of the appropriate column.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.6."><H2>4.6. FetchHash</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mysql::FetchHash dbh, arr
+</PRE></FONT>
+
+Get a row from a result set after a query. The row will be placed in the variable <font size="3"><tt>arr</tt></font> as an associative array. Each column name is associated with the column value of the actual row.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.7."><H2>4.7. AffectedRows</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+n = mysql::AffectedRows(dbh)
+</PRE></FONT>
+
+Returns the number of affected rows after executing an <font size="3"><tt>INSERT</tt></font>, <font size="3"><tt>DELETE</tt></font> or similar command.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.8."><H2>4.8. ChangeUser</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mysql::ChangeUser dbh, user,password [,database]
+</PRE></FONT>
+
+Change the actual user on an existing connection. Optionally change the database of the connection also.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.9."><H2>4.9. CharacterSetName</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+A$ = mysql::CharacterSetName(dbh)
+</PRE></FONT>
+
+Return the character set name string actually used by the connection.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.10."><H2>4.10. DataSeek</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mysql::DataSeek dbh,n
+</PRE></FONT>
+
+Seek to a certain row of a result set.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.11."><H2>4.11. ErrorMessage</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+A$ = mysql::ErrorMessage(dbh)
+</PRE></FONT>
+
+Returns the string describing the last database handling error.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.12."><H2>4.12. GetClientInfo</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+A$ = mysql::GetClientInfo()
+</PRE></FONT>
+
+Returns the character string that represents the MySQL client library version. 
+
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.13."><H2>4.13. GetHostInfo</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+A$ = mysql::GetHostInfo(dbh)
+</PRE></FONT>
+
+Returns a string describing the type of connection in use, including the server host name.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.14."><H2>4.14. GetProtoInfo</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+n = mysql::GetProtoInfo(dbh)
+</PRE></FONT>
+
+Returns the protocol version used by current connection. This is an unsigned integer representing the protocol version used by the current connection.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.15."><H2>4.15. GetServerInfo</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+A$ = mysql::GetServerInfo(dbh)
+</PRE></FONT>
+
+This function returns a string that represents the server version number. 
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.16."><H2>4.16. Info</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+A$ = mysql::Info(dbh)
+</PRE></FONT>
+
+This function retrieves a string providing information about the most recently executed query, but only for the statements listed below. For other statements, <font size="3"><tt>mysql::Info()</tt></font> returns <font size="3"><tt>undef</tt></font>. The format of the string varies depending on the type of query, as described below. The numbers are illustrative only; the string will contain values appropriate for the query. 
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+INSERT INTO ... SELECT ... 
+String format: Records: 100 Duplicates: 0 Warnings: 0 
+INSERT INTO ... VALUES (...),(...),(...)... 
+String format: Records: 3 Duplicates: 0 Warnings: 0 
+LOAD DATA INFILE ... 
+String format: Records: 1 Deleted: 0 Skipped: 0 Warnings: 0 
+ALTER TABLE 
+String format: Records: 3 Duplicates: 0 Warnings: 0 
+UPDATE 
+String format: Rows matched: 40 Changed: 40 Warnings: 0 
+</PRE></FONT>
+
+Note that <font size="3"><tt>mysql::Info()</tt></font> returns a string value for the <font size="3"><tt>INSERT ... VALUES</tt></font> statement only if multiple value lists are specified in the statement.  Otherwise it returns <font size="3"><tt>undef</tt></font>.
+
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.17."><H2>4.17. InsertId</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+n = mysql::InsertId(dbh)
+</PRE></FONT>
+
+Returns the ID generated for an <font size="3"><tt>AUTO_INCREMENT</tt></font> column by the previous query. Use this function after you have performed an INSERT query into a table that contains an <font size="3"><tt>AUTO_INCREMENT</tt></font> field.
+
+Note that <font size="3"><tt>mysql::InsertId()</tt></font> returns 0 if the previous query does not generate an <font size="3"><tt>AUTO_INCREMENT</tt></font>value. If you need to save the value for later, be sure to call <font size="3"><tt>mysql::InsertId()</tt></font> immediately after the query that generates the value. 
+
+Also note that the value of the SQL <font size="3"><tt>LAST_INSERT_ID()</tt></font> function always contains the most recently generated <font size="3"><tt>AUTO_INCREMENT</tt></font> value, and is not reset between queries because the value of that function is maintained in the server. 
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.18."><H2>4.18. Kill</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mysql::Kill dbh,pid
+</PRE></FONT>
+
+Asks the server to kill the thread specified by the pid.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.19."><H2>4.19. Ping</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+n = mysql::Ping(dbh)
+</PRE></FONT>
+
+Checks whether or not the connection to the server is working. If it has gone down, an automatic reconnection is attempted.
+
+Clients that remain idle for a long while, to check whether or not the server has closed the connection and reconnect if necessary can use this function. 
+
+Returns true if the server is alive and false if an error occurred.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.20."><H2>4.20. EscapeString</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+A$ = mysql::EscapeString(dbh,string)
+</PRE></FONT>
+
+Encodes the string to an escaped SQL string, taking into account the current charset of the connection, that can be sent to the server in a SQL statement, places the result in to, and adds a terminating null byte. Characters encoded are <font size="3"><tt>NUL</tt></font> (ASCII 0), <font size="3"><tt>\n</tt></font>, <font size="3"><tt>\r</tt></font>, <font size="3"><tt>\</tt></font>, <font size="3"><tt>'</tt></font>, <font size="3"><tt>"</tt></font>, and Control-Z.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.21."><H2>4.21. SelectDatabase</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+Mysql::SelectDb dbh,database
+</PRE></FONT>
+
+Causes the database specified by database to become the default (current) database on the connection specified by MySQL. In subsequent queries, this database is the default for table references that do not include an explicit database specifier. 
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.22."><H2>4.22. Shutdown</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mysql::Shutdown dbh
+</PRE></FONT>
+
+This function asks the database server to shut down. The connected user must have shutdown privileges.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.23."><H2>4.23. Stat</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+A$ = mysql::Stat(dbh)
+</PRE></FONT>
+
+This function returns a character string containing information similar to that provided by the <font size="3"><tt>mysqladmin</tt></font> status command. This includes uptime in seconds and the number of running threads, questions, reloads, and open tables.
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4.24."><H2>4.24. ThreadId</H2></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+n = mysql::ThreadId(dbh)
+</PRE></FONT>
+
+Returns the thread ID of the current connection. This value can be used as an argument to mysq::Kill() to kill the thread.
+
+If the connection is lost and you reconnect with mysql::Ping(), the thread ID will change. This means you should not get the thread ID and store it for later. You should get it when you need it. 
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="5."><H1>5. Sample code</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import mysql.bas
+
+dbh = mysql::Connect("test")
+print "The data base handle is: ",dbh,"\n"
+' mysql::Shutdown dbh
+' print mysql::ErrorMessage(),"\n"
+print mysql::Stat(dbh)
+print
+mysql::query dbh,"delete from users where name='Kakukk'"
+print "Affected rows after delete is: ",mysql::AffectedRows(dbh)
+print
+mysql::query dbh,"insert into users values ('Kakukk',52)"
+print "Affected rows after inserting kakukk: ",mysql::AffectedRows(dbh)
+print
+print "Info is: ",mysql::Info(dbh)
+print
+mysql::query dbh,"select * from users order by name desc"
+print "Affected rows after select: ",mysql::AffectedRows(dbh)
+print
+' mysql::DataSeek dbh,1
+' print
+i=0
+while mysql::fetcharray(dbh,q)
+i=i+1
+print i,". ",q[0]," ",q[1]
+print
+wend
+print "Character set name is: ",mysql::CharacterSetName(dbh)
+print
+
+mysql::query dbh,"select * from users order by name desc"
+print "Affected rows after select: ",mysql::AffectedRows(dbh)
+print
+' mysql::DataSeek dbh,1
+' print
+i=0
+while mysql::FetchHash(dbh,q)
+i=i+1
+print i,". "
+print
+print "name=",q{"name"}
+print
+print "age=",q{"age"}
+print
+wend
+
+
+' mysql::DataSeek dbh,0
+on error resume next
+mysql::query dbh,"select * from user"
+print "Last error is: ",mysql::ErrorMessage(dbh)
+print
+print "Client info is: ",mysql::GetClientInfo()
+print
+print "Host info is: ",mysql::GetHostInfo(dbh)
+print
+print "Proto info is: ",mysql::GetProtoInfo(dbh)
+print
+print "Server info is: ",mysql::GetServerInfo(dbh)
+print
+
+mysql::query dbh,"SHOW PROCESSLIST"
+print "Affected rows after show processlistselect: ",mysql::AffectedRows(dbh)
+print
+i=0
+while mysql::fetcharray(dbh,q)
+i=i+1
+print i,". ",q[0]
+' mysql::kill dbh,q[0]
+print
+wend
+print "ping result: ",mysql::Ping(dbh)
+print "haho"
+print
+on error resume next
+mysql::Query dbh,"INSERT INTO autoinc values ('huuuh',null)"
+print mysql::ErrorMessage(dbh)
+print
+print mysql::InsertId(dbh)
+print
+
+print "Thread id=",mysql::ThreadId(dbh)
+print
+mysql::kill dbh, mysql::ThreadId(dbh)
+
+mysql::Close(dbh)
+</PRE></FONT>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="6."><H1>6. Future development, aims</H1></A>
+
+Later with development of interfaces to other databases (Oracle and PostgreSQL is planned and, well ODBC) there will be a definite need to develop an interface that hides the difference between the databases.
+
+As soon as we are ready with the ScriptBasic daemon engine for fast web applications a new version of this module will be developed that will keep connection pools available and not close and reconnect for each client.
+
+

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="t2h.pl texi to html converter">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Introduction">
+<param name="Local" value="mod_mt_1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="The module MT">
+<param name="Local" value="mod_mt_2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="What are session and variables">
+<param name="Local" value="mod_mt_3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::SetSessionId "session id"">
+<param name="Local" value="mod_mt_4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::CheckSessionId("sessionid")">
+<param name="Local" value="mod_mt_5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::SessionCount()">
+<param name="Local" value="mod_mt_6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::NewSessionId(["optional random string"])">
+<param name="Local" value="mod_mt_7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::DeleteSession ["sessionid"]">
+<param name="Local" value="mod_mt_8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::GetSessionId()">
+<param name="Local" value="mod_mt_9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::SetSessionVariabe "variablename",value">
+<param name="Local" value="mod_mt_10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::GetSessionVariabe("variablename")">
+<param name="Local" value="mod_mt_11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::SetVariable "variablename",value">
+<param name="Local" value="mod_mt_12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::GetVariable("variablename")">
+<param name="Local" value="mod_mt_13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::LockWrite "variablename"">
+<param name="Local" value="mod_mt_14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::LockRead "variablename"">
+<param name="Local" value="mod_mt_15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::UnlockWrite "variablename"">
+<param name="Local" value="mod_mt_16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::UnlockRead "variablename"">
+<param name="Local" value="mod_mt_17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::SessionTimeout [sec]">
+<param name="Local" value="mod_mt_18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::GetSessionTimeout ["sessionid"]">
+<param name="Local" value="mod_mt_19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::GetSessionPingTime ["sessionid"]">
+<param name="Local" value="mod_mt_20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="mt::ListSessions">
+<param name="Local" value="mod_mt_21.htm">
+</OBJECT>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

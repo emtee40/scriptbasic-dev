@@ -1,0 +1,46 @@
+<HEAD>
+<TITLE>Using the module HASH: 3. Installing the module</TITLE>
+
+<META NAME="description" CONTENT="Using the module HASH: Installing the module">
+<META NAME="keywords" CONTENT="Using the module HASH: Installing the module">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_hash_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>3. Installing the module</H1>
+<A HREF="mod_hash_2.html">[&lt;&lt;&lt;]</A> <A HREF="mod_hash_4.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+The module comes in source form or as compiled binary. Binary is usually available for the Win32 platforms only. The compilation of the source code is simple. Compile the source files to a <font size="3"><tt>.dll</tt></font> or to <font size="3"><tt>.so</tt></font> shared library. When installing the standard ScriptBasic package the make file creates and installs this module.
+
+The compiled module contains a dynamically load binary file and a basic include file named `<font size="3"><tt>hash.bas</tt></font>'. The include file `<font size="3"><tt>hash.bas</tt></font>' should be placed in a module include directory file configured in the configuration file. The configuration file usually named `<font size="3"><tt>scriba.conf</tt></font>' should include a line
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+include /etc/scriba/include/
+</PRE></FONT>
+
+defining the include files location for the modules and other generally used include files. The actual directory can be different.
+
+The binary part of the module should be placed in another directory specified in the configuration file, like
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+module /usr/scriba/lib/
+</PRE></FONT>
+
+There can be more than one <font size="3"><tt>include</tt></font> and <font size="3"><tt>module</tt></font> statement in the configuration file. In that case the interpreter searches the directories in the order they are specified until the include file or the module is found.
+<HR>
+<A HREF="mod_hash_2.html">[&lt;&lt;&lt;]</A> <A HREF="mod_hash_4.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

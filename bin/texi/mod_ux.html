@@ -1,0 +1,61 @@
+<HEAD>
+<TITLE>Documentation of the module ux</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module ux: Table of Contents">
+<META NAME="keywords" CONTENT="Documentation of the module ux: Table of Contents">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<H1>Documentation of the module ux</H1>
+<H3>by Peter Verhas</H3>
+<A NAME="contents"><H2>Table of Contents</H2></A>
+<UL>
+<A HREF="#1.">1.   Introduction</A><BR>
+<A HREF="#2.">2.   Unix specific functions</A><BR>
+<A HREF="#3.">3.   Fork the process</A><BR>
+<A HREF="#4.">4.   Change file access mode</A><BR>
+</UL>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="1."><H1>1. Introduction</H1></A>
+
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="2."><H1>2. Unix specific functions</H1></A>
+This module implements some UNIX system calls that are not implemented 
+in the core of ScriptBasic but can be helpful for those who want to write 
+system maintenance scripts using ScriptBasic.
+<P>
+The reason that these functions are not implemented inside ScriptBasic 
+is that ScriptBasic itself is portable, and whenever a programmer writes a 
+program in pure ScriptBasic it should execute the same way under UNIX as well 
+as under Windows NT/Win98/W2K.
+<P>
+Programs using the module ux however are UNIX specific and will 
+not run unaltered under Windows NT.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="3."><H1>3. Fork the process</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+pid = ux::fork()
+if pid then
+  print "The sub process pid is ",pid
+else
+  print "Oh I am the child process"
+end if
+</PRE></FONT><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4."><H1>4. Change file access mode</H1></A>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+ux::chmod("file_name",mode)
+</PRE></FONT>
+<P>
+This function implements the <font size="3"><tt>chmod</tt></font> UNIX system call.
+ 
+

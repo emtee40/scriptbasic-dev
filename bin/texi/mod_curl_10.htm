@@ -1,0 +1,90 @@
+<HEAD>
+<TITLE>Documentation of the module curl: curl::getdate</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: curl::getdate">
+<META NAME="keywords" CONTENT="Documentation of the module curl: curl::getdate">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>curl::getdate</H1>
+<A HREF="mod_curl_9.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_11.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+This function returns the number of seconds since January 1st 1970, for the
+date and time that the <I>datestring</I> parameter specifies. 
+Read further in the date string parser section below.
+<P>
+If the input string can not be parsed the function return zero.
+<P>
+The following is copied from the original <font size="3"><tt>curl_getdate</tt></font> manual page.
+<P>
+<B>PARSING DATES AND TIMES</B>
+<P>
+A <font size="3"><tt>"date"</tt></font> is a string, possibly empty, containing many items separated by
+whitespace. The whitespace may be omitted when no ambiguity arises.  The
+empty string means the beginning of today (i.e., midnight).  Order of the
+items is immaterial.  A date string may contain many flavors of items:
+<P>
+<UL>
+<LI> calendar date items
+This can be specified in a number of different ways. 
+Including <font size="3"><tt>1970-09-17</tt></font>, <font size="3"><tt>70-9-17</tt></font>, <font size="3"><tt>70-09-17</tt></font>, <font size="3"><tt>9/17/72</tt></font>,
+<font size="3"><tt>24 September 1972</tt></font>, <font size="3"><tt>24 Sept 72</tt></font>, <font size="3"><tt>24 Sep 72</tt></font>, <font size="3"><tt>Sep 24, 1972</tt></font>,
+<font size="3"><tt>24-sep-72</tt></font>, <font size="3"><tt>24sep72</tt></font>.
+The year can also be omitted, for example: <font size="3"><tt>9/17</tt></font> or <font size="3"><tt>sep 17</tt></font>.
+<P>
+<LI> time of the day items
+This string specifies the time on a given day. Syntax supported includes:
+<font size="3"><tt>18:19:0</tt></font>, <font size="3"><tt>18:19</tt></font>, <font size="3"><tt>6:19pm</tt></font>, <font size="3"><tt>18:19-0500</tt></font>
+(for specifying the time zone as well).
+<P>
+<LI> time zone items
+Specifies international time zone. There are a few acronyms supported, but in
+general you should instead use the specific realtive time compared to
+UTC. Supported formats include: <font size="3"><tt>-1200</tt></font>, <font size="3"><tt>MST</tt></font>, <font size="3"><tt>+0100</tt></font>.
+<P>
+<LI> day of the week items
+Specifies a day of the week. If this is mentioned alone it means that day of
+the week in the future.
+<P>
+Days of the week may be spelled out in full: <font size="3"><tt>Sunday</tt></font>, <font size="3"><tt>Monday</tt></font>, etc or they
+may be abbreviated to their first three letters, optionally followed by a
+period.  The special abbreviations <font size="3"><tt>Tues</tt></font> for <font size="3"><tt>Tuesday</tt></font>, <font size="3"><tt>Wednes</tt></font> for
+<font size="3"><tt>Wednesday</tt></font> and <font size="3"><tt>Thur</tt></font> or <font size="3"><tt>Thurs</tt></font> for <font size="3"><tt>Thursday</tt></font> are also allowed.
+<P>
+A number may precede a day of the week item to move forward supplementary
+weeks.  It is best used in expression like <font size="3"><tt>third monday</tt></font>.  In this context,
+<font size="3"><tt>last DAY</tt></font> or <font size="3"><tt>next DAY</tt></font> is also acceptable; they move one week before or
+after the day that DAY by itself would represent.
+<P>
+<LI> relative items
+A relative item adjusts a date (or the current date if none) forward or
+backward. Example syntax includes: <font size="3"><tt>1 year</tt></font>, <font size="3"><tt>1 year ago</tt></font>, <font size="3"><tt>2 days</tt></font>, 
+<font size="3"><tt>4 weeks</tt></font>.
+<P>
+The string <font size="3"><tt>tomorrow</tt></font> is worth one day in the future (equivalent to <font size="3"><tt>day</tt></font>),
+the string <font size="3"><tt>yesterday</tt></font> is worth one day in the past (equivalent to <font size="3"><tt>day ago</tt></font>).
+<P>
+<LI> pure numbers
+If the decimal number is of the form <font size="3"><tt>YYYYMMDD</tt></font> and no other calendar date item
+appears before it in the date string, then <font size="3"><tt>YYYY</tt></font> is read as the year, <font size="3"><tt>MM</tt></font> as the
+month number and <font size="3"><tt>DD</tt></font> as the day of the month, for the specified calendar date.
+</UL>
+<P>
+<B>AUTHORS</B>
+<P>
+Originally written by Steven M. Bellovin <font size="3"><tt>smb@research.att.com</tt></font> while at the
+University of North Carolina at Chapel Hill.  Later tweaked by a couple of
+people on Usenet.  Completely overhauled by Rich $alz <font size="3"><tt>rsalz@bbn.com</tt></font> and Jim
+Berets <font size="3"><tt>jberets@bbn.com</tt></font> in August, 1990.<HR>
+<A HREF="mod_curl_9.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_11.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

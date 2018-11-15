@@ -1,0 +1,52 @@
+<HEAD>
+<TITLE>Documentation of the module odbc: 4. FetchHash</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module odbc: FetchHash">
+<META NAME="keywords" CONTENT="Documentation of the module odbc: FetchHash">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_odbc_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>4. FetchHash</H1>
+<A HREF="mod_odbc_3.html">[&lt;&lt;&lt;]</A> <A HREF="mod_odbc_5.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+R = ODBC::FetchHash(DB,arr)
+</PRE></FONT>
+<P>
+Use this function to fetch one row from the results after a successfully executed <font size="3"><tt>SELECT</tt></font> statement.
+The first argument to the function is <font size="3"><tt>DB</tt></font> the database handle. The second argument should be a variable.
+This variable will hold the hash-array containing the data of the actual row. The array is indexed from zero to
+<font size="3"><tt>2*n-1</tt></font> where <font size="3"><tt>n</tt></font> is the number of columns in the result set. Every even element (starting with index zero) will
+hold the name of a column and the next odd element of the array will hold the value of the column. This is
+according to the storage strategy of ScriptBasic for hashes.
+<P>
+After the successful execution of this function you will be able to access the value of the column named <font size="3"><tt>"column"</tt></font>
+with the syntax <font size="3"><tt>arr{"column"</tt></font>}. Note however that column names in SQL are usually case insensitive, but ScriptBasic
+hash indexing is case sensitive.
+<P>
+Use consecutive calls to this fucntion to get the rows of the result one after the other. You can mix
+consecutive calls to <font size="3"><tt>FetchHash</tt></font> and <a href="mod_odbc_3.html">FetchArray</A>.
+<P>
+The function returns <font size="3"><tt>-1</tt></font> (TRUE) if fetching a row of data was successful or <font size="3"><tt>0</tt></font> (FALSE) if there
+are no more rows in the dataset. In the latter case <font size="3"><tt>arr</tt></font> will be <font size="3"><tt>undef</tt></font>.
+<P>
+See also <a href="mod_odbc_3.html">FetchArray</A>.
+<P>
+This function calls the ODBC functions <font size="3"><tt>SQLFetch</tt></font>, <font size="3"><tt>SQLDescribeCol</tt></font>, <font size="3"><tt>SQLGetData</tt></font>.<HR>
+<A HREF="mod_odbc_3.html">[&lt;&lt;&lt;]</A> <A HREF="mod_odbc_5.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

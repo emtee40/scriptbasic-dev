@@ -1,0 +1,48 @@
+<HEAD>
+<TITLE>Documentation of the module curl: 3.1. BUFFER_SIZE integer</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: BUFFER_SIZE integer">
+<META NAME="keywords" CONTENT="Documentation of the module curl: BUFFER_SIZE integer">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_curl_toc.html">[Contents]</A><BR>
+<UL><a href="mod_curl_3.html">3. curl::option</A><BR>
+</UL>
+</UL>
+<P>
+<H1>3.1. BUFFER_SIZE integer</H1>
+<A HREF="mod_curl_3.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"BUFFER_SIZE",1024
+</PRE></FONT>
+<P>
+When a file is downloaded but not stored in a file the function <font size="3"><tt>curl::perform(CURL)</tt></font> returns the content
+of the downloaded file as a huge string. During the download this string is stored in a temporary buffer. The
+size of this buffer increases gradually as more and more bytes come. If there are 10 bytes coming at a time then
+the buffer will grow only ten bytes. This also means a new buffer allocation and copying the content of the buffer,
+which consumes system resources, especially for large files.
+<P>
+If you happen to know the estimated size of the file, you can set the initial size of the buffer to a huge value using this
+option. For example if you know that the file is 1024 bytes, you can set this option as in the example above. In that case
+when the first byte comes from the URL the 1024 byte length buffer is increased and when the consecutive bytes come there is
+space to store them without reallocating the buffer.
+<P>
+You need not worry about using this buffer when you handle small files, like web pages. If you see performace or memory
+shortage problems, then you may consider this option along with the option <font size="3"><tt>FILE</tt></font> that helps you store the downloaded file
+on disk.<HR>
+<A HREF="mod_curl_3.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

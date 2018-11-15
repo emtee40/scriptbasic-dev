@@ -1,0 +1,31 @@
+<HEAD>
+<TITLE>Using the module MySQL: ThreadId</TITLE>
+
+<META NAME="description" CONTENT="Using the module MySQL: ThreadId">
+<META NAME="keywords" CONTENT="Using the module MySQL: ThreadId">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>ThreadId</H1>
+<A HREF="mod_mysql_4.23.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_mysql_5.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+n = mysql::ThreadId(dbh)
+</PRE></FONT>
+
+Returns the thread ID of the current connection. This value can be used as an argument to mysq::Kill() to kill the thread.
+
+If the connection is lost and you reconnect with mysql::Ping(), the thread ID will change. This means you should not get the thread ID and store it for later. You should get it when you need it. 
+<HR>
+<A HREF="mod_mysql_4.23.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_mysql_5.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

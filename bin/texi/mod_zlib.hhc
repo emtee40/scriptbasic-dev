@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="t2h.pl texi to html converter">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Introduction">
+<param name="Local" value="mod_zlib_1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Zlib functions">
+<param name="Local" value="mod_zlib_2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Compress a string">
+<param name="Local" value="mod_zlib_3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Uncompress a string">
+<param name="Local" value="mod_zlib_4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Compress a file">
+<param name="Local" value="mod_zlib_5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Uncompress a file">
+<param name="Local" value="mod_zlib_6.htm">
+</OBJECT>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

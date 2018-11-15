@@ -1,0 +1,37 @@
+<HEAD>
+<TITLE>Documentation of the module mt: 5. mt::CheckSessionId("sessionid")</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module mt: mt::CheckSessionId("sessionid")">
+<META NAME="keywords" CONTENT="Documentation of the module mt: mt::CheckSessionId("sessionid")">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_mt_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>5. mt::CheckSessionId("sessionid")</H1>
+<A HREF="mod_mt_4.html">[&lt;&lt;&lt;]</A> <A HREF="mod_mt_6.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+Checks that a session already exists. The function returns <font size="3"><tt>TRUE</tt></font>
+if the session id already exists.
+<P>
+This function can and should be used to check that a session is valid or not based
+on its existence. If the session is not existent the program can still call the
+function <a href="mod_mt_html">SetSessionId</A> to set the session and the new session is autmatically created.
+<P>
+However calling this function is a good chanhe to check if any session initialization is
+needed, for example password check.<HR>
+<A HREF="mod_mt_4.html">[&lt;&lt;&lt;]</A> <A HREF="mod_mt_6.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

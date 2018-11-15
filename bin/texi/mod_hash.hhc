@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="t2h.pl texi to html converter">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Introduction">
+<param name="Local" value="mod_hash_1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Acknowledgements">
+<param name="Local" value="mod_hash_2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Installing the module">
+<param name="Local" value="mod_hash_3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Configuration">
+<param name="Local" value="mod_hash_4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Using the module">
+<param name="Local" value="mod_hash_5.htm">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="New">
+<param name="Local" value="mod_hash_5.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SetValue">
+<param name="Local" value="mod_hash_5.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Value">
+<param name="Local" value="mod_hash_5.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Exists">
+<param name="Local" value="mod_hash_5.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Delete">
+<param name="Local" value="mod_hash_5.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Start">
+<param name="Local" value="mod_hash_5.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="End">
+<param name="Local" value="mod_hash_5.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Next">
+<param name="Local" value="mod_hash_5.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Prev">
+<param name="Local" value="mod_hash_5.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ThisKey">
+<param name="Local" value="mod_hash_5.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ThisValue">
+<param name="Local" value="mod_hash_5.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Release">
+<param name="Local" value="mod_hash_5.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ref[This]Value">
+<param name="Local" value="mod_hash_5.13.htm">
+</OBJECT>
+</UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Future development, aims">
+<param name="Local" value="mod_hash_6.htm">
+</OBJECT>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="t2h.pl texi to html converter">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Introduction">
+<param name="Local" value="mod_re_1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="The module RE">
+<param name="Local" value="mod_re_2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Match a string against a regular expression">
+<param name="Local" value="mod_re_3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="number of matches">
+<param name="Local" value="mod_re_4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Return the i-th sub string">
+<param name="Local" value="mod_re_5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Reset matches">
+<param name="Local" value="mod_re_6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Format a string with replacement sub-strings">
+<param name="Local" value="mod_re_7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Search and replace">
+<param name="Local" value="mod_re_8.htm">
+</OBJECT>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

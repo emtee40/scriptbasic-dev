@@ -1,0 +1,182 @@
+<HEAD>
+<TITLE>Documentation of the module xml</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module xml: Table of Contents">
+<META NAME="keywords" CONTENT="Documentation of the module xml: Table of Contents">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<H1>Documentation of the module xml</H1>
+<H3>by Peter Verhas</H3>
+<A NAME="contents"><H2>Table of Contents</H2></A>
+<UL>
+<A HREF="#1.">1.   Introduction</A><BR>
+<A HREF="#2.">2.   Parse an XML file and read into memory</A><BR>
+<A HREF="#3.">3.   Create a new empty document</A><BR>
+<A HREF="#4.">4.   Release a document from memory</A><BR>
+<A HREF="#5.">5.   Get the children on a document node</A><BR>
+<A HREF="#6.">6.   Set the children on a document node</A><BR>
+<A HREF="#7.">7.   Get the next node of a document node</A><BR>
+<A HREF="#8.">8.   Set the next on a document node</A><BR>
+<A HREF="#9.">9.   Get the prev node of a document node</A><BR>
+<A HREF="#10.">10.   Set the next on a document node</A><BR>
+<A HREF="#11.">11.   Get the Parent node of a document node</A><BR>
+<A HREF="#12.">12.   Set the next on a document node</A><BR>
+<A HREF="#13.">13.   set the property of a node</A><BR>
+<A HREF="#14.">14.   get the property of a node</A><BR>
+<A HREF="#15.">15.   Create a new name space defintion</A><BR>
+<A HREF="#16.">16.   Release a name space definition</A><BR>
+<A HREF="#17.">17.   Create a new child under a node</A><BR>
+<A HREF="#18.">18.   Create a new text child under a node</A><BR>
+<A HREF="#19.">19.   Create a new document node</A><BR>
+<A HREF="#20.">20.   Convert a document to XML text</A><BR>
+</UL>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="1."><H1>1. Introduction</H1></A>
+
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="2."><H1>2. Parse an XML file and read into memory</H1></A>
+
+You should use this function to read the content of an XML file into memory.
+The argument of the function is the name of the file to be read. The function
+will return a handle to the structure created during the parsing of the file
+content.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+ DOC = xml::ParseFile("my_file.xml")
+</PRE></FONT><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="3."><H1>3. Create a new empty document</H1></A>
+
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+ DOC = xml::NewDoc("1.0")
+</PRE></FONT><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4."><H1>4. Release a document from memory</H1></A>
+
+When an XML document is not needed by the BASIC program any more the
+program should free the memory used up by the document calling the
+function <font size="3"><tt>FreeDoc</tt></font>.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+xml::FreeDoc DOC
+</PRE></FONT><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="5."><H1>5. Get the children on a document node</H1></A>
+
+This function should be used to get the handle to the <P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="6."><H1>6. Set the children on a document node</H1></A>
+
+This function should be used to get the handle to the <P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="7."><H1>7. Get the next node of a document node</H1></A>
+
+This function should be used to get the handle to the <P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="8."><H1>8. Set the next on a document node</H1></A>
+
+This function should be used to get the handle to the <P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="9."><H1>9. Get the prev node of a document node</H1></A>
+
+This function should be used to get the handle to the <P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="10."><H1>10. Set the next on a document node</H1></A>
+
+This function should be used to get the handle to the <P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="11."><H1>11. Get the Parent node of a document node</H1></A>
+
+This function should be used to get the handle to the <P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="12."><H1>12. Set the next on a document node</H1></A>
+
+This function should be used to get the handle to the <P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="13."><H1>13. set the property of a node</H1></A>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="14."><H1>14. get the property of a node</H1></A>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="15."><H1>15. Create a new name space defintion</H1></A>
+
+Use this function to create a new name space definition.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  ns = xml::NewNs(node, href,prefix)
+</PRE></FONT><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="16."><H1>16. Release a name space definition</H1></A>
+
+Use this function to release a name space definition created by the function
+<font size="3"><tt>xml::NewNs</tt></font>, which is not needed anymore.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  xml::FreeNs ns
+</PRE></FONT><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="17."><H1>17. Create a new child under a node</H1></A>
+
+Use this function to create a new child under an already existing node.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  newNode = xml::NewChild(parent,nameSpace,name,content)
+</PRE></FONT>
+<P>
+Arguments:
+<UL>
+<LI> <font size="3"><tt>parent</tt></font>     is the parent node. The function will appens a new child node after
+                    the last child node of the <font size="3"><tt>parent</tt></font> node.
+<LI> <font size="3"><tt>nameSpace</tt></font>  is optional handler to the name space. May be <font size="3"><tt>undef</tt></font>.
+<LI> <font size="3"><tt>name</tt></font>       is the name of the new node, should be a string.
+<LI> <font size="3"><tt>content</tt></font>    optional string content.
+</UL><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="18."><H1>18. Create a new text child under a node</H1></A>
+
+Use this function to create a new text child under an already existing node.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  newNode = xml::NewTextChild(parent,nameSpace,name,content)
+</PRE></FONT>
+<P>
+Arguments:
+<UL>
+<LI> <font size="3"><tt>parent</tt></font>     is the parent node. The function will appens a new child node after
+                    the last child node of the <font size="3"><tt>parent</tt></font> node.
+<LI> <font size="3"><tt>nameSpace</tt></font>  is optional handler to the name space. May be <font size="3"><tt>undef</tt></font>.
+<LI> <font size="3"><tt>name</tt></font>       is the name of the new node, should be a string.
+<LI> <font size="3"><tt>content</tt></font>    optional string content.
+</UL><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="19."><H1>19. Create a new document node</H1></A>
+
+Use this function to create a new document node.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  newNode = xml::NewDocNode(parent,nameSpace,name,content)
+</PRE></FONT>
+<P>
+Arguments:
+<UL>
+<LI> <font size="3"><tt>parent</tt></font>     is the parent node. The function will appens a new child node after
+                    the last child node of the <font size="3"><tt>parent</tt></font> node.
+<LI> <font size="3"><tt>nameSpace</tt></font>  is optional handler to the name space. May be <font size="3"><tt>undef</tt></font>.
+<LI> <font size="3"><tt>name</tt></font>       is the name of the new node, should be a string.
+<LI> <font size="3"><tt>content</tt></font>    optional string content.
+</UL><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="20."><H1>20. Convert a document to XML text</H1></A>
+ 
+

@@ -1,0 +1,47 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=mod_curses.chm
+Contents file=mod_curses.hhc
+Default topic=mod_curses_title.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=mod_curses.hhk
+Language=0x409 English (United States)
+Title=Documentation of the module curses
+
+[FILES]
+mod_curses_title.htm
+mod_curses_1.htm
+mod_curses_2.htm
+mod_curses_3.htm
+mod_curses_4.htm
+mod_curses_5.htm
+mod_curses_6.htm
+mod_curses_7.htm
+mod_curses_8.htm
+mod_curses_9.htm
+mod_curses_10.htm
+mod_curses_11.htm
+mod_curses_12.htm
+mod_curses_13.htm
+mod_curses_14.htm
+mod_curses_15.htm
+mod_curses_16.htm
+mod_curses_17.htm
+mod_curses_18.htm
+mod_curses_19.htm
+mod_curses_20.htm
+mod_curses_21.htm
+mod_curses_22.htm
+mod_curses_23.htm
+mod_curses_24.htm
+mod_curses_25.htm
+mod_curses_26.htm
+mod_curses_27.htm
+mod_curses_28.htm
+mod_curses_29.htm
+mod_curses_30.htm
+mod_curses_31.htm
+mod_curses_32.htm
+mod_curses_33.htm
+[INFOTYPES]

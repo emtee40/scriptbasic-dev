@@ -1,0 +1,391 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="t2h.pl texi to html converter">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Introduction">
+<param name="Local" value="mod_curl_1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="curl::init">
+<param name="Local" value="mod_curl_2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="curl::option">
+<param name="Local" value="mod_curl_3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="BUFFER_SIZE integer">
+<param name="Local" value="mod_curl_3.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="CAINFO string">
+<param name="Local" value="mod_curl_3.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="COOKIE string">
+<param name="Local" value="mod_curl_3.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="COOKIEFILE string">
+<param name="Local" value="mod_curl_3.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="CUSTOMREQUEST string">
+<param name="Local" value="mod_curl_3.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FILE">
+<param name="Local" value="mod_curl_3.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FTPPORT string">
+<param name="Local" value="mod_curl_3.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="HEADERFILE string">
+<param name="Local" value="mod_curl_3.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="INFILE string">
+<param name="Local" value="mod_curl_3.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="INTERFACE string">
+<param name="Local" value="mod_curl_3.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="INTEXT string">
+<param name="Local" value="mod_curl_3.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="KRB4LEVEL string">
+<param name="Local" value="mod_curl_3.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PROXY string">
+<param name="Local" value="mod_curl_3.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PROXYPORT integer">
+<param name="Local" value="mod_curl_3.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PROXYUSERPWD string">
+<param name="Local" value="mod_curl_3.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="RANDOM_FILE string">
+<param name="Local" value="mod_curl_3.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="RANGE string">
+<param name="Local" value="mod_curl_3.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="REFERER string">
+<param name="Local" value="mod_curl_3.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SSLCERT string">
+<param name="Local" value="mod_curl_3.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SSLCERTPASSWD string">
+<param name="Local" value="mod_curl_3.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="URL string">
+<param name="Local" value="mod_curl_3.21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="USERAGENT string">
+<param name="Local" value="mod_curl_3.22.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="USERPWD string">
+<param name="Local" value="mod_curl_3.23.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="WRITEINFO string">
+<param name="Local" value="mod_curl_3.24.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="EGDSOCKET string">
+<param name="Local" value="mod_curl_3.25.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="POSTFIELDS string">
+<param name="Local" value="mod_curl_3.26.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="HTTPPROXYTUNNEL flag">
+<param name="Local" value="mod_curl_3.27.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="VERBOSE flag">
+<param name="Local" value="mod_curl_3.28.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="NOPROGRESS flag">
+<param name="Local" value="mod_curl_3.29.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="HEADER flag">
+<param name="Local" value="mod_curl_3.30.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="NOBODY flag">
+<param name="Local" value="mod_curl_3.31.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FAILONERROR flag">
+<param name="Local" value="mod_curl_3.32.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="UPLOAD flag">
+<param name="Local" value="mod_curl_3.33.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="POST flag">
+<param name="Local" value="mod_curl_3.34.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="CRLF flag">
+<param name="Local" value="mod_curl_3.35.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FTPLISTONLY flag">
+<param name="Local" value="mod_curl_3.36.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FTPAPPEND flag">
+<param name="Local" value="mod_curl_3.37.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="NETRC flag">
+<param name="Local" value="mod_curl_3.38.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FOLLOWLOCATION flag">
+<param name="Local" value="mod_curl_3.39.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="TRANSFERTEXT flag">
+<param name="Local" value="mod_curl_3.40.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="CLOSEPOLICY">
+<param name="Local" value="mod_curl_3.41.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PUT flag">
+<param name="Local" value="mod_curl_3.42.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SSL_VERIFYPEER flag">
+<param name="Local" value="mod_curl_3.43.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FILETIME flag">
+<param name="Local" value="mod_curl_3.44.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FRESH_CONNECT flag">
+<param name="Local" value="mod_curl_3.45.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FORBID_REUSE flag">
+<param name="Local" value="mod_curl_3.46.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="HTTPGET flag">
+<param name="Local" value="mod_curl_3.47.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="TIMEOUT integer">
+<param name="Local" value="mod_curl_3.48.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="LOW_SPEED_LIMIT integer">
+<param name="Local" value="mod_curl_3.49.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="LOW_SPEED_TIME integer">
+<param name="Local" value="mod_curl_3.50.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="RESUME_FROM integer">
+<param name="Local" value="mod_curl_3.51.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SSLVERSION integer">
+<param name="Local" value="mod_curl_3.52.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="TIMECONDITION string">
+<param name="Local" value="mod_curl_3.53.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="TIMEVALUE integer">
+<param name="Local" value="mod_curl_3.54.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="MAXREDIRS integer">
+<param name="Local" value="mod_curl_3.55.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="MAXCONNECTS integer">
+<param name="Local" value="mod_curl_3.56.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="CONNECTTIMEOUT integer">
+<param name="Local" value="mod_curl_3.57.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="HTTPHEADER string">
+<param name="Local" value="mod_curl_3.58.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="NOHTTPHEADER flag">
+<param name="Local" value="mod_curl_3.59.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="QUOTE string">
+<param name="Local" value="mod_curl_3.60.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="NOQUOTE flag">
+<param name="Local" value="mod_curl_3.61.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="POSTQUOTE string">
+<param name="Local" value="mod_curl_3.62.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="NOPOSTQUOTE flag">
+<param name="Local" value="mod_curl_3.63.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FORMADD string">
+<param name="Local" value="mod_curl_3.64.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="HTTPPOST string">
+<param name="Local" value="mod_curl_3.65.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ERRORBUFFER not implemented">
+<param name="Local" value="mod_curl_3.66.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Options not implemented">
+<param name="Local" value="mod_curl_3.67.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="curl::perform">
+<param name="Local" value="mod_curl_4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="curl::info">
+<param name="Local" value="mod_curl_5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="EFFECTIVE_URL string">
+<param name="Local" value="mod_curl_5.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="HTTP_CODE integer">
+<param name="Local" value="mod_curl_5.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FILETIME integer">
+<param name="Local" value="mod_curl_5.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="TOTAL_TIME real">
+<param name="Local" value="mod_curl_5.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="NAMELOOKUP_TIME real">
+<param name="Local" value="mod_curl_5.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="CONNECT_TIME real">
+<param name="Local" value="mod_curl_5.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="PRETRANSFER_TIME real">
+<param name="Local" value="mod_curl_5.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SIZE_UPLOAD real">
+<param name="Local" value="mod_curl_5.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SIZE_DOWNLOAD real">
+<param name="Local" value="mod_curl_5.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SPEED_DOWNLOAD real">
+<param name="Local" value="mod_curl_5.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SPEED_UPLOAD real">
+<param name="Local" value="mod_curl_5.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="HEADER_SIZE integer">
+<param name="Local" value="mod_curl_5.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="REQUEST_SIZE integer">
+<param name="Local" value="mod_curl_5.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SSL_VERIFYRESULT integer">
+<param name="Local" value="mod_curl_5.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="CONTENT_LENGTH_DOWNLOAD real">
+<param name="Local" value="mod_curl_5.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="CONTENT_LENGTH_UPLOAD real">
+<param name="Local" value="mod_curl_5.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="curl::finish">
+<param name="Local" value="mod_curl_6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="curl::error">
+<param name="Local" value="mod_curl_7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="curl::escape">
+<param name="Local" value="mod_curl_8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="curl::unescape">
+<param name="Local" value="mod_curl_9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="curl::getdate">
+<param name="Local" value="mod_curl_10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="curl::version">
+<param name="Local" value="mod_curl_11.htm">
+</OBJECT>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

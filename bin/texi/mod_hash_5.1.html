@@ -1,0 +1,41 @@
+<HEAD>
+<TITLE>Using the module HASH: 5.1. New</TITLE>
+
+<META NAME="description" CONTENT="Using the module HASH: New">
+<META NAME="keywords" CONTENT="Using the module HASH: New">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_hash_toc.html">[Contents]</A><BR>
+<UL><a href="mod_hash_5.html">5. Using the module</A><BR>
+</UL>
+</UL>
+<P>
+<H1>5.1. New</H1>
+<A HREF="mod_hash_5.html">[&lt;&lt;&lt;]</A> <A HREF="mod_hash_5.2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+h = hash::New()
+</PRE></FONT>
+
+Create a new hash. The handle to the new hash is returned by the function and should be stored in a variable. The type of the handle is string, but you should not try to alter this value. The sole usage of this value is to pass it to the hash handling functions as argument. You can also assign this value to other variables or pass as argument to user defined function and move the value around in variables.
+
+Do not forget to release the hash after it is not needed anymore. If your program looses the value of the handle to a hash there is no way to access key/value pairs from the hash and the memory allocated for the hash is kept allocated until the interpreter finishes executing the basic program.
+
+(Note that the memory is released when the interpreter finishes the execution of the actual program even is the interpreter is implemented in a multi-thread environment and the interpreter itself remains in memory running in a process.)
+
+<HR>
+<A HREF="mod_hash_5.html">[&lt;&lt;&lt;]</A> <A HREF="mod_hash_5.2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

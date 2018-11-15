@@ -1,0 +1,34 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=mod_xml.chm
+Contents file=mod_xml.hhc
+Default topic=mod_xml_title.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=mod_xml.hhk
+Language=0x409 English (United States)
+Title=Documentation of the module xml
+
+[FILES]
+mod_xml_title.htm
+mod_xml_1.htm
+mod_xml_2.htm
+mod_xml_3.htm
+mod_xml_4.htm
+mod_xml_5.htm
+mod_xml_6.htm
+mod_xml_7.htm
+mod_xml_8.htm
+mod_xml_9.htm
+mod_xml_10.htm
+mod_xml_11.htm
+mod_xml_12.htm
+mod_xml_13.htm
+mod_xml_14.htm
+mod_xml_15.htm
+mod_xml_16.htm
+mod_xml_17.htm
+mod_xml_18.htm
+mod_xml_19.htm
+mod_xml_20.htm
+[INFOTYPES]

@@ -1,0 +1,15 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=mod_trial.chm
+Contents file=mod_trial.hhc
+Default topic=mod_trial_title.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=mod_trial.hhk
+Language=0x409 English (United States)
+Title=Documentation of the module trial
+
+[FILES]
+mod_trial_title.htm
+mod_trial_1.htm
+[INFOTYPES]

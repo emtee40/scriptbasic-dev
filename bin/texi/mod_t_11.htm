@@ -1,0 +1,40 @@
+<HEAD>
+<TITLE>Documentation of the module t: t::Exit(n)</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module t: t::Exit(n)">
+<META NAME="keywords" CONTENT="Documentation of the module t: t::Exit(n)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>t::Exit(n)</H1>
+<A HREF="mod_t_10.htm">[&lt;&lt;&lt;]</A> [&gt;&gt;&gt;]
+<P>
+
+This function calls the operating system function <font size="3"><tt>exit()</tt></font> to terminate an
+application. A similar result can be reached in the command line version
+of the interpreter when an error is not handled. The differences that the
+programmer <B>has to be aware</B> before using this function are the following:
+<P>
+<UL>
+<LI> This function exits the program, even if there are higher level error
+handling routines defined.
+<LI> The interpreter finalization routines are not called. This may cause
+problem in some applications, where resources need specific release.
+<LI> This function will stop the process and not the thread. It means that
+calling this function from a multi-thread variation, like Eszter SB Application
+Engin will stop all running threads, all interpreters and quits the
+service.
+</UL>
+ 
+<HR>
+<A HREF="mod_t_10.htm">[&lt;&lt;&lt;]</A> [&gt;&gt;&gt;]
+</FONT>
+</BODY>
+
+</HTML>

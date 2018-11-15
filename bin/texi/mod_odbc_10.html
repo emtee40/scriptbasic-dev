@@ -1,0 +1,72 @@
+<HEAD>
+<TITLE>Documentation of the module odbc: 10. Connect</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module odbc: Connect">
+<META NAME="keywords" CONTENT="Documentation of the module odbc: Connect">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_odbc_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>10. Connect</H1>
+<A HREF="mod_odbc_9.html">[&lt;&lt;&lt;]</A> [&gt;&gt;&gt;]
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+DB = ODBC::Connect(connection_name)
+</PRE></FONT>
+<P>
+Use this fucntion to connect to an ODBC data source. The argument is the name of the connection as
+configured in the ScriptBasic configuration file.
+<P>
+Connection to an ODBC database usually requires a user name and password. Coding these into
+script source files may not be secure and thus this module allows the system manager to
+configure these codes in the ScriptBasic config file. This config file may not be readable by
+ordinary user and is binary in the form as read by the ScriptBasic interpreter. This adds some
+extra security.
+<P>
+
+Calling this function instead of <a href="mod_odbc_9.html">RealConnect</A> the programmer may reference a connection configured
+in the ScriptBasic configuration file. The key with the name of the connection should be under the
+key <font size="3"><tt>odbc.connections</tt></font>. For example:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+odbc (
+  connections (
+    test (        ; the name of the connection
+    dsn "odbctest" ; data source name
+    user "" ; user for the connection, to test we use MS-Access thus there is no user or passwd
+    password "" ; password for the connection
+    )
+    )
+  )
+</PRE></FONT>
+<P>
+When configuring such an ODBC connection do not forget to recompile the configuration file.
+<P>
+The name of the connection passed to the function should be the name used in the configuration file
+to identify the connection. In the example above this is <font size="3"><tt>test</tt></font>. This name need not, howeve may be the same
+as the data source name.
+<P>
+If the connection can not be established for some reason the function raises a module specific error.
+<P>
+See also <a href="mod_odbc_9.html">RealConnect</A>, <a href="mod_odbc_6.html">Error</A>.
+<P>
+The function calls the underlying ODBC function <font size="3"><tt>SQLAllocHandle</tt></font> and <font size="3"><tt>SQLConnect</tt></font>.
+<P>
+ 
+<HR>
+<A HREF="mod_odbc_9.html">[&lt;&lt;&lt;]</A> [&gt;&gt;&gt;]
+</FONT>
+</BODY>
+
+</HTML>

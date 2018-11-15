@@ -1,0 +1,93 @@
+<HEAD>
+<TITLE>Documentation of the module mt: mt::LockWrite "variablename"</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module mt: mt::LockWrite "variablename"">
+<META NAME="keywords" CONTENT="Documentation of the module mt: mt::LockWrite "variablename"">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>mt::LockWrite "variablename"</H1>
+<A HREF="mod_mt_13.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_mt_15.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+Lock mt variable for write protection. While the variable is locked no programs can access it, not even
+the one that locked the variable.
+<P>
+Usually there is no need to alter the MT variables, as the variables are automatically locked while
+their value is altered. Locking is needed when a program needs to alter more than one MT variable in
+a coincise manner. Another possibility is when a program wants to alter a variable and the new value depends
+on the previous value. As a simplest example is when aprogram wants to increment a variable.
+<P>
+In either case the programs have to have a pseudo MT variable, which is used in the locking and
+unlocking functions. Usually the programs use these variables only to lock and to release
+and do not care their values, albeit there is nothing that would prohibit using the values.
+<P>
+For example a program (X) wants to increment the MT variable "B" and it has to keep track of the 
+variable "BB" to ensure that "BB" is the double of "B".
+<P>
+In the meantime another (Y) program wants to decrement "BB" by two and set "B" to the half of "BB" to
+keep the rule.
+<P>
+Program X:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mt::GetVariable "B",B
+B = B+1
+mt::SetVariable "B",B
+mt::SetVariable "BB",2*B
+</PRE></FONT>
+<P>
+Program Y:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mt::GetVariable "BB",BB
+BB = BB-2
+mt::SetVariable "BB",BB
+mt::SetVariable "B",B \ 2
+</PRE></FONT>
+<P>
+The lines of the two programs can execute in any mixed order.
+<P>
+See the following scenario:
+<UL>
+<LI> Program X examines B and sees that B is 3 (for example)
+<LI> Program Y examines BB and sees that BB is 6.
+<LI> Program X increments B to be 4.
+<LI> Program Y decrements BB to be 4.
+<LI> Program Y sets B to be the half of BB to 2.
+<LI> Program X sets the variable BB to the double of B, which is 8 for that program.
+=end itemize
+<P>
+Instead a variable called "BLCK" has to be used (BLCK is just for example):
+<P>
+Program X:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mt::LockWrite "BLCK"
+mt::GetVariable "B",B
+B = B+1
+mt::SetVariable "B",B
+mt::SetVariable "BB",2*B
+mt::UnlockWrite "BLCK"
+</PRE></FONT>
+<P>
+Program Y:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mt::LockWrite "BLCK"
+mt::GetVariable "BB",BB
+BB = BB-2
+mt::SetVariable "BB",BB
+mt::SetVariable "B",B \ 2
+mt::UnlockWrite "BLCK"
+</PRE></FONT>
+<P>
+The locking at the start of the critical code segments prevents two programs to enter the critical part at the
+same time.<HR>
+<A HREF="mod_mt_13.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_mt_15.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

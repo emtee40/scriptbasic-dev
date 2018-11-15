@@ -1,0 +1,34 @@
+<HEAD>
+<TITLE>Documentation of the module curl: HTTPHEADER string</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: HTTPHEADER string">
+<META NAME="keywords" CONTENT="Documentation of the module curl: HTTPHEADER string">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>HTTPHEADER string</H1>
+<A HREF="mod_curl_3.57.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.59.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"HTTPHEADER","Accept: image/gif"
+</PRE></FONT>
+<P>
+Use this option to specify a header to be sent to the server. If you add a header that is 
+otherwise generated and used by libcurl internally, your added one will be used instead.
+If you add a header with no contents as in <font size="3"><tt>Accept:</tt></font>, the internally used header will
+just get disabled. Thus, using this option you can add new headers, replace
+internal headers and remove internal headers.
+<P>
+You should call the function with this option for each extra header line that you want to add.<HR>
+<A HREF="mod_curl_3.57.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.59.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

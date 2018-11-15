@@ -1,0 +1,53 @@
+<HEAD>
+<TITLE>Documentation of the module curl: 9. curl::unescape</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: curl::unescape">
+<META NAME="keywords" CONTENT="Documentation of the module curl: curl::unescape">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_curl_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>9. curl::unescape</H1>
+<A HREF="mod_curl_8.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_10.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function will convert the given URL encoded input string to a "plain
+string" and return that string. All input characters that are encoded <font size="3"><tt>%XX</tt></font>
+where <font size="3"><tt>XX</tt></font> is a to digit hexadecimal character will be converted to their
+plain text version. All <font size="3"><tt>+</tt></font> characters that are after the (or a) <font size="3"><tt>?</tt></font> character
+are converted to space.
+<P>
+Usage:
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+URLencoded = curl::escape(URLnonencoded)
+</PRE></FONT>
+<P>
+This behaviour of this function makes it easy to unescape URLs that contain not
+only the CGI GET parameter of the URL, but the whole URL. For exaple:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+print curl::unescape("http://www.kuka+muka.com/mypage.asp?name=Linus+Nielsen")
+</PRE></FONT>
+<P>
+will print
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+http://www.kuka+muka.com/mypage.asp?name=Linus Nielsen
+</PRE></FONT>
+<P>
+which is much better than having the web server name converted to something containing a space.<HR>
+<A HREF="mod_curl_8.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_10.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>
