@@ -10,6 +10,8 @@ configure.jim
 modinst.sh
 modmake.sh
 setup.log
-syntax.*
+syntax.c
+syntax.h
+
 
 
