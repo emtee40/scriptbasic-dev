@@ -1,0 +1,48 @@
+<HEAD>
+<TITLE>Documentation of the module curl: FILE</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: FILE">
+<META NAME="keywords" CONTENT="Documentation of the module curl: FILE">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>FILE</H1>
+<A HREF="mod_curl_3.5.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.7.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"FILE","file_name"
+</PRE></FONT>
+<P>
+Use this option to set the file name of the file where the result will be saved. When you set this option
+the file is opened and truncated assumed that the program has appropriate privileges. Thus if there was a
+file with the name the file will be overwrtitten even if the <font size="3"><tt>curl::perform</tt></font> function is not called. The file
+is opened, when the option is set and kept opened so long as the connection is "finished" or another
+<font size="3"><tt>INFILE</tt></font> or <font size="3"><tt>FILE</tt></font> option is specified for the connection.
+<P>
+If you donot specify any file to store the downloaded result, then the function <font size="3"><tt>curl::perform(CURL)</tt></font>
+will return the file as a single huge string.
+<P>
+Comment on internals (if you do not understand what I am talking about, most probably you do not need to):
+<P>
+The underlying CURL library requests an opened file handle passed to the library and a function that
+performs the file writing. The ScriptBasic interface gets the name of the file, opens the file, passes
+the opened file pointer to the library and specifies the stadard <font size="3"><tt>fwrite</tt></font> function to write the file.
+<P>
+The pointer to the function <font size="3"><tt>fwrite</tt></font> is taken from the support table, thus is any preloaded module
+altered this before setting this option the module function will be used.
+<P>
+The file is opened calling the system function <font size="3"><tt>fopen</tt></font> via the ScriptBasic support function calling stacks.
+This means that if some module implements a hook function to control file access that will be taken into account
+the same way as it is taken into accoung in the case of the BASIC command <font size="3"><tt>OPEN</tt></font>.<HR>
+<A HREF="mod_curl_3.5.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.7.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

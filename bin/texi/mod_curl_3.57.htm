@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>Documentation of the module curl: CONNECTTIMEOUT integer</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: CONNECTTIMEOUT integer">
+<META NAME="keywords" CONTENT="Documentation of the module curl: CONNECTTIMEOUT integer">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>CONNECTTIMEOUT integer</H1>
+<A HREF="mod_curl_3.56.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.58.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"CONNECTTIMEOUT",10
+</PRE></FONT>
+<P>
+Pass an integer as parameter. It should contain the maximum time in seconds that you allow the
+connection to the server to take.  This only limits the connection phase, once
+it has connected, this option is of no more use. Set to zero to disable
+connection timeout (it will then only timeout on the system's internal
+timeouts). Specifying no value for this option is the same as specifying zero as all integer value options.
+See also the <font size="3"><tt>TIMEOUT</tt></font> option.
+<P>
+<B>NOTE</B> that this does not work in multi-threaded programs!<HR>
+<A HREF="mod_curl_3.56.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.58.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

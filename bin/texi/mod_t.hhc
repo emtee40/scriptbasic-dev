@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="t2h.pl texi to html converter">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Introduction">
+<param name="Local" value="mod_t_1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Tools module">
+<param name="Local" value="mod_t_2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="s = t::ArrayToString(Array)">
+<param name="Local" value="mod_t_3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="s = t::ArrayToXML(Array)">
+<param name="Local" value="mod_t_4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="t::StringToArray array,string">
+<param name="Local" value="mod_t_5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="t::SaveString file,string">
+<param name="Local" value="mod_t_6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="s = t::LoadString(file)">
+<param name="Local" value="mod_t_7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Calculate MD5">
+<param name="Local" value="mod_t_8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="s = t::ArrayToStringMD5(Array)">
+<param name="Local" value="mod_t_9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="t::StringToArrayMD5 array,string">
+<param name="Local" value="mod_t_10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="t::Exit(n)">
+<param name="Local" value="mod_t_11.htm">
+</OBJECT>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

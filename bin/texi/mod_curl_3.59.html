@@ -1,0 +1,39 @@
+<HEAD>
+<TITLE>Documentation of the module curl: 3.59. NOHTTPHEADER flag</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: NOHTTPHEADER flag">
+<META NAME="keywords" CONTENT="Documentation of the module curl: NOHTTPHEADER flag">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_curl_toc.html">[Contents]</A><BR>
+<UL><a href="mod_curl_3.html">3. curl::option</A><BR>
+</UL>
+</UL>
+<P>
+<H1>3.59. NOHTTPHEADER flag</H1>
+<A HREF="mod_curl_3.58.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.60.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"NOHTTPHEADER"
+</PRE></FONT>
+<P>
+Use this option to delete all previous <font size="3"><tt>HTTPHEADER</tt></font> options. This may be needed when you use a single
+CURL connection to download several pages from the same server and did not call <font size="3"><tt>curl::finish</tt></font> and
+<font size="3"><tt>curl::init()</tt></font> again. Until you call <font size="3"><tt>curl::finish</tt></font> or specify this option all header lines remain effective.
+<P>
+After setting this option you can set various <font size="3"><tt>HTTPHEADER</tt></font> option strings to build up a new list.<HR>
+<A HREF="mod_curl_3.58.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.60.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

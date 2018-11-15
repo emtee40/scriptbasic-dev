@@ -1,0 +1,32 @@
+<HEAD>
+<TITLE>Documentation of the module curl: KRB4LEVEL string</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: KRB4LEVEL string">
+<META NAME="keywords" CONTENT="Documentation of the module curl: KRB4LEVEL string">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>KRB4LEVEL string</H1>
+<A HREF="mod_curl_3.11.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.13.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"KRB4LEVEL","confidential"
+</PRE></FONT>
+<P>
+Pass a string as parameter. Set the krb4 security level, this also enables
+krb4 awareness.  This is a string, 'clear', 'safe', 'confidential' or
+'private'.  If the string is set but doesn't match one of these, 'private'
+will be used. Set the string to NULL to disable kerberos4. The kerberos
+support only works for FTP.<HR>
+<A HREF="mod_curl_3.11.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.13.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

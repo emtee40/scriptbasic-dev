@@ -1,0 +1,35 @@
+<HEAD>
+<TITLE>Using the module MySQL: While compiling the compiler complains</TITLE>
+
+<META NAME="description" CONTENT="Using the module MySQL: While compiling the compiler complains">
+<META NAME="keywords" CONTENT="Using the module MySQL: While compiling the compiler complains">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>While compiling the compiler complains</H1>
+<A HREF="mod_mysql_2.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_mysql_2.0.2.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+mysqlinterf.c:10: mysql.h: No such file or directory
+</PRE></FONT>
+
+Be sure that you have a MySQL client installed on your UNIX. Check that the file `<font size="3"><tt>mysql.h</tt></font>' is in the directory `<font size="3"><tt>/usr/include</tt></font>' or in a directory that is specified using the –I option of the compiler. A sample `<font size="3"><tt>install.sh</tt></font>' file is the following:
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+cc -c -I/usr/include/mysql -o mysqlinterf.o mysqlinterf.c
+ld -shared -o mysql.so mysqlinterf.o -lc -lmysqlclient
+mv *.so /etc/scriba/modules
+</PRE></FONT>
+<HR>
+<A HREF="mod_mysql_2.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_mysql_2.0.2.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

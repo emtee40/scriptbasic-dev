@@ -1,0 +1,57 @@
+<HEAD>
+<TITLE>Documentation of the module curl: 3.64. FORMADD string</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: FORMADD string">
+<META NAME="keywords" CONTENT="Documentation of the module curl: FORMADD string">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_curl_toc.html">[Contents]</A><BR>
+<UL><a href="mod_curl_3.html">3. curl::option</A><BR>
+</UL>
+</UL>
+<P>
+<H1>3.64. FORMADD string</H1>
+<A HREF="mod_curl_3.63.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.65.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"FORMADD", _
+     "NAME","field_name", _
+     "VALUE","field_value", _
+     "FILE","name_of_file_to_upload", _
+     "FILENAME","reported_file_name", _
+     "CONTENTTYPE","content/type", _
+     "HEADER","extra-content: header"
+</PRE></FONT>
+<P>
+Use this option to specify post parameters to be sent to the server when retrieving the URL.
+There should be even number of arguments following the option <font size="3"><tt>"FORMADD"</tt></font>. Each pair of arguments
+specify the argument type and the value. The argument types can be:
+<P>
+<UL>
+<LI> <font size="3"><tt>"NAME"</tt></font> should be followed by the name of the argument
+<LI> <font size="3"><tt>"VALUE"</tt></font> should be followed by the string value of the argument
+<LI> <font size="3"><tt>"FILE"</tt></font> should be followed by the name of a file to be uploaded
+<LI> <font size="3"><tt>"FILENAME"</tt></font> should be followed by the name of the file that you want to specify in the
+post data to be sent to the server. If this value is not specified when uploading a file the
+real file name specified following the <font size="3"><tt>"FILE"</tt></font> will be sent. You may not want to disclose the
+real name of the file on the client and/or the full path to the file uploaded.
+<LI> <font size="3"><tt>"CONTENTTYPE"</tt></font> should be followed by the content type of the uploaded file.
+(multipart upload)
+<LI> <font size="3"><tt>"HEADER"</tt></font> should be followed by extra header fields that are used for the specific content.
+(multipart upload)
+</UL><HR>
+<A HREF="mod_curl_3.63.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.65.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

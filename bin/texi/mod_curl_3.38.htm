@@ -1,0 +1,34 @@
+<HEAD>
+<TITLE>Documentation of the module curl: NETRC flag</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: NETRC flag">
+<META NAME="keywords" CONTENT="Documentation of the module curl: NETRC flag">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>NETRC flag</H1>
+<A HREF="mod_curl_3.37.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.39.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"NETRC"
+</PRE></FONT>
+<P>
+The parameter tells the library to scan your
+<font size="3"><tt>~/.netrc</tt></font>
+file to find user name and password for the remote site you are about to
+access. Do note that curl does not verify that the file has the correct
+properties set (as the standard unix ftp client does), and that only machine
+name, user name and password is taken into account (init macros and similar
+things aren't supported).<HR>
+<A HREF="mod_curl_3.37.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.39.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,51 @@
+<HEAD>
+<TITLE>Documentation of the module curl: INFILE string</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: INFILE string">
+<META NAME="keywords" CONTENT="Documentation of the module curl: INFILE string">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>INFILE string</H1>
+<A HREF="mod_curl_3.8.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.10.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"INFILE","file_name"
+</PRE></FONT>
+<P>
+Use this option to set the file name of the file where the source is for file upload. When you set this option
+the file is opened for reading, thus the file should exist and should be readable for the program. The file
+is opened, when the option is set and kept opened so long as the connection is "finished" or another
+<font size="3"><tt>INFILE</tt></font> or <font size="3"><tt>FILE</tt></font> option is specified for the connection.
+<P>
+You cannot use the options <font size="3"><tt>INTEXT</tt></font> and <font size="3"><tt>INFILE</tt></font> at the same time for the same connection. If you use both
+the latter specified will be used.
+<P>
+Comment on internals (if you do not understand what I am talking about, most probably you do not need to):
+<P>
+The underlying CURL library requests an opened file handle passed to the library and a function that
+performs the file writing. The ScriptBasic interface gets the name of the file, opens the file, passes
+the opened file pointer to the library and specifies the stadard <font size="3"><tt>fread</tt></font> function to read the file.
+<P>
+The pointer to the function <font size="3"><tt>fread</tt></font> is taken from the support table, thus is any preloaded module
+altered this before setting this option the module function will be used.
+<P>
+Curl optionally acepts the size of the file to report to the upload server. The implementation of this
+option interfacing automatically gets the size of the file specified in the option and sets the underlying
+option.
+<P>
+The file is opened calling the system function <font size="3"><tt>fopen</tt></font> via the ScriptBasic support function calling stacks.
+This means that if some module implements a hook function to control file access that will be taken into account
+the same way as it is taken into accoung in the case of the BASIC command <font size="3"><tt>OPEN</tt></font>.<HR>
+<A HREF="mod_curl_3.8.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.10.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

@@ -1,0 +1,51 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=mod_cgi.chm
+Contents file=mod_cgi.hhc
+Default topic=mod_cgi_title.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=mod_cgi.hhk
+Language=0x409 English (United States)
+Title=Documentation of the module cgi
+
+[FILES]
+mod_cgi_title.htm
+mod_cgi_1.htm
+mod_cgi_2.htm
+mod_cgi_3.htm
+mod_cgi_4.htm
+mod_cgi_5.htm
+mod_cgi_6.htm
+mod_cgi_7.htm
+mod_cgi_8.htm
+mod_cgi_9.htm
+mod_cgi_10.htm
+mod_cgi_11.htm
+mod_cgi_12.htm
+mod_cgi_13.htm
+mod_cgi_14.htm
+mod_cgi_15.htm
+mod_cgi_16.htm
+mod_cgi_17.htm
+mod_cgi_18.htm
+mod_cgi_19.htm
+mod_cgi_20.htm
+mod_cgi_21.htm
+mod_cgi_22.htm
+mod_cgi_23.htm
+mod_cgi_24.htm
+mod_cgi_25.htm
+mod_cgi_26.htm
+mod_cgi_27.htm
+mod_cgi_28.htm
+mod_cgi_29.htm
+mod_cgi_30.htm
+mod_cgi_31.htm
+mod_cgi_32.htm
+mod_cgi_33.htm
+mod_cgi_34.htm
+mod_cgi_35.htm
+mod_cgi_36.htm
+mod_cgi_37.htm
+[INFOTYPES]

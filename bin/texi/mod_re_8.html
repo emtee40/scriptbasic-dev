@@ -1,0 +1,57 @@
+<HEAD>
+<TITLE>Documentation of the module re: 8. Search and replace</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module re: Search and replace">
+<META NAME="keywords" CONTENT="Documentation of the module re: Search and replace">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_re_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>8. Search and replace</H1>
+<A HREF="mod_re_7.html">[&lt;&lt;&lt;]</A> [&gt;&gt;&gt;]
+</UL>
+<HR>
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+re::replace(string,regexp,replace)
+re::s(string,regexp,replace)
+</PRE></FONT>
+This function searches the string for matches of the regular expression and replaces the 
+actual matches with the replace string. This is the same functionality as the <font size="3"><tt>=~s/</tt></font> operator in Perl.
+<P>
+The function fills the <a href="mod_re_html">dollar</A> array the same way as the function <a href="mod_re_3.html">match</A>.
+<P>
+For example
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import re.bas
+<P>
+print re::s("almakbat*","a(.)","$1s")
+print
+print re::$(0)," ",re::$(1)
+print
+</PRE></FONT>
+will print
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+lsmksbts*
+at t
+</PRE></FONT>
+<P>
+As you can see in this case the value of <font size="3"><tt>re::$(0)</tt></font> is the string that was
+matched by the last replace inside the string.
+ 
+<HR>
+<A HREF="mod_re_7.html">[&lt;&lt;&lt;]</A> [&gt;&gt;&gt;]
+</FONT>
+</BODY>
+
+</HTML>

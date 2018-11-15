@@ -1,0 +1,34 @@
+<HEAD>
+<TITLE>Documentation of the module cgi: 22. cgi::RemoteHost</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module cgi: cgi::RemoteHost">
+<META NAME="keywords" CONTENT="Documentation of the module cgi: cgi::RemoteHost">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_cgi_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>22. cgi::RemoteHost</H1>
+<A HREF="mod_cgi_21.html">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_23.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+This is the internet name of the remote client. If the name of the client can not be determined this 
+variable usually holds the ip number of the client. To have an ip name in this variable depends on the client 
+and also on the configuration of the web server. The http request does not include the name of the 
+client. It only holds the ip number, and the web server should issue a reverse lookup request toward the 
+DNS server to determine the ip name of the client. This is used sometimes for security reasons 
+disallowing all clients that have no ip name. On the other hand this is a slow process and may severely impact 
+the performance of the web server. Usually this reverse lookup is switched off.<HR>
+<A HREF="mod_cgi_21.html">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_23.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

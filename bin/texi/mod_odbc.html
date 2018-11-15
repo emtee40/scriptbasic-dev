@@ -1,0 +1,258 @@
+<HEAD>
+<TITLE>Documentation of the module odbc</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module odbc: Table of Contents">
+<META NAME="keywords" CONTENT="Documentation of the module odbc: Table of Contents">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<H1>Documentation of the module odbc</H1>
+<H3>by Peter Verhas</H3>
+<A NAME="contents"><H2>Table of Contents</H2></A>
+<UL>
+<A HREF="#1.">1.   Introduction</A><BR>
+<A HREF="#2.">2.   Error Codes</A><BR>
+<A HREF="#3.">3.   FetchArray</A><BR>
+<A HREF="#4.">4.   FetchHash</A><BR>
+<A HREF="#5.">5.   AffectedRows</A><BR>
+<A HREF="#6.">6.   Error</A><BR>
+<A HREF="#7.">7.   Query</A><BR>
+<A HREF="#8.">8.   Close</A><BR>
+<A HREF="#9.">9.   RealConnect</A><BR>
+<A HREF="#10.">10.   Connect</A><BR>
+</UL>
+<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="1."><H1>1. Introduction</H1></A>
+
+
+ODBC Database Connection Module
+<P>
+This module implements ODBC interface to connect to relational databases. Using this module
+you can use SQL RDBMS implementations from Windows/Unix/Linux platform independant of the
+actual database system.
+<P>
+Though this module does not deliver all functions of the ODBC system it does implement
+most of the functions that are needed to write SQL based applications. You can connect to
+ODBC databases, disconnect, issue SQL commands and retrieve the data resulted by the queries.
+<P>
+To use this module from a BASIC program you have to include the file <font size="3"><tt>odbc.bas</tt></font> with the line
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import odbc.bas
+</PRE></FONT>
+<P>
+to have all the neccessary function defintiions. This file and the neccessary <font size="3"><tt>odbc.dll</tt></font> (or <font size="3"><tt>odbc.so</tt></font>)
+are installed in the include and in the modules directories on Windows.
+<P>
+A typical BASIC application using this module first calls <a href="#10.">Connect</A> or <a href="#9.">RealConnect</A> to get a
+connection to the database. Then the program calls <a href="#7.">Query</A> to execute SQL queries, altering the
+database and <a href="#4.">FetchHash</A> and/or <a href="#3.">FetchArray</A> to get the result of queries. Finally the program
+optionally calls <a href="#8.">Close</A> to close the connection.
+<P>
+(Calling <a href="#8.">Close</A> is optional. <a href="#8.">Close</A> is automatically called for each opened database connection
+when the interpreter finishes.)
+<P>
+The underlying ODBC system layer implements connection pooling on process level. Thus there is
+no need to use the ScriptBasic resource pooling module as it is done by the MySQL module. (By the
+time I write this the ScriptBasic resource pool support module is still experimental, and so is the
+MySQL module interface utilizing it.)
+<P>
+When the ODBC module is initialized the module requests the underlying ODBC layer to perform process
+level connection pooling. The module also implements the multi-thread interface functions that allow
+the module to remain in memory if used in multi-thread application.
+<P>
+The module raises module specific errors. For more information see <a href="#6.">Error</A>.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="2."><H1>2. Error Codes</H1></A>
+
+The module raises error in case when there is some problem with the underlying
+database handling. The error codes the module may raise:
+<P>
+<UL>
+<LI> 0x00081001 there is no such connection name
+<LI> 0x00081002 there is some problem with the connection name. This is an error in the configuration file.
+<LI> 0x00081003 the connection was refused by the database.
+<LI> 0x00081004 query execution error.
+<LI> 0x00081005 the program tries to call <a href="#3.">FetchArray</A> or <a href="#4.">Fetchhash</A> without a preceeding query execution.
+<LI> 0x00081006 the second argument of a fetch does not evaluate to left value.
+</UL><P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="3."><H1>3. FetchArray</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+R = ODBC::FetchArray(DB,arr)
+</PRE></FONT>
+<P>
+Use this function to fetch one row from the results after a successfully executed <font size="3"><tt>SELECT</tt></font> statement.
+The first argument to the function is <font size="3"><tt>DB</tt></font> the database handle. The second argument should be a variable.
+This variable will hold the array containing the data of the actual row. The array is indexed from zero to
+<font size="3"><tt>n-1</tt></font> where <font size="3"><tt>n</tt></font> is the number of columns in the result set.
+<P>
+Use consecutive calls to this fucntion to get the rwos of the result one after the other. You can mix
+consecutive calls to <a href="#4.">FetchHash</A> and <font size="3"><tt>FetchArray</tt></font>.
+<P>
+The function returns <font size="3"><tt>-1</tt></font> (TRUE) if fetching a row of data was successful or <font size="3"><tt>0</tt></font> (FALSE) if there
+are no more rows in the dataset. In the latter case <font size="3"><tt>arr</tt></font> will be <font size="3"><tt>undef</tt></font>.
+<P>
+See also <a href="#4.">FetchHash</A>
+<P>
+This function calls the ODBC functions <font size="3"><tt>SQLFetch</tt></font>, <font size="3"><tt>SQLDescribeCol</tt></font>, <font size="3"><tt>SQLGetData</tt></font>.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="4."><H1>4. FetchHash</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+R = ODBC::FetchHash(DB,arr)
+</PRE></FONT>
+<P>
+Use this function to fetch one row from the results after a successfully executed <font size="3"><tt>SELECT</tt></font> statement.
+The first argument to the function is <font size="3"><tt>DB</tt></font> the database handle. The second argument should be a variable.
+This variable will hold the hash-array containing the data of the actual row. The array is indexed from zero to
+<font size="3"><tt>2*n-1</tt></font> where <font size="3"><tt>n</tt></font> is the number of columns in the result set. Every even element (starting with index zero) will
+hold the name of a column and the next odd element of the array will hold the value of the column. This is
+according to the storage strategy of ScriptBasic for hashes.
+<P>
+After the successful execution of this function you will be able to access the value of the column named <font size="3"><tt>"column"</tt></font>
+with the syntax <font size="3"><tt>arr{"column"</tt></font>}. Note however that column names in SQL are usually case insensitive, but ScriptBasic
+hash indexing is case sensitive.
+<P>
+Use consecutive calls to this fucntion to get the rows of the result one after the other. You can mix
+consecutive calls to <font size="3"><tt>FetchHash</tt></font> and <a href="#3.">FetchArray</A>.
+<P>
+The function returns <font size="3"><tt>-1</tt></font> (TRUE) if fetching a row of data was successful or <font size="3"><tt>0</tt></font> (FALSE) if there
+are no more rows in the dataset. In the latter case <font size="3"><tt>arr</tt></font> will be <font size="3"><tt>undef</tt></font>.
+<P>
+See also <a href="#3.">FetchArray</A>.
+<P>
+This function calls the ODBC functions <font size="3"><tt>SQLFetch</tt></font>, <font size="3"><tt>SQLDescribeCol</tt></font>, <font size="3"><tt>SQLGetData</tt></font>.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="5."><H1>5. AffectedRows</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+R = ODBC::AffectedRows(DB)
+</PRE></FONT>
+<P>
+Use this function to get the number of rows affected by a previous <font size="3"><tt>UPDATE</tt></font>, <font size="3"><tt>DELETE</tt></font> or
+<font size="3"><tt>INSERT</tt></font> command. The function returns undefined number in case the last executed was
+none of the above command types.
+<P>
+The underlying ODBC function this function calls is <font size="3"><tt>SQLRowCount</tt></font>.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="6."><H1>6. Error</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+R = ODBC::Error(DB)
+</PRE></FONT>
+<P>
+Use this function to get the txtual report of an error that has happened during an ODBC call.
+Calling ScriptBasic ODBC module functions raise error if the underlying ODBC calls report some error.
+This error can be captured using the ScriptBasic <font size="3"><tt>ON ERROR GOTO</tt></font> function. The error handling routine can call
+this function to get the text of the error as reported by the ODBC driver.
+<P>
+The return value is the text of the error.
+<P>
+The underlying ODBC function this function calls is <font size="3"><tt>SQLError</tt></font>.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="7."><H1>7. Query</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+ODBC::Query DB, query
+</PRE></FONT>
+<P>
+This function should be used to execute an SQL statement. The first argument
+<font size="3"><tt>DB</tt></font> is the connection handle, the second argument <font size="3"><tt>query</tt></font> is the text of the
+SQL query.
+<P>
+The function returns <font size="3"><tt>undef</tt></font>.
+<P>
+The function calls the underlying ODBC function <font size="3"><tt>SQLExecDirect</tt></font> and <font size="3"><tt>SQLNumResultCols</tt></font>.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="8."><H1>8. Close</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+ODBC::Close DB
+</PRE></FONT>
+<P>
+Use this function to release connection. The connection may still be kept alive by the
+underlying ODBC layer for later use.
+<P>
+The function returns <font size="3"><tt>undef</tt></font>.
+<P>
+The function calls the underlying ODBC function <font size="3"><tt>SQLDisconnect</tt></font> and <font size="3"><tt>SQLFreeHandle</tt></font>.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="9."><H1>9. RealConnect</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+DB = ODBC::RealConnect(DSN,User,Password)
+</PRE></FONT>
+<P>
+Use this fucntion to connect to an ODBC data source. The arguments are the <font size="3"><tt>DSN</tt></font> data source name as
+configured in the ODBC connection manager, the <font size="3"><tt>User</tt></font> user name, and the <font size="3"><tt>Password</tt></font> password.
+<P>
+The return value is the database handle to be used in consecutive calls to <a href="#7.">Query</A>, <a href="#3.">FetchArray</A>,
+<a href="#4.">FetchHash</A> and <a href="#8.">Close</A>. Note that this handle is a handle that ScriptBasic uses internally and is
+not the handle returned by the underlying ODBC functions. ScriptBasic, for security reasons keeps track of
+the handles using handle tables and return small integer numbers to the BASIC program to be used as reference.
+<P>
+You should not use any of these handles to perform any calculation other than passing them to the other
+functions to identify connections. You can, however freely copy these numbers from variable to the other,
+passing to fucntions and so on as they are simply small integer numbers.
+<P>
+If the connection can not be established for some reason the function raises a module specific error.
+<P>
+See also <a href="#10.">Connect</A>, <a href="#6.">Error</A>.
+<P>
+The function calls the underlying ODBC function <font size="3"><tt>SQLAllocHandle</tt></font> and <font size="3"><tt>SQLConnect</tt></font>.<P><a href="#contents">[Contents]</A><BR>
+<P>
+<A name="10."><H1>10. Connect</H1></A>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+DB = ODBC::Connect(connection_name)
+</PRE></FONT>
+<P>
+Use this fucntion to connect to an ODBC data source. The argument is the name of the connection as
+configured in the ScriptBasic configuration file.
+<P>
+Connection to an ODBC database usually requires a user name and password. Coding these into
+script source files may not be secure and thus this module allows the system manager to
+configure these codes in the ScriptBasic config file. This config file may not be readable by
+ordinary user and is binary in the form as read by the ScriptBasic interpreter. This adds some
+extra security.
+<P>
+
+Calling this function instead of <a href="#9.">RealConnect</A> the programmer may reference a connection configured
+in the ScriptBasic configuration file. The key with the name of the connection should be under the
+key <font size="3"><tt>odbc.connections</tt></font>. For example:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+odbc (
+  connections (
+    test (        ; the name of the connection
+    dsn "odbctest" ; data source name
+    user "" ; user for the connection, to test we use MS-Access thus there is no user or passwd
+    password "" ; password for the connection
+    )
+    )
+  )
+</PRE></FONT>
+<P>
+When configuring such an ODBC connection do not forget to recompile the configuration file.
+<P>
+The name of the connection passed to the function should be the name used in the configuration file
+to identify the connection. In the example above this is <font size="3"><tt>test</tt></font>. This name need not, howeve may be the same
+as the data source name.
+<P>
+If the connection can not be established for some reason the function raises a module specific error.
+<P>
+See also <a href="#9.">RealConnect</A>, <a href="#6.">Error</A>.
+<P>
+The function calls the underlying ODBC function <font size="3"><tt>SQLAllocHandle</tt></font> and <font size="3"><tt>SQLConnect</tt></font>.
+<P>
+ 
+

@@ -1,0 +1,38 @@
+<HEAD>
+<TITLE>Documentation of the module t: 9. s = t::ArrayToStringMD5(Array)</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module t: s = t::ArrayToStringMD5(Array)">
+<META NAME="keywords" CONTENT="Documentation of the module t: s = t::ArrayToStringMD5(Array)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_t_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>9. s = t::ArrayToStringMD5(Array)</H1>
+<A HREF="mod_t_8.html">[&lt;&lt;&lt;]</A> <A HREF="mod_t_10.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+This function is the same as <a href="mod_t_html">ArrayToString</A> with the extra feature that this function
+appends the MD5 fingerprint of the created string to the result, generating 16 characters
+longer result. This is a bit slower than <a href="mod_t_html">ArrayToString</A> and creates longer string, but also
+ensures integrity and can eliminate file reading and write errors.
+<P>
+See also <a href="mod_t_html">StringToArrayMD5</A>.
+<P>
+Note that because <a href="mod_t_html">StringToArray</A> does not care excess characters at the end of the string
+you can use <a href="mod_t_html">StringToArray</A> to convert a string back to array that was created using
+<font size="3"><tt>ArrayToStringMD5</tt></font>.<HR>
+<A HREF="mod_t_8.html">[&lt;&lt;&lt;]</A> <A HREF="mod_t_10.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

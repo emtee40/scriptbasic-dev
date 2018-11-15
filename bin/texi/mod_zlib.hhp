@@ -1,0 +1,20 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=mod_zlib.chm
+Contents file=mod_zlib.hhc
+Default topic=mod_zlib_title.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=mod_zlib.hhk
+Language=0x409 English (United States)
+Title=Documentation of the module zlib
+
+[FILES]
+mod_zlib_title.htm
+mod_zlib_1.htm
+mod_zlib_2.htm
+mod_zlib_3.htm
+mod_zlib_4.htm
+mod_zlib_5.htm
+mod_zlib_6.htm
+[INFOTYPES]

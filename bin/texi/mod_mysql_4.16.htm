@@ -1,0 +1,45 @@
+<HEAD>
+<TITLE>Using the module MySQL: Info</TITLE>
+
+<META NAME="description" CONTENT="Using the module MySQL: Info">
+<META NAME="keywords" CONTENT="Using the module MySQL: Info">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>Info</H1>
+<A HREF="mod_mysql_4.15.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_mysql_4.17.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+A$ = mysql::Info(dbh)
+</PRE></FONT>
+
+This function retrieves a string providing information about the most recently executed query, but only for the statements listed below. For other statements, <font size="3"><tt>mysql::Info()</tt></font> returns <font size="3"><tt>undef</tt></font>. The format of the string varies depending on the type of query, as described below. The numbers are illustrative only; the string will contain values appropriate for the query. 
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+INSERT INTO ... SELECT ... 
+String format: Records: 100 Duplicates: 0 Warnings: 0 
+INSERT INTO ... VALUES (...),(...),(...)... 
+String format: Records: 3 Duplicates: 0 Warnings: 0 
+LOAD DATA INFILE ... 
+String format: Records: 1 Deleted: 0 Skipped: 0 Warnings: 0 
+ALTER TABLE 
+String format: Records: 3 Duplicates: 0 Warnings: 0 
+UPDATE 
+String format: Rows matched: 40 Changed: 40 Warnings: 0 
+</PRE></FONT>
+
+Note that <font size="3"><tt>mysql::Info()</tt></font> returns a string value for the <font size="3"><tt>INSERT ... VALUES</tt></font> statement only if multiple value lists are specified in the statement.  Otherwise it returns <font size="3"><tt>undef</tt></font>.
+
+<HR>
+<A HREF="mod_mysql_4.15.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_mysql_4.17.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

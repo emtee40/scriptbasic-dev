@@ -1,0 +1,143 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="t2h.pl texi to html converter">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Introduction">
+<param name="Local" value="mod_mysql_1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Installing the module">
+<param name="Local" value="mod_mysql_2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="While compiling the compiler complains">
+<param name="Local" value="mod_mysql_2.0.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Module can not be loaded">
+<param name="Local" value="mod_mysql_2.0.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Configuration">
+<param name="Local" value="mod_mysql_3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Using the module">
+<param name="Local" value="mod_mysql_4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="RealConnect">
+<param name="Local" value="mod_mysql_4.1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Connect">
+<param name="Local" value="mod_mysql_4.2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Close">
+<param name="Local" value="mod_mysql_4.3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Query">
+<param name="Local" value="mod_mysql_4.4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FetchArray">
+<param name="Local" value="mod_mysql_4.5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="FetchHash">
+<param name="Local" value="mod_mysql_4.6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="AffectedRows">
+<param name="Local" value="mod_mysql_4.7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ChangeUser">
+<param name="Local" value="mod_mysql_4.8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="CharacterSetName">
+<param name="Local" value="mod_mysql_4.9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="DataSeek">
+<param name="Local" value="mod_mysql_4.10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ErrorMessage">
+<param name="Local" value="mod_mysql_4.11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="GetClientInfo">
+<param name="Local" value="mod_mysql_4.12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="GetHostInfo">
+<param name="Local" value="mod_mysql_4.13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="GetProtoInfo">
+<param name="Local" value="mod_mysql_4.14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="GetServerInfo">
+<param name="Local" value="mod_mysql_4.15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Info">
+<param name="Local" value="mod_mysql_4.16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="InsertId">
+<param name="Local" value="mod_mysql_4.17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Kill">
+<param name="Local" value="mod_mysql_4.18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Ping">
+<param name="Local" value="mod_mysql_4.19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="EscapeString">
+<param name="Local" value="mod_mysql_4.20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="SelectDatabase">
+<param name="Local" value="mod_mysql_4.21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Shutdown">
+<param name="Local" value="mod_mysql_4.22.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Stat">
+<param name="Local" value="mod_mysql_4.23.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="ThreadId">
+<param name="Local" value="mod_mysql_4.24.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Sample code">
+<param name="Local" value="mod_mysql_5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Future development, aims">
+<param name="Local" value="mod_mysql_6.htm">
+</OBJECT>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

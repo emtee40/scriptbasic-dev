@@ -1,0 +1,78 @@
+<HEAD>
+<TITLE>Documentation of the module mt: mt::ListSessions</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module mt: mt::ListSessions">
+<META NAME="keywords" CONTENT="Documentation of the module mt: mt::ListSessions">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>mt::ListSessions</H1>
+<A HREF="mod_mt_20.htm">[&lt;&lt;&lt;]</A> [&gt;&gt;&gt;]
+<P>
+
+This subroutine collects the session ids.
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+  call mt::ListSessions Array,Sm,SM,Pm,PM,Tm,TM
+</PRE></FONT>
+<P>
+The first argument to the subroutine should be a variable. This variable will loose its previous
+value and gets a new array value containing the session strings.
+<P>
+If there is no more arguments to the subroutine call this array will contain all the
+existing sessions in the MT module. However the programmer may define six optional
+parameters that select only certain sessions that have time value parameters that
+are between the specified values. These are
+<P>
+<UL>
+<LI> <font size="3"><tt>Sm</tt></font> required minimal start time of the session
+<LI> <font size="3"><tt>SM</tt></font> required maximal start time of the session
+<LI> <font size="3"><tt>Pm</tt></font> required minimal ping time of the session
+<LI> <font size="3"><tt>PM</tt></font> required maximal ping time of the session
+<LI> <font size="3"><tt>Tm</tt></font> required minimal time-out time of the session
+<LI> <font size="3"><tt>TM</tt></font> required maximal time-out time of the session
+</UL>
+<P>
+These time values have to be expressed as GTM time stamps. If a value is zero or <font size="3"><tt>undef</tt></font>
+the value in the constraint is ignored. Unspecified arguments are <font size="3"><tt>undef</tt></font> by ScriptBasic behaviour.
+<P>
+For example to get the list of all sessions that are older than an hour
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+call mt::ListSession Array,undef,GmTime()-60*60
+</PRE></FONT>
+<P>
+To get all session IDs that timed out:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+call mt::ListSession Array,undef,undef,undef,undef,undef,GmTime()
+</PRE></FONT>
+<P>
+To get all sessions that are idle for more than ten minutes
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+call mt::ListSession Array,undef,undef,undef,GmTime()-600
+</PRE></FONT>
+<P>
+Note that this subroutine is rarely used in "cgi" scripts. This
+subroutine has to be used in scripts that are run by the Eszter
+SB Engine asynchronously started using the configuration
+key <font size="3"><tt>httpd.run.[re]start</tt></font>. Those scripts start before the
+engine starts to listen on a port and run so long as long
+the engine runs and are able to scan the sessions from time to
+time and delete the old sessions freeing the memoryof the module
+MT.
+<P>
+ 
+<HR>
+<A HREF="mod_mt_20.htm">[&lt;&lt;&lt;]</A> [&gt;&gt;&gt;]
+</FONT>
+</BODY>
+
+</HTML>

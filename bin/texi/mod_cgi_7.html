@@ -1,0 +1,54 @@
+<HEAD>
+<TITLE>Documentation of the module cgi: 7. cgi::GetParamEx("name",q) cgi::PostParamEx("name",q)</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module cgi: cgi::GetParamEx("name",q) cgi::PostParamEx("name",q)">
+<META NAME="keywords" CONTENT="Documentation of the module cgi: cgi::GetParamEx("name",q) cgi::PostParamEx("name",q)">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_cgi_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>7. cgi::GetParamEx("name",q) cgi::PostParamEx("name",q)</H1>
+<A HREF="mod_cgi_6.html">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_8.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+q = undef
+cgi::GetParamEx("param",q)
+cgi::GetParamEx("param",q)
+<P>
+q = undef
+cgi::PostParamEx("param",q)
+cgi::PostParamEx("param",q)
+</PRE></FONT>
+<P>
+These functions can be used to iteratively fetch all parameter values passed with the same name. While 
+the functions Param, GetParam and PostParam return the value of the first parameter of the name these 
+functions can be used to retrieve the second, third and so on parameters.
+<P>
+The first parameter is the name of the CGI variable.
+<P>
+The second argument is an iteration variable that the function uses internally. This argument is passed 
+by value and therefore it should be a variable to reach proper functioning. This variable should be undef 
+when first calling the function. Later the value of this variable is set to a string that represents 
+an internal value that the basic code SHOULD NOT alter. The value can be moved from one variable to another, 
+but should not be changed.
+<P>
+The function returns undef when there are no more CGI variables of the name and the iteration variable 
+is also set to hold the undef value.
+<P>
+The CGI parameter names are case sensitive according to the CGI standard.<HR>
+<A HREF="mod_cgi_6.html">[&lt;&lt;&lt;]</A> <A HREF="mod_cgi_8.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

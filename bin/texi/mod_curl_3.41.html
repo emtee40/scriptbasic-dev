@@ -1,0 +1,53 @@
+<HEAD>
+<TITLE>Documentation of the module curl: 3.41. CLOSEPOLICY</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: CLOSEPOLICY">
+<META NAME="keywords" CONTENT="Documentation of the module curl: CLOSEPOLICY">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_curl_toc.html">[Contents]</A><BR>
+<UL><a href="mod_curl_3.html">3. curl::option</A><BR>
+</UL>
+</UL>
+<P>
+<H1>3.41. CLOSEPOLICY</H1>
+<A HREF="mod_curl_3.40.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.42.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"CLOSEPOLICY"
+</PRE></FONT>
+<P>
+This option sets what policy libcurl should use when the
+connection cache is filled and one of the open connections has to be closed to
+make room for a new connection. This must be <font size="3"><tt>OLD</tt></font> or <font size="3"><tt>FRESH</tt></font>. If you specify <font size="3"><tt>OLD</tt></font>
+as argument libcurl close the
+oldest connection, the one that was created first among the ones in the
+connection cache. If you specify <font size="3"><tt>FRESH</tt></font> libcurl close the
+connection that was least recently used, that connection is also least likely
+to be capable of re-use.
+<P>
+Example
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CURL,"CLOSEPOLICY","OLD"
+curl::option CURL,"CLOSEPOLICY","FRESH"
+</PRE></FONT>
+<P>
+Note that the values are checked by the module case sensitive, thus you can not write <font size="3"><tt>"old"</tt></font>
+or <font size="3"><tt>"fresh"</tt></font> or mixed case words. Also the module <B>does not tolerate</B> any other form of the words,
+like <font size="3"><tt>OLDEST</tt></font> or <font size="3"><tt>NEW</tt></font>.<HR>
+<A HREF="mod_curl_3.40.html">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.42.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

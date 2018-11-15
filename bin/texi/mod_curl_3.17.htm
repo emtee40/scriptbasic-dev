@@ -1,0 +1,32 @@
+<HEAD>
+<TITLE>Documentation of the module curl: RANGE string</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: RANGE string">
+<META NAME="keywords" CONTENT="Documentation of the module curl: RANGE string">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>RANGE string</H1>
+<A HREF="mod_curl_3.16.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.18.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"RANGE","3321-3322"
+</PRE></FONT>
+<P>
+Pass a string as parameter, which should contain the specified range you
+want. It should be in the format "X-Y", where X or Y may be left out. HTTP
+transfers also support several intervals, separated with commas as in
+<font size="3"><tt>"X-Y,N-M"</tt></font>. Using this kind of multiple intervals will cause the 
+HTTP server to send the response document in pieces.<HR>
+<A HREF="mod_curl_3.16.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.18.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

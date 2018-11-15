@@ -1,0 +1,38 @@
+<HEAD>
+<TITLE>Documentation of the module odbc: 8. Close</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module odbc: Close">
+<META NAME="keywords" CONTENT="Documentation of the module odbc: Close">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_odbc_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>8. Close</H1>
+<A HREF="mod_odbc_7.html">[&lt;&lt;&lt;]</A> <A HREF="mod_odbc_9.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+ODBC::Close DB
+</PRE></FONT>
+<P>
+Use this function to release connection. The connection may still be kept alive by the
+underlying ODBC layer for later use.
+<P>
+The function returns <font size="3"><tt>undef</tt></font>.
+<P>
+The function calls the underlying ODBC function <font size="3"><tt>SQLDisconnect</tt></font> and <font size="3"><tt>SQLFreeHandle</tt></font>.<HR>
+<A HREF="mod_odbc_7.html">[&lt;&lt;&lt;]</A> <A HREF="mod_odbc_9.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

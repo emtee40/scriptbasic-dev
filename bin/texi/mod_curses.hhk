@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<HTML>
+<HEAD>
+<meta name="GENERATOR" content="t2h.pl texi to html converter">
+<!-- Sitemap 1.0 -->
+</HEAD><BODY>
+<OBJECT type="text/site properties">
+	<param name="ImageType" value="Folder">
+</OBJECT>
+<UL>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Introduction">
+<param name="Local" value="mod_curses_1.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="the module CURSES">
+<param name="Local" value="mod_curses_2.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Installation">
+<param name="Local" value="mod_curses_3.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Set current window">
+<param name="Local" value="mod_curses_4.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Beep.">
+<param name="Local" value="mod_curses_5.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Create a new window">
+<param name="Local" value="mod_curses_6.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Delete a window">
+<param name="Local" value="mod_curses_7.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Set automatic refresh">
+<param name="Local" value="mod_curses_8.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Beep.">
+<param name="Local" value="mod_curses_9.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Flash the screen">
+<param name="Local" value="mod_curses_10.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Erase the screen">
+<param name="Local" value="mod_curses_11.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Refresh the screen">
+<param name="Local" value="mod_curses_12.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Move the cursor">
+<param name="Local" value="mod_curses_13.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get X position of cursor">
+<param name="Local" value="mod_curses_14.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get Y position of cursor">
+<param name="Local" value="mod_curses_15.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get width of current window">
+<param name="Local" value="mod_curses_16.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get height of current window">
+<param name="Local" value="mod_curses_17.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Print a string">
+<param name="Local" value="mod_curses_18.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Insert a string ">
+<param name="Local" value="mod_curses_19.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Insert or delete lines">
+<param name="Local" value="mod_curses_20.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Delete character">
+<param name="Local" value="mod_curses_21.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get a string from the current window">
+<param name="Local" value="mod_curses_22.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Turn on the specified character attributes">
+<param name="Local" value="mod_curses_23.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Turn off the specified character attributes">
+<param name="Local" value="mod_curses_24.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Set current character attributes.">
+<param name="Local" value="mod_curses_25.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Change attributes on screen">
+<param name="Local" value="mod_curses_26.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Return number of available color pairs">
+<param name="Local" value="mod_curses_27.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Initialize color pair">
+<param name="Local" value="mod_curses_28.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Set current color">
+<param name="Local" value="mod_curses_29.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Set background color and attributes">
+<param name="Local" value="mod_curses_30.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get character">
+<param name="Local" value="mod_curses_31.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Get string">
+<param name="Local" value="mod_curses_32.htm">
+</OBJECT>
+<LI> <OBJECT type="text/sitemap">
+<param name="Name" value="Return name of a key">
+<param name="Local" value="mod_curses_33.htm">
+</OBJECT>
+</UL>
+</FONT>
+</BODY>
+
+</HTML>

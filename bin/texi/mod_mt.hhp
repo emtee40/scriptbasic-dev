@@ -1,0 +1,35 @@
+[OPTIONS]
+Compatibility=1.1 or later
+Compiled file=mod_mt.chm
+Contents file=mod_mt.hhc
+Default topic=mod_mt_title.htm
+Display compile progress=No
+Full-text search=Yes
+Index file=mod_mt.hhk
+Language=0x409 English (United States)
+Title=Documentation of the module mt
+
+[FILES]
+mod_mt_title.htm
+mod_mt_1.htm
+mod_mt_2.htm
+mod_mt_3.htm
+mod_mt_4.htm
+mod_mt_5.htm
+mod_mt_6.htm
+mod_mt_7.htm
+mod_mt_8.htm
+mod_mt_9.htm
+mod_mt_10.htm
+mod_mt_11.htm
+mod_mt_12.htm
+mod_mt_13.htm
+mod_mt_14.htm
+mod_mt_15.htm
+mod_mt_16.htm
+mod_mt_17.htm
+mod_mt_18.htm
+mod_mt_19.htm
+mod_mt_20.htm
+mod_mt_21.htm
+[INFOTYPES]

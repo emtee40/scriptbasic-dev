@@ -1,0 +1,32 @@
+<HEAD>
+<TITLE>Documentation of the module curl: FRESH_CONNECT flag</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: FRESH_CONNECT flag">
+<META NAME="keywords" CONTENT="Documentation of the module curl: FRESH_CONNECT flag">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY>
+<FONT FACE="Verdana" Size="2">
+
+<H1>FRESH_CONNECT flag</H1>
+<A HREF="mod_curl_3.44.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.46.htm">[&gt;&gt;&gt;]</A>
+<P>
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+curl::option CurlHandle,"FRESH_CONNECT"
+</PRE></FONT>
+<P>
+Set the option to make the next transfer use a new connection by
+force. If the connection cache is full before this connection, one of the
+existinf connections will be closed as according to the set policy. This
+option should be used with caution and only if you understand what it
+does. Set to 0 to have libcurl attempt re-use of an existing connection.<HR>
+<A HREF="mod_curl_3.44.htm">[&lt;&lt;&lt;]</A> <A HREF="mod_curl_3.46.htm">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

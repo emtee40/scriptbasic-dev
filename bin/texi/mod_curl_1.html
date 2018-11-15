@@ -1,0 +1,92 @@
+<HEAD>
+<TITLE>Documentation of the module curl: 1. Introduction</TITLE>
+
+<META NAME="description" CONTENT="Documentation of the module curl: Introduction">
+<META NAME="keywords" CONTENT="Documentation of the module curl: Introduction">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_curl_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>1. Introduction</H1>
+[&lt;&lt;&lt;] <A HREF="mod_curl_2.html">[&gt;&gt;&gt;]</A>
+</UL>
+<HR>
+<P>
+
+
+The CURL module provides easy and still powerful functions to perform various network
+oriented actions that are based on URL to access data. For example CURL can perform
+getting data via HTTP, HTTPS from web pages, POST data to web pages, transer file to
+and from servers via FTP and so on.
+<P>
+To use the module the program has to import the BASIC "header" file named <font size="3"><tt>curl.bas</tt></font>. This
+should be done using the command import:
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import curl.bas
+</PRE></FONT>
+<P>
+Note that there are no double quotes around the file name to include the definition of the
+C implemented curl functions from the module interface header files include directory.
+<P>
+There are only a few functions defined in this file. The first function that an application
+has to call is <font size="3"><tt>curl::init()</tt></font> to get a handle to a connection. A single program can use
+several connections simultaneous, tough currently there is no possibility to download large
+files asynchronous.
+<P>
+Following the initialization the program has to set several options calling <font size="3"><tt>curl::option</tt></font>, and then
+should call the function <font size="3"><tt>curl::perform</tt></font> to actually perform the download/upload or other network
+action. When a connection is not used anymore the function <font size="3"><tt>curl::finish</tt></font> can be called, though this
+function is executed automatically for each connection when the interpreter exists. 
+<P>
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+import curl.bas
+ON ERROR GOTO CURL_ERROR
+CURL = curl::init()
+curl::option CURL,"URL","http://scriptbasic.com/html/index.html"
+curl::option CURL,"FILE","C:\\ScriptBasicMirror\\html\\index.html"
+curl::perform CURL
+curl::finish CURL
+STOP
+CURL_ERROR:
+PRINT "Some error happened while trying to download ScriptBasic home page. The error message is:\n"
+PRINT curl::error()
+STOP
+</PRE></FONT>
+<P>
+For more information on other functions read the appropriate chapters.
+<P>
+The name CURL is made of the name of the programming language C in which CURL is implemented
+and from the word URL. This text that you are reading is the documentation of the ScriptBasic
+implementation of CURL. This implementation includes an interface module that containc C coded
+BASIC callable function that map most (or some) of the CURL library functions. In other words
+using this program yu can access most (or some) of the functions that the CURL library provides.
+<P>
+Altough the CURL library is quite flexible, there are some options that are altered in this
+module to ease the use for BASIC programmers. For example the option POSTFIELDS accepts zero 
+terminated string by default, because 1.) POST data usually does not contain zero character and 2.)
+this is the easy way for C programmers. On the other hand there is a possibility, though more complex
+to pass string and length to the option. Because all ScriptBasic strings are arbitrary binary data and
+not zero character terminated strings this second method is followed.
+<P>
+Some of the options on the C level accept <font size="3"><tt>long</tt></font> numbers from a finite set and CURL C header files define
+<font size="3"><tt>enum</tt></font> types for the purpose. In these cases the ScriptBasic interface requires strings being specified
+by the BASIC program as option and convert to <font size="3"><tt>long</tt></font> as appropriate to CURL.
+<P>
+The option names in the original CURL interface are defined in <font size="3"><tt>enum</tt></font> and thus options are defined
+as <font size="3"><tt>long</tt></font> constants. The BASIC interface works with strings, and converts the names specified as
+strings to their appropriate value. This is (I assume) simpler for the BASIC programmers and on the other
+hand induces only slight overhead as compared to network transfer times.<HR>
+[&lt;&lt;&lt;] <A HREF="mod_curl_2.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>

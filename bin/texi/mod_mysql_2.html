@@ -1,0 +1,53 @@
+<HEAD>
+<TITLE>Using the module MySQL: 2. Installing the module</TITLE>
+
+<META NAME="description" CONTENT="Using the module MySQL: Installing the module">
+<META NAME="keywords" CONTENT="Using the module MySQL: Installing the module">
+<META NAME="resource-type" CONTENT="document">
+<META NAME="distribution" CONTENT="global">
+<META NAME="Generator" CONTENT="t2h.pl">
+
+</HEAD>
+
+<BODY LANG="" BGCOLOR="#C7C1A7" TEXT="#000000" LINK="#0000FF" VLINK="#800080" ALINK="#FF0000">
+<FONT FACE="Verdana" Size="2">
+
+<UL><a href="mod_mysql_toc.html">[Contents]</A><BR>
+</UL>
+<P>
+<H1>2. Installing the module</H1>
+<A HREF="mod_mysql_1.html">[&lt;&lt;&lt;]</A> <A HREF="mod_mysql_2.0.1.html">[&gt;&gt;&gt;]</A>
+<UL>
+<UL>
+<A HREF="mod_mysql_2.0.1.html">2.0.1. While compiling the compiler complains</A><BR>
+<A HREF="mod_mysql_2.0.2.html">2.0.2. Module can not be loaded</A><BR>
+<HR>
+<P>
+
+The module comes in source form or as compiled binary. Binary is usually available for the Win32 platforms only. The compilation of the source code is simple. Compile the source files to a .dll or to .so shared library. To do so you will find an install.sh command file in the UNIX distribution of ScriptBasic in the directory extensions/mysql. To execute this command file you have to have root privileges and have to type:
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+sh install.sh
+</PRE></FONT>
+
+The compiled module contains a dynamically load binary file and a basic include file named mysql.bas. The include file mysql.bas should be placed in a module include directory file configured in the configuration file. The configuration file usually named scriba.conf should include a line
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+include /etc/scriba/include/
+</PRE></FONT>
+
+defining the include files location for the modules and other generally used include files. The actual directory can be different.
+
+The binary part of the module should be placed in another directory specified in the configuration file, like
+
+<FONT SIZE="3" COLOR="BLUE"><PRE>
+module /usr/scriba/modules/
+</PRE></FONT>
+
+There can be more than one include and module statement in the configuration file. In that case the interpreter searches the directories in the order they are specified until the include file or the module is found.
+<HR>
+<A HREF="mod_mysql_1.html">[&lt;&lt;&lt;]</A> <A HREF="mod_mysql_2.0.1.html">[&gt;&gt;&gt;]</A>
+</FONT>
+</BODY>
+
+</HTML>
