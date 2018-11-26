@@ -14,14 +14,8 @@ WHEN YOU ARE FINISHED YOU CAN
   CONTENT:
   This is the interface.c file for the ScriptBasic module json
 ----------------------------------------------------------------------------
-
-//NTLIBS:
 UXLIBS: 
-DWLIBS:
-----------------------------------------------------------------------------
-
-
-//DWLIBS:
+DWLIBS: 
 
 */
 
@@ -47,10 +41,10 @@ INCLUDE HERE THE UNIX SPECIFIC HEADER FILES THAT ARE NEEDED TO COMPILE THIS MODU
 INCLUDE HERE THE LOCAL HEADER FILES THAT ARE NEEDED TO COMPILE THIS MODULE
 */
 #include <stdio.h>
-#include "../../basext.h"
 #include <stdlib.h>
 #include <string.h>
-#include "jsmn.h"
+#include "../../basext.h"
+#include "parson.h"
 
 /*
 *TODO*
@@ -71,20 +65,10 @@ DATA AVAILABLE FOR EACH INTERPRETER THREAD. USE THIS STRUCTURE TO
 STORE GLOBAL VALUES INSTEAD OF USING GLOBAL VARIABLES.
 */
 typedef struct _ModuleObject {
-  char a; /* You may delete this. It is here to make the initial interface.c compilable. */
+  JSON_Value* root;
   }ModuleObject,*pModuleObject;
 
-jsmntok_t sb_tok[2048];
-long sb_tok_count;
-char JSON_STRING[4096];
 
-int jsoneq(const char *json, jsmntok_t *tok, const char *s) {
-    if (tok->type == JSMN_STRING && (int) strlen(s) == tok->end - tok->start && strncmp(json + tok->start, s, tok->end - tok->start) == 0) {
-        return 0;
-    }
-      return -1;
-}
-    
 /*
 *TODO*
 ALTER THE VERSION NEGOTIATION CODE IF YOU NEED
@@ -138,109 +122,115 @@ besSUB_FINISH
   */
   p = (pModuleObject)besMODULEPOINTER;
   if( p == NULL )return 0;
+  json_value_free(p->root);
 
   return 0;
 besEND
 
 
-/*
-*TODO*
-WRITE YOUR MODULE INTERFACE FUNCTIONS FOLLOWING THIS SKELETON
-
-NOTE THAT THIS IS A SAMPLE FUNCTION, YOU CAN ALSO DELETE
-LINES FROM IT IF NEEDED
-*/
 /**
-=section parse
-=H title that goes into the BASIC documentation for this function
+=section load
+=H json::load
 
-detail here what the function does so that the BASIC programmer
-can understand how he/she can use it
+Loads filename, returns array of json objects
 */
-
-besFUNCTION(parse)
+besFUNCTION(load)
   pModuleObject p;
-  jsmn_parser parser;
-  int r;
-  char *json_string;
-  jsmntok_t jsmn_tok[2048];
+  char* filename;
   
-  
-  
-
-// r = jsmn_parse(&p, JSON_STRING, strlen(JSON_STRING), t, sizeof(t)/sizeof(t[0]));
-  memset(JSON_STRING,0,4096);
+  JSON_Array *items;
 
   p = (pModuleObject)besMODULEPOINTER;
 
   besARGUMENTS("z")
-  &json_string
+    &filename
   besARGEND
+  
+  p->root = json_parse_file(filename);
 
-  r = jsmn_parse(&parser, json_string, strlen(json_string), jsmn_tok, sizeof(jsmn_tok)/sizeof(jsmn_tok[0]));
-
-  if (r < 0) {
-    printf("Failed to parse JSON: %d\n", r);
-    return COMMAND_ERROR_MEMORY_LOW;
+  if (json_value_get_type(p->root) != JSONArray) {
+    return COMMAND_ERROR_BAD_CALL;
   }
-
-  /* Assume the top-level element is an object */
-  if (r < 1 || jsmn_tok[0].type != JSMN_OBJECT) {
-      printf("Object expected\n");
-      return COMMAND_ERROR_MEMORY_LOW;
-      
-  }
-  memcpy( (void *)&sb_tok, (void *)&jsmn_tok, sizeof(jsmn_tok));
-  strncpy(JSON_STRING,json_string,strlen(json_string));
-  sb_tok_count = r;
-  besRETURN_LONG(r);
+  items = json_value_get_array(p->root);
+  besRETURN_POINTER(items);
 besEND
 
 /**
-=section find
-=H title that goes into the BASIC documentation for this function
-*/
-besFUNCTION(find)
-  pModuleObject p;
-  jsmn_parser parser;
-  int r;
-  char *key;
-  char *tmpStr;
+=section count
+=H json::count(X)
 
- besARGUMENTS("z")
-  &key
+Returns number of json objects in X
+*/
+besFUNCTION(count)
+  pModuleObject p;
+  int cnt;
+  JSON_Array *items;
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("p")
+    &items
   besARGEND
   
-  if(sb_tok_count) {
-    for (int i = 0; i < sb_tok_count; i++) {
-      switch (sb_tok[i].type) {
-        case JSMN_ARRAY:
-          break;
-
-        case JSMN_OBJECT:
-          break;
-
-        case JSMN_STRING:
-          if (jsoneq(JSON_STRING, &sb_tok[i], key) == 0){
-            tmpStr = strndup(JSON_STRING + sb_tok[i+1].start, sb_tok[i+1].end-sb_tok[i+1].start);
-            besSET_RETURN_STRING(tmpStr)
-            free(tmpStr);
-            break;
-          }
-      }
-      
-
-
-    }
-  }
+  cnt = json_array_get_count(items);
+  besRETURN_LONG(cnt);
 besEND
-/*
-*TODO*
-INSERT HERE THE NAME OF THE FUNCTION AND THE FUNCTION INTO THE
-TABLE. THIS TABLE IS USED TO FIND THE FUNCTIONS WHEN THE MODULE
-INTERFACE FILE IS COMPILED TO BE LINKED STATIC INTO A VARIATION
-OF THE INTERPRETER.
+
+/**
+=section object
+=H json::object(X, index)
+
+Returns object at index in JSON object array X
 */
+besFUNCTION(object)
+  pModuleObject p;
+  int index;
+  JSON_Array *items;
+  JSON_Object *obj;
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("pi")
+    &items, &index
+  besARGEND
+  
+  obj = json_array_get_object(items,index);
+  besRETURN_POINTER(obj);
+besEND
+
+/**
+=section text
+=H json::text(X, KEY)
+
+Returns object text at KEY path
+*/
+besFUNCTION(text)
+  pModuleObject p;
+  int index;
+  JSON_Object *obj;
+  char *key;
+  char res[8192];
+
+  memset(&res,0,8192);
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("pz")
+    &obj, &key
+  besARGEND
+  
+  char* dot = strchr(key, '.');
+  if (dot == NULL) {
+    if  (json_object_get_value(obj,key) != 0)
+      strcpy(res,json_object_get_string(obj,key));
+  }else{
+    if  (json_object_dotget_value(obj,key) != 0)
+      strcpy(res,json_object_dotget_string(obj, key));
+  }
+
+  besRETURN_STRING(res);
+
+besEND
 
 SLFST JSON_SLFST[] ={
 
@@ -248,7 +238,9 @@ SLFST JSON_SLFST[] ={
 { "bootmodu" , bootmodu },
 { "finimodu" , finimodu },
 { "emsgmodu" , emsgmodu },
-{ "parse" , parse },
-{ "find" , find },
+{ "load" , load },
+{ "count" , count },
+{ "object" , object },
+{ "text" , text },
 { NULL , NULL }
   };
