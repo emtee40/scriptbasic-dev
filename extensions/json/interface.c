@@ -66,8 +66,11 @@ STORE GLOBAL VALUES INSTEAD OF USING GLOBAL VARIABLES.
 */
 typedef struct _ModuleObject {
   JSON_Value* root;
+  JSON_Value *tmpRoot;
   }ModuleObject,*pModuleObject;
 
+static JSON_Value *jRoot;
+static int jType;
 
 /*
 *TODO*
@@ -122,7 +125,10 @@ besSUB_FINISH
   */
   p = (pModuleObject)besMODULEPOINTER;
   if( p == NULL )return 0;
-  json_value_free(p->root);
+  if (jRoot)
+    json_value_free(jRoot);
+
+
 
   return 0;
 besEND
@@ -130,7 +136,7 @@ besEND
 
 /**
 =section load
-=H json::load
+=H json::load(filename)
 
 Loads filename, returns array of json objects
 */
@@ -139,6 +145,7 @@ besFUNCTION(load)
   char* filename;
   
   JSON_Array *items;
+  JSON_Object *obj;
 
   p = (pModuleObject)besMODULEPOINTER;
 
@@ -146,13 +153,47 @@ besFUNCTION(load)
     &filename
   besARGEND
   
-  p->root = json_parse_file(filename);
+ jRoot = json_parse_file(filename);
 
-  if (json_value_get_type(p->root) != JSONArray) {
-    return COMMAND_ERROR_BAD_CALL;
+  switch (json_value_get_type(jRoot)) {
+    case JSONArray:
+      items = json_value_get_array(jRoot);
+      besRETURN_POINTER(items);
+      break;
+    case JSONObject:
+      obj = json_value_get_object(jRoot);
+      besRETURN_POINTER(obj);
+      break;
   }
-  items = json_value_get_array(p->root);
-  besRETURN_POINTER(items);
+
+
+besEND
+
+/**
+=section save
+=H json::save(filename)
+
+Saves json to filename
+*/
+besFUNCTION(save)
+  pModuleObject p;
+  char* filename;
+  JSON_Status result;
+  
+  JSON_Array *items;
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("z")
+    &filename
+  besARGEND
+
+  result = json_serialize_to_file_pretty(jRoot,filename);  
+  if (result == JSONFailure)
+    return COMMAND_ERROR_BAD_FILE_NUMBER;
+  else
+    besRETURN_LONG(result);
+
 besEND
 
 /**
@@ -164,15 +205,23 @@ Returns number of json objects in X
 besFUNCTION(count)
   pModuleObject p;
   int cnt;
-  JSON_Array *items;
+  void *items;
 
   p = (pModuleObject)besMODULEPOINTER;
 
   besARGUMENTS("p")
     &items
   besARGEND
+
+  switch (json_type(jRoot)) {
+    case JSONArray:
+      cnt = json_array_get_count((JSON_Array*)items);
+      break;
+    case JSONObject:
+      cnt = json_object_get_count((JSON_Object*)items);
+      break;
+  }  
   
-  cnt = json_array_get_count(items);
   besRETURN_LONG(cnt);
 besEND
 
@@ -185,16 +234,25 @@ Returns object at index in JSON object array X
 besFUNCTION(object)
   pModuleObject p;
   int index;
-  JSON_Array *items;
+  void *items;
   JSON_Object *obj;
+  char * name;
 
   p = (pModuleObject)besMODULEPOINTER;
 
   besARGUMENTS("pi")
     &items, &index
   besARGEND
-  
-  obj = json_array_get_object(items,index);
+
+  switch (json_type(jRoot)) {
+    case JSONArray:  
+      obj = json_array_get_object((JSON_Array*)items,index);
+      break;
+    case JSONObject:
+      name = json_object_get_name((JSON_Object*)items, index);
+      obj = json_object_get_object((JSON_Object*)items, name);
+      break;
+  }
   besRETURN_POINTER(obj);
 besEND
 
@@ -216,18 +274,58 @@ besFUNCTION(text)
   besARGUMENTS("pz")
     &obj, &key
   besARGEND
-  
-  char* dot = strchr(key, '.');
-  if (dot == NULL) {
-    if  (json_object_get_value(obj,key) != 0)
-      res = strdup(json_object_get_string(obj,key));
-  }else{
+
     if  (json_object_dotget_value(obj,key) != 0)
       res = strdup(json_object_dotget_string(obj, key));
-  }
+
 
   besSET_RETURN_STRING(res);
   free(res);
+
+besEND
+
+/**
+=section new
+=H json::text()
+
+Returns new json root object
+*/
+besFUNCTION(new)
+  pModuleObject p;
+  JSON_Object *obj;
+
+
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  jRoot = json_value_init_object();
+  obj  = json_value_get_object(jRoot);
+
+
+  besRETURN_POINTER(obj);
+
+besEND
+
+/**
+=section add
+=H json::settext()
+
+Creates new text json entry
+*/
+besFUNCTION(add)
+  pModuleObject p;
+  int index;
+  JSON_Object *obj;
+  char *key;
+  char *value;
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("pzz")
+    &obj, &key, &value
+  besARGEND
+
+  json_object_dotset_string(obj, key, value);
 
 besEND
 
@@ -241,5 +339,8 @@ SLFST JSON_SLFST[] ={
 { "count" , count },
 { "object" , object },
 { "text" , text },
+{ "new" , new },
+{ "add" , add },
+{ "save" , save },
 { NULL , NULL }
   };
