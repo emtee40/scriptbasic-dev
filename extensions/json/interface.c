@@ -209,9 +209,7 @@ besFUNCTION(text)
   int index;
   JSON_Object *obj;
   char *key;
-  char res[8192];
-
-  memset(&res,0,8192);
+  char *res;
 
   p = (pModuleObject)besMODULEPOINTER;
 
@@ -222,13 +220,14 @@ besFUNCTION(text)
   char* dot = strchr(key, '.');
   if (dot == NULL) {
     if  (json_object_get_value(obj,key) != 0)
-      strcpy(res,json_object_get_string(obj,key));
+      res = strdup(json_object_get_string(obj,key));
   }else{
     if  (json_object_dotget_value(obj,key) != 0)
-      strcpy(res,json_object_dotget_string(obj, key));
+      res = strdup(json_object_dotget_string(obj, key));
   }
 
-  besRETURN_STRING(res);
+  besSET_RETURN_STRING(res);
+  free(res);
 
 besEND
 
