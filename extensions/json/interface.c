@@ -257,17 +257,19 @@ besFUNCTION(object)
 besEND
 
 /**
-=section text
-=H json::text(X, KEY)
+=section get
+=H json::get(X, KEY)
 
-Returns object text at KEY path
+Returns object data at KEY path
 */
-besFUNCTION(text)
+besFUNCTION(get)
   pModuleObject p;
   int index;
+  JSON_Value  *tmpObj;
   JSON_Object *obj;
   char *key;
   char *res;
+  double result;
 
   p = (pModuleObject)besMODULEPOINTER;
 
@@ -275,13 +277,21 @@ besFUNCTION(text)
     &obj, &key
   besARGEND
 
-    if  (json_object_dotget_value(obj,key) != 0)
-      res = strdup(json_object_dotget_string(obj, key));
+    tmpObj = json_object_dotget_value(obj,key);
+   
+    switch (json_value_get_type(tmpObj)) {
+      case JSONString:
+        res = strdup(json_object_dotget_string(obj, key));
+        besSET_RETURN_STRING(res);
+        free(res);
+        break;
 
+      case JSONNumber:
+        result = json_object_dotget_number(obj,key);
+        besRETURN_LONG(result);
+        break;
 
-  besSET_RETURN_STRING(res);
-  free(res);
-
+    }
 besEND
 
 /**
@@ -338,7 +348,7 @@ SLFST JSON_SLFST[] ={
 { "load" , load },
 { "count" , count },
 { "object" , object },
-{ "text" , text },
+{ "get" , get },
 { "new" , new },
 { "add" , add },
 { "save" , save },
