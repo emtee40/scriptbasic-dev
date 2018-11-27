@@ -317,12 +317,12 @@ besFUNCTION(new)
 besEND
 
 /**
-=section add
-=H json::settext()
+=section settext
+=H json::settext(object, key, value)
 
-Creates new text json entry
+Creates/Updates STRING value for OBJECT
 */
-besFUNCTION(add)
+besFUNCTION(settext)
   pModuleObject p;
   int index;
   JSON_Object *obj;
@@ -339,6 +339,29 @@ besFUNCTION(add)
 
 besEND
 
+/**
+=section setnum
+=H json::setnum(object, key, value)
+
+Creates/Updates NUMERIC value for OBJECT
+*/
+besFUNCTION(setnum)
+  pModuleObject p;
+  int index;
+  JSON_Object *obj;
+  char *key;
+  long value;
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("pzi")
+    &obj, &key, &value
+  besARGEND
+ 
+  json_object_dotset_number(obj, key, value);
+
+besEND
+
 SLFST JSON_SLFST[] ={
 
 { "versmodu" , versmodu },
@@ -350,7 +373,8 @@ SLFST JSON_SLFST[] ={
 { "object" , object },
 { "get" , get },
 { "new" , new },
-{ "add" , add },
+{ "settext" , settext },
+{ "setnum" , setnum },
 { "save" , save },
 { NULL , NULL }
   };
