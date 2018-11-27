@@ -1,3 +1,14 @@
-#!/bin/sh
-perl -I "$PWD" setup.pl --unix $*
+#!/bin/bash
+
+OSFLAG=""
+
+OS=$(uname)
+
+if [[ $OS == "Darwin" ]];then
+    OSFLAG="--darwin"
+elif [[ $OS == "Linux" ]];then
+    OSFLAG="--unix"
+fi
+
+perl -I "$PWD" setup.pl $OSFLAG $*
 
