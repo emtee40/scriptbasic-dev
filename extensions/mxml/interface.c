@@ -30,8 +30,8 @@ GNU Library General Public License (LGPL) with the following exceptions:
   This is the interface.c file for the ScriptBasic module xml
 
 
- DWLIBS:-lmxml
- UXLIBS:-lmxml
+ DWLIBS: 
+ UXLIBS: 
 
 */
 
@@ -49,7 +49,7 @@ declare sub     ::NewDoc       alias "NewDoc"       lib "mxml"
 declare sub     ::FreeDoc      alias "FreeDoc"      lib "mxml"
 */
 
-#include "mxml_src/mxml.h"
+#include "mxml.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
