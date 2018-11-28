@@ -21,6 +21,8 @@ NTLIBS: libcurl_imp.lib zlib.lib ssleay32.lib libeay32.lib gdi32.lib ws2_32.lib 
 UXLIBS: -lcurl -lssl -lcrypto -ldl -lc
 DWLIBS: -lcurl -lssl -lcrypto -ldl -lc
 
+BAS: curl.bas
+
 */
 #include <stdio.h>
 #include <time.h>
