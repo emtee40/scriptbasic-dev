@@ -7,6 +7,7 @@ implemented in the core of ScriptBasic.
 UXLIBS:
 DWLIBS:
 
+BAS: ux.bas
 */
 #include <stdio.h>
 #include "../../basext.h"
