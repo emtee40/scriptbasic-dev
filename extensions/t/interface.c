@@ -8,6 +8,7 @@ UXLIBS:
 DWLIBS:
 MCLIBS:
 
+BAS: t.bas
 */
 
 /**
