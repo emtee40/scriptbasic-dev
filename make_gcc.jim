@@ -26,7 +26,7 @@ The C compiler is 'gcc'
 {#define LibOptOutput/X=-r X}
 {#define LibOptInput/X=X}
 
-{#define ld=ld -shared -Bstatic}
+{#define ld=ld -shared}
 {#define LdOptOutput/X=-o X}
 {#define LdOptInput/X=X}
 
