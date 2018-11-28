@@ -30,12 +30,35 @@ TO_BAS:
 ' the actual value and great care should be paid handling
 ' these directly
 '
-
+' NewHash to create a new hash
+' ReleaseHash to release a hash
+' StartHash to reset hash iteration to the first key
+' EndHash to set hash iteration to the last key
+' NextHashKey to get the next hash key in iteration
+' PreviousHashKey to get the previous key in iteration
+' GetHashValue to get the value for the given key
+' SetHashValue to set the value for the given key
+' DeleteHashKey to delete a hash key entirely from the hash
 
 
 const ErrorInvalidHandle = &H80001
 const ErrorNoThisKey     = &H80002
 
+'
+' Get a value for a given key
+'
+' q = hash::Value(h,key)
+function ::Value(h,k)
+  ::Value = ByVal ::refValue(h,k)
+end function
+
+'
+' Get the value of the actual key/value pair
+'
+' v = hash::ThisValue(h)
+function ::ThisValue(h)
+  ::ThisValue = ByVal ::refThisValue(h)
+end function
 
 
 */
@@ -172,7 +195,10 @@ besSUB_FINISH
     }
 besEND
 
-/*
+/**
+=section New
+=H hash::New 
+
   Create a new hash and return the handle of it.
 */
 besFUNCTION(newh)
@@ -198,6 +224,13 @@ besEND
   Argument = besCONVERT2LONG(Argument);\
   pH = besHandleGetPointer(p->HandleArray,LONGVALUE(Argument));
 
+/**
+=section SetValue
+=H hash::New 
+
+  Set a value in the hash.
+  hash::SetValue h,key,value
+*/
 besFUNCTION(sethv)
   VARIABLE Argument,vKey,vValue;
   int k;
@@ -309,6 +342,14 @@ besFUNCTION(sethv)
 
 besEND
 
+/**
+=section refValue
+=H hash::refValue(h,key)
+
+  Get a value for a given key (note that it returns reference)
+  
+  q = hash::refValue(h,key)
+*/
 besFUNCTION(gethv)
   VARIABLE Argument,vKey;
   int k;
@@ -359,6 +400,14 @@ besFUNCTION(gethv)
 
 besEND
 
+/**
+=section Exists
+=H hash::Exists(h,key)
+
+  Check that a key exists in the hash (may have undef value)
+  
+  if hash::Exists(h,key) then ...
+*/
 besFUNCTION(ivhv)
   VARIABLE Argument,vKey;
   int k;
@@ -411,6 +460,14 @@ besFUNCTION(ivhv)
 
 besEND
 
+/**
+=section Delete
+=H hash::Delete(h,key)
+
+  Delete a key/value pair from the hash
+  
+  hash::Delete(h, key)
+*/
 besFUNCTION(delhk)
   VARIABLE Argument,vKey;
   unsigned long minlen;
@@ -495,6 +552,14 @@ besFUNCTION(delhk)
   besFREE(pE);/* finally release the node */
 besEND
 
+/**
+=section Start
+=H hash::Start(h)
+
+  Start iteration setting the pointer to the first element
+  
+  hash::Start(h)
+*/
 besFUNCTION(starth)
   VARIABLE Argument;
   ptHash pH;
@@ -511,6 +576,14 @@ besFUNCTION(starth)
   pH->ThisElement = pH->FirstElement;
 besEND
 
+/**
+=section End
+=H hash::End(h)
+
+  Start iteration backward setting the pointer to the last element
+  
+  hash::Start(h)
+*/
 besFUNCTION(endh)
   VARIABLE Argument;
   ptHash pH;
@@ -527,6 +600,14 @@ besFUNCTION(endh)
   pH->ThisElement = pH->LastElement;
 besEND
 
+/**
+=section Next
+=H hash::Next(h)
+
+  Go forward one element
+  
+  hash::Next(h)
+*/
 besFUNCTION(nexthk)
   VARIABLE Argument;
   ptHash pH;
@@ -560,6 +641,14 @@ besFUNCTION(nexthk)
     }
 besEND
 
+/**
+=section Prev
+=H hash::Prev(h)
+
+  Go backward one element
+  
+  hash::Prev(h)
+*/
 besFUNCTION(pervhk)
   VARIABLE Argument;
   ptHash pH;
@@ -593,6 +682,14 @@ besFUNCTION(pervhk)
     }
 besEND
 
+/**
+=section ThisKey
+=H hash::ThisKey(h)
+
+  Get the key of the actual key/value pair
+  
+  hash::ThisKey(h)
+*/
 besFUNCTION(thishk)
   VARIABLE Argument;
   ptHash pH;
@@ -625,6 +722,14 @@ besFUNCTION(thishk)
     }
 besEND
 
+/**
+=section refThisValue
+=H hash::refThisValue(h)
+
+  Get the reference to the value of the actual key/value pair
+  
+  hash::refThisValue(h)
+*/
 besFUNCTION(thishv)
   VARIABLE Argument;
   ptHash pH;
@@ -645,6 +750,14 @@ besFUNCTION(thishv)
   besRETURNVALUE->Value.aValue = &(pH->ThisElement->Value);
 besEND
 
+/**
+=section Release
+=H hash::Release(h)
+
+  Release a hash and free allocated memory
+  
+  hash::Release(h)
+*/
 besFUNCTION(relh)
   VARIABLE Argument;
   ptHash pH;
