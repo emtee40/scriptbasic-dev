@@ -3,6 +3,7 @@ NTLIBS:
 UXLIBS:
 DWLIBS:
 MCLIBS:
+BAS: trial.bas
  */
 
 #include <stdio.h>
@@ -34,6 +35,9 @@ besSUB_FINISH
   printf("The function finimodu was started.\n");
 besEND
 
+/**
+=section pprint
+*/
 besFUNCTION(pprint)
   int i;
   int slen;
@@ -73,6 +77,9 @@ redo:
     }
 besEND
 
+/**
+=section set1
+*/
 besFUNCTION(set1)
   VARIABLE Argument;
   LEFTVALUE Lval;
@@ -93,6 +100,9 @@ besFUNCTION(set1)
 
 besEND
 
+/**
+=section arbdata
+*/
 besFUNCTION(arbdata)
   VARIABLE Argument;
   LEFTVALUE Lval;
@@ -113,6 +123,9 @@ besFUNCTION(arbdata)
 
 besEND
 
+/**
+=section pzchar
+*/
 besFUNCTION(pzchar)
   int i;
   VARIABLE Argument;
@@ -126,7 +139,9 @@ besFUNCTION(pzchar)
     }
 besEND
 
-
+/**
+=section trial
+*/
 besFUNCTION(trial)
   long *pL;
 
@@ -142,6 +157,9 @@ besFUNCTION(trial)
 
 besEND
 
+/**
+=section myicall
+*/
 besFUNCTION(myicall)
   VARIABLE Argument;
   VARIABLE pArgument;
@@ -175,6 +193,9 @@ besSUB_AUTO
   *ppFunction = (void *)trial;
 besEND
 
+/**
+=section iff
+*/
 besCOMMAND(iff)
   NODE nItem;
   VARIABLE Op1;
