@@ -24,29 +24,17 @@ GNU Library General Public License (LGPL) with the following exceptions:
     of the LGPL.
 
   FILE   : interface.c
+  HEADER : interface.h
+  BAS    : mxml.bas
+  AUTHOR : Armando I. Rivera (AIR)
 
 
   CONTENT:
-  This is the interface.c file for the ScriptBasic module xml
+  This is the interface.c file for the ScriptBasic module mxml
 
+  UXLIBS: 
+  DWLIBS: 
 
- DWLIBS: 
- UXLIBS: 
-
-*/
-
-/*
-
-TOBAS:
-declare sub     ::LoadDoc      alias "LoadDoc"      lib "mxml"
-declare sub     ::GetNext      alias "GetNext"      lib "mxml"
-declare sub     ::GetChild     alias "GetChild"     lib "mxml"
-declare sub     ::GetNodeValue alias "GetNodeValue" lib "mxml"
-declare sub     ::GetProperty  alias "GetProperty"  lib "mxml"
-declare sub     ::GetNode      alias "GetNode"      lib "mxml"
-declare sub     ::SaveDoc      alias "SaveDoc"      lib "mxml"
-declare sub     ::NewDoc       alias "NewDoc"       lib "mxml"
-declare sub     ::FreeDoc      alias "FreeDoc"      lib "mxml"
 */
 
 #include "mxml.h"
@@ -351,36 +339,19 @@ besEND
     Exported Function List
 */    
 
-START_FUNCTION_TABLE(MXML_SLFST)
-// Ext. module
-  EXPORT_MODULE_FUNCTION(versmodu)
-  EXPORT_MODULE_FUNCTION(bootmodu)
-  EXPORT_MODULE_FUNCTION(finimodu)
+SLFST MXML_SLFST[] ={
 
-// Module Functions
-  EXPORT_MODULE_FUNCTION(LoadDoc)
-  EXPORT_MODULE_FUNCTION(GetNext)
-  EXPORT_MODULE_FUNCTION(GetChild)
-  EXPORT_MODULE_FUNCTION(GetNodeValue)
-  EXPORT_MODULE_FUNCTION(GetNode)
-  EXPORT_MODULE_FUNCTION(SaveDoc)
-  EXPORT_MODULE_FUNCTION(NewDoc)
-  EXPORT_MODULE_FUNCTION(FreeDoc)
-  EXPORT_MODULE_FUNCTION(GetProperty)
-END_FUNCTION_TABLE
-// SLFST XML_SLFST[] ={
-
-// { "versmodu"    , versmodu },
-// { "bootmodu"    , bootmodu },
-// { "finimodu"    , finimodu },
-// { "LoadDoc"        , LoadDoc },
-// { "GetNext"        , GetNext },
-// { "GetChild"    , GetChild },
-// { "GetNodeValue", GetNodeValue },
-// { "GetNode"        , GetNode },
-// { "SaveDoc"        , SaveDoc },
-// { "NewDoc"        , NewDoc },
-// { "FreeDoc"        , FreeDoc },
-// { "GetProperty", GetProperty },
-// { NULL , NULL }
-//   };
+{ "versmodu"    , versmodu },
+{ "bootmodu"    , bootmodu },
+{ "finimodu"    , finimodu },
+{ "LoadDoc"        , LoadDoc },
+{ "GetNext"        , GetNext },
+{ "GetChild"    , GetChild },
+{ "GetNodeValue", GetNodeValue },
+{ "GetNode"        , GetNode },
+{ "SaveDoc"        , SaveDoc },
+{ "NewDoc"        , NewDoc },
+{ "FreeDoc"        , FreeDoc },
+{ "GetProperty", GetProperty },
+{ NULL , NULL }
+};
