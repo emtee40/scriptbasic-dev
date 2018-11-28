@@ -793,7 +793,7 @@ besFUNCTION(relh)
 besEND
 
 SLFST HASH_SLFST[] ={
-{ "shutmodu" , shutmodu },
+// { "shutmodu" , shutmodu },
 { "bootmodu" , bootmodu },
 { "versmodu" , versmodu },
 { "finimodu" , finimodu },
