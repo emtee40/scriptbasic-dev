@@ -18,6 +18,26 @@ UXLIBS:
 DWLIBS:
 MCLIBS:
 
+BAS: hash.bas
+
+TO_BAS:
+'
+' Module hash
+'
+' This module lets you create memory stored hashes.
+'
+' Note that refValue and refThisValue return references to
+' the actual value and great care should be paid handling
+' these directly
+'
+
+
+
+const ErrorInvalidHandle = &H80001
+const ErrorNoThisKey     = &H80002
+
+
+
 */
 #include <stdio.h>
 #define PRIME 211
@@ -658,3 +678,23 @@ besFUNCTION(relh)
     *Lval = NULL;
     }
 besEND
+
+SLFST HASH_SLFST[] ={
+{ "shutmodu" , shutmodu },
+{ "bootmodu" , bootmodu },
+{ "versmodu" , versmodu },
+{ "finimodu" , finimodu },
+{ "New"      , newh     },
+{ "SetValue" , sethv    },
+{ "refValue" , gethv    },
+{ "Exists"   , ivhv     },
+{ "Delete"   , delhk    },
+{ "Start"    , starth   },
+{ "End"      , endh     },
+{ "Next"     , nexthk   },
+{ "Prev"     , pervhk   },
+{ "ThisKey"  , thishk   },
+{ "refThisValue", thishv},
+{ "Release"  , relh     },
+{ NULL       , NULL     }
+};
