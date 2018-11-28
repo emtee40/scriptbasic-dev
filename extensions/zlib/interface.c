@@ -6,6 +6,8 @@ This file is a ScriptBasic interface file to the library zlib.
 NTLIBS: zdll.lib
 UXLIBS: -lc -lz
 DWLIBS: -lc -lz
+
+BAS: zlib.bas
 */
 #include <stdio.h>
 #include "../../basext.h"
