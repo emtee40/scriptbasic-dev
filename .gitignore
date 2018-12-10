@@ -12,6 +12,9 @@ modmake.sh
 setup.log
 syntax.c
 syntax.h
+.*
+*.org
+mkzip.*
 
 
 

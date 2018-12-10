@@ -324,7 +324,6 @@ CmdLineFinished:
     U("            compile the configuration file to binary");
     U("         -D");
     U("            dump the configuration file in text format");
-      U( cft_GetString(&MyCONF,"module") );
     exit(1);
     }
   pProgram = scriba_new(malloc,free);

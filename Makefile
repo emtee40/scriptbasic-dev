@@ -184,7 +184,7 @@ bin/exe/scriba : bin/lib/lscriba.a bin/var/standard/scribacmd.o bin/obj/lmt_none
 	bin/exe/sb -v
 
 bin/var/standard/scribacmd.o : variations/standard/scribacmd.c
-	mkdir -p bin/var/standard || echo
+	@mkdir -p bin/var/standard || echo
 	gcc $(EXTRA_CFLAGS) -w -c -o bin/var/standard/scribacmd.o variations/standard/scribacmd.c
 
 bin/obj/lmt_none.o : lmt_none.c
@@ -198,13 +198,13 @@ bin/exe/sbhttpd : bin/lib/lscriba.a bin/var/httpd/websrv.o bin/var/httpd/service
 
 
 bin/var/httpd/websrv.o : variations/httpd/websrv.c
-	mkdir -p bin/var/httpd || echo
+	@mkdir -p bin/var/httpd || echo
 	gcc $(EXTRA_CFLAGS) -w -c -o bin/var/httpd/websrv.o variations/httpd/websrv.c
 
 
 
 bin/var/httpd/service.o : variations/httpd/service.c
-	mkdir -p bin/var/httpd || echo
+	@mkdir -p bin/var/httpd || echo
 	gcc $(EXTRA_CFLAGS) -w -c -o bin/var/httpd/service.o variations/httpd/service.c
 
 
@@ -219,4 +219,5 @@ clean :
 	rm -rf bin/obj/*
 	rm -rf bin/var/*
 	rm -rf bin/mod/*
+	rm -rf *.h
 
