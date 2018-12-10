@@ -218,3 +218,5 @@ clean :
 	rm -rf bin/make/*
 	rm -rf bin/obj/*
 	rm -rf bin/var/*
+	rm -rf bin/mod/*
+

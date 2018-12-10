@@ -245,7 +245,7 @@ besEND
 
 
 /**
-=section curl_init
+=section init
 =H curl::init
 
 Call this function before any other curl action. This function will return a handle
@@ -333,7 +333,7 @@ static size_t buffersend(char *buffer, size_t size, size_t count, pCurlConnectio
   }
 
 /**
-=section curl_option
+=section option
 =H curl::option
 
 Call this function to set the various options of the actual curl session.
@@ -1687,7 +1687,7 @@ static size_t buffercollect(char *buffer,size_t size,size_t count,pCurlConnectio
   }
 
 /**
-=section curl_perform
+=section perform
 =H curl::perform
 
 Call this function to perform the action that was initialized using the function
@@ -1759,7 +1759,7 @@ besFUNCTION(sb_curl_perform)
 besEND
 
 /**
-=section curl_info
+=section info
 =H curl::info
 
 Call this function to get information on the performed action
@@ -1923,7 +1923,7 @@ CHECK_INFOPT_D (CONTENT_LENGTH_UPLOAD)
 besEND
 
 /**
-=section curl_finish
+=section finish
 =H curl::finish
 
 You can call this function to close the connection that was used by CURL and to release
@@ -1992,7 +1992,7 @@ STRING_OPTIONS
 besEND
 
 /**
-=section curl_error
+=section error
 =H curl::error
 
 If any error has happened this function can be used to retrieve the error message that the underlying
@@ -2017,7 +2017,7 @@ besEND
 
 
 /**
-=section curl_escape
+=section escape
 =H curl::escape
 
 This function will convert the given input string to an URL encoded string and
@@ -2051,7 +2051,7 @@ besFUNCTION(sb_curl_escape)
 besEND
 
 /**
-=section curl_unescape
+=section unescape
 =H curl::unescape
 
 This function will convert the given URL encoded input string to a "plain
@@ -2102,7 +2102,7 @@ besFUNCTION(sb_curl_unescape)
 besEND
 
 /**
-=section curl_getdate
+=section getdate
 =H curl::getdate
 
 This function returns the number of seconds since January 1st 1970, for the
@@ -2190,7 +2190,7 @@ besFUNCTION(sb_curl_getdate)
 besEND
 
 /**
-=section curl_version
+=section version
 =H curl::version
 
 Returns a human readable string with the version number of
@@ -2223,22 +2223,39 @@ besSUB_PROCESS_FINISH
   FINISH_MULTITHREAD
 besEND
 
-START_FUNCTION_TABLE(CURL_SLFST)
+SLFST CURL_SLFST[] ={
 
-EXPORT_MODULE_FUNCTION(shutmodu)
-EXPORT_MODULE_FUNCTION(bootmodu)
-EXPORT_MODULE_FUNCTION(versmodu)
-EXPORT_MODULE_FUNCTION(sb_curl_error)
-EXPORT_MODULE_FUNCTION(sb_curl_finish)
-EXPORT_MODULE_FUNCTION(sb_curl_option)
-EXPORT_MODULE_FUNCTION(sb_curl_perform)
-EXPORT_MODULE_FUNCTION(sb_curl_init)
-EXPORT_MODULE_FUNCTION(sb_curl_info)
-EXPORT_MODULE_FUNCTION(sb_curl_version)
-EXPORT_MODULE_FUNCTION(sb_curl_getdate)
-EXPORT_MODULE_FUNCTION(sb_curl_escape)
-EXPORT_MODULE_FUNCTION(sb_curl_unescape)
-EXPORT_MODULE_FUNCTION(_init)
-EXPORT_MODULE_FUNCTION(_fini)
+{ "versmodu"  , versmodu },
+{ "bootmodu"  , bootmodu },
+{ "finimodu"  , finimodu },
+{ "error"  , sb_curl_error },
+{ "finish"     , sb_curl_finish    },
+{ "option"         , sb_curl_option    },
+{ "perform"     , sb_curl_perform    },
+{ "init"  , sb_curl_init },
+{ "info"  , sb_curl_info },
+{ "version"  , sb_curl_version },
+{ "getdate"  , sb_curl_getdate },
+{ "escape"  , sb_curl_escape },
+{ "unescape"  , sb_curl_unescape },
+{ NULL , NULL }
+  };
+// START_FUNCTION_TABLE(CURL_SLFST)
 
-END_FUNCTION_TABLE
+// EXPORT_MODULE_FUNCTION(shutmodu)
+// EXPORT_MODULE_FUNCTION(bootmodu)
+// EXPORT_MODULE_FUNCTION(versmodu)
+// EXPORT_MODULE_FUNCTION(sb_curl_error)
+// EXPORT_MODULE_FUNCTION(sb_curl_finish)
+// EXPORT_MODULE_FUNCTION(sb_curl_option)
+// EXPORT_MODULE_FUNCTION(sb_curl_perform)
+// EXPORT_MODULE_FUNCTION(sb_curl_init)
+// EXPORT_MODULE_FUNCTION(sb_curl_info)
+// EXPORT_MODULE_FUNCTION(sb_curl_version)
+// EXPORT_MODULE_FUNCTION(sb_curl_getdate)
+// EXPORT_MODULE_FUNCTION(sb_curl_escape)
+// EXPORT_MODULE_FUNCTION(sb_curl_unescape)
+// EXPORT_MODULE_FUNCTION(_init)
+// EXPORT_MODULE_FUNCTION(_fini)
+
+// END_FUNCTION_TABLE
