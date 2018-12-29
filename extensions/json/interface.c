@@ -2,20 +2,20 @@
 READ THIS FILE AND CHANGE THE SOURCE WHEREVER YOU SEE COMMENTS STARTING
 WITH THE WORD *TODO*
 
-WHEN YOU ARE FINISHED YOU CAN 
+WHEN YOU ARE FINISHED YOU CAN
 
   FILE   : interface.c
   HEADER : interface.h
   BAS    : json.bas
   AUTHOR : *TODO*
 
-  DATE: 
+  DATE:
 
   CONTENT:
   This is the interface.c file for the ScriptBasic module json
 ----------------------------------------------------------------------------
-UXLIBS: 
-DWLIBS: 
+UXLIBS:
+DWLIBS:
 
 */
 
@@ -135,15 +135,15 @@ besEND
 
 
 /**
-=section load
-=H json::load(filename)
+=section loadfile
+=H json::loadfile(filename)
 
 Loads filename, returns array of json objects
 */
-besFUNCTION(load)
+besFUNCTION(loadfile)
   pModuleObject p;
   char* filename;
-  
+
   JSON_Array *items;
   JSON_Object *obj;
 
@@ -152,7 +152,7 @@ besFUNCTION(load)
   besARGUMENTS("z")
     &filename
   besARGEND
-  
+
  jRoot = json_parse_file(filename);
 
   switch (json_value_get_type(jRoot)) {
@@ -169,6 +169,43 @@ besFUNCTION(load)
 
 besEND
 
+
+/**
+=section loadstr
+=H json::loadstr(json_str)
+
+Loads json string, returns array of json objects
+*/
+besFUNCTION(loadstr)
+  pModuleObject p;
+  char* json_str;
+
+  JSON_Array *items;
+  JSON_Object *obj;
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("z")
+    &json_str
+  besARGEND
+
+ jRoot = json_parse_string(json_str);
+
+  switch (json_value_get_type(jRoot)) {
+    case JSONArray:
+      items = json_value_get_array(jRoot);
+      besRETURN_POINTER(items);
+      break;
+    case JSONObject:
+      obj = json_value_get_object(jRoot);
+      besRETURN_POINTER(obj);
+      break;
+  }
+
+
+besEND
+
+
 /**
 =section save
 =H json::save(filename)
@@ -179,7 +216,7 @@ besFUNCTION(save)
   pModuleObject p;
   char* filename;
   JSON_Status result;
-  
+
   JSON_Array *items;
 
   p = (pModuleObject)besMODULEPOINTER;
@@ -188,7 +225,7 @@ besFUNCTION(save)
     &filename
   besARGEND
 
-  result = json_serialize_to_file_pretty(jRoot,filename);  
+  result = json_serialize_to_file_pretty(jRoot,filename);
   if (result == JSONFailure)
     return COMMAND_ERROR_BAD_FILE_NUMBER;
   else
@@ -220,8 +257,8 @@ besFUNCTION(count)
     case JSONObject:
       cnt = json_object_get_count((JSON_Object*)items);
       break;
-  }  
-  
+  }
+
   besRETURN_LONG(cnt);
 besEND
 
@@ -245,7 +282,7 @@ besFUNCTION(object)
   besARGEND
 
   switch (json_type(jRoot)) {
-    case JSONArray:  
+    case JSONArray:
       obj = json_array_get_object((JSON_Array*)items,index);
       break;
     case JSONObject:
@@ -278,7 +315,7 @@ besFUNCTION(get)
   besARGEND
 
     tmpObj = json_object_dotget_value(obj,key);
-   
+
     switch (json_value_get_type(tmpObj)) {
       case JSONString:
         res = strdup(json_object_dotget_string(obj, key));
@@ -357,7 +394,7 @@ besFUNCTION(setnum)
   besARGUMENTS("pzi")
     &obj, &key, &value
   besARGEND
- 
+
   json_object_dotset_number(obj, key, value);
 
 besEND
@@ -368,7 +405,8 @@ SLFST JSON_SLFST[] ={
 { "bootmodu" , bootmodu },
 { "finimodu" , finimodu },
 { "emsgmodu" , emsgmodu },
-{ "load" , load },
+{ "loadfile" , loadfile },
+{ "loadstr" , loadstr },
 { "count" , count },
 { "object" , object },
 { "get" , get },
