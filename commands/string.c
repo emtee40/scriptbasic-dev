@@ -35,7 +35,7 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #define FMT_xRND2	1e+8		/* 1 * 10 ^ (FMT_RND-1)                 */
 
 static double nfta_eplus[]=
-{ 
+{
     1e+8,   1e+16,  1e+24,  1e+32,  1e+40,  1e+48,  1e+56,  1e+64,	/* 8  */
     1e+72,  1e+80,  1e+88,  1e+96,  1e+104, 1e+112, 1e+120, 1e+128,	/* 16 */
     1e+136, 1e+144, 1e+152, 1e+160, 1e+168, 1e+176, 1e+184, 1e+192,	/* 24 */
@@ -44,7 +44,7 @@ static double nfta_eplus[]=
 };
 
 static double nfta_eminus[]=
-{ 
+{
     1e-8,   1e-16,  1e-24,  1e-32, 1e-40,   1e-48,  1e-56,  1e-64,  /* 8 */
     1e-72,  1e-80,  1e-88,  1e-96, 1e-104,  1e-112, 1e-120, 1e-128, /* 16 */
     1e-136, 1e-144, 1e-152, 1e-160, 1e-168, 1e-176, 1e-184, 1e-192, /* 24 */
@@ -408,14 +408,14 @@ END
 =section string
 =title INSTR(base_string,search_string [ ,position ] )
 =display INSTR()
-This function can be used to search a sub-string in a string. 
+This function can be used to search a sub-string in a string.
 The first argument is the string we are searching in.
-The second argument is the string that we actually want to find in the 
-first argument. The third optional argument is the position where the 
-search is to be started. If this argu-ment is missing the search starts 
+The second argument is the string that we actually want to find in the
+first argument. The third optional argument is the position where the
+search is to be started. If this argu-ment is missing the search starts
 with the first character position of the string.
-The function returns the position where the sub-string 
-can be found in the first string. If the searched sub-string 
+The function returns the position where the sub-string
+can be found in the first string. If the searched sub-string
 is not found in the string then the return value is undef.
 
 See R<INSTRREV>
@@ -496,14 +496,14 @@ END
 =section string
 =display INSTRREV()
 =title INSTRREV(base_string,search_string [ ,position ] )
-This function can be used to search a sub-string in a string in reverse 
-order starting from the end of the string. The first argument is the 
-string we are searching in. The second argument is the string that 
-we actually want to find in the first argument. The third optional argument 
-is the position where the search is to be started. If this argument is 
+This function can be used to search a sub-string in a string in reverse
+order starting from the end of the string. The first argument is the
+string we are searching in. The second argument is the string that
+we actually want to find in the first argument. The third optional argument
+is the position where the search is to be started. If this argument is
 missing the search starts with the last character position of the string.
-The function returns the position where the sub-string can be found in the 
-first string. If the searched sub-string is not found in the string then the 
+The function returns the position where the sub-string can be found in the
+first string. If the searched sub-string is not found in the string then the
 return value is undef.
 
 See R<INSTR>
@@ -586,13 +586,13 @@ END
 =display REPLACE()
 
 This function replaces one or more occurrences of a sub-string in a string.
-T<REPLACE(a,b,c)> searches the string T<a> seeking for occurrences of sub-string T<b> 
+T<REPLACE(a,b,c)> searches the string T<a> seeking for occurrences of sub-string T<b>
 and replaces each of them with the string T<c>.
 
-The fourth and fifth arguments are optional. The fourth argument specifies the number of 
+The fourth and fifth arguments are optional. The fourth argument specifies the number of
 replaces to be performed. If this is missing or is T<undef> then all occurrences of string
 T<b> will be replaced. The fifth argument may specify the start position of the operation.
-For example the function call 
+For example the function call
 
 =verbatim
 REPLACE("alabama mama", "a","x",3,5)
@@ -729,7 +729,7 @@ END
 =title MID(string,start [ ,len ])
 
 Return a subpart of the string. The first argument is the string, the second argument is the start position.
-The third argument is the length of the sub-part in terms of characters. 
+The third argument is the length of the sub-part in terms of characters.
 If this argument is missing then the
 subpart lasts to the last character of the argument T<string>.
 
@@ -741,29 +741,29 @@ If the first argument of the function is undefined the result is T<undef>.
 Otherwise the first argument is converted to string and the second and third
 arguments are converted to numeric value. The third argument is optional.
 
-The second argument specifies the start position of the resulting 
+The second argument specifies the start position of the resulting
 substring in the original string x; and the last argument specifies
-the number of characters to take from the original string T<x>. 
-If the third argument is missing the substring lasts from the start 
-position to the end of the string. If the second argu-ment is 
-not defined the start of the substring is at the start of the 
-original string. In other words if the second argument is missing 
-it is the same as value 1. If the second argument is zero or negative 
-it will specify the start position counting the 
+the number of characters to take from the original string T<x>.
+If the third argument is missing the substring lasts from the start
+position to the end of the string. If the second argu-ment is
+not defined the start of the substring is at the start of the
+original string. In other words if the second argument is missing
+it is the same as value 1. If the second argument is zero or negative
+it will specify the start position counting the
 characters from the end of the string.
 
-If the staring position T<y> points beyond the end of the string the result 
-is empty string. If the length of the substring is larger than the number 
-of characters between the starting position and end of the original string then the 
-result will be the substring between the start position and the end of the original string. 
+If the staring position T<y> points beyond the end of the string the result
+is empty string. If the length of the substring is larger than the number
+of characters between the starting position and end of the original string then the
+result will be the substring between the start position and the end of the original string.
 
-If the length of the substring is negative the characters before the starting position 
-are taken. No more than the available characters can be taken in this 
-case either. In other words if the length is negative and is larger in 
-absolute value than the starting position the resulting sub-string is the character 
+If the length of the substring is negative the characters before the starting position
+are taken. No more than the available characters can be taken in this
+case either. In other words if the length is negative and is larger in
+absolute value than the starting position the resulting sub-string is the character
 between the position specified by the second argument and the start of the string.
 
-Note that the order of the characters is never changed even if some position or length 
+Note that the order of the characters is never changed even if some position or length
 parameters are negative.
 
 For compatibility reasons you can append a dollar (T<$>) sign to the end of the function
@@ -836,7 +836,7 @@ NOTIMPLEMENTED;
   else
     lStart = LONGVALUE(CONVERT2LONG(Op2));
 
-  /* if the start value is negative then it is 
+  /* if the start value is negative then it is
      the number of characters from the end of the string */
   if( lStart <= 0 ){
     lStart += STRLEN(Op1) + 1;
@@ -900,10 +900,10 @@ See also R<MID>, R<RIGHT>
 
 =details
 T<left(x,y)> cuts out a substring of T<y> characters from the left of the string T<x>.
-If the first argument is not defined the result is also T<undef>. Otherwise the first 
+If the first argument is not defined the result is also T<undef>. Otherwise the first
 argument is converted to string and the second ar-gument is converted to integer value.
 
-If the second argument is not defined or has negative value it is treated as numeric zero 
+If the second argument is not defined or has negative value it is treated as numeric zero
 and as such the result string will be empty string.
 
 For compatibility reasons you can append a dollar (T<$>) sign to the end of the function
@@ -987,10 +987,10 @@ See also R<MID>, R<LEFT>.
 
 =details
 T<RIGHT(x,y)> cuts out a substring of T<y> characters from the right of the string T<x>.
-If the first argument is not defined the result is also T<undef>. Otherwise the first argument 
+If the first argument is not defined the result is also T<undef>. Otherwise the first argument
 is converted to string and the second argument is converted to integer value.
 
-If the second argument is not defined or has negative value it is treated as numeric zero 
+If the second argument is not defined or has negative value it is treated as numeric zero
 and as such the result string will be empty string.
 
 For compatibility reasons you can append a dollar (T<$>) sign to the end of the function
@@ -1084,7 +1084,7 @@ END
 =display STRING()
 
 Create a string of length T<n> containing characters T<code>. If T<code> is a string then the
-first character of the string is used to fill the result. Otherwise T<code> is converted to 
+first character of the string is used to fill the result. Otherwise T<code> is converted to
 long and the ASCII code is used.
 */
 COMMAND(STRING)
@@ -1249,7 +1249,7 @@ END
 =display STR()
 Converts a number to string. This function is rarely needed, because conversion is done automatically.
 =details
-Converts a number to string. This function is rarely needed, because conversion is done automatically. 
+Converts a number to string. This function is rarely needed, because conversion is done automatically.
 However you may need
 
 =verbatim
@@ -1413,7 +1413,7 @@ The QUOTE string is really a string and need not be a single character. If there
 unmatched quote string in the string to be split then the rest of the string until its end
 is considered quoted.
 
-If there is an unmatched 
+If there is an unmatched
 
 See also R<SPLITA>
 
@@ -1524,7 +1524,7 @@ NOTIMPLEMENTED;
     		}
 			}
 		}
-		
+
 			ResultArray->Value.aValue[lChunkCounter] = NEWSTRING(iCount);
 			if( ResultArray->Value.aValue[lChunkCounter] == NULL )ERROR(COMMAND_ERROR_MEMORY_LOW);
 			memcpy(STRINGVALUE(ResultArray->Value.aValue[lChunkCounter]),Temp,iCount);
@@ -1536,7 +1536,7 @@ NOTIMPLEMENTED;
   if( *Array )memory_ReleaseVariable(pEo->pMo,*Array);
 
 	FREE(Temp);
-	
+
   *Array = ResultArray;
 
 #endif
@@ -1783,8 +1783,8 @@ END
 Join the argument strings using the first argument as a joiner string.
 =details
 This function can be used to join several strings together.
-The first argument of the function is the string used to join the rest 
-of the arguments. The rest of the argument are joined together, but also elements on 
+The first argument of the function is the string used to join the rest
+of the arguments. The rest of the argument are joined together, but also elements on
 an array can be joined together. See the example:
 
 =verbatim
@@ -1810,12 +1810,12 @@ will print
 1
 =noverbatim
 
-The first join joins the elements of the array. The second join joins the arguments of the 
-function. The third example also joins the arguments although the second argument is an array. 
-Because there are more arguments each of them is treated as single value and are joined. 
-Whenever an array is used in place of a single value, the first element of the array is taken. 
-In this example this is 1. The last join is a special one. In this case the join string is not 
-used, because there is only one argument after the join string. Because this argument is not 
+The first join joins the elements of the array. The second join joins the arguments of the
+function. The third example also joins the arguments although the second argument is an array.
+Because there are more arguments each of them is treated as single value and are joined.
+Whenever an array is used in place of a single value, the first element of the array is taken.
+In this example this is 1. The last join is a special one. In this case the join string is not
+used, because there is only one argument after the join string. Because this argument is not
 an array there are no elements of it to join.
 */
 COMMAND(JOIN)
@@ -1847,13 +1847,13 @@ NOTIMPLEMENTED;
                          analysis result a compile time error if there is only one or less arguments. */
     RESULT = NEWMORTALSTRING(0);
     ASSERTNULL(RESULT)
-    RETURN;    
+    RETURN;
     }
   if( ! ( CDR(nItem) ) ){/* if there are no more arguments then
                                        check that this second argument is an array */
     vStringArray = _EVALUATEEXPRESSION_A(CAR(nItem));
     ASSERTOKE;
-    iFirstLoop = 1; /* the first element is already evaluated, and is stored in vStringArray 
+    iFirstLoop = 1; /* the first element is already evaluated, and is stored in vStringArray
                        this variable flags the first execution of the loop and helps the program
                        not to evaluate the first string again when join and not joina is performed */
     }else{
@@ -2110,18 +2110,18 @@ Compare a string against a pattern.
 
 The pattern may contain joker characters and wild card characters.
 =details
-Pattern matching in ScriptBasic is similar to the pattern matching that you get used to on 
+Pattern matching in ScriptBasic is similar to the pattern matching that you get used to on
 the UNIX or Windows NT command line. The operator like compares a string to a pattern.
 
 =verbatim
 string like pattern
 =noverbatim
 
-Both string and pattern are expressions that should evaluate to a string. If the pattern matches 
+Both string and pattern are expressions that should evaluate to a string. If the pattern matches
 the string the result of the operator is true, otherwise the result is false.
 
-The pattern may contain normal characters, wild card characters and joker characters. 
-The normal characters match themselves. The wild card characters match one or more characters from the 
+The pattern may contain normal characters, wild card characters and joker characters.
+The normal characters match themselves. The wild card characters match one or more characters from the
 set they are for. The joker characters match one character from the set they stand for. For example:
 
 =verbatim
@@ -2139,11 +2139,11 @@ will print
 0
 =noverbatim
 
-The wild card character T<*> matches a list of characters of any code. The joker character T<?> matches 
-a single character of any code. In the first print statement the T<*> character matches the string file 
-and T<.txt> matches itself at the end of the string. In the second example T<*> matches the string file 
-and the joker T<?> matches the character T<0>. The wild card character T<*> is the most general wild card 
-character because it matches one or more of any character. There are other wild card characters. 
+The wild card character T<*> matches a list of characters of any code. The joker character T<?> matches
+a single character of any code. In the first print statement the T<*> character matches the string file
+and T<.txt> matches itself at the end of the string. In the second example T<*> matches the string file
+and the joker T<?> matches the character T<0>. The wild card character T<*> is the most general wild card
+character because it matches one or more of any character. There are other wild card characters.
 The character T<#> matches one or more digits, T<$> matches one or more alphanumeric characters and
 finally T<@> matches one or more alpha characters (letters).
 
@@ -2157,13 +2157,13 @@ $	0123456789abcdefghijklmnopqrstxyvwzABCDEFGHIJKLMNOPQRSTXYVWZ
 A space in the pattern matches one or more white spaces, but the space is not a regular wild card character,
 because it behaves a bit different.
 
-Note that wild card character match ONE or more characters and not zero or more as in other systems. Joker 
-characters match exactly one character, and there is only one joker character by default, the 
+Note that wild card character match ONE or more characters and not zero or more as in other systems. Joker
+characters match exactly one character, and there is only one joker character by default, the
 character T<?>, which matches a single character of any code.
 
-We can match a string to a pattern, but that is little use, unless we can tell what 
-substring the joker or wildcard characters matched. For the purpose the function joker is available. The argument 
-of this function is an integer number, n starting from 1 and the result is the substring that the last 
+We can match a string to a pattern, but that is little use, unless we can tell what
+substring the joker or wildcard characters matched. For the purpose the function joker is available. The argument
+of this function is an integer number, n starting from 1 and the result is the substring that the last
 pattern matching operator found to match the nth joker or wild card character. For example
 
 =verbatim
@@ -2181,18 +2181,18 @@ will print
 File=file extension=txt
 =noverbatim
 
-If the pattern did not match the string or the argument of the function joker is zero or negative, or is larger 
+If the pattern did not match the string or the argument of the function joker is zero or negative, or is larger
 than the serial number of the last joker or wild card character the result is T<undef>.
 
 Note that there is no separate function for the wild card character substrings and one for the joker characters.
-The function joker serves all of them counting each from left to right. The function joker does not count, 
-nor return the spaces, because programs usually are not interested in the number of the spaces that separate 
+The function joker serves all of them counting each from left to right. The function joker does not count,
+nor return the spaces, because programs usually are not interested in the number of the spaces that separate
 the lexical elements matched by the pattern.
 
-Sometimes you want a wild card character or joker character to match only itself. For example you want to 
-match the string T<"13*52"> to the pattern two numbers separated by a star. The problem is that the star 
-character is a wild card character and therefore T<"#*#"> matches any string that starts and ends with a digit. 
-But that may not be a problem. A T<*> character matches one or more characters, and therefore T<"#*#"> will 
+Sometimes you want a wild card character or joker character to match only itself. For example you want to
+match the string T<"13*52"> to the pattern two numbers separated by a star. The problem is that the star
+character is a wild card character and therefore T<"#*#"> matches any string that starts and ends with a digit.
+But that may not be a problem. A T<*> character matches one or more characters, and therefore T<"#*#"> will
 indeed match T<"13*52">. The problem is, when we want to use the substrings.
 
 =verbatim
@@ -2210,18 +2210,18 @@ will print
 13 52
 =noverbatim
 
-The first T<#> character matches one character, the T<*> character matches the substring T<"3*"> and the 
+The first T<#> character matches one character, the T<*> character matches the substring T<"3*"> and the
 final T<#> matches the number T<52>.
 
 
 The solution is the pattern escape character. The pattern escape character is the tilde
-character: T<~>. Any character following the T<~> character is treated as normal character 
-and is matched only by itself. This is true for any normal character, for wild card 
+character: T<~>. Any character following the T<~> character is treated as normal character
+and is matched only by itself. This is true for any normal character, for wild card
 characters; joker characters; for the space and finally for the tilde character itself.
 The space character following the tilde character matches exactly one space characters.
 
 Pattern matching is not always as simple as it seems to be from the previous examples.
-The pattern T<"*.*"> matches files having extension and T<joker(1)> and T<joker(2)> can 
+The pattern T<"*.*"> matches files having extension and T<joker(1)> and T<joker(2)> can
 be used to retrieve the file name and the extension. What about the file T<sciba_source.tar.gz>?
 Will it result
 
@@ -2238,8 +2238,8 @@ File=scriba_source extension=tar.gz
 The correct result is the second. Wild card characters implemented in ScriptBasic are not greedy.
 They eat up only as many characters as they need.
 
-Up to now we were talking about wild card characters and the joker character defining what 
-matches what as final rule carved into stone. But these rules are only the default behavior of 
+Up to now we were talking about wild card characters and the joker character defining what
+matches what as final rule carved into stone. But these rules are only the default behavior of
 these characters and the program can alter the set of characters that a joker or wild card character matches.
 
 There are 13 characters that can play joker or wild card character role in pattern matching. These are:
@@ -2328,15 +2328,12 @@ NOTIMPLEMENTED;
       ERROR(COMMAND_ERROR_MEMORY_LOW);
       }
     pLastResult->cArraySize = cArraySize;
-    }else{
-    /* If the array is long enough then delete the previous result otherwise
-       fake data may remain in it and it may cause trouble. */
+    }
     for( i=0 ; i < pLastResult->cArraySize ; i++ ){
       pLastResult->pcbParameterArray[i] = 0;
       pLastResult->ParameterArray[i] = NULL;
-      }
     }
-  pLastResult->cAArraySize = cArraySize;
+    pLastResult->cAArraySize = cArraySize;
 
   if( pLastResult->cbBufferSize < sL ){
     pLastResult->cbBufferSize = 0;
@@ -2449,7 +2446,7 @@ NOTIMPLEMENTED;
 
   Op1 = CONVERT2LONG(EVALUATEEXPRESSION(CAR(PARAMETERLIST)));
   ASSERTOKE;
-  if( memory_IsUndef(Op1) || 
+  if( memory_IsUndef(Op1) ||
       (! pLastResult->iMatches) ||
       (index = LONGVALUE(Op1)) <= 0 ||
       index > pLastResult->cAArraySize   ){
@@ -2668,9 +2665,9 @@ int printChar(pFormatParams params) {
 /* The following code was imported from SmallBasic
 Hi Paulo
 
-> I'm a developer with http://sourceforge.net/projects/scriptbasic and 
-> I'm adding the function FORMAT to it. I've noticed that you've already 
-> implemented it in your product but as it's GPL and mine is LGPL I 
+> I'm a developer with http://sourceforge.net/projects/scriptbasic and
+> I'm adding the function FORMAT to it. I've noticed that you've already
+> implemented it in your product but as it's GPL and mine is LGPL I
 > can't
 use
 > it without your authorization, that I'm asking for.
@@ -2682,7 +2679,7 @@ Take anything that you'll need :)
 
 I'll be happy if you just put a 'thanks' somewhere :)
 
-btw, I was saw your project before enough time. I was liked, I can say 
+btw, I was saw your project before enough time. I was liked, I can say
 script-basic is the only competitor to small-basic on unix-world (the others
 
 are something like VB)...
@@ -2730,7 +2727,7 @@ static int		zsgn(double x)
 static double	fround(double x, int dig)
 {
     double	m;
-    
+
     m = floor(pow(10.0, dig));
     if	( x < 0.0 )
         return -floor((-x * m) + .5) / m;
@@ -2739,12 +2736,12 @@ static double	fround(double x, int dig)
 
 /*
 *	Part of floating point to string (by using integers) algorithm
-*	where x any number 2^31 > x >= 0 
+*	where x any number 2^31 > x >= 0
 */
 static void	fptoa(double x, char *dest)
 {
     long	l;
-    
+
     *dest = '\0';
     l = (long) x;
     sprintf(dest, "%ld", l);	/* or l=atol(dest) */
@@ -2756,7 +2753,7 @@ static void	fptoa(double x, char *dest)
 static void	rmzeros(char *buf)
 {
     char	*p = buf;
-    
+
     p += (strlen(buf) - 1);
     while ( p > buf )	{
         if	( *p != '0' )
@@ -2781,18 +2778,18 @@ static void	bestfta_p(double x, char *dest, double minx, double maxx)
     char	*d = dest;
     long	power = 0;
     char	buf[64];
-    
+
     if	( fabs(x) == 0.0 )	{
         strcpy(dest, "0");
         return;
     }
-    
+
     /* find sign */
     sign  = sgn(x);
     if	( sign < 0 )
         *d ++ = '-';
     x = fabs(x);
-    
+
     if	( x >= 1E308 ) {
         *d = '\0';
         strcat(d, "INF");
@@ -2803,7 +2800,7 @@ static void	bestfta_p(double x, char *dest, double minx, double maxx)
         strcat(d, "0");
         return;
     }
-    
+
     /* find power */
     if	( x < minx )	{
         for ( i = 37; i >= 0; i -- )	{
@@ -2814,7 +2811,7 @@ static void	bestfta_p(double x, char *dest, double minx, double maxx)
             else
                 break;
         }
-        
+
         while ( x < 1.0 && power > -307 )	{
             x *= 10.0;
             power --;
@@ -2829,13 +2826,13 @@ static void	bestfta_p(double x, char *dest, double minx, double maxx)
             else
                 break;
         }
-        
+
         while ( x >= 10.0 && power < 308 )	{
             x /= 10.0;
             power ++;
         }
     }
-    
+
     /* format left part */
     ipart = fabs(fint(x));
     fpart = fround(frac(x), FMT_RND) * FMT_xRND;
@@ -2847,27 +2844,27 @@ static void	bestfta_p(double x, char *dest, double minx, double maxx)
         }
         fpart = 0.0;
     }
-    
+
     fptoa(ipart, buf);
     strcpy(d, buf);
     d += strlen(buf);
-    
+
     if	( fpart > 0.0 )	{
         /* format right part */
         *d ++ = '.';
-        
+
         fdif = fpart;
         while ( fdif < FMT_xRND2 )	{
             fdif *= 10;
             *d ++ = '0';
         }
-        
+
         fptoa(fpart, buf);
         rmzeros(buf);
         strcpy(d, buf);
         d += strlen(buf);
     }
-    
+
     if	( power )	{
         /* add the power */
         *d ++ = 'E';
@@ -2877,7 +2874,7 @@ static void	bestfta_p(double x, char *dest, double minx, double maxx)
         strcpy(d, buf);
         d += strlen(buf);
     }
-    
+
     /* finish */
     *d = '\0';
 }
@@ -2908,7 +2905,7 @@ static void	expfta(double x, char *dest)
 static void	fmt_nmap(int dir, char *dest, char *fmt, char *src)
 {
     char	*p, *d, *s;
-    
+
     *dest = '\0';
     if	( dir > 0 )	{
         /*	left to right */
@@ -2931,10 +2928,10 @@ static void	fmt_nmap(int dir, char *dest, char *fmt, char *src)
             default:
                 *d ++ = *p;
             }
-            
+
             p ++;
         }
-        
+
         *d = '\0';
     }
     else	{
@@ -2972,7 +2969,7 @@ static void	fmt_nmap(int dir, char *dest, char *fmt, char *src)
                 else
                     *d -- = *p;
             }
-            
+
             p --;
         }
     }
@@ -2985,7 +2982,7 @@ static void	fmt_omap(char *dest, const char *fmt)
 {
     char	*p = (char *) fmt;
     char	*d = dest;
-    
+
     while ( *p )	{
         switch ( *p )	{
         case	'#':
@@ -2996,7 +2993,7 @@ static void	fmt_omap(char *dest, const char *fmt)
         default:
             *d ++ = *p;
         }
-        
+
         p ++;
     }
     *d = '\0';
@@ -3009,7 +3006,7 @@ static int		fmt_cdig(char *fmt)
 {
     char	*p = fmt;
     int		count = 0;
-    
+
     while ( *p )	{
         switch ( *p )	{
         case	'#':
@@ -3018,10 +3015,10 @@ static int		fmt_cdig(char *fmt)
             count ++;
             break;
         }
-        
+
         p ++;
     }
-    
+
     return count;
 }
 
@@ -3046,12 +3043,12 @@ static int format_num(char *dest, const char *fmt_cnst, double x)
     int		rsz, sco;
     char c;
     double sng;
-    
+
     /* backup of format */
     fmt = (char*)malloc(strlen(fmt_cnst)+1);
     strcpy(fmt, fmt_cnst);
-    
-    
+
+
     if	( strchr(fmt_cnst, '^') )	{
         /*	E format */
         p = fmt;
@@ -3110,14 +3107,14 @@ static int format_num(char *dest, const char *fmt_cnst, double x)
             }
         }
         /*	normal format */
-        
+
         /* rounding */
         p = strchr(fmt, '.');
-        if	( p )	
+        if	( p )
             x = fround(x, fmt_cdig(p+1));
         else
             x = fround(x, 0);
-        
+
         /* convert */
         bestfta(x, dest);
         if	( strchr(dest, 'E') )	{
@@ -3125,7 +3122,7 @@ static int format_num(char *dest, const char *fmt_cnst, double x)
             free(fmt);
             return strlen(dest);
         }
-        
+
         /* left & right parts */
         left[0] = right[0] = '\0';
         p = strchr(dest, '.');
@@ -3134,7 +3131,7 @@ static int format_num(char *dest, const char *fmt_cnst, double x)
             strcpy(right, p+1);
         }
         strcpy(left, dest);
-        
+
         /* map format */
         rbuf[0] = lbuf[0] = '\0';
         p = strchr(fmt, '.');
@@ -3143,7 +3140,7 @@ static int format_num(char *dest, const char *fmt_cnst, double x)
             *p = '\0';
             fmt_nmap(1, rbuf, p+1, right);
         }
-        
+
         lc = fmt_cdig(fmt);
         if	( lc < (int)strlen(left) )	{
             fmt_omap(dest, fmt_cnst);
@@ -3151,7 +3148,7 @@ static int format_num(char *dest, const char *fmt_cnst, double x)
             return strlen(dest);
         }
         fmt_nmap(-1, lbuf, fmt, left);
-        
+
         strcpy(dest, lbuf);
         if	( dp )	{
             strcat(dest, ".");
@@ -3160,16 +3157,16 @@ static int format_num(char *dest, const char *fmt_cnst, double x)
        /* sign in format */
         if	( sign )	{
             p = strchr(dest, '+');
-            if	( p )	
+            if	( p )
                 *p = (sign > 0) ? '+' : '-';
-        
+
             p = strchr(dest, '-');
-            if	( p )	
+            if	( p )
                 *p = (sign > 0) ? ' ' : '-';
         }
     }
-    
-    
+
+
     /* cleanup */
     free(fmt);
     return strlen(dest);
@@ -3230,7 +3227,7 @@ NOTIMPLEMENTED;
     nItem = PARAMETERLIST;
     vFormat = CONVERT2STRING(_EVALUATEEXPRESSION(CAR(nItem)));
     ASSERTOKE;
-    
+
     /* count the number of parameters */
     nItem = CDR(nItem);
     cParameters = 0;
@@ -3245,7 +3242,7 @@ NOTIMPLEMENTED;
     }
     else
         pvArgs = NULL;
-    
+
     /* evaluate the parameters and store the result in the pvArgs array */
     nItem = CDR(PARAMETERLIST);
     iArg = 0;
@@ -3619,7 +3616,7 @@ NOTIMPLEMENTED;
                                        iArg < cParameters ? STRLEN(pvArgs[iArg]) : 0 );
              cbResult += STRINGVALUE(vFormat)[iStr] - '0';
              if( iArg < cParameters )/* non-existing parameter */
-               cbResult += iArgStr;  /* and undef is 
+               cbResult += iArgStr;  /* and undef is
                                             zero length string */
              iStr ++;
              iArg++;
@@ -3903,7 +3900,7 @@ NOTIMPLEMENTED;
             *LeftValue = NEWSTRING(lLen);
             if( *LeftValue == NULL )ERROR(COMMAND_ERROR_MEMORY_LOW);
             for( i=0 ; i < lLen ; i++ )
-              STRINGVALUE(*LeftValue)[i] = 
+              STRINGVALUE(*LeftValue)[i] =
                 iRec < STRLEN(vRecord) ? STRINGVALUE(vRecord)[iRec++] : (char)0;
             }
           break;
@@ -3973,14 +3970,14 @@ NOTIMPLEMENTED;
             case 'Z': /* get zero terminated string */
               iStr ++;
               lLen = 0;
-              while( lLen < STRLEN(vRecord) - iRec && 
+              while( lLen < STRLEN(vRecord) - iRec &&
                      STRINGVALUE(vRecord)[iRec+lLen] )lLen++;
               GETLEFTVALUE
               if( LeftValue ){
                 *LeftValue = NEWSTRING(lLen);
                 if( *LeftValue == NULL )ERROR(COMMAND_ERROR_MEMORY_LOW);
                 for( i=0 ; i < lLen ; i++ )
-                  STRINGVALUE(*LeftValue)[i] = 
+                  STRINGVALUE(*LeftValue)[i] =
                     iRec < STRLEN(vRecord) ? STRINGVALUE(vRecord)[iRec++] : (char)0;
                 }
               break;
@@ -4005,7 +4002,7 @@ NOTIMPLEMENTED;
                 *LeftValue = NEWSTRING(lLenS);
                 if( *LeftValue == NULL )ERROR(COMMAND_ERROR_MEMORY_LOW);
                 for( i=0 ; i < lLenS ; i++ )
-                  STRINGVALUE(*LeftValue)[i] = 
+                  STRINGVALUE(*LeftValue)[i] =
                     iRec < STRLEN(vRecord) ? STRINGVALUE(vRecord)[iRec++] : (char)0;
                 }
               break;
@@ -4039,7 +4036,7 @@ then the levels should be separated using the dot chatacter, like T<conf("prepro
 debugger DLL or SO file.
 
 The return value of the function is the integer, real or string value of the configuration value. If the key is not
-defined or if the system manager set the key to be hidden (see later) then the function will raise an error 
+defined or if the system manager set the key to be hidden (see later) then the function will raise an error
 
 T<(0): error &H8:The argument passed to a module function is out of the accepted range.>
 
