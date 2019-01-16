@@ -1327,7 +1327,8 @@ NOTIMPLEMENTED;
      anyway. If the buffer is LARGE_BLOCK_TYPE then we will release it when not in use.
   */
   RESULT = NEWMORTALSTRING(lLength+1);
-//  sprintf(STRINGVALUE(RESULT),"%*X",lLength,lStore);  AIR 64 bit value fix
+  ASSERTNULL(RESULT)
+//  sprintf(STRINGVALUE(RESULT),"%*X",lLength,lStore);  AIR 64 bit value
   sprintf(STRINGVALUE(RESULT),"%lX",lStore);
   STRLEN(RESULT) = lLength;
 
