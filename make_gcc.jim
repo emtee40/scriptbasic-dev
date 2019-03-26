@@ -18,7 +18,7 @@ The C compiler is 'gcc'
 {#define cc=gcc -w}
 {#define CcOptOutput/X=-o X}
 {#define CcOptInput/X=X}
-{#define CcOptCompile=-c -fpic}
+{#define CcOptCompile=-c -fpic -fsigned-char}
 {#define CcOptDefine/X=-DX}
 
 {@comment }
