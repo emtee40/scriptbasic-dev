@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=sb64
+Exec=scriba
+Comment=ScriptBasic Programming Language
+Icon=sb
+Categories=Development;
+Terminal=true
+

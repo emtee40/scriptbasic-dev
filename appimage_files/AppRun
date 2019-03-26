@@ -1,0 +1,21 @@
+#!/bin/bash 
+
+WORKDIR=$(dirname "$(readlink -f "$0")")
+export PATH="${WORKDIR}"/usr/bin:$PATH
+export LD_LIBRARY_PATH="${WORKDIR}/usr/lib:${LD_LIBRARY_PATH}"
+TEXT_CONF=$(mktemp)
+BINARY_CONF=$(mktemp)
+CONFIG="dll \".so\"
+module \"${WORKDIR}/usr/module/\"
+include \"${WORKDIR}/usr/include/\"
+maxstep 0
+maxlocalstep 0
+maxlevel 29666
+maxmem 0
+"
+echo "$CONFIG" > "${TEXT_CONF}"
+scriba -f ${BINARY_CONF} -k ${TEXT_CONF} 2>/dev/null
+export SCRIBACONF="${BINARY_CONF}"
+scriba $@
+[[ -e "${TEXT_CONF}" ]] && rm "${TEXT_CONF}"
+[[ -e "${BINARY_CONF}" ]] && rm "${BINARY_CONF}"
