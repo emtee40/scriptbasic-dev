@@ -1,0 +1,6 @@
+libcurl4-gnutls-dev
+libiodbc2-dev
+libmariadbclient-dev-compat
+libncurses5-dev
+libsqlite3-dev
+libssl-dev
