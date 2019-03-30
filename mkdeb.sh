@@ -8,10 +8,17 @@ MKTMP=$(mktemp -d)
 OUTPUT="$NAME-$VERSION-${OS,,}-$ARCH"
 DEST="$MKTMP/$OUTPUT/usr/local"
 
+case $ARCH in
+	"armfh")
+		DEPENDS="libcurl3-gnutls, libiodbc2, libmariadbclient18, libncurses5, libsqlite3-0, libssl1.1";;
+	"amd64")
+		DEPENDS="libcurl3-gnutls, libiodbc2, libmysqlclient20, libncurses5, libsqlite3-0, libssl1.0.0";;
+esac
+
 CONTROL="Package: $OUTPUT
 Version: 2.1-1
 Architecture: $ARCH
-Depends: libcurl3-gnutls, libiodbc2, libmariadbclient18, libncurses5, libsqlite3-0, libssl1.1
+Depends: $DEPENDS
 Maintainer: support@scriptbasic.org
 Description: Basic Scripting Language
 "
