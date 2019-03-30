@@ -1,5 +1,6 @@
 /*  SBT (Script BASIC Tutorial) - Extension Module
 UXLIBS: -lscriba -lpthread -lm
+BAS: sbt.bas
 */
 
 #include <stdio.h>
