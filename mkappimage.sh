@@ -13,6 +13,7 @@ if [[ -n $DEST ]];then
     cp bin/lib/* "$DEST/usr/lib"
     cp bin/mod/dll/* "$DEST/usr/module"
     find extensions -name "*.bas" -exec cp {} "$DEST/usr/include" \;
+    mkdir -p "PACKAGES"
     "$APT" "$DEST" "$PWD/PACKAGES/sb.AppImage"
     [[ -d "$DEST" ]] && rm -r "$DEST"
 else
