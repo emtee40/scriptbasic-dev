@@ -3,7 +3,7 @@
 $mask = 0700; # owner has read, write and list others have nothing,
               # you usually run it as root and who else has anything
               # to do to the compilation intermediate files anyway?
-
+use Cwd qw(cwd);
 #
 # This script has to be executed from the ScriptBasic source directory
 # if this is the directory then lmt_none.def should be there
@@ -174,7 +174,7 @@ my $build = $unix ? $unix : "nt";
 #
 # Check that esd.pm is installed for Jamal
 #
-$esdlocation = undef;
+$esdlocation = cwd;
 for (@INC){
   # next if /\./;
   if( -e "$_/jamal/esd.pm" ){
