@@ -1,0 +1,65 @@
+' ScriptBasic Remote Console Debugger
+
+cmdln = TRIM(COMMAND())
+IF cmdln = "" THEN
+  ' Default IP:Port
+  OPEN "127.0.0.1:6647" FOR SOCKET AS #1
+ELSE
+  OPEN cmdln FOR SOCKET AS #1
+END IF
+WHILE NOT EOF(1)
+  LINE INPUT #1, dbgs
+  IF dbgs = ".\r\n" THEN
+    PRINT "-> "
+    LINE INPUT dbgc
+    IF LCASE(CHOMP(dbgc)) = "h" THEN
+PRINT """h help
+s step one line, or just press return on the line
+S step one line, do not step into functions or subs
+o step until getting out of the current function
+  (if you stepped into but changed your mind)
+? var  print the value of a variable
+u step one level up in the stack
+d step one level down in the stack (for variable printing)
+D step down in the stack to current execution depth
+G list all global variables
+L list all local variables
+l [n-m] list the source lines
+r [n] run to line n
+R [n] run to line n but do not stop in recursive function call
+b [n] set breakpoint on the line n or the current line
+B [n-m] remove breakpoints from lines
+q quit the program
+"""
+    END IF
+    PRINT #1, dbgc
+    IF CHOMP(dbgc) = "q" THEN GOTO Done
+  ELSE
+    dbgcmd = CHOMP(dbgs)
+' l - List Source
+    IF LEFT(dbgcmd,13) = "Break-Point: " THEN
+      IF MID(dbgcmd,14,1) = "0" THEN
+        PRINT " "
+      ELSE
+        PRINT "*"
+      END IF
+      GOTO IT
+    END IF
+    IF LEFT(dbgcmd,13) = "Line-Number: " THEN
+      PRINT FORMAT("%~[0000] ~",VAL(MID(dbgcmd,14)))
+      GOTO IT
+    END IF
+    IF LEFT(dbgcmd,6) = "Line: " THEN
+      PRINT MID(dbgcmd,7),"\n"
+      GOTO IT
+    END IF
+' Unprocessed out
+    PRINT dbgs
+  END IF
+IT:
+WEND
+
+Done:
+PRINT #1,"q\n"
+PRINT "Debug session closed.\n"
+
