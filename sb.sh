@@ -7,7 +7,7 @@
 if (( sourced == 0 ));then
     WORKDIR=$(dirname "$(readlink -f "$0")")
 else
-    WORKDIR=$(pwd -P)
+    WORKDIR=$(dirname $(readlink -f ${BASH_SOURCE[0]}))
 fi
 
 export PATH="${WORKDIR}"/bin:$PATH
