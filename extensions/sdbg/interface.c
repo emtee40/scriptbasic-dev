@@ -19,36 +19,10 @@ Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 
 This program implements a simple debugger "preprocessor" for ScriptBasic.
 
-BAS    : sdbg.bas
-
 NTLIBS: user32.lib ws2_32.lib
-UXLIBS:
+UXLIBS: -lc
 DWLIBS:
 MCLIBS:
-
-TO_BAS:
-REM """
-This is dbg.bas
-
-This file is copied into the module header files directory.
-dbg.dll or dbg.so is not a module. It is a preprocessor
-that helps the programmer to debug. There is no need to
-include any header file to use a preprocessor.
-
-However the stupid installer thinks that this 'module' was not
-compiled properly if there is no header file. Therefore here
-this file is here as a placeholder. Do not use it!
-
-Actually I wrote the stupid installer and I decided that it is
-better to have a dummy header file for each preprocessor than
-recognizing a module properly installed when the header file
-is actually corrupt or missing.
-
-Regards,
-Peter Verhas
-September 6, 2002.
-
-"""
 
 */
 #include <stdio.h>
@@ -78,13 +52,13 @@ typedef struct _UserFunction_t {
 // Debug information for each byte-code node.
 typedef struct _DebugNode_t {
   char *pszFileName; // the file name where the source for the node is
-  long lLineNumber;  // the line number in the file where the node is 
-  long lNodeId;      // the id of the node 
-  long lSourceLine;  // the source line number as it is in the memory with included lines counted from 1 
-                     // this field is zero and is set when the line is first searched to avoid further searches 
+  long lLineNumber;  // the line number in the file where the node is
+  long lNodeId;      // the id of the node
+  long lSourceLine;  // the source line number as it is in the memory with included lines counted from 1
+                     // this field is zero and is set when the line is first searched to avoid further searches
   } DebugNode_t, *pDebugNode_t;
 
-// struct for a source line to hold in memory while debugging 
+// struct for a source line to hold in memory while debugging
 typedef struct _SourceLine_t {
   char *line;
   long lLineNumber;
@@ -134,26 +108,14 @@ typedef struct _DebuggerObject {
   } DebuggerObject, *pDebuggerObject;
 */
 
-#ifdef __DARWIN__
-  int strnicmp(const char *s1, const char *s2, int n)
-  {
-  int i;
-  char c1, c2;
-  for (i=0; i<n; i++)
-  {
-  c1 = tolower(*s1++);
-  c2 = tolower(*s2++);
-  if (c1 < c2) return -1;
-  if (c1 > c2) return 1;
-  if (!c1) return 0;
-  }
-  return 0;
-  }
-#endif
-
 /* Push the item on the debugger stack when entering the function
    starting at the node Node
 */
+
+// Fix missing stricmp reference *JRS*
+#define stricmp strcasecmp
+#define strnicmp strncasecmp
+
 static void PushStackItem(pDebuggerObject pDO,
                           long Node
   ){
@@ -221,7 +183,7 @@ int SPrintVariable(pDebuggerObject pDO,
 =item T<cbBuffer> number of bytes available
 =noitemize
 
-The function returns zero on success. 
+The function returns zero on success.
 
 The function returns 1 if the buffer is not large enough. In this case the
 number returned in T<*cbBuffer> will be the size of the buffer needed. It may
@@ -239,7 +201,13 @@ references and the number or string.
 CUT*/
   long refcount;
   unsigned char *s,*r;
-  char buf[80];
+
+  VARIABLE v2=NULL;
+  int low, high, rlen, avtype;
+  unsigned long sz;
+  char cBuffer[1111];
+  char tBuffer[1111];
+  char buf[1025];
   unsigned long slen,i;
   unsigned long _cbBuffer = *cbBuffer;
 
@@ -305,6 +273,7 @@ CUT*/
     return 0;
     }
 
+/*
   if( TYPE(v) == VTYPE_ARRAY ){
     sprintf(buf,"ARRAY@#%08X",LONGVALUE(v));
     slen = strlen(buf);
@@ -315,6 +284,27 @@ CUT*/
     strcpy(s,buf);
     return 0;
     }
+*/
+
+  if( TYPE(v) == VTYPE_ARRAY){
+
+    low = ARRAYLOW(v);
+    high = ARRAYHIGH(v);
+
+    for(i = low; i <= high; i++){
+      v2 = v->Value.aValue[i-low]; //even if lbound(v) = 3 first element is at .aValue[0]
+      if(v2 == NULL) return 0;
+      sz = 1024;
+      SPrintVariable(pDO, v2, buf, &sz);
+      if (TYPE(v2) == 3){
+        snprintf(cBuffer,1110, "\nLB=%d : UB=%d VN=[%d]" , ARRAYLOW(v2), ARRAYHIGH(v2), i);
+        sprintf(s, "%s %s", s, cBuffer);
+      }
+      snprintf(cBuffer,1110, "\n[%d] VT=%d @ 0x%08X %s", i, TYPE(v2), v2, buf);
+      sprintf(s, "%s %s", s, cBuffer);
+    }
+    return 0;
+  }
 
   if( TYPE(v) == VTYPE_STRING ){
     /* calculate the printed size */
@@ -411,10 +401,10 @@ CUT*/
   s = pszName;
   while( *s ){
     if( isupper(*s) )*s = tolower(*s);
-	if( *s == '\n' || *s == '\r' ){
-	  *s = (char)0;
-	  break;
-	  }
+  if( *s == '\n' || *s == '\r' ){
+    *s = (char)0;
+    break;
+    }
     s++;
     }
   while( isspace(*pszName) )pszName++;
@@ -473,7 +463,7 @@ CUT*/
     pszFileName = pDO->Nodes[j].pszFileName;
 
     for( i=0 ; i < pDO->cSourceLines ; i ++ )
-      if( pDO->SourceLines[i].lLineNumber == lLineNumber && 
+      if( pDO->SourceLines[i].lLineNumber == lLineNumber &&
           pDO->SourceLines[i].szFileName                 &&
           pszFileName                                    &&
           !strcmp(pDO->SourceLines[i].szFileName,pszFileName) )break;
@@ -519,7 +509,7 @@ int MyExecBefore(pExecuteObject pEo){
     if( pDO->Run2Line && pDO->Nodes[pDO->lPC-1].lSourceLine != pDO->Run2Line )return 0;
     }
 
-  comm_WeAreAt(pDO,lThisLine);
+/*  comm_WeAreAt(pDO,lThisLine); <<JRS-DEBUG>>*/
 
   pDO->StackListPointer = pDO->DbgStack;
   while(1){
@@ -635,7 +625,7 @@ int MyExecCall(pExecuteObject pEo){
   pDO->pEo = pEo;
 
   PushStackItem(pDO,pEo->ProgramCounter);
-  
+
   return 0;
   }
 int MyExecReturn(pExecuteObject pEo){
@@ -789,11 +779,11 @@ int DLL_EXPORT preproc(pPrepext pEXT,
         pDO->SourceLines[i].line = pEXT->pST->Alloc(strlen(Result->line)+1,pEXT->pMemorySegment);
         if( pDO->SourceLines[i].line == NULL )return 1;
         strcpy(pDO->SourceLines[i].line,Result->line);
-		    s = pDO->SourceLines[i].line;
-		    while( *s ){
-		      if( *s == '\n' || *s == '\r' )*s = (char)0;
-		      s++;
-		      }
+        s = pDO->SourceLines[i].line;
+        while( *s ){
+          if( *s == '\n' || *s == '\r' )*s = (char)0;
+          s++;
+          }
         /* check for the listen port definition */
         /* REM DBGLISTEN 127.0.0.1:6647         */
         s = pDO->SourceLines[i].line;
@@ -807,7 +797,7 @@ int DLL_EXPORT preproc(pPrepext pEXT,
           s += 9;
           if( ! isspace(*s) )break;
           while( isspace(*s) )s++;
-          
+
           pDO->pszBindIP = pEXT->pST->Alloc(strlen(s)+1,pEXT->pMemorySegment);
           if( pDO->pszBindIP == NULL )return 1;
           strcpy(pDO->pszBindIP,s);
@@ -871,7 +861,7 @@ int DLL_EXPORT preproc(pPrepext pEXT,
         }
       pDO->cGlobalVariables = pEx->cGlobalVariables;
       pDO->ppszGlobalVariables = pEXT->pST->Alloc( sizeof(char *)*pDO->cGlobalVariables,pEXT->pMemorySegment);
-	  pDO->ppszGlobalVariables[0] = NULL;
+    pDO->ppszGlobalVariables[0] = NULL;
       if( pDO->ppszGlobalVariables == NULL ){
         *pCmd = PreprocessorUnload;
         return 1;

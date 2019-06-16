@@ -8,36 +8,36 @@ extern "C" {
 #endif
 /*FUNDEF*/
 
-void comm_Init(pDebuggerObject pDO);
+void comm_Init(pDebuggerObject pDO);
 /*FEDNUF*/
 /*FUNDEF*/
 
 void comm_WeAreAt(pDebuggerObject pDO,
-                  long i);
+                  long i);
 /*FEDNUF*/
 /*FUNDEF*/
 
 void comm_List(pDebuggerObject pDO,
                long lStart,
                long lEnd,
-               long lThis);
+               long lThis);
 /*FEDNUF*/
 /*FUNDEF*/
 
 void GetRange(char *pszBuffer,
               long *plStart,
-              long *plEnd);
+              long *plEnd);
 /*FEDNUF*/
 /*FUNDEF*/
 
 void comm_Message(pDebuggerObject pDO,
-                  char *pszMessage);
+                  char *pszMessage);
 /*FEDNUF*/
 /*FUNDEF*/
 
 int comm_GetCommand(pDebuggerObject pDO,
                     char *pszBuffer,
-                    long dwBuffer);
+                    long dwBuffer);
 /*FEDNUF*/
 #ifdef __cplusplus
 }

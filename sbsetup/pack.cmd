@@ -1,1 +1,0 @@
-T:\ScriptBasic\bin\scriba pack.sb t:\ScriptBasic

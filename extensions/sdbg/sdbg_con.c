@@ -78,15 +78,15 @@ CUT*/
   SA.sin_addr.s_addr = inet_addr(pDO->pszBindIP);
   SA.sin_port = htons(pDO->iPort);
   i = bind(pDO->listen_socket,(struct sockaddr *)&SA,sizeof(SA));
-  if( i ) i = WSAGetLastError();
+/*  if( i ) i = WSAGetLastError(); <JRS DEBUG> */
   listen(pDO->listen_socket,1);
   pDO->socket = accept(pDO->listen_socket,NULL,NULL);
-  sprintf(cBuffer,"Application: sbdbg 1.0\r\nVersion: 1.0\r\n");
+  sprintf(cBuffer,"Application: ScriptBasic Remote Debugger - Linux\nVersion: 1.0\n");
   SEND2CLIENT;
-  sprintf(cBuffer,"Source-File-Count: %u\r\n",pDO->cFileNames);
+  sprintf(cBuffer,"Source-File-Count: %u\n",pDO->cFileNames);
   SEND2CLIENT;
   for( i=0 ; i < pDO->cFileNames ; i++ ){
-	sprintf(cBuffer,"Source-File: %s\r\n",pDO->ppszFileNames[i]);
+  sprintf(cBuffer,"Source-File: %s\n",pDO->ppszFileNames[i]);
     SEND2CLIENT;
     }
   }
@@ -108,7 +108,7 @@ CUT*/
   char cBuffer[100];
   int cbBuffer;
 
-  sprintf(cBuffer,"Current-Line: %u\r\n",i+1);
+  sprintf(cBuffer,"Current-Line: %u\n",i+1);
   SEND2CLIENT;
   }
 
@@ -138,11 +138,12 @@ CUT*/
 
   for( j = lStart-1 ; j < lEnd ; j++ ){
     if( j >= pDO->cSourceLines )break;
-	sprintf(cBuffer,"Break-Point: %s\r\n", pDO->SourceLines[j].BreakPoint ? "1": "0");
+  sprintf(cBuffer,"Break-Point: %s\n", pDO->SourceLines[j].BreakPoint ? "1": "0");
     SEND2CLIENT;
-	sprintf(cBuffer,"Line-Number: %u\r\n",j+1);
+  sprintf(cBuffer,"Line-Number: %u\n",j+1);
     SEND2CLIENT;
-	sprintf(cBuffer,"Line: %s\r\n",pDO->SourceLines[j].line);
+  sprintf(cBuffer,"Line: %s\n",pDO->SourceLines[j].line);
+/*    sprintf(cBuffer,"%s\r\n",pDO->SourceLines[j].line);  <<JRS-DEBUG>>*/
     SEND2CLIENT;
     }
   }
@@ -233,7 +234,7 @@ void comm_Message(pDebuggerObject pDO,
 CUT*/
   char cBuffer[200];
   int cbBuffer;
-  sprintf(cBuffer,"Message: %s\r\n",pszMessage);
+  sprintf(cBuffer,"Message: %s\n",pszMessage);
   SEND2CLIENT;
   }
 
@@ -268,30 +269,39 @@ CUT*/
   int cbBuffer;
   pDebugCallStack_t StackListPointer;
 
+/* JRS Additions */
+  unsigned long sz;
+  VARIABLE v2=NULL;
+  VARIABLE v;
+  char buf[1025];
+/*---------------*/
+
   pEo = pDO->pEo;
   while( 1 ){
     lThis = GetCurrentDebugLine(pDO);
     comm_WeAreAt(pDO,lThis);
-    send(pDO->socket,".\r\n",3,0);
+    send(pDO->socket,".\n",3,0);
     cbBuffer = recv(pDO->socket,cBuffer,1024,0);
     cmd = *cBuffer;
-	while( ('\r' == cBuffer[cbBuffer-1] || '\n' == cBuffer[cbBuffer-1]) && cbBuffer  ){
-	  cBuffer[--cbBuffer] = (char)0;
-	  }
-	strcpy(pszBuffer,cBuffer+1);
+  while( ('\r' == cBuffer[cbBuffer-1] || '\n' == cBuffer[cbBuffer-1]) && cbBuffer  ){
+    cBuffer[--cbBuffer] = (char)0;
+    }
+
+  strcpy(pszBuffer,cBuffer+1);
     switch( cmd ){
       case 'l':/*list lines*/
         lThis = GetCurrentDebugLine(pDO);
 
-        if( cbBuffer > 2 ){/*if there are arguments: 1 command char, 2 new line */
+        if( cbBuffer > 1 ){/*if there are arguments: 1 command char, 2 new line */
           GetRange(cBuffer+1,&lStart,&lEnd);
           comm_List(pDO,lStart,lEnd,lThis);
-          }else comm_WeAreAt(pDO,lThis);
+        }else comm_WeAreAt(pDO,lThis);
 
         continue;
       case '?':
         cbPrintBuff = 1024;
         i = SPrintVarByName(pDO,pDO->pEo,cBuffer+1,pszPrintBuff,&cbPrintBuff);
+//      i = SPrintVarByName(pDO,pDO->pEo,pszBuffer,pszPrintBuff,&cbPrintBuff); <<JRS-DEBUG>>
         switch( i ){
           case 1:
             comm_Message(pDO,"variable is too long to print");
@@ -300,80 +310,70 @@ CUT*/
             comm_Message(pDO,"variable is non-existent");
             continue;
           default:
-			sprintf(cBuffer,"Value: %s\r\n",pszPrintBuff);
+            sprintf(cBuffer,"Value: %s\n",pszPrintBuff);
             SEND2CLIENT;
           }
-      continue;
+          continue;
+
     case 'L': /* list local variables */
       if( pDO->StackListPointer == NULL || pDO->StackListPointer->pUF == NULL ){
-		  /* pUF is NULL when the subroutine is external implemented in a DLL */
         comm_Message(pDO,"program is not local");
         continue;
         }
-	  StackListPointer = pDO->StackListPointer;
-	  if( pDO->pEo->ProgramCounter == StackListPointer->pUF->NodeId ){
-		/* In this case the debug call stack was already created to handle the function,
-		   but the LocalVariables still hold the value of the caller local variables.
-		*/
-		if( pDO->StackListPointer->up == NULL || pDO->StackListPointer->up->pUF == NULL ){
-          comm_Message(pDO,"program is not local");
-          continue;
-		  }
-		StackListPointer = StackListPointer->up;
-	    }
-      pUF = StackListPointer->pUF;
-
-	  if( StackListPointer->LocalVariables )
-      for( i=StackListPointer->LocalVariables->ArrayLowLimit ;
-		   i <= StackListPointer->LocalVariables->ArrayHighLimit ; i++ ){
-		sprintf(cBuffer,"Local-Variable-Name: %s\r\n",pUF->ppszLocalVariables[i-1]);
-        SEND2CLIENT;
-        if( StackListPointer->LocalVariables ){
-          j = SPrintVariable(pDO,ARRAYVALUE(pDO->StackListPointer->LocalVariables,i),pszPrintBuff,&cbPrintBuff);
+      pUF = pDO->StackListPointer->pUF;
+      for( i=0 ; i < pUF->cLocalVariables ; i++ ){
+//      printf("VT=%x %s=",pDO->StackListPointer->LocalVariables[i+1].vType, pUF->ppszLocalVariables[i]);
+        if( pDO->StackListPointer->LocalVariables ){
+          j = SPrintVariable(pDO,ARRAYVALUE(pDO->StackListPointer->LocalVariables,i+1),pszPrintBuff,&cbPrintBuff);
           switch( j ){
-			case 1:
-				comm_Message(pDO,"variable is too long to print");
-				continue;
-			case 2:
-				comm_Message(pDO,"variable is non-existent");
-				continue;
-			default:
-				sprintf(cBuffer,"Local-Variable-Value: %s\r\n",pszPrintBuff);
-				SEND2CLIENT;
+            case 2:
+              printf("variable is non-existent\n");
+              continue;
+            case 1:
+              printf("variable is too long to print\n");
+              continue;
+            default:
+              printf("%s\n",pszPrintBuff);
             }
           }else{
-          sprintf(cBuffer,"undef\r\n");
-		  SEND2CLIENT;
+          printf("undef\n");
           }
         }
-      continue;
-    case 'G':/* list global variables */
-      for( i=0 ; i < pDO->cGlobalVariables ; i++ ){
-        if( NULL == pDO->ppszGlobalVariables[i] )continue;
-		sprintf(cBuffer,"Global-Variable-Name: %s\r\n",pDO->ppszGlobalVariables[i]);
-		SEND2CLIENT;
-        if( pEo->GlobalVariables ){
-          j = SPrintVariable(pDO,ARRAYVALUE(pEo->GlobalVariables,i+1),pszPrintBuff,&cbPrintBuff);
-          switch( j ){
-			case 1:
-				comm_Message(pDO,"variable is too long to print");
-				continue;
-			case 2:
-				comm_Message(pDO,"variable is non-existent");
-				continue;
-			default:
-				sprintf(cBuffer,"Global-Variable-Value: %s\r\n",pszPrintBuff);
-				SEND2CLIENT;
+                                            
+      case 'G':/* list global variables */
+        for( i=0 ; i < pDO->cGlobalVariables ; i++ ){
+          if( NULL == pDO->ppszGlobalVariables[i] )continue;
+          if( pEo->GlobalVariables ){
+            v = ARRAYVALUE(pEo->GlobalVariables,i+1);
+            if (v == NULL)continue;
+            sz = 1024;
+            SPrintVariable(pDO, v, buf, &sz);
+            if (TYPE(v)==3){
+            	snprintf(cBuffer,1024, "Global-Variable-Name: VT=%d @ 0x%08X LB=%d : UB=%d VN=%s\n", TYPE(v), v, ARRAYLOW(v), ARRAYHIGH(v), pDO->ppszGlobalVariables[i]);
+            }else{
+              snprintf(cBuffer,1024, "Global-Variable-Name: VT=%d @ 0x%08X VN=%s\n", TYPE(v), v, pDO->ppszGlobalVariables[i]);
             }
-		  }else{
-            sprintf(cBuffer,"undef\r\n");
-		    SEND2CLIENT;
-		    }
+            SEND2CLIENT;
+            j = SPrintVariable(pDO,ARRAYVALUE(pEo->GlobalVariables,i+1),pszPrintBuff,&cbPrintBuff);
+            switch( j ){
+              case 1:
+                comm_Message(pDO,"variable is too long to print");
+                continue;
+              case 2:
+                comm_Message(pDO,"variable is non-existent");
+                continue;
+              default:
+                sprintf(cBuffer,"Global-Variable-Value: %s\n",pszPrintBuff);
+                SEND2CLIENT;
+            }
+          }else{
+             sprintf(cBuffer,"undef\n");
+             SEND2CLIENT;
+          }
         }
-      continue;
-      }
-
-    break;
+        continue;
+        break;
     }
-  return cmd;
+    return cmd;
   }
+}

@@ -19,5 +19,5 @@ all : {CreLib odbc} {CreDll odbc} {CreTexiDocument}
 {CreSObj interface} : interface.c 
 	{cc} {CcOptDefine STATIC_LINK=1} {CcOptCompile} {CcOptOutput {CreSObj interface}} {CcOptInput interface.c} -I/usr/include/iodbc
 
-{CompileTexiDoc}
 
+{CompileTexiDoc}
