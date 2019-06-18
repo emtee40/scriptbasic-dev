@@ -284,7 +284,7 @@ en/nested construct remained unclosed when local_end
 SYNTAX
 en/syntax error, no syntax defintion matches the line or syntax defintion does not match the line
 SYNTAX_FATAL
-en/syntax error during checking the line and also noting that the syntax error so serious that none of the other syntax defintions can match the current line
+en/Undefined syntax error encountered
 TOO_MANY_WAITING_LABEL
 en/there are more then MAX_SAME_LABEL labels referencing the same line
 UNDEF_GLOBAL
