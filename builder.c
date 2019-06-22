@@ -656,6 +656,7 @@ CUT*/
   fprintf(fp,"   called on your platform.\n");
   fprintf(fp,"*/\n");
 
+  fprintf(fp,"int stndlone(int argc, char *argv[], char *env[]);\n");
   fprintf(fp,"unsigned long ulGlobalVariables=%ld;\n",pBuild->cGlobalVariables);
   fprintf(fp,"unsigned long ulNodeCounter=%ld;\n",pBuild->NodeCounter);
   fprintf(fp,"unsigned long ulStartNode=%ld;\n",pBuild->StartNode);
@@ -678,10 +679,10 @@ CUT*/
     }
   fprintf(fp,"\n0x00 };\n");
   fprintf(fp,"#ifdef WIN32\n");
-  fprintf(fp,"main(int argc, char *argv[]){stndlone(argc,argv);}\n");
+  fprintf(fp,"int main(int argc, char *argv[]){stndlone(argc,argv);}\n");
   fprintf(fp,"#else\n");
   fprintf(fp,"char **_environ;\n");
-  fprintf(fp,"main(int argc, char *argv[], char *env[]){stndlone(argc,argv,env);}\n");
+  fprintf(fp,"int main(int argc, char *argv[], char *env[]){stndlone(argc,argv,env);}\n");
   fprintf(fp,"#endif\n");
 
   fprintf(fp,"/*End of file %s */",szFileName);
