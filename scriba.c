@@ -2,20 +2,28 @@
 FILE:   scriba.c
 HEADER: scriba.h
 
---GNU LGPL
-This library is free software; you can redistribute it and/or
-modify it under the terms of the GNU Lesser General Public
-License as published by the Free Software Foundation; either
-version 2.1 of the License, or (at your option) any later version.
+Common MIT License - Jan 31, 2018
 
-This library is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
-Lesser General Public License for more details.
+ScriptBasic Copyright (c) 2018 Peter Verhas
 
-You should have received a copy of the GNU Lesser General Public
-License along with this library; if not, write to the Free Software
-Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
 
 TO_HEADER:
 #include "report.h"
@@ -103,13 +111,13 @@ typedef struct _SbData {
 
 #if (defined(_WIN32) || defined(__MACOS__) || defined(WIN32))
 # ifdef __cplusplus
-#  define SCRIBA_MAIN_LIBSPEC extern "C" __declspec(dllexport) 
+#  define SCRIBA_MAIN_LIBSPEC extern "C" __declspec(dllexport)
 # else
-#  define SCRIBA_MAIN_LIBSPEC __declspec(dllexport) 
+#  define SCRIBA_MAIN_LIBSPEC __declspec(dllexport)
 # endif
 #else
 # ifdef __cplusplus
-#  define SCRIBA_MAIN_LIBSPEC extern "C" 
+#  define SCRIBA_MAIN_LIBSPEC extern "C"
 # else
 #  define SCRIBA_MAIN_LIBSPEC
 # endif
@@ -202,8 +210,8 @@ CUT*/
   scriba_PurgeExecuteMemory(pProgram);
   scriba_PurgePreprocessorMemory(pProgram);
 
-  /* Note that finishing this segment will release the configuration 
-     information in case it was loaded for this object and not 
+  /* Note that finishing this segment will release the configuration
+     information in case it was loaded for this object and not
      inherited from another one. */
   alloc_FinishSegment(pProgram->pMEM);
   }
@@ -217,7 +225,7 @@ This structure can be used to store ScriptBasic variable data,
 long, double or string. This function is called by other functions
 from this module. Usually the programmer, who embeds ScriptBasic will rarely
 call this function directly. Rather he/she will use R<scriba_NewSbLong()> (as an example)
-that creates a variable capable holding a T<long>, sets the type to 
+that creates a variable capable holding a T<long>, sets the type to
 be T<SBT_LNG> and stores initial value.
 
 See also R<scriba_NewSbLong()>, R<scriba_NewSbDouble()>, R<scriba_NewSbUndef()>, R<scriba_NewSbString()>,
@@ -739,11 +747,11 @@ This means that if an interpreter alters the table it has no effect on another i
 running in the same process in anther thread.
 
 This is fine so far. How about modules that run asynchronous threads? For example the very first
-interpter thread that uses the module T<mt> starts in the initialization a thread that later 
+interpter thread that uses the module T<mt> starts in the initialization a thread that later
 deletes all sessions that time out. This thread lives a long life.
 
 The thread that starts the worker thread is an interpreter thread and has its own copy of the T<ST>.
-The thread started asynchronous however should not use this T<ST> because the table is purged 
+The thread started asynchronous however should not use this T<ST> because the table is purged
 from memory when the interpreter instance it blelonged to finishes.
 
 To have T<ST> for worker threads there is a need for a program object that is not purged
@@ -829,10 +837,10 @@ CUT*/
 =H scriba_SetProcessSbObject()
 
 Use this program in multi-thread environment to tell the actual interpreter
-which object is the process level pseudo object that 
+which object is the process level pseudo object that
 
 =itemize
-=item holds the shared (among interpreter thread objects) configuration 
+=item holds the shared (among interpreter thread objects) configuration
 information (see R<scriba_InheritConfiguration()>)
 =item holds the process level module interface (see R<scriba_InheritModuleInterface()>)
 =item holds the list of loaded modules that are not unloaded by the thread loaded the module
@@ -888,7 +896,7 @@ CUT*/
 
 You can call this function to tell the reporting subsystem that
 this code runs in a CGI environment and therefore it should format
-error messages according to the CGI standard sending to the 
+error messages according to the CGI standard sending to the
 standard output including HTTP headers and HTML code pieces.
 
 /*FUNCTION*/
@@ -1223,7 +1231,7 @@ CUT*/
   pProgram->pREAD->fErrorFlags = pProgram->fErrorFlags;
   pProgram->pREAD->pConfig = pProgram->pCONF;
 
-  /* here we have to initialize the preprocessor object 
+  /* here we have to initialize the preprocessor object
      if it was not initialized before because the reader uses that */
   if( pProgram->pPREP == NULL ){
     pProgram->pPREP = alloc_Alloc( sizeof(PreprocObject) , pProgram->pMEM );
@@ -1461,7 +1469,7 @@ CUT*/
 Call this function to test that the cache file is usable. This function
 calls the function R<scriba_GetCacheFileName()> to calculate the cache file name.
 
-If 
+If
 =itemize
 =item the cache file exists
 =item is newer than the source file set by R<scriba_SetFileName()>
@@ -1768,7 +1776,7 @@ CUT*/
   SIS.cbBuffer = cbSourceCode;
   SIS.pszFileName = pProgram->pszFileName;
 
-  /* here we have to initialize the preprocessor object 
+  /* here we have to initialize the preprocessor object
      if it was not initialized before because the reader uses that */
   if( pProgram->pPREP == NULL ){
     pProgram->pPREP = alloc_Alloc( sizeof(PreprocObject) , pProgram->pMEM );
@@ -1873,8 +1881,8 @@ CUT*/
   if( iError = scriba_PreRun(pProgram) ){
     return iError;
     }
-  
-  pProgram->pEXE->CmdLineArgument = pszCommandLineArgument;  
+
+  pProgram->pEXE->CmdLineArgument = pszCommandLineArgument;
   execute_InitExecute(pProgram->pEXE,&iError);
 
   iError = 0;
@@ -1969,7 +1977,7 @@ CUT*/
 =H scriba_CallArg()
 
 This function can be used to call a function or subroutine with arguments passed by value.
-Neither the return value of the SUB nor the modified argument variables are not accessible 
+Neither the return value of the SUB nor the modified argument variables are not accessible
 via this function. T<CallArg> is a simple interface to call a ScriptBasic subroutine or
 function with argument.
 
@@ -2143,7 +2151,7 @@ SCRIBA_MAIN_LIBSPEC pSbData scriba_NewSbArgs(pSbProgram pProgram,
                          char *pszFormat, ...
   ){
 /*noverbatim
-The arguments passed are 
+The arguments passed are
 
 =itemize
 =item T<pProgram> is the class variable
@@ -2212,7 +2220,7 @@ CUT*/
       }
     }
   p = alloc_Alloc(sizeof(SbData)*cArgs,pProgram->pMEM);
-  if( p == NULL )return NULL;  
+  if( p == NULL )return NULL;
 
   i = 0;
   va_start(marker,pszFormat);
@@ -2477,7 +2485,7 @@ SCRIBA_MAIN_LIBSPEC long scriba_GetVariableType(pSbProgram pProgram,
                             long lSerial
   ){
 /*noverbatim
-The argument T<lSerial> should be the serial number of 
+The argument T<lSerial> should be the serial number of
 the variable as returned by R<scriba_LookupVariableByName()>.
 
 If there is no variable for the specified serian mumber (T<lSerial> is not positive
@@ -2492,7 +2500,7 @@ CUT*/
     case VTYPE_DOUBLE: return SBT_DOUBLE;
     case VTYPE_STRING: return SBT_STRING;
     default: return SBT_UNDEF;
-    }  
+    }
   }
 
 /*POD
@@ -2549,7 +2557,7 @@ CUT*/
       *pVariable = scriba_NewSbUndef(pProgram);
       if( *pVariable )return SCRIBA_ERROR_SUCCESS;
       return SCRIBA_ERROR_FAIL;
-    }  
+    }
   }
 
 
@@ -2594,11 +2602,11 @@ variable will be double holding the value.
 If the value of the argument T<type> is T<SBT_LONG> the argument T<lSetValue> will be used and the global
 variable will be long holding the value.
 
-If the value of the argument T<type> is T<SBT_STRING> the argument T<pszSetValue> 
+If the value of the argument T<type> is T<SBT_STRING> the argument T<pszSetValue>
 will be used and the global variable will be long holding the value. The length of the string
 should in this case be specified by the variable T<size>.
 
-If the value of the argument T<type> is T<SBT_ZCHAR> the argument T<pszSetValue> 
+If the value of the argument T<type> is T<SBT_ZCHAR> the argument T<pszSetValue>
 will be used and the global variable will be long holding the value. The length of the string
 is automatically calculated and the value passed in the variable T<size> is ignored. In this case the
 string T<pszSetValue> should be zero character terminated.
@@ -2607,7 +2615,7 @@ The funtion returns T<SCRIBA_ERROR_SUCCESS> on success,
 
 T<SCRIBA_ERROR_MEMORY_LOW> if the data cannot be created or
 
-T<SCRIBA_ERROR_FAIL> if the parameter T<lSerial> is invalid. 
+T<SCRIBA_ERROR_FAIL> if the parameter T<lSerial> is invalid.
 CUT*/
 
   if( lSerial <= 0 || lSerial > pProgram->pEXE->cGlobalVariables )return SCRIBA_ERROR_FAIL;
