@@ -1,4 +1,4 @@
-/* 
+/*
 
 FILE:   scribacmd.c
 HEADER: scribacmd.h
@@ -106,7 +106,7 @@ SbData RetVale;*/
   iEPreprocIndex = 0; /* no external preprocessor by default */
   iIPreprocIndex = 0; /* no internal preprocessor by default */
   pszPreprocessedFileName = NULL;
-  *pszEPreproc = NULL; 
+  *pszEPreproc = NULL;
   *pszIPreproc = NULL;
   giveusage  = 0; /* assume the command line is correct, we need not display usage and stop */
   binarycode = 0; /* input is not binary by default */
@@ -500,9 +500,10 @@ include \"test.bas\"\
 #if _DEBUG
 testa_Assert0x80();
 #endif
-    if( iError > 0 )
-      report_report(stderr,"",0,iError,REPORT_ERROR,&iErrorCounter,NULL,&fErrorFlags);
-    else
+    if( iError > 0 ){
+      char *pszModuleError = pProgram->pEXE ? pProgram->pEXE->pszModuleError : NULL;
+      report_report(stderr,"",0,iError,REPORT_ERROR,&iErrorCounter,pszModuleError,&fErrorFlags);
+      }else
       iError = -iError;
     ERREXIT;
     }
