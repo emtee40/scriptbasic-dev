@@ -32,12 +32,12 @@ print F <<END;
 Summary: ScriptBasic interpreter
 Name: scriba
 Version: ${VERSION}b${BUILD}
-Release: 1
-Copyright: LGPL
+Release: 2
+Copyright: Common MIT
 Group: Applications/Interpreter
-Source: http://scriptbasic.com/scriba-${VERSION}b${BUILD}-source.tar.gz
-URL: http://scripbasic.com
-Packager: Peter Verhas <peter\@verhas.com>
+Source: https://sandbox.allbasic.info:8181/scriptbasic/sb-dev
+URL: https://scripbasic.org
+Packager: ScriptBasic Development Team
 
 %description
 ScriptBasic is a BASIC interpreter implementing a scripting
