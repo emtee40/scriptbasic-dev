@@ -1,5 +1,9 @@
 /* odbcinterf.c interface to ODBC for ScriptBasic
 
+Change Log:
+2020-03-08 by John Spikowski - Extend column size buffer to 4096 from 256 bytes.
+                               Fix null column check to accept -1 and 0 for column length.
+
 NTLIBS: odbc32.lib odbccp32.lib
 UXLIBS: -liodbc
 DWLIBS: -liodbc
@@ -213,14 +217,14 @@ static int _GetData(pSupportTable pSt,
                     long i,
                     long j
   ){
-  char szTmp[256];
+  char szTmp[4096];
   SQLINTEGER cbCol,cbrCol;
   SQLRETURN ret;
   VARIABLE vDebug;
   long iIndex;
 
   /* first get the first 256 characters of the record */
-  cbCol = 256;
+  cbCol = 4096;
   ret = SQLGetData(q->hStmt,
                    i+1,
                    SQL_C_CHAR,
@@ -228,7 +232,7 @@ static int _GetData(pSupportTable pSt,
                    cbCol,
                    &cbrCol);
   if( ! (SQL_SUCCEEDED(ret)) )return ODBC_ERROR_EXEC;
-  if( cbrCol == 0 ){
+  if( cbrCol == 0 || -1){
     ARRAYVALUE(*Lval,j) = NULL;
     }else{
     vDebug = ARRAYVALUE(*Lval,j) = besNEWSTRING(cbrCol);
