@@ -118,7 +118,7 @@ NOTIMPLEMENTED;
         sprintf(buffer,"%ld",LONGVALUE(ItemResult));
         break;
       case VTYPE_DOUBLE:
-        sprintf(buffer,"%le",DOUBLEVALUE(ItemResult));
+        sprintf(buffer,"%g",DOUBLEVALUE(ItemResult));
         break;
       case VTYPE_STRING:
         s = STRINGVALUE(ItemResult);
