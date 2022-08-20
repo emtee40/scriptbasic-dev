@@ -261,7 +261,11 @@ SUB sbadump(jo, i)
     NEXT
   ELSE
     FOR x = 0 TO UBOUND(jo) STEP 2
-      PRINT SPACE(i), jo[x]
+      IF TYPE(jo[x]) = 3 THEN
+        PRINT SPACE(i), "[", jo[x], "]"
+      ELSE  
+        PRINT SPACE(i), jo[x]
+      END IF
       IF TYPE(jo[x + 1]) = 4 THEN
         PRINT
         i += 3
