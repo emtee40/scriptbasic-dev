@@ -1,0 +1,278 @@
+' WebExt Functions
+
+MODULE WEB
+
+DECLARE SUB ::base64_encode ALIAS "base64_encode" LIB "webext"
+DECLARE SUB ::base64_decode ALIAS "base64_decode" LIB "webext"
+DECLARE SUB ::hmacsha256 ALIAS "hmacsha256" LIB "webext"
+DECLARE SUB ::LoadString ALIAS "loadstring" LIB "t"
+
+FUNCTION Bin2Hex(AsciiStr)
+  LOCAL AsciiLen,ScanPos,HexStr
+  AsciiLen = LEN(AsciiStr)
+  IF AsciiLen THEN
+    FOR ScanPos = 1 TO AsciiLen
+      HexStr &= RIGHT("0" & LCASE(HEX(ASC(MID(AsciiStr, ScanPos, 1)))),2)
+    NEXT ScanPos
+  ELSE
+    HexStr = ""
+  END IF
+  Bin2Hex = HexStr
+END FUNCTION
+
+FUNCTION Hex2Bin(HexStr)
+
+  LOCAL LenHex, AsciiStr, HexTable, ScanPos, HiByte, LowByte
+  LenHex = LEN(HexStr)
+  IF LenHex % 2 = 0 THEN
+    HexTable = "0123456789ABCDEF"
+    FOR ScanPos = 1 TO LenHex STEP 2
+      HiByte = INSTR(HexTable,UCASE(MID(HexStr, ScanPos, 1))) - 1
+      LowByte = INSTR(HexTable,UCASE(MID(HexStr, ScanPos + 1, 1))) - 1
+      IF ISINTEGER(HiByte) AND ISINTEGER(LowByte) THEN
+        AsciiStr &= CHR(HiByte * 16 + LowByte)
+      ELSE
+        AsciiStr = ""
+        GOTO Exit_For
+      END IF
+    NEXT ScanPos
+    Exit_For:
+  ELSE
+    AsciiStr = ""
+  END IF
+  Hex2Bin = AsciiStr
+
+END FUNCTION
+
+FUNCTION MATCH(index)
+  MATCH = JOKER(index)
+END FUNCTION
+
+SUB json2sba(json)
+  LOCAL os, starset, jc, x, ls, kda, level, jp, idx, lp, root, tmp
+  LOCAL i0, i1, i2, i3, i4, i5, i6, i7, i8, i9
+
+  os = ""
+  starset = 0
+  jc = 0
+
+  FOR x = 1 TO LEN(json)
+    ls = MID(json, x, 1)
+    IF ls = "{" OR _
+       ls = "}" OR _
+       ls = "[" OR _
+       ls = "]" OR _
+       ls = "," THEN
+      os &= ls
+      starset = 0
+    ELSE
+      IF starset = 0 THEN
+        os &= "*"
+        starset = 1
+        jc += 1
+      END IF
+    END IF
+  NEXT
+
+  IF json LIKE os THEN
+    FOR x = 1 TO jc
+      kda[x] = JOKER(x)
+    NEXT
+  END IF
+
+  level = 0
+  jp =1
+  idx[0] = 1
+  idx[1] = 1
+  idx[2] = 1
+  idx[3] = 1
+  idx[4] = 1
+  idx[5] = 1
+  idx[6] = 1
+  idx[7] = 1
+  idx[8] = 1
+  idx[9] = 1
+
+  os = MID(os, 2, LEN(os) - 2)
+
+  FOR lp = 1 TO LEN(os)
+    os_chr = MID(os, lp, 1)
+    IF MID(os, lp, 1) = "{" THEN
+      level += 1
+    ELSE IF MID(os, lp, 1) = "}" THEN
+      level -= 1
+      IF MID(os, lp, 3) = "},{" THEN
+        idx[level] += 1
+        IF level = 0 THEN
+          i0 = idx[level]
+        ELSE IF level = 1 THEN
+          i1 = idx[level]
+        ELSE IF level = 2 THEN
+          i2 = idx[level]
+        ELSE IF level = 3 THEN
+          i3 =idx[level]
+        ELSE IF level = 4 THEN
+          i4 = idx[level]
+        ELSE IF level = 5 THEN
+          i5 = idx[level]
+        ELSE IF level = 6 THEN
+          i6 = idx[level]
+        ELSE IF level = 7 THEN
+          i7 = idx[level]
+        ELSE IF level = 8 THEN
+          i8 = idx[level]
+        ELSE IF level = 9 THEN
+          i9 = idx[level]
+        END IF
+      END IF
+    ELSE IF MID(os, lp, 1) = "[" THEN
+      level += 1
+        IF level = 0 THEN
+          i0 = idx[level]
+          tmp = root{io}
+        ELSE IF level = 1 THEN
+          i1 = idx[level]
+          tmp = root{i0}{i1}
+        ELSE IF level = 2 THEN
+          i2 = idx[level]
+          tmp = root{i0}{i1}{i2}
+        ELSE IF level = 3 THEN
+          i3 = idx[level]
+          tmp = root{i0}{i1}{i2}{i3}
+        ELSE IF level = 4 THEN
+          i4 = idx[level]
+          tmp = root{i0}{i1}{i2}{i3}{i4}
+        ELSE IF level = 5 THEN
+          i5 = idx[level]
+          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}
+        ELSE IF level = 6 THEN
+          i6 = idx[level]
+          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}
+        ELSE IF level = 7 THEN
+          i7 = idx[level]
+          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}
+        ELSE IF level = 8 THEN
+          i8 = idx[level]
+          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
+        ELSE IF level = 9 THEN
+          i9 = idx[level]
+          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
+        END IF
+    ELSE IF MID(os, lp, 1) = "]" THEN
+      level -= 1
+      idx[level] = 1
+    ELSE IF MID(os, lp, 1) = "," THEN
+
+    ELSE IF MID(os, lp, 1) = "*" THEN
+      IF kda[jp] LIKE "\"*\":" THEN
+        IF level = 0 THEN
+          i0 = JOKER(1)
+        ELSE IF level = 1 THEN
+          i1 = JOKER(1)
+          tmp = root{i0}{i1}
+        ELSE IF level = 2 THEN
+          i2 = JOKER(1)
+          tmp = root{i0}{i1}{i2}
+        ELSE IF level = 3 THEN
+          i3 = JOKER(1)
+          tmp = root{i0}{i1}{i2}{i3}
+        ELSE IF level = 4 THEN
+          i4 = JOKER(1)
+          tmp = root{i0}{i1}{i2}{i3}{i4}
+        ELSE IF level = 5 THEN
+          i5 = JOKER(1)
+          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}
+        ELSE IF level = 6 THEN
+          i6 = JOKER(1)
+          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}
+        ELSE IF level = 7 THEN
+          i7 = JOKER(1)
+          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}
+        ELSE IF level = 8 THEN
+          i8 = JOKER(1)
+          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
+        ELSE IF level = 9 THEN
+          i9 = JOKER(1)
+          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
+        END IF
+      END IF
+      IF kda[jp] LIKE "\"*\":\"*\"" THEN
+        IF level = 0 THEN
+          root{JOKER(1)} = JOKER(2)
+        ELSE IF level = 1 THEN
+          root{i0}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 2 THEN
+          root{i0}{i1}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 3 THEN
+          root{i0}{i1}{i2}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 4 THEN
+          root{i0}{i1}{i2}{i3}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 5 THEN
+          root{i0}{i1}{i2}{i3}{i4}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 6 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 7 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 8 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 9 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{JOKER(1)} = JOKER(2)
+        END IF
+      ELSE IF kda[jp] LIKE "\"*\":*" THEN
+        IF level = 0 THEN
+          root{JOKER(1)} = JOKER(2)
+        ELSE IF level = 1 THEN
+          root{i0}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 2 THEN
+          root{i0}{i1}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 3 THEN
+          root{i0}{i1}{i2}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 4 THEN
+          root{i0}{i1}{i2}{i3}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 5 THEN
+          root{i0}{i1}{i2}{i3}{i4}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 6 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 7 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 8 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{JOKER(1)} = JOKER(2)
+        ELSE IF level = 9 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{JOKER(1)} = JOKER(2)
+        END IF
+      END IF
+      jp += 1
+    END IF
+  NEXT
+
+  json = root
+
+END SUB
+
+SUB sbadump(jo, i)
+  LOCAL x, y
+
+  IF TYPE(jo[0]) = 4 THEN
+    FOR y = 0 TO UBOUND(jo)
+      PRINT SPACE(i), "[", y, "]\n"
+      i += 3
+      sbadump(jo[y], i)
+      i -= 3
+    NEXT
+  ELSE
+    FOR x = 0 TO UBOUND(jo) STEP 2
+      PRINT SPACE(i), jo[x]
+      IF TYPE(jo[x + 1]) = 4 THEN
+        PRINT
+        i += 3
+        sbadump(jo[x + 1], i)
+        i -= 3
+      ELSE
+        PRINT " = ", jo[x + 1], "\n"
+      END IF
+    NEXT
+  END IF
+END SUB
+
+
+END MODULE
