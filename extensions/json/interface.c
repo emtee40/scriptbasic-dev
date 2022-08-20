@@ -708,6 +708,29 @@ besFUNCTION(prettyprint)
 besEND
 
 /**
+=section Print
+=H json::Print(object)
+
+*/
+besFUNCTION(print)
+  pModuleObject p;
+  int index;
+  JSON_Object *obj;
+  JSON_Value *tmp;
+  char *key;
+  long value;
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("p")
+    &obj
+  besARGEND
+
+  tmp = json_object_get_wrapping_value(obj);
+  besSET_RETURN_STRING(json_serialize_to_string(tmp));
+
+besEND
+/**
 =section getName
 =H json::getName(JSONObject)
 
