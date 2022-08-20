@@ -65,12 +65,16 @@ DATA AVAILABLE FOR EACH INTERPRETER THREAD. USE THIS STRUCTURE TO
 STORE GLOBAL VALUES INSTEAD OF USING GLOBAL VARIABLES.
 */
 typedef struct _ModuleObject {
-  JSON_Value* root;
-  JSON_Value *tmpRoot;
+  int blah;
   }ModuleObject,*pModuleObject;
 
-static JSON_Value *jRoot;
-static int jType;
+typedef struct _JOBJECT {
+  JSON_Value *root[256];
+  JSON_Value *current;
+  int index;
+}JOBJECT, *pJOBJECT;
+
+static pJOBJECT z;
 
 /*
 *TODO*
@@ -98,16 +102,20 @@ ALTER THE MODULE INITIALIZATION CODE
 */
 besSUB_START
   pModuleObject p;
+  
 
   besMODULEPOINTER = besALLOC(sizeof(ModuleObject));
   if( besMODULEPOINTER == NULL )return 0;
+
+  z = besALLOC(sizeof(JOBJECT));
+  if (z == NULL) return 0;
 
 /*
 *TODO*
 INSERT HERE ANY CODE THAT YOU NEED TO INITIALIZE THE MODULE FOR THE
 ACTUAL INTERPRETER THREAD
 */
-
+  z->index = 0;
 besEND
 
 /*
@@ -116,6 +124,7 @@ ALTER THE MODULE FINISH CODE IF NEEDED
 */
 besSUB_FINISH
   pModuleObject p;
+  pJOBJECT z;
 
   /*
     YOU CERTAINLY NEED THIS POINTER TO FREE ALL RESOURCES THAT YOU ALLOCATED
@@ -125,10 +134,13 @@ besSUB_FINISH
   */
   p = (pModuleObject)besMODULEPOINTER;
   if( p == NULL )return 0;
-  if (jRoot)
-    json_value_free(jRoot);
+  // if (jRoot)
+  //   json_value_free(jRoot);
 
-
+  // for (int x = 0; x < z->index; x++) {
+  //     if (z->root[x])
+  //       json_value_free(z->root[x]);
+  // }
 
   return 0;
 besEND
@@ -153,15 +165,17 @@ besFUNCTION(loadfile)
     &filename
   besARGEND
 
- jRoot = json_parse_file(filename);
+  if (z->index != 0) z->index += 1;
+  z->root[z->index] = json_parse_file(filename);
+  z->current = z->root[z->index];
 
-  switch (json_value_get_type(jRoot)) {
+  switch (json_value_get_type(z->root[z->index])) {
     case JSONArray:
-      items = json_value_get_array(jRoot);
+      items = json_value_get_array(z->root[z->index]);
       besRETURN_POINTER(items);
       break;
     case JSONObject:
-      obj = json_value_get_object(jRoot);
+      obj = json_value_get_object(z->root[z->index]);
       besRETURN_POINTER(obj);
       break;
   }
@@ -189,15 +203,17 @@ besFUNCTION(loadstr)
     &json_str
   besARGEND
 
- jRoot = json_parse_string(json_str);
+  if (z->index != 0) z->index += 1;
+  z->root[z->index] = json_parse_string(json_str);
+  z->current = z->root[z->index];
 
-  switch (json_value_get_type(jRoot)) {
+  switch (json_value_get_type(z->root[z->index])) {
     case JSONArray:
-      items = json_value_get_array(jRoot);
+      items = json_value_get_array(z->root[z->index]);
       besRETURN_POINTER(items);
       break;
     case JSONObject:
-      obj = json_value_get_object(jRoot);
+      obj = json_value_get_object(z->root[z->index]);
       besRETURN_POINTER(obj);
       break;
   }
@@ -217,15 +233,15 @@ besFUNCTION(save)
   char* filename;
   JSON_Status result;
 
-  JSON_Array *items;
+  JSON_Value *obj;
 
   p = (pModuleObject)besMODULEPOINTER;
 
-  besARGUMENTS("z")
-    &filename
+  besARGUMENTS("pz")
+    &obj, &filename
   besARGEND
 
-  result = json_serialize_to_file_pretty(jRoot,filename);
+  result = json_serialize_to_file_pretty(obj,filename);
   if (result == JSONFailure)
     return COMMAND_ERROR_BAD_FILE_NUMBER;
   else
@@ -242,20 +258,23 @@ Returns number of json objects in X
 besFUNCTION(count)
   pModuleObject p;
   int cnt;
-  void *items;
+  void *item;
+  JSON_Value *parent;
 
   p = (pModuleObject)besMODULEPOINTER;
 
   besARGUMENTS("p")
-    &items
+    &item
   besARGEND
 
-  switch (json_type(jRoot)) {
+  parent = json_value_get_parent( (JSON_Value*) item);
+
+  switch (json_type(parent)) {
     case JSONArray:
-      cnt = json_array_get_count((JSON_Array*)items);
+      cnt = json_array_get_count((JSON_Array*)item);
       break;
     case JSONObject:
-      cnt = json_object_get_count((JSON_Object*)items);
+      cnt = json_object_get_count((JSON_Object*)item);
       break;
   }
 
@@ -271,7 +290,8 @@ Returns object at index in JSON object array X
 besFUNCTION(object)
   pModuleObject p;
   int index;
-  void *items;
+  JSON_Object *items;
+  JSON_Array *arr;
   JSON_Object *obj;
   char * name;
 
@@ -281,16 +301,59 @@ besFUNCTION(object)
     &items, &index
   besARGEND
 
-  switch (json_type(jRoot)) {
+  switch (json_type(items)) {
     case JSONArray:
-      obj = json_array_get_object((JSON_Array*)items,index);
+      obj = json_array_get_object(items,index);
+      besRETURN_POINTER(obj);
       break;
     case JSONObject:
-      name = json_object_get_name((JSON_Object*)items, index);
-      obj = json_object_get_object((JSON_Object*)items, name);
+      name = json_object_get_name(items, index);
+      obj = json_object_get_object(items, name);
+      besRETURN_POINTER(obj);
       break;
   }
-  besRETURN_POINTER(obj);
+  
+besEND
+
+/**
+=section getObject
+=H json::getObject(X, KEY)
+
+Returns array of data at KEY path
+*/
+
+besFUNCTION(getobject)
+  pModuleObject p;
+  int index;
+  JSON_Value *tmpVal, *tmpValArray;
+  JSON_Array *arr;
+  JSON_Object *obj, *tmpObj;
+  char *key;
+  char *res;
+  double result;
+  char * name;
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("pi")
+    &obj, &index
+  besARGEND
+
+  tmpVal = json_object_get_wrapping_value(obj);
+  
+  switch (json_type(tmpVal)) {	
+	  case JSONArray:
+      arr = json_array_get_object(obj,index);
+      besRETURN_POINTER(arr);
+      break;
+		
+      case JSONObject:
+        tmpVal = json_object_get_value_at(obj,index);
+        tmpObj = json_value_get_object(tmpVal);
+        besRETURN_POINTER(tmpObj); 
+        break;  
+	}  
+   
 besEND
 
 /**
@@ -304,8 +367,9 @@ besFUNCTION(get)
   int index;
   JSON_Value  *tmpObj;
   JSON_Object *obj;
+  JSON_Array *arr;
   char *key;
-  char *res;
+  char *res; 
   double result;
 
   p = (pModuleObject)besMODULEPOINTER;
@@ -325,9 +389,17 @@ besFUNCTION(get)
 
       case JSONNumber:
         result = json_object_dotget_number(obj,key);
-        besRETURN_LONG(result);
+        besRETURN_DOUBLE(result);
         break;
-
+        
+      case JSONArray:
+        arr = json_object_dotget_array(obj, key);
+        besRETURN_POINTER(arr);
+        break;
+      
+      case JSONBoolean:
+        besRETURN_LONG(json_object_dotget_boolean(obj,key))
+        break;
     }
 besEND
 
@@ -345,11 +417,198 @@ besFUNCTION(new)
 
   p = (pModuleObject)besMODULEPOINTER;
 
-  jRoot = json_value_init_object();
-  obj  = json_value_get_object(jRoot);
+  if (z->index != 0) z->index += 1;
+  z->root[z->index] = json_value_init_object();
+  z->current = z->root[z->index];
+
+  obj  = json_value_get_object(z->root[z->index]);
 
 
   besRETURN_POINTER(obj);
+
+besEND
+
+/**
+=section newObject
+=H json::newObject()
+
+Returns new json  object
+*/
+besFUNCTION(newobject)
+  pModuleObject p;
+  JSON_Value *obj;
+  JSON_Value *tmp;
+
+
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  tmp = json_value_init_object();
+  obj  = json_value_get_object(tmp);
+
+
+
+
+  besRETURN_POINTER(obj);
+
+besEND
+
+/**
+=section newArray
+=H json::newArray()
+
+Returns new json array object
+*/
+besFUNCTION(newArray)
+  pModuleObject p;
+  JSON_Array *obj;
+
+
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  obj  = json_value_init_array();
+
+
+  besRETURN_POINTER(obj);
+
+besEND
+
+/**
+=section getArray
+=H json::getArray()
+
+Returns json array object converted from a json array
+*/
+besFUNCTION(getArray)
+  pModuleObject p;
+  JSON_Object *obj,*tmpObj;
+  JSON_Array *array;
+  JSON_Value *tmp;
+
+
+
+  p = (pModuleObject)besMODULEPOINTER;
+  
+  besARGUMENTS("p")
+    &obj
+  besARGEND
+
+  tmp = json_object_get_wrapping_value(obj);
+  tmpObj  = json_value_get_array(tmp);
+
+
+  besRETURN_POINTER(tmpObj);
+
+besEND
+
+/**
+=section getArrayObject
+=H json::getArrayObject(x)
+
+Returns json object
+*/
+besFUNCTION(getArrayobject)
+  pModuleObject p;
+  JSON_Object *obj;
+  JSON_Value *tmp;
+
+
+
+  p = (pModuleObject)besMODULEPOINTER;
+  
+  besARGUMENTS("p")
+    &tmp
+  besARGEND
+
+  obj  = json_value_get_object(tmp);
+
+
+  besRETURN_POINTER(obj);
+
+besEND
+
+/**
+=section getArrayItem
+=H json::getArrayItem(object,index)
+
+Returns json object from array
+*/
+besFUNCTION(getArrayItem)
+  pModuleObject p;
+  JSON_Object  *tmpObj;
+  JSON_Array *obj;
+  JSON_Value *tmpVal, *arr, *valArray;
+  int index;
+  size_t c, arrCount;
+
+
+
+  p = (pModuleObject)besMODULEPOINTER;
+  
+  besARGUMENTS("pi")
+    &obj,&index
+  besARGEND
+
+   if (tmpVal = json_array_get_value(obj,index)) {
+      tmpObj = json_value_get_object(tmpVal);
+
+      besRETURN_POINTER(tmpObj);
+   }
+
+besEND
+
+
+/**
+=section addArray
+=H json::addArray(src_array, array_to_add)
+
+Returns json array object converted from a json array
+*/
+besFUNCTION(addarray)
+  pModuleObject p;
+  JSON_Object *obj, *avalue;
+  JSON_Array *arr, *arr2;
+  JSON_Value  *tmpVal, *tmpArrVal;
+
+
+
+  p = (pModuleObject)besMODULEPOINTER;
+  
+  besARGUMENTS("pp")
+    &arr, &avalue
+  besARGEND
+
+  arr2 = json_value_get_array(arr);
+
+  tmpArrVal = json_object_get_wrapping_value(avalue);
+  json_array_append_value(arr2,tmpArrVal);
+
+
+  //~ besRETURN_POINTER(obj);
+
+besEND
+
+/**
+=section setValue
+=H json::setValue(object, key, value)
+
+Creates/Updates value for OBJECT
+*/
+besFUNCTION(setvalue)
+  pModuleObject p;
+  int index;
+  JSON_Object *obj;
+  char *key;
+  JSON_Value *value;
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("pzp")
+    &obj, &key, &value
+  besARGEND
+
+  json_object_dotset_value(obj, key, value);
 
 besEND
 
@@ -398,6 +657,136 @@ besFUNCTION(setnum)
   json_object_dotset_number(obj, key, value);
 
 besEND
+
+/**
+=section setBool
+=H json::setBool(object, key, value)
+
+Creates/Updates BOOLEAN  value for OBJECT
+*/
+besFUNCTION(setbool)
+  pModuleObject p;
+  int index;
+  JSON_Object *obj;
+  char *key;
+  long value;
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("pzi")
+    &obj, &key, &value
+  besARGEND
+
+  json_object_dotset_boolean(obj, key, value);
+
+besEND
+
+
+
+/**
+=section prettyPrint
+=H json::prettyPrint(object)
+
+*/
+besFUNCTION(prettyprint)
+  pModuleObject p;
+  int index;
+  JSON_Object *obj;
+  JSON_Value *tmp;
+  char *key;
+  long value;
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("p")
+    &obj
+  besARGEND
+
+  tmp = json_object_get_wrapping_value(obj);
+  besSET_RETURN_STRING(json_serialize_to_string_pretty(tmp));
+
+besEND
+
+/**
+=section getName
+=H json::getName(JSONObject)
+
+Retrieves the name (key) for the provided
+JSONObject
+*/
+besFUNCTION(getName)
+  pModuleObject p;
+  JSON_Object *obj;
+  const char *key;
+  int index;
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("pi")
+    &obj, &index
+  besARGEND
+
+  key = json_object_get_name(obj,index);
+  besSET_RETURN_STRING(key);
+  
+
+besEND
+
+/**
+=section type
+=H json::type(JSONObject)
+
+Retrieves the type of the provided JSONObject
+*/
+besFUNCTION(type)
+  pModuleObject p;
+  JSON_Object *obj;
+  JSON_Value * val;
+  long object_type;
+  int index;
+
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("pi")
+    &obj,&index
+  besARGEND
+
+  val = json_object_get_value_at(obj, index);
+  object_type = json_value_get_type(val);
+  besRETURN_LONG(object_type);
+  
+
+besEND
+
+/**
+=section getParent
+=H json::getParent(JSONObject)
+
+Retrieves the PARENT of the provided JSONObject
+*/
+besFUNCTION(getparent)
+  pModuleObject p;
+  JSON_Object *obj,*res;
+  JSON_Value *val, *parent;
+  long object_type;
+  int index;
+
+
+  p = (pModuleObject)besMODULEPOINTER;
+
+  besARGUMENTS("p")
+    &obj
+  besARGEND
+
+  val = json_object_get_wrapping_value(obj);
+  parent = json_value_get_parent(val);
+  res = json_value_get_object(parent);
+  besRETURN_POINTER(res);
+  
+
+besEND
+
 
 SLFST JSON_SLFST[] ={
 
