@@ -55,21 +55,35 @@ SUB json2sba(json)
   os = ""
   starset = 0
   jc = 0
+  instar = 0
 
   FOR x = 1 TO LEN(json)
     ls = MID(json, x, 1)
+    IF ls = CHR(34) THEN
+      IF instar = 1 THEN
+        instar = 0
+      ELSE
+        instar = 1
+      END IF
+    END IF
+
     IF ls = "{" OR _
        ls = "}" OR _
        ls = "[" OR _
-       ls = "]" OR _
-       ls = "," THEN
+       ls = "]" THEN
       os &= ls
       starset = 0
+    ELSE IF ls = "," AND instar = 0 THEN
+        os &= ls
+        starset = 0
     ELSE
       IF starset = 0 THEN
         os &= "*"
         starset = 1
         jc += 1
+      END IF
+      IF ls = "," THEN
+        json = LEFT(json, x - 1) & CHR(127) & MID(json, x + 1)
       END IF
     END IF
   NEXT
@@ -77,6 +91,7 @@ SUB json2sba(json)
   IF json LIKE os THEN
     FOR x = 1 TO jc
       kda[x] = JOKER(x)
+      kda[x] = REPLACE(kda[x], CHR(127), ",")
     NEXT
   END IF
 
@@ -263,7 +278,7 @@ SUB sbadump(jo, i)
     FOR x = 0 TO UBOUND(jo) STEP 2
       IF TYPE(jo[x]) = 3 THEN
         PRINT SPACE(i), "[", jo[x], "]"
-      ELSE  
+      ELSE
         PRINT SPACE(i), jo[x]
       END IF
       IF TYPE(jo[x + 1]) = 4 THEN
