@@ -125,7 +125,7 @@ SUB json2sba(json)
         ELSE IF level = 2 THEN
           i2 = idx[level]
         ELSE IF level = 3 THEN
-          i3 =idx[level]
+          i3 = idx[level]
         ELSE IF level = 4 THEN
           i4 = idx[level]
         ELSE IF level = 5 THEN
@@ -234,26 +234,34 @@ SUB json2sba(json)
           root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{JOKER(1)} = JOKER(2)
         END IF
       ELSE IF kda[jp] LIKE "\"*\":*" THEN
+        nostr = JOKER(2)
+        IF UCASE(nostr) = "TRUE" THEN
+           nostr = -1
+        ELSE IF UCASE(nostr) = "FALSE" THEN
+           nostr = 0
+        ELSE
+           nostr = VAL(JOKER(2))
+        END IF
         IF level = 0 THEN
-          root{JOKER(1)} = JOKER(2)
+          root{JOKER(1)} = nostr
         ELSE IF level = 1 THEN
-          root{i0}{JOKER(1)} = JOKER(2)
+          root{i0}{JOKER(1)} = nostr
         ELSE IF level = 2 THEN
-          root{i0}{i1}{JOKER(1)} = JOKER(2)
+          root{i0}{i1}{JOKER(1)} = nostr
         ELSE IF level = 3 THEN
-          root{i0}{i1}{i2}{JOKER(1)} = JOKER(2)
+          root{i0}{i1}{i2}{JOKER(1)} = nostr
         ELSE IF level = 4 THEN
-          root{i0}{i1}{i2}{i3}{JOKER(1)} = JOKER(2)
+          root{i0}{i1}{i2}{i3}{JOKER(1)} = nostr
         ELSE IF level = 5 THEN
-          root{i0}{i1}{i2}{i3}{i4}{JOKER(1)} = JOKER(2)
+          root{i0}{i1}{i2}{i3}{i4}{JOKER(1)} = nostr
         ELSE IF level = 6 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{JOKER(1)} = JOKER(2)
+          root{i0}{i1}{i2}{i3}{i4}{i5}{JOKER(1)} = nostr
         ELSE IF level = 7 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{JOKER(1)} = JOKER(2)
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{JOKER(1)} = nostr
         ELSE IF level = 8 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{JOKER(1)} = JOKER(2)
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{JOKER(1)} = nostr
         ELSE IF level = 9 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{JOKER(1)} = JOKER(2)
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{JOKER(1)} = nostr
         END IF
       END IF
       jp += 1
@@ -264,6 +272,63 @@ SUB json2sba(json)
 
 END SUB
 
+SUB convert(jo)
+  LOCAL x
+
+  FOR x = 0 TO UBOUND(jo) STEP 2
+    IF TYPE(jo[x]) = 3 THEN
+
+    ELSE
+      out &= "\"" & jo[x] & "\":"
+    END IF
+    IF TYPE(jo[x + 1]) = 4 THEN
+      IF TYPE(jo[x + 1][0]) = 3 THEN
+        out &= "["
+      ELSE
+         out &= "{"
+      END IF
+      convert(jo[x + 1], i)
+      IF UBOUND(jo) = (x + 1) THEN
+        IF TYPE(jo[x + 1][0]) = 3 THEN
+          out &= "]"
+        ELSE
+          out &= "}"
+        END IF  
+      ELSE
+        IF TYPE(jo[x + 1][0]) = 3 THEN
+          out &= "],"
+        ELSE
+          out &= "},"
+        END IF
+      END IF
+    ELSE
+      IF UBOUND(jo) = (x + 1) THEN
+        IF ISINTEGER(jo[x + 1]) THEN
+          out &= jo[x + 1]
+        ELSE
+          out &= "\"" & jo[x + 1] & "\""
+        END IF
+      ELSE
+        IF ISINTEGER(jo[x + 1]) THEN
+          out &= jo[x + 1] & ","
+        ELSE
+          out &= "\"" & jo[x + 1] & "\","
+        END IF  
+      END IF
+    END IF
+  NEXT
+END SUB
+
+FUNCTION sba2json(sba)
+
+  out = "{"
+  convert(sba)
+  out &= "}"
+  
+  sba2json = out
+
+END FUNCTION
+  
 SUB sbadump(jo, i)
   LOCAL x, y
 
