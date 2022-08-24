@@ -52,48 +52,49 @@ SUB json2sba(json)
   LOCAL os, starset, jc, x, ls, kda, level, jp, idx, lp, root, tmp
   LOCAL i0, i1, i2, i3, i4, i5, i6, i7, i8, i9
 
-  os = ""
-  starset = 0
-  jc = 0
   instar = 0
+  ndp = ""
+  os = ""
+  jc = 1
 
   FOR x = 1 TO LEN(json)
+
     ls = MID(json, x, 1)
+
     IF ls = CHR(34) THEN
       IF instar = 1 THEN
-        instar = 0
+        IF MID(json, x -1, 1) = CHR(92) THEN
+          instar = 1
+        ELSE
+          instar = 0
+        END IF
       ELSE
         instar = 1
       END IF
     END IF
-
-    IF ls = "{" OR _
-       ls = "}" OR _
-       ls = "[" OR _
-       ls = "]" THEN
-      os &= ls
-      starset = 0
-    ELSE IF ls = "," AND instar = 0 THEN
+    IF instar = 0 THEN
+      IF ls = "{" OR _
+         ls = "}" OR _
+         ls = "[" OR _
+         ls = "]" OR _
+         ls = "," THEN
+  '      os &= ls
+        IF LEN(ndp) THEN
+          kda[jc] = ndp
+          os &= "*"
+          ndp = ""
+          jc += 1
+          starset = 0
+        END IF
         os &= ls
-        starset = 0
+      ELSE
+        ndp &= ls
+      END IF
     ELSE
-      IF starset = 0 THEN
-        os &= "*"
-        starset = 1
-        jc += 1
-      END IF
-      IF ls = "," THEN
-        json = LEFT(json, x - 1) & CHR(127) & MID(json, x + 1)
-      END IF
+      ndp &= ls
     END IF
-  NEXT
 
-  IF json LIKE os THEN
-    FOR x = 1 TO jc
-      kda[x] = JOKER(x)
-      kda[x] = REPLACE(kda[x], CHR(127), ",")
-    NEXT
-  END IF
+  NEXT
 
   level = 0
   jp =1
@@ -174,8 +175,8 @@ SUB json2sba(json)
           tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
         END IF
     ELSE IF MID(os, lp, 1) = "]" THEN
-      level -= 1
       idx[level] = 1
+      level -= 1
     ELSE IF MID(os, lp, 1) = "," THEN
 
     ELSE IF MID(os, lp, 1) = "*" THEN
@@ -236,9 +237,9 @@ SUB json2sba(json)
       ELSE IF kda[jp] LIKE "\"*\":*" THEN
         nostr = JOKER(2)
         IF UCASE(nostr) = "TRUE" THEN
-           nostr = -1
+           nostr = "true"
         ELSE IF UCASE(nostr) = "FALSE" THEN
-           nostr = 0
+           nostr = "false"
         ELSE
            nostr = VAL(JOKER(2))
         END IF
@@ -293,7 +294,7 @@ SUB convert(jo)
           out &= "]"
         ELSE
           out &= "}"
-        END IF  
+        END IF
       ELSE
         IF TYPE(jo[x + 1][0]) = 3 THEN
           out &= "],"
@@ -313,7 +314,7 @@ SUB convert(jo)
           out &= jo[x + 1] & ","
         ELSE
           out &= "\"" & jo[x + 1] & "\","
-        END IF  
+        END IF
       END IF
     END IF
   NEXT
@@ -324,11 +325,11 @@ FUNCTION sba2json(sba)
   out = "{"
   convert(sba)
   out &= "}"
-  
+
   sba2json = out
 
 END FUNCTION
-  
+
 SUB sbadump(jo, i)
   LOCAL x, y
 
