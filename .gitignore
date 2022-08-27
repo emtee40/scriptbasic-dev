@@ -59,6 +59,7 @@ variations/standalone/libscriba.h
 variations/standard/scribacmd.h
 extensions/cgi/cgi.h
 extensions/rpool.h
-
+errcodes.c
+errcodes.c
 
 
