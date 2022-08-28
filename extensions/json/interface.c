@@ -61,13 +61,13 @@ TO_BAS:
 TO_BAS:
 
 ' JSON TYPES
-CONST JSONError   = -1
-CONST JSONNull    = 1
-CONST JSONString  = 2
-CONST JSONNumber  = 3
-CONST JSONObject  = 4
-CONST JSONArray   = 5
-CONST JSONBoolean = 6
+CONST TYPEError   = -1
+CONST TYPENull    = 1
+CONST TYPEString  = 2
+CONST TYPENumber  = 3
+CONST TYPEObject  = 4
+CONST TYPEArray   = 5
+CONST TYPEBoolean = 6
  
 
 */
