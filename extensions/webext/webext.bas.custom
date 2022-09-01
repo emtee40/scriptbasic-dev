@@ -98,6 +98,21 @@ SUB mkarray(obj)
       ELSE IF level = 9 THEN
         i9 = oname
         tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
+      ELSE IF level = 10 THEN
+        i10 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}
+      ELSE IF level = 11 THEN
+        i11 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}
+      ELSE IF level = 12 THEN
+        i12 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}
+      ELSE IF level = 13 THEN
+        i13 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}
+      ELSE IF level = 14 THEN
+        i14 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}{i14}
       END IF
       arr = get(obj,oname)
       arr = getArray(arr)
@@ -133,6 +148,21 @@ SUB mkarray(obj)
       ELSE IF level = 9 THEN
         i9 = idx[level]
         tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
+      ELSE IF level = 10 THEN
+        i10 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}
+      ELSE IF level = 11 THEN
+        i11 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}
+      ELSE IF level = 12 THEN
+        i12 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}
+      ELSE IF level = 13 THEN
+        i13 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}
+      ELSE IF level = 14 THEN
+        i14 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}{i14}
       END IF
         level += 1
       FOR cnt = 0 TO count(arr) -1
@@ -165,6 +195,16 @@ SUB mkarray(obj)
           i8 = idx[level]
         ELSE IF level = 9 THEN
           i9 = idx[level]
+        ELSE IF level = 10 THEN
+          i10 = idx[level]
+        ELSE IF level = 11 THEN
+          i11 = idx[level]
+        ELSE IF level = 12 THEN
+          i12 = idx[level]
+        ELSE IF level = 13 THEN
+          i13 = idx[level]
+        ELSE IF level = 14 THEN
+          i14 = idx[level]
         END IF
         level += 1
       NEXT
@@ -200,6 +240,21 @@ SUB mkarray(obj)
       ELSE IF level = 9 THEN
         i9 = oname
         tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
+      ELSE IF level = 10 THEN
+        i10 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}
+      ELSE IF level = 11 THEN
+        i11 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}
+      ELSE IF level = 12 THEN
+        i12 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}
+      ELSE IF level = 13 THEN
+        i13 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}
+      ELSE IF level = 14 THEN
+        i14 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}{i14}
       END IF
       level += 1
       mkarray(tmpObj)
@@ -227,6 +282,16 @@ SUB mkarray(obj)
           root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{oname} = get(obj, oname)
         ELSE IF level = 9 THEN
           root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{oname} = get(obj, oname)
+        ELSE IF level = 10 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{oname} = get(obj, oname)
+        ELSE IF level = 11 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{oname} = get(obj, oname)
+        ELSE IF level = 12 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{oname} = get(obj, oname)
+        ELSE IF level = 13 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{oname} = get(obj, oname)
+        ELSE IF level = 14 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}{oname} = get(obj, oname)
         END IF
       ELSE
         ' Numeric or Boolean data
@@ -259,6 +324,16 @@ SUB mkarray(obj)
           root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{oname} = nostr
         ELSE IF level = 9 THEN
           root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{oname} = nostr
+        ELSE IF level = 10 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{oname} = nostr
+        ELSE IF level = 11 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{oname} = nostr
+        ELSE IF level = 12 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{oname} = nostr
+        ELSE IF level = 13 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{oname} = nostr
+        ELSE IF level = 14 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}{oname} = nostr
         END IF
       END IF
     END IF
@@ -279,6 +354,11 @@ idx[6] = 1
 idx[7] = 1
 idx[8] = 1
 idx[9] = 1
+idx[10] = 1
+idx[11] = 1
+idx[12] = 1
+idx[13] = 1
+idx[14] = 1
 
 json_obj = loadstr(json)
 mkarray(json_obj)
@@ -323,9 +403,9 @@ SUB convert(jo)
           out &= FORMAT("%g",jo[x + 1])
         ELSE IF jo[x + 1] <> UNDEF THEN
           IF jo[x + 1] = "TRUE" THEN
-            out &= "true,"
+            out &= "true"
           ELSE IF jo[x + 1] = "FALSE" THEN
-            out &= "false,"
+            out &= "false"
           ELSE
             out &= "\"" & jo[x + 1] & "\""
           END IF
