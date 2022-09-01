@@ -1,11 +1,21 @@
-' WebExt Functions
+' WebExt Functions - John Spikowski
 
 MODULE WEB
 
 DECLARE SUB ::base64_encode ALIAS "base64_encode" LIB "webext"
 DECLARE SUB ::base64_decode ALIAS "base64_decode" LIB "webext"
-DECLARE SUB ::hmacsha256 ALIAS "hmacsha256" LIB "webext"
-DECLARE SUB ::LoadString ALIAS "loadstring" LIB "t"
+DECLARE SUB ::hmacsha256    ALIAS "hmacsha256"    LIB "webext"
+DECLARE SUB ::LoadString    ALIAS "loadstring"    LIB "t"
+DECLARE SUB loadstr         ALIAS "loadstr"       lib "json"
+DECLARE SUB loadfile        ALIAS "loadfile"      LIB "json"
+DECLARE SUB count           ALIAS "count"         LIB "json"
+DECLARE SUB getName         ALIAS "getName"       LIB "json"
+DECLARE SUB getObject       ALIAS "getobject"     LIB "json"
+DECLARE SUB objtype         ALIAS "type"          LIB "json"
+DECLARE SUB get             ALIAS "get"           LIB "json"
+DECLARE SUB getArray        ALIAS "getArray"      LIB "json"
+
+
 
 FUNCTION Bin2Hex(AsciiStr)
   LOCAL AsciiLen,ScanPos,HexStr
@@ -48,237 +58,242 @@ FUNCTION MATCH(index)
   MATCH = JOKER(index)
 END FUNCTION
 
-SUB json2sba(json)
-  LOCAL os, starset, jc, x, ls, kda, level, jp, idx, lp, root, tmp
-  LOCAL i0, i1, i2, i3, i4, i5, i6, i7, i8, i9
 
-  instar = 0
-  ndp = ""
-  os = ""
-  jc = 1
+SUB mkarray(obj)
 
-  FOR x = 1 TO LEN(json)
+  LOCAL arr, objArray, tmpObj, oname, j, cnt, jType, dType
 
-    ls = MID(json, x, 1)
-
-    IF ls = CHR(34) THEN
-      IF instar = 1 THEN
-        IF MID(json, x -1, 1) = CHR(92) THEN
-          instar = 1
+  FOR j = 0 TO count(obj) -1
+    oname = getName(obj,j)
+    tmpObj = getObject(obj, j)
+    jType = objtype(obj,j)
+    IF jType = 5 THEN
+    ' Array
+      IF level = 0 THEN
+        i0 = oname
+      ELSE IF level = 1 THEN
+        i1 = oname
+        tmp = root{i0}{i1}
+      ELSE IF level = 2 THEN
+        i2 = oname
+        tmp = root{i0}{i1}{i2}
+      ELSE IF level = 3 THEN
+        i3 = oname
+        tmp = root{i0}{i1}{i2}{i3}
+      ELSE IF level = 4 THEN
+        i4 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}
+      ELSE IF level = 5 THEN
+        i5 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}
+      ELSE IF level = 6 THEN
+        i6 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}
+      ELSE IF level = 7 THEN
+        i7 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}
+      ELSE IF level = 8 THEN
+        i8 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
+      ELSE IF level = 9 THEN
+        i9 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
+      END IF
+      arr = get(obj,oname)
+      arr = getArray(arr)
+      ' Create new array
+      level += 1
+      IF level = 0 THEN
+        i0 = idx[level]
+        tmp = root{io}
+      ELSE IF level = 1 THEN
+        i1 = idx[level]
+        tmp = root{i0}{i1}
+      ELSE IF level = 2 THEN
+        i2 = idx[level]
+        tmp = root{i0}{i1}{i2}
+      ELSE IF level = 3 THEN
+        i3 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}
+      ELSE IF level = 4 THEN
+        i4 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}
+      ELSE IF level = 5 THEN
+        i5 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}
+      ELSE IF level = 6 THEN
+        i6 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}
+      ELSE IF level = 7 THEN
+        i7 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}
+      ELSE IF level = 8 THEN
+        i8 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
+      ELSE IF level = 9 THEN
+        i9 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
+      END IF
+        level += 1
+      FOR cnt = 0 TO count(arr) -1
+        objArray = getObject(arr,cnt)
+        ' Update array index count
+        mkarray(objArray)
+        level -= 1
+        IF cnt = count(arr) -1 THEN
+          idx[level] = 1
         ELSE
-          instar = 0
+          idx[level] += 1
         END IF
-      ELSE
-        instar = 1
-      END IF
-    END IF
-    IF instar = 0 THEN
-      IF ls = "{" OR _
-         ls = "}" OR _
-         ls = "[" OR _
-         ls = "]" OR _
-         ls = "," THEN
-  '      os &= ls
-        IF LEN(ndp) THEN
-          kda[jc] = ndp
-          os &= "*"
-          ndp = ""
-          jc += 1
-          starset = 0
+        IF level = 0 THEN
+          i0 = idx[level]
+        ELSE IF level = 1 THEN
+          i1 = idx[level]
+        ELSE IF level = 2 THEN
+          i2 = idx[level]
+        ELSE IF level = 3 THEN
+          i3 = idx[level]
+        ELSE IF level = 4 THEN
+          i4 = idx[level]
+        ELSE IF level = 5 THEN
+          i5 = idx[level]
+        ELSE IF level = 6 THEN
+          i6 = idx[level]
+        ELSE IF level = 7 THEN
+          i7 = idx[level]
+        ELSE IF level = 8 THEN
+          i8 = idx[level]
+        ELSE IF level = 9 THEN
+          i9 = idx[level]
         END IF
-        os &= ls
-      ELSE
-        ndp &= ls
+        level += 1
+      NEXT
+      level -= 2
+    ELSE IF jType = 4 THEN
+      ' Object - Child definition (name only)
+      IF level = 0 THEN
+        i0 = oname
+      ELSE IF level = 1 THEN
+        i1 = oname
+        tmp = root{i0}{i1}
+      ELSE IF level = 2 THEN
+        i2 = oname
+        tmp = root{i0}{i1}{i2}
+      ELSE IF level = 3 THEN
+        i3 = oname
+        tmp = root{i0}{i1}{i2}{i3}
+      ELSE IF level = 4 THEN
+        i4 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}
+      ELSE IF level = 5 THEN
+        i5 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}
+      ELSE IF level = 6 THEN
+        i6 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}
+      ELSE IF level = 7 THEN
+        i7 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}
+      ELSE IF level = 8 THEN
+        i8 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
+      ELSE IF level = 9 THEN
+        i9 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
       END IF
+      level += 1
+      mkarray(tmpObj)
+      level -= 1
     ELSE
-      ndp &= ls
-    END IF
-
-  NEXT
-
-  level = 0
-  jp =1
-  idx[0] = 1
-  idx[1] = 1
-  idx[2] = 1
-  idx[3] = 1
-  idx[4] = 1
-  idx[5] = 1
-  idx[6] = 1
-  idx[7] = 1
-  idx[8] = 1
-  idx[9] = 1
-
-  os = MID(os, 2, LEN(os) - 2)
-
-  FOR lp = 1 TO LEN(os)
-    os_chr = MID(os, lp, 1)
-    IF MID(os, lp, 1) = "{" THEN
-      level += 1
-    ELSE IF MID(os, lp, 1) = "}" THEN
-      level -= 1
-      IF MID(os, lp, 3) = "},{" THEN
-        idx[level] += 1
+      IF objtype(obj,j) = 2 THEN
+        ' Quoted data
         IF level = 0 THEN
-          i0 = idx[level]
+          root{oname} = get(obj, oname)
         ELSE IF level = 1 THEN
-          i1 = idx[level]
+          root{i0}{oname} = get(obj, oname)
         ELSE IF level = 2 THEN
-          i2 = idx[level]
+          root{i0}{i1}{oname} = get(obj, oname)
         ELSE IF level = 3 THEN
-          i3 = idx[level]
+          root{i0}{i1}{i2}{oname} = get(obj, oname)
         ELSE IF level = 4 THEN
-          i4 = idx[level]
+          root{i0}{i1}{i2}{i3}{oname} = get(obj, oname)
         ELSE IF level = 5 THEN
-          i5 = idx[level]
+          root{i0}{i1}{i2}{i3}{i4}{oname} = get(obj, oname)
         ELSE IF level = 6 THEN
-          i6 = idx[level]
+          root{i0}{i1}{i2}{i3}{i4}{i5}{oname} = get(obj, oname)
         ELSE IF level = 7 THEN
-          i7 = idx[level]
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{oname} = get(obj, oname)
         ELSE IF level = 8 THEN
-          i8 = idx[level]
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{oname} = get(obj, oname)
         ELSE IF level = 9 THEN
-          i9 = idx[level]
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{oname} = get(obj, oname)
         END IF
-      END IF
-    ELSE IF MID(os, lp, 1) = "[" THEN
-      level += 1
-        IF level = 0 THEN
-          i0 = idx[level]
-          tmp = root{io}
-        ELSE IF level = 1 THEN
-          i1 = idx[level]
-          tmp = root{i0}{i1}
-        ELSE IF level = 2 THEN
-          i2 = idx[level]
-          tmp = root{i0}{i1}{i2}
-        ELSE IF level = 3 THEN
-          i3 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}
-        ELSE IF level = 4 THEN
-          i4 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}{i4}
-        ELSE IF level = 5 THEN
-          i5 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}
-        ELSE IF level = 6 THEN
-          i6 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}
-        ELSE IF level = 7 THEN
-          i7 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}
-        ELSE IF level = 8 THEN
-          i8 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
-        ELSE IF level = 9 THEN
-          i9 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
-        END IF
-    ELSE IF MID(os, lp, 1) = "]" THEN
-      idx[level] = 1
-      level -= 1
-    ELSE IF MID(os, lp, 1) = "," THEN
-
-    ELSE IF MID(os, lp, 1) = "*" THEN
-      IF kda[jp] LIKE "\"*\":" THEN
-        IF level = 0 THEN
-          i0 = JOKER(1)
-        ELSE IF level = 1 THEN
-          i1 = JOKER(1)
-          tmp = root{i0}{i1}
-        ELSE IF level = 2 THEN
-          i2 = JOKER(1)
-          tmp = root{i0}{i1}{i2}
-        ELSE IF level = 3 THEN
-          i3 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}
-        ELSE IF level = 4 THEN
-          i4 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}{i4}
-        ELSE IF level = 5 THEN
-          i5 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}
-        ELSE IF level = 6 THEN
-          i6 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}
-        ELSE IF level = 7 THEN
-          i7 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}
-        ELSE IF level = 8 THEN
-          i8 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
-        ELSE IF level = 9 THEN
-          i9 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
-        END IF
-      END IF
-      IF kda[jp] LIKE "\"*\":\"*\"" THEN
-        IF level = 0 THEN
-          root{JOKER(1)} = JOKER(2)
-        ELSE IF level = 1 THEN
-          root{i0}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 2 THEN
-          root{i0}{i1}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 3 THEN
-          root{i0}{i1}{i2}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 4 THEN
-          root{i0}{i1}{i2}{i3}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 5 THEN
-          root{i0}{i1}{i2}{i3}{i4}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 6 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 7 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 8 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 9 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{JOKER(1)} = JOKER(2)
-        END IF
-      ELSE IF kda[jp] LIKE "\"*\":*" THEN
-        nostr = JOKER(2)
-        IF UCASE(nostr) = "TRUE" THEN
-           nostr = "true"
-        ELSE IF UCASE(nostr) = "FALSE" THEN
-           nostr = "false"
+      ELSE
+        ' Numeric or Boolean data
+        IF objtype(obj,j) = 6 THEN
+          IF get(obj, oname) = 0 THEN
+            nostr = "FALSE"
+          ELSE
+            nostr = "TRUE"
+          END IF
         ELSE
-           nostr = VAL(JOKER(2))
+          nostr = VAL(get(obj, oname))
         END IF
         IF level = 0 THEN
-          root{JOKER(1)} = nostr
+          root{oname} = nostr
         ELSE IF level = 1 THEN
-          root{i0}{JOKER(1)} = nostr
+          root{i0}{oname} = nostr
         ELSE IF level = 2 THEN
-          root{i0}{i1}{JOKER(1)} = nostr
+          root{i0}{i1}{oname} = nostr
         ELSE IF level = 3 THEN
-          root{i0}{i1}{i2}{JOKER(1)} = nostr
+          root{i0}{i1}{i2}{oname} = nostr
         ELSE IF level = 4 THEN
-          root{i0}{i1}{i2}{i3}{JOKER(1)} = nostr
+          root{i0}{i1}{i2}{i3}{oname} = nostr
         ELSE IF level = 5 THEN
-          root{i0}{i1}{i2}{i3}{i4}{JOKER(1)} = nostr
+          root{i0}{i1}{i2}{i3}{i4}{oname} = nostr
         ELSE IF level = 6 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{JOKER(1)} = nostr
+          root{i0}{i1}{i2}{i3}{i4}{i5}{oname} = nostr
         ELSE IF level = 7 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{JOKER(1)} = nostr
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{oname} = nostr
         ELSE IF level = 8 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{JOKER(1)} = nostr
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{oname} = nostr
         ELSE IF level = 9 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{JOKER(1)} = nostr
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{oname} = nostr
         END IF
       END IF
-      jp += 1
     END IF
   NEXT
-
-  json = root
 
 END SUB
+
+SUB json2sba(json)
+
+level = 0
+idx[0] = 1
+idx[1] = 1
+idx[2] = 1
+idx[3] = 1
+idx[4] = 1
+idx[5] = 1
+idx[6] = 1
+idx[7] = 1
+idx[8] = 1
+idx[9] = 1
+
+json_obj = loadstr(json)
+mkarray(json_obj)
+json = root
+
+END SUB
+
 
 SUB convert(jo)
   LOCAL x
 
   FOR x = 0 TO UBOUND(jo) STEP 2
-    IF TYPE(jo[x]) = 3 THEN
 
+    IF TYPE(jo[x]) = 3 THEN
+      ' Array
     ELSE
       out &= "\"" & jo[x] & "\":"
     END IF
@@ -304,16 +319,34 @@ SUB convert(jo)
       END IF
     ELSE
       IF UBOUND(jo) = (x + 1) THEN
-        IF ISINTEGER(jo[x + 1]) THEN
-          out &= jo[x + 1]
+        IF ISNUMERIC(jo[x + 1]) THEN
+          out &= FORMAT("%g",jo[x + 1])
+        ELSE IF jo[x + 1] <> UNDEF THEN
+          IF jo[x + 1] = "TRUE" THEN
+            out &= "true,"
+          ELSE IF jo[x + 1] = "FALSE" THEN
+            out &= "false,"
+          ELSE
+            out &= "\"" & jo[x + 1] & "\""
+          END IF
         ELSE
-          out &= "\"" & jo[x + 1] & "\""
+          IF TYPE(jo[x]) <> 3 THEN
+            out &= "{}"
+          END IF
         END IF
       ELSE
-        IF ISINTEGER(jo[x + 1]) THEN
-          out &= jo[x + 1] & ","
+        IF ISNUMERIC(jo[x + 1]) THEN
+          out &= FORMAT("%g",jo[x + 1]) & ","
+        ELSE IF jo[x + 1] <> UNDEF THEN
+          IF jo[x + 1] = "TRUE" THEN
+            out &= "true,"
+          ELSE IF jo[x + 1] = "FALSE" THEN
+            out &= "false,"
+          ELSE
+            out &= "\"" & jo[x + 1] & "\","
+          END IF
         ELSE
-          out &= "\"" & jo[x + 1] & "\","
+          out &= "{},"
         END IF
       END IF
     END IF
