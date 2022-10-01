@@ -57,7 +57,20 @@ COMPILATION
 
 TO_BAS:
 */
+/*
+TO_BAS:
 
+' JSON TYPES
+CONST TYPEError   = -1
+CONST TYPENull    = 1
+CONST TYPEString  = 2
+CONST TYPENumber  = 3
+CONST TYPEObject  = 4
+CONST TYPEArray   = 5
+CONST TYPEBoolean = 6
+ 
+
+*/
 /*
 *TODO*
 DECLARE HERE THE MODULE OBJECT TYPE. THIS STRUCTURE SHOULD HOLD THE
@@ -461,7 +474,7 @@ Returns new json array object
 */
 besFUNCTION(newArray)
   pModuleObject p;
-  JSON_Array *obj;
+  JSON_Value *obj;
 
 
 
@@ -580,9 +593,14 @@ besFUNCTION(addarray)
   besARGEND
 
   arr2 = json_value_get_array(arr);
-
+  
   tmpArrVal = json_object_get_wrapping_value(avalue);
-  json_array_append_value(arr2,tmpArrVal);
+  //~ printf("%d\n", json_value_get_type(tmpArrVal));
+  if (arr2){
+	json_array_append_value(arr2,tmpArrVal);
+  }else{
+	json_array_append_value(arr,tmpArrVal);
+  }
 
 
   //~ besRETURN_POINTER(obj);

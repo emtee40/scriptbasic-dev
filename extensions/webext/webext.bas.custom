@@ -1,11 +1,21 @@
-' WebExt Functions
+' WebExt Functions - John Spikowski
 
 MODULE WEB
 
 DECLARE SUB ::base64_encode ALIAS "base64_encode" LIB "webext"
 DECLARE SUB ::base64_decode ALIAS "base64_decode" LIB "webext"
-DECLARE SUB ::hmacsha256 ALIAS "hmacsha256" LIB "webext"
-DECLARE SUB ::LoadString ALIAS "loadstring" LIB "t"
+DECLARE SUB ::hmacsha256    ALIAS "hmacsha256"    LIB "webext"
+DECLARE SUB ::LoadString    ALIAS "loadstring"    LIB "t"
+DECLARE SUB loadstr         ALIAS "loadstr"       lib "json"
+DECLARE SUB loadfile        ALIAS "loadfile"      LIB "json"
+DECLARE SUB count           ALIAS "count"         LIB "json"
+DECLARE SUB getName         ALIAS "getName"       LIB "json"
+DECLARE SUB getObject       ALIAS "getobject"     LIB "json"
+DECLARE SUB objtype         ALIAS "type"          LIB "json"
+DECLARE SUB get             ALIAS "get"           LIB "json"
+DECLARE SUB getArray        ALIAS "getArray"      LIB "json"
+
+
 
 FUNCTION Bin2Hex(AsciiStr)
   LOCAL AsciiLen,ScanPos,HexStr
@@ -48,221 +58,390 @@ FUNCTION MATCH(index)
   MATCH = JOKER(index)
 END FUNCTION
 
-SUB json2sba(json)
-  LOCAL os, starset, jc, x, ls, kda, level, jp, idx, lp, root, tmp
-  LOCAL i0, i1, i2, i3, i4, i5, i6, i7, i8, i9
 
-  os = ""
-  starset = 0
-  jc = 0
-  instar = 0
+SUB mkarray(obj)
 
-  FOR x = 1 TO LEN(json)
-    ls = MID(json, x, 1)
-    IF ls = CHR(34) THEN
-      IF instar = 1 THEN
-        instar = 0
-      ELSE
-        instar = 1
+  LOCAL arr, objArray, tmpObj, oname, j, cnt, jType, dType
+
+  FOR j = 0 TO count(obj) -1
+    oname = getName(obj,j)
+    tmpObj = getObject(obj, j)
+    jType = objtype(obj,j)
+    IF jType = 5 THEN
+    ' Array
+      IF level = 0 THEN
+        i0 = oname
+      ELSE IF level = 1 THEN
+        i1 = oname
+        tmp = root{i0}{i1}
+      ELSE IF level = 2 THEN
+        i2 = oname
+        tmp = root{i0}{i1}{i2}
+      ELSE IF level = 3 THEN
+        i3 = oname
+        tmp = root{i0}{i1}{i2}{i3}
+      ELSE IF level = 4 THEN
+        i4 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}
+      ELSE IF level = 5 THEN
+        i5 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}
+      ELSE IF level = 6 THEN
+        i6 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}
+      ELSE IF level = 7 THEN
+        i7 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}
+      ELSE IF level = 8 THEN
+        i8 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
+      ELSE IF level = 9 THEN
+        i9 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
+      ELSE IF level = 10 THEN
+        i10 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}
+      ELSE IF level = 11 THEN
+        i11 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}
+      ELSE IF level = 12 THEN
+        i12 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}
+      ELSE IF level = 13 THEN
+        i13 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}
+      ELSE IF level = 14 THEN
+        i14 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}{i14}
       END IF
-    END IF
-
-    IF ls = "{" OR _
-       ls = "}" OR _
-       ls = "[" OR _
-       ls = "]" THEN
-      os &= ls
-      starset = 0
-    ELSE IF ls = "," AND instar = 0 THEN
-        os &= ls
-        starset = 0
-    ELSE
-      IF starset = 0 THEN
-        os &= "*"
-        starset = 1
-        jc += 1
-      END IF
-      IF ls = "," THEN
-        json = LEFT(json, x - 1) & CHR(127) & MID(json, x + 1)
-      END IF
-    END IF
-  NEXT
-
-  IF json LIKE os THEN
-    FOR x = 1 TO jc
-      kda[x] = JOKER(x)
-      kda[x] = REPLACE(kda[x], CHR(127), ",")
-    NEXT
-  END IF
-
-  level = 0
-  jp =1
-  idx[0] = 1
-  idx[1] = 1
-  idx[2] = 1
-  idx[3] = 1
-  idx[4] = 1
-  idx[5] = 1
-  idx[6] = 1
-  idx[7] = 1
-  idx[8] = 1
-  idx[9] = 1
-
-  os = MID(os, 2, LEN(os) - 2)
-
-  FOR lp = 1 TO LEN(os)
-    os_chr = MID(os, lp, 1)
-    IF MID(os, lp, 1) = "{" THEN
+      arr = get(obj,oname)
+      arr = getArray(arr)
+      ' Create new array
       level += 1
-    ELSE IF MID(os, lp, 1) = "}" THEN
-      level -= 1
-      IF MID(os, lp, 3) = "},{" THEN
-        idx[level] += 1
-        IF level = 0 THEN
-          i0 = idx[level]
-        ELSE IF level = 1 THEN
-          i1 = idx[level]
-        ELSE IF level = 2 THEN
-          i2 = idx[level]
-        ELSE IF level = 3 THEN
-          i3 =idx[level]
-        ELSE IF level = 4 THEN
-          i4 = idx[level]
-        ELSE IF level = 5 THEN
-          i5 = idx[level]
-        ELSE IF level = 6 THEN
-          i6 = idx[level]
-        ELSE IF level = 7 THEN
-          i7 = idx[level]
-        ELSE IF level = 8 THEN
-          i8 = idx[level]
-        ELSE IF level = 9 THEN
-          i9 = idx[level]
+      IF level = 0 THEN
+        i0 = idx[level]
+        tmp = root{io}
+      ELSE IF level = 1 THEN
+        i1 = idx[level]
+        tmp = root{i0}{i1}
+      ELSE IF level = 2 THEN
+        i2 = idx[level]
+        tmp = root{i0}{i1}{i2}
+      ELSE IF level = 3 THEN
+        i3 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}
+      ELSE IF level = 4 THEN
+        i4 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}
+      ELSE IF level = 5 THEN
+        i5 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}
+      ELSE IF level = 6 THEN
+        i6 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}
+      ELSE IF level = 7 THEN
+        i7 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}
+      ELSE IF level = 8 THEN
+        i8 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
+      ELSE IF level = 9 THEN
+        i9 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
+      ELSE IF level = 10 THEN
+        i10 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}
+      ELSE IF level = 11 THEN
+        i11 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}
+      ELSE IF level = 12 THEN
+        i12 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}
+      ELSE IF level = 13 THEN
+        i13 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}
+      ELSE IF level = 14 THEN
+        i14 = idx[level]
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}{i14}
+      END IF
+        level += 1
+      FOR cnt = 0 TO count(arr) -1
+        objArray = getObject(arr,cnt)
+        ' Update array index count
+        mkarray(objArray)
+        level -= 1
+        IF cnt = count(arr) -1 THEN
+          idx[level] = 1
+        ELSE
+          idx[level] += 1
         END IF
-      END IF
-    ELSE IF MID(os, lp, 1) = "[" THEN
-      level += 1
         IF level = 0 THEN
           i0 = idx[level]
-          tmp = root{io}
         ELSE IF level = 1 THEN
           i1 = idx[level]
-          tmp = root{i0}{i1}
         ELSE IF level = 2 THEN
           i2 = idx[level]
-          tmp = root{i0}{i1}{i2}
         ELSE IF level = 3 THEN
           i3 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}
         ELSE IF level = 4 THEN
           i4 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}{i4}
         ELSE IF level = 5 THEN
           i5 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}
         ELSE IF level = 6 THEN
           i6 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}
         ELSE IF level = 7 THEN
           i7 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}
         ELSE IF level = 8 THEN
           i8 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
         ELSE IF level = 9 THEN
           i9 = idx[level]
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
+        ELSE IF level = 10 THEN
+          i10 = idx[level]
+        ELSE IF level = 11 THEN
+          i11 = idx[level]
+        ELSE IF level = 12 THEN
+          i12 = idx[level]
+        ELSE IF level = 13 THEN
+          i13 = idx[level]
+        ELSE IF level = 14 THEN
+          i14 = idx[level]
         END IF
-    ELSE IF MID(os, lp, 1) = "]" THEN
+        level += 1
+      NEXT
+      level -= 2
+    ELSE IF jType = 4 THEN
+      ' Object - Child definition (name only)
+      IF level = 0 THEN
+        i0 = oname
+      ELSE IF level = 1 THEN
+        i1 = oname
+        tmp = root{i0}{i1}
+      ELSE IF level = 2 THEN
+        i2 = oname
+        tmp = root{i0}{i1}{i2}
+      ELSE IF level = 3 THEN
+        i3 = oname
+        tmp = root{i0}{i1}{i2}{i3}
+      ELSE IF level = 4 THEN
+        i4 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}
+      ELSE IF level = 5 THEN
+        i5 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}
+      ELSE IF level = 6 THEN
+        i6 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}
+      ELSE IF level = 7 THEN
+        i7 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}
+      ELSE IF level = 8 THEN
+        i8 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
+      ELSE IF level = 9 THEN
+        i9 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}
+      ELSE IF level = 10 THEN
+        i10 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}
+      ELSE IF level = 11 THEN
+        i11 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}
+      ELSE IF level = 12 THEN
+        i12 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}
+      ELSE IF level = 13 THEN
+        i13 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}
+      ELSE IF level = 14 THEN
+        i14 = oname
+        tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}{i14}
+      END IF
+      level += 1
+      mkarray(tmpObj)
       level -= 1
-      idx[level] = 1
-    ELSE IF MID(os, lp, 1) = "," THEN
-
-    ELSE IF MID(os, lp, 1) = "*" THEN
-      IF kda[jp] LIKE "\"*\":" THEN
+    ELSE
+      IF objtype(obj,j) = 2 THEN
+        ' Quoted data
         IF level = 0 THEN
-          i0 = JOKER(1)
+          root{oname} = get(obj, oname)
         ELSE IF level = 1 THEN
-          i1 = JOKER(1)
-          tmp = root{i0}{i1}
+          root{i0}{oname} = get(obj, oname)
         ELSE IF level = 2 THEN
-          i2 = JOKER(1)
-          tmp = root{i0}{i1}{i2}
+          root{i0}{i1}{oname} = get(obj, oname)
         ELSE IF level = 3 THEN
-          i3 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}
+          root{i0}{i1}{i2}{oname} = get(obj, oname)
         ELSE IF level = 4 THEN
-          i4 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}{i4}
+          root{i0}{i1}{i2}{i3}{oname} = get(obj, oname)
         ELSE IF level = 5 THEN
-          i5 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}
+          root{i0}{i1}{i2}{i3}{i4}{oname} = get(obj, oname)
         ELSE IF level = 6 THEN
-          i6 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}
+          root{i0}{i1}{i2}{i3}{i4}{i5}{oname} = get(obj, oname)
         ELSE IF level = 7 THEN
-          i7 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{oname} = get(obj, oname)
         ELSE IF level = 8 THEN
-          i8 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{oname} = get(obj, oname)
         ELSE IF level = 9 THEN
-          i9 = JOKER(1)
-          tmp = root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{oname} = get(obj, oname)
+        ELSE IF level = 10 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{oname} = get(obj, oname)
+        ELSE IF level = 11 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{oname} = get(obj, oname)
+        ELSE IF level = 12 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{oname} = get(obj, oname)
+        ELSE IF level = 13 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{oname} = get(obj, oname)
+        ELSE IF level = 14 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}{oname} = get(obj, oname)
+        END IF
+      ELSE
+        ' Numeric or Boolean data
+        IF objtype(obj,j) = 6 THEN
+          IF get(obj, oname) = 0 THEN
+            nostr = "FALSE"
+          ELSE
+            nostr = "TRUE"
+          END IF
+        ELSE
+          nostr = VAL(get(obj, oname))
+        END IF
+        IF level = 0 THEN
+          root{oname} = nostr
+        ELSE IF level = 1 THEN
+          root{i0}{oname} = nostr
+        ELSE IF level = 2 THEN
+          root{i0}{i1}{oname} = nostr
+        ELSE IF level = 3 THEN
+          root{i0}{i1}{i2}{oname} = nostr
+        ELSE IF level = 4 THEN
+          root{i0}{i1}{i2}{i3}{oname} = nostr
+        ELSE IF level = 5 THEN
+          root{i0}{i1}{i2}{i3}{i4}{oname} = nostr
+        ELSE IF level = 6 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{oname} = nostr
+        ELSE IF level = 7 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{oname} = nostr
+        ELSE IF level = 8 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{oname} = nostr
+        ELSE IF level = 9 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{oname} = nostr
+        ELSE IF level = 10 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{oname} = nostr
+        ELSE IF level = 11 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{oname} = nostr
+        ELSE IF level = 12 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{oname} = nostr
+        ELSE IF level = 13 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{oname} = nostr
+        ELSE IF level = 14 THEN
+          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{i9}{i10}{i11}{i12}{i13}{oname} = nostr
         END IF
       END IF
-      IF kda[jp] LIKE "\"*\":\"*\"" THEN
-        IF level = 0 THEN
-          root{JOKER(1)} = JOKER(2)
-        ELSE IF level = 1 THEN
-          root{i0}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 2 THEN
-          root{i0}{i1}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 3 THEN
-          root{i0}{i1}{i2}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 4 THEN
-          root{i0}{i1}{i2}{i3}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 5 THEN
-          root{i0}{i1}{i2}{i3}{i4}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 6 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 7 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 8 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 9 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{JOKER(1)} = JOKER(2)
-        END IF
-      ELSE IF kda[jp] LIKE "\"*\":*" THEN
-        IF level = 0 THEN
-          root{JOKER(1)} = JOKER(2)
-        ELSE IF level = 1 THEN
-          root{i0}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 2 THEN
-          root{i0}{i1}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 3 THEN
-          root{i0}{i1}{i2}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 4 THEN
-          root{i0}{i1}{i2}{i3}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 5 THEN
-          root{i0}{i1}{i2}{i3}{i4}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 6 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 7 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 8 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{JOKER(1)} = JOKER(2)
-        ELSE IF level = 9 THEN
-          root{i0}{i1}{i2}{i3}{i4}{i5}{i6}{i7}{i8}{JOKER(1)} = JOKER(2)
-        END IF
-      END IF
-      jp += 1
     END IF
   NEXT
 
-  json = root
+END SUB
+
+SUB json2sba(json)
+
+level = 0
+idx[0] = 1
+idx[1] = 1
+idx[2] = 1
+idx[3] = 1
+idx[4] = 1
+idx[5] = 1
+idx[6] = 1
+idx[7] = 1
+idx[8] = 1
+idx[9] = 1
+idx[10] = 1
+idx[11] = 1
+idx[12] = 1
+idx[13] = 1
+idx[14] = 1
+
+json_obj = loadstr(json)
+mkarray(json_obj)
+json = root
 
 END SUB
+
+
+SUB convert(jo)
+  LOCAL x
+
+  FOR x = 0 TO UBOUND(jo) STEP 2
+
+    IF TYPE(jo[x]) = 3 THEN
+      ' Array
+    ELSE
+      out &= "\"" & jo[x] & "\":"
+    END IF
+    IF TYPE(jo[x + 1]) = 4 THEN
+      IF TYPE(jo[x + 1][0]) = 3 THEN
+        out &= "["
+      ELSE
+         out &= "{"
+      END IF
+      convert(jo[x + 1], i)
+      IF UBOUND(jo) = (x + 1) THEN
+        IF TYPE(jo[x + 1][0]) = 3 THEN
+          out &= "]"
+        ELSE
+          out &= "}"
+        END IF
+      ELSE
+        IF TYPE(jo[x + 1][0]) = 3 THEN
+          out &= "],"
+        ELSE
+          out &= "},"
+        END IF
+      END IF
+    ELSE
+      IF UBOUND(jo) = (x + 1) THEN
+        IF ISNUMERIC(jo[x + 1]) THEN
+          out &= FORMAT("%g",jo[x + 1])
+        ELSE IF jo[x + 1] <> UNDEF THEN
+          IF jo[x + 1] = "TRUE" THEN
+            out &= "true"
+          ELSE IF jo[x + 1] = "FALSE" THEN
+            out &= "false"
+          ELSE
+            out &= "\"" & jo[x + 1] & "\""
+          END IF
+        ELSE
+          IF TYPE(jo[x]) <> 3 THEN
+            out &= "{}"
+          END IF
+        END IF
+      ELSE
+        IF ISNUMERIC(jo[x + 1]) THEN
+          out &= FORMAT("%g",jo[x + 1]) & ","
+        ELSE IF jo[x + 1] <> UNDEF THEN
+          IF jo[x + 1] = "TRUE" THEN
+            out &= "true,"
+          ELSE IF jo[x + 1] = "FALSE" THEN
+            out &= "false,"
+          ELSE
+            out &= "\"" & jo[x + 1] & "\","
+          END IF
+        ELSE
+          out &= "{},"
+        END IF
+      END IF
+    END IF
+  NEXT
+END SUB
+
+FUNCTION sba2json(sba)
+
+  out = "{"
+  convert(sba)
+  out &= "}"
+
+  sba2json = out
+
+END FUNCTION
 
 SUB sbadump(jo, i)
   LOCAL x, y
