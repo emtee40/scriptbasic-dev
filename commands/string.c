@@ -199,7 +199,7 @@ NOTIMPLEMENTED;
 
   NODE nItem;
   VARIABLE Op1;
-  char *r;
+  char *r, *s;
   unsigned long lLen;
 
   /* this is an operator and not a command, therefore we do not have our own mortal list */
@@ -212,16 +212,19 @@ NOTIMPLEMENTED;
   if( memory_IsUndef(Op1) ){
     RESULT = NULL;
     RETURN;
-    }
+  }
+
   Op1 = CONVERT2STRING(Op1);
-  RESULT = Op1;
-  r = STRINGVALUE(RESULT);
-  lLen = STRLEN(RESULT);
+  r = STRINGVALUE(Op1);
+  lLen = STRLEN(Op1);
+
+  RESULT = NEWMORTALSTRING(lLen);
+  ASSERTNULL(RESULT)
+  s = STRINGVALUE(RESULT);
 
   while( lLen-- ){
-    if( islower( *r ) )*r = toupper( *r );
-    r++;
-    }
+    *s++ = toupper(*r++);
+  }
 
 #endif
 END
@@ -240,7 +243,7 @@ NOTIMPLEMENTED;
 
   NODE nItem;
   VARIABLE Op1;
-  char *r;
+  char *r, *s;
   unsigned long lLen;
 
   /* this is an operator and not a command, therefore we do not have our own mortal list */
@@ -253,16 +256,19 @@ NOTIMPLEMENTED;
   if( memory_IsUndef(Op1) ){
     RESULT = NULL;
     RETURN;
-    }
+  }
+
   Op1 = CONVERT2STRING(Op1);
-  RESULT = Op1;
-  r = STRINGVALUE(RESULT);
-  lLen = STRLEN(RESULT);
+  r = STRINGVALUE(Op1);
+  lLen = STRLEN(Op1);
+
+  RESULT = NEWMORTALSTRING(lLen);
+  ASSERTNULL(RESULT)
+  s = STRINGVALUE(RESULT);
 
   while( lLen-- ){
-    if( isupper( *r ) )*r = tolower( *r );
-    r++;
-    }
+    *s++ = tolower(*r++);
+  }
 
 #endif
 END
