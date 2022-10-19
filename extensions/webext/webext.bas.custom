@@ -59,6 +59,24 @@ FUNCTION MATCH(index)
 END FUNCTION
 
 
+FUNCTION encode_url(urlin)
+  LOCAL i, a, urlout
+  urlout = ""
+  a = ""
+  FOR i = 1 to LEN(urlin)
+    a = MID(urlin, i, 1)
+    IF (a >= "0" AND a <= "9") _
+      OR (a >= "A" AND a <= "Z") _
+      OR (a >= "a" AND a <= "z") THEN
+      urlout &= a
+    ELSE
+      urlout &= "%" & HEX(ASC(a))
+    END IF
+  NEXT
+  encode_url = urlout
+END FUNCTION
+
+
 SUB mkarray(obj)
 
   LOCAL arr, objArray, tmpObj, oname, j, cnt, jType, dType
@@ -363,6 +381,7 @@ idx[14] = 1
 json_obj = loadstr(json)
 mkarray(json_obj)
 json = root
+root[] = undef
 
 END SUB
 
@@ -434,7 +453,7 @@ SUB convert(jo)
 END SUB
 
 FUNCTION sba2json(sba)
-
+LOCAL out
   out = "{"
   convert(sba)
   out &= "}"
@@ -443,14 +462,14 @@ FUNCTION sba2json(sba)
 
 END FUNCTION
 
-SUB sbadump(jo, i)
+SUB dump(jo, i)
   LOCAL x, y
 
   IF TYPE(jo[0]) = 4 THEN
     FOR y = 0 TO UBOUND(jo)
       PRINT SPACE(i), "[", y, "]\n"
       i += 3
-      sbadump(jo[y], i)
+      dump(jo[y], i)
       i -= 3
     NEXT
   ELSE
@@ -463,7 +482,7 @@ SUB sbadump(jo, i)
       IF TYPE(jo[x + 1]) = 4 THEN
         PRINT
         i += 3
-        sbadump(jo[x + 1], i)
+        dump(jo[x + 1], i)
         i -= 3
       ELSE
         PRINT " = ", jo[x + 1], "\n"
@@ -472,5 +491,8 @@ SUB sbadump(jo, i)
   END IF
 END SUB
 
+SUB sbadump(sba)
+  dump(sba, 0)
+END SUB
 
 END MODULE
