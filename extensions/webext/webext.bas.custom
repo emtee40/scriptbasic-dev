@@ -453,7 +453,6 @@ SUB convert(jo)
 END SUB
 
 FUNCTION sba2json(sba)
-LOCAL out
   out = "{"
   convert(sba)
   out &= "}"
